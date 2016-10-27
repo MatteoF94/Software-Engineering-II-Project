@@ -1,0 +1,832 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\date{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 15col%
+\topmargin 15pheight%
+\rightmargin 15col%
+\bottommargin 15pheight%
+\secnumdepth -2
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Informal analisys of project requirements v.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Matteo Frosi
+\end_layout
+
+\begin_layout Author
+Luca Costa
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+25/10/2016 - 25 October 2016
+\end_layout
+
+\begin_layout Description
+Version Document first version.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+1) Users must be able to register to the system by providing their credentials
+ and payment information.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+We thought about the basic assumption that all the data is checked by the
+ system itself and not by human being.
+\end_layout
+
+\begin_layout Enumerate
+What kind of credentials does the user have to insert, and how does he do
+ that?
+\end_layout
+
+\begin_layout Enumerate
+A person must insert payment information containing the same data of the
+ previously selected cards.
+ In other words the person who is registering and the person that will pay
+ when using the service are the same.
+\end_layout
+
+\begin_layout Enumerate
+How can the user access is own account (provided by the system)?
+\end_layout
+
+\begin_layout Enumerate
+An already registered user cannot register him/herself again to the service.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+The user has to drive a car, so the Driving Licence is strictly required.
+ Moreover any ID Card could be requested, to identify furthermore the person.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The system can check for the validity of the information inserted by the
+ user (cards expired? false documents?).
+\begin_inset Newline newline
+\end_inset
+
+The payment information must be consistent with the previously given data:
+ the system can also check that.
+\begin_inset Newline newline
+\end_inset
+
+After the registration is complete, the system can send a password, that
+ must be unique for each user, thanks which the user can access to his/her
+ account.
+ Such password or code is sent by mail (that the user gave during the registrati
+on to the service).
+\begin_inset Newline newline
+\end_inset
+
+We do not consider the case where someone can actually use the credentials
+ of someone else, maybe a friend: such possibility is purely user-related
+ and the system has no way to control it.
+\end_layout
+
+\begin_layout Section
+2) Registered users must be able to find the locations of available cars
+ within a certain distance from their current location, or from a specified
+ address.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+The user will be able to use this 
+\begin_inset Quotes eld
+\end_inset
+
+finder service
+\begin_inset Quotes erd
+\end_inset
+
+ only if registered.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Whenever the GPS localisation isn't working (no signal, device not supporting
+ it), the user can manually put his/her own location as if he/she was inserting
+ a specified address.
+\end_layout
+
+\begin_layout Enumerate
+If the user inserts an address that is not existent or wrong (not recognised),
+ he/she will be asked to re-insert the address.
+\end_layout
+
+\begin_layout Enumerate
+How are the available distances, and cars, displayed to the user?
+\end_layout
+
+\begin_layout Enumerate
+Geographical coherence is required: if the user is in Milan, he won't receive
+ a list of the available cars in Rome.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 1 in the previous section is accomplished by making the service available
+ only from the private account of the users.
+\begin_inset Newline newline
+\end_inset
+
+To answer to point 4, we developed two ideas: the user will be able to select
+ from a set of available distances (100 m, 500 m, 1 km and so on) or all
+ the cars are shown to the user ordered by their specific distance from
+ the indicated location.
+ Moreover, cars can be grouped by other factors, such as distance, as previously
+ said, number of seats, battery percentage, nearness to a safe station.
+\end_layout
+
+\begin_layout Section
+3) Among the available cars in a certain geographical region, users must
+ be able to reserve a single car for up to one hour before they pick it
+ up.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+A situation where a user makes a reservation hours before the real need
+ is quite unfair.
+ How can such a situation be avoided, granting a fair treatment to all users?
+\end_layout
+
+\begin_layout Enumerate
+What happens if a user takes back a reservation?
+\end_layout
+
+\begin_layout Enumerate
+A user cannot make more than one reservation with is account.
+\end_layout
+
+\begin_layout Enumerate
+The reservation must be at least one hour before the real use, not less.
+\end_layout
+
+\begin_layout Enumerate
+To reserve a different car, the user must before delete his/her previous
+ reservations, if he/she has one.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+An idea to solve the problem described at point 1 relies on the strategy
+ adopted by a quite large number of companies in the world.
+ A user can make a reservation whenever he/she wants, but that will be free
+ for only a short range of time, such as from one up to two ours before
+ the usage of the service.
+ If he/she intends to make a reservation before that period, the user will
+ have to pay a sort of fee, proportional (or not) to the anticipated reservation
+ time.
+\begin_inset Newline newline
+\end_inset
+
+Point 2 is quite tricky.
+ It would be unfair if a user takes a reservation and then takes it back
+ at the last minute, maybe leaving people in need of that specific car with
+ nothing but to wait.
+ A possible solution (if we intend to find one) is to create a sort of waiting
+ queue, where people that do not have already made a reservation on other
+ cars, can enlist.
+ Whenever the first in queue, so the user that made the reservation, would
+ leave the queue, all the waiting users are notified that the car is free
+ once again, and repeat the whole process.
+ 
+\end_layout
+
+\begin_layout Section
+4) If a car is not picked-up within one hour from the reservation, the system
+ tags the car as available again, and the reservation expires; the user
+ pays a fee of 1 EUR.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+What if the user has not that much money?
+\end_layout
+
+\begin_layout Enumerate
+If the user picks up the car within the time limit of his/her reservation
+ (which could be more than one hour), he/she doesn't have to pay any fee.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+To solve point 1, we thought about another famous strategy used by many
+ real world services: the trial time.
+ The user receives a notification on his/her account that he/she has a short
+ period of time to refill his/her payment cards (or whatever other way he/she
+ uses to pay the service).
+ If such time expires, he/she will receive another notification and possibly
+ a fee.
+ 
+\end_layout
+
+\begin_layout Section
+5) A user that reaches a reserved car must be able to tell the system she's
+ nearby, so that the system unlocks the car and the user may enter.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+How can the user communicate it?
+\end_layout
+
+\begin_layout Enumerate
+What happens if someone else than the user take the car instead?
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 1 requires one more specification: such communication can be manual,
+ done by the user, or automatic, done by the system checking continuosly
+ the GPS localisations of every user.
+ The latter one is not considered by us.
+ The manual one can be done having the user access his/her account and use
+ a special action (available only if the car is reserved).
+\begin_inset Newline newline
+\end_inset
+
+The second point is problematic.
+ One solution is to make such 
+\begin_inset Quotes eld
+\end_inset
+
+procedure
+\begin_inset Quotes erd
+\end_inset
+
+ available only within a limited distance from the car, like 10 meters.
+ But that implies that the system knows in every moment the distance between
+ the user (device) and the car.
+ Another possibility is to give the user another unique code, that he must
+ use to access the car once reached.
+\end_layout
+
+\begin_layout Section
+6) As soon as the engine ignites, the system starts charging the user for
+ a given amount of money per minute; the user is notified of the current
+ charges through a screen on the car.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+The screen must represent exactly the sum of money 
+\begin_inset Quotes eld
+\end_inset
+
+to be spent
+\begin_inset Quotes erd
+\end_inset
+
+ for every minute that he/she stays on the working car.
+\end_layout
+
+\begin_layout Enumerate
+If the car stops, so does the money counter (just think about the situation
+ at a semaphore).
+ As soon as the engine re-ignites, the counter will start again, from the
+ previous sum of money, so to it's previous value.
+\end_layout
+
+\begin_layout Section
+7) The system stops charging the user as soon as the car is parked in a
+ safe area dn the user exits the car, at this point the system locks the
+ car automatically.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+If more passengers are on the car (detected with sensors on each seat),
+ all the people on it must exit the car to make the system lock it.
+\end_layout
+
+\begin_layout Enumerate
+When the car is locked, the system changes its status to 
+\begin_inset Quotes eld
+\end_inset
+
+available for the next reservation
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The system updates the location and status of the car.
+\end_layout
+
+\begin_layout Enumerate
+A particular situation may occur.
+ It can happen that the user and one passenger excanghe seats and the user
+ leaves the car allowing the passenger to drive.
+ In such case however, the real user will continue to be charged and that
+ makes the situation extremely improbable.
+\end_layout
+
+\begin_layout Enumerate
+The money topic is the same as section (and requirement) 4.
+\end_layout
+
+\begin_layout Enumerate
+Do users have a kind of map to reach the nearest safe areas?
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+A possible way to solve the problem expressed in point 6 is to make the
+ screen of the car show not just the money counter but also a look-like
+ map that informs the users of the nearest safe areas, maybe distinguishing
+ the special ones from the normal ones, and that gives indications about
+ how to reach a specific area, selected by the user.
+ 
+\end_layout
+
+\begin_layout Section
+8) The set of safe areas for parking cars is pre-defined by the management
+ system.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+What if the user abandons the car in a not safe area?
+\end_layout
+
+\begin_layout Enumerate
+The system must always keep updated the amount of areas available for the
+ users and the status of the cars and parking lots.
+\end_layout
+
+\begin_layout Enumerate
+Related to section (requirement) 7.
+ The user must be notified of the free parking spaces available when selecting
+ the nearest safe-area, special or not.
+\end_layout
+
+\begin_layout Enumerate
+When a safe area is selected, it becomes reserved for the car and don't
+ appear on the screen of other cars in the same zone.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 1 lead us to an ambiguous thought: can the user abandon the car, or
+ simply exit it (ending the service)? The answer was given us by the additional
+ requirement D, and is yes, the user can.
+ The worst case scenario for the user is leaving a door open, letting the
+ counter rise and not ending the service.
+\end_layout
+
+\begin_layout Section
+A) If the system detects the user took at least two other passengers onto
+ the car, the system applies a discount of 10% on the last ride.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+The discount must only be applied to the rides where there are more passengers.
+ As said in requirement 7, sensors applied on the car seats can detect how
+ many passengers there are.
+\end_layout
+
+\begin_layout Enumerate
+
+\color black
+How is the case where a passenger leaves the car before the user destination
+ (and equivalently if a passenger enters the car after the user started
+ his/her ride) treated?
+\end_layout
+
+\begin_layout Enumerate
+
+\color black
+What exactly is intended with the terms 
+\begin_inset Quotes eld
+\end_inset
+
+last ride
+\begin_inset Quotes erd
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Is the user notified by the reasons of the possible discounts? If yes, how?
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 2 requires a further discussion with the customer.
+ Thinking his/her way, the best way to handle such problem is to simply
+ consider positive the condition if during the ride, somewhere, the car
+ has two or more passengers, allowing a discount (even if the period in
+ which there are more passengers and the service time don't coincide).
+ However this is dificult to implement and requires more condition on the
+ sensors of the car and it's inner system.
+ The solution we want to adopt is the easy: 
+\begin_inset Quotes eld
+\end_inset
+
+the discount is applied only if the same number of users inside the car,
+ both driver and passengers, at the beginning of the service, is the same
+ as the end
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+To solve the problem of point 3, we assumed that with 
+\begin_inset Quotes eld
+\end_inset
+
+last ride
+\begin_inset Quotes erd
+\end_inset
+
+ we refer to the whole ride of an user, intended from the start of the service
+ to its end.
+\begin_inset Newline newline
+\end_inset
+
+The idea to solve the problem of point 4 is to show on the screen of the
+ car, when it stops, not just the amount of money the user has to pay, but
+ also the discount he/she is getting.
+ An example to clarify: when the user stops the car (not always coincident
+ with the engine shut down) and it has two passengers, the display will
+ show the money count and a phrase like: 
+\begin_inset Quotes eld
+\end_inset
+
+You are now carrying more than two passengers, if the condition persist
+ at the end of your service, you will get a discount of 10%
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Another idea is to simply leave the discount calculus to the car machinery,
+ not informing the user.
+\end_layout
+
+\begin_layout Section
+B) If a car is left with no more than 50% of the battery empty, the system
+ applies a discount of 20% on the last ride.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+Before the user exits the car and closes the door, the car must check the
+ remaining amount of battery.
+\end_layout
+
+\begin_layout Enumerate
+
+\color black
+How are multiple discounts applied to the cost of the ride? Cumulative or
+ recursively applied?
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 1 is simply an enhancement of what discussed in requirement A.
+ The check can be done anytime the car stops and the message is shown to
+ the user in the same way as before, along with the other messagges.
+\begin_inset Newline newline
+\end_inset
+
+Point 2 is more customer-oriented.
+ Cumulative discounts on the cost of the ride is the solution that we will
+ adopt, and from a customer point of view it's also the best one (because
+ it allow the maximum discount over the total).
+\end_layout
+
+\begin_layout Section
+C) If a car is left at special parking areas where they can be recharged
+ and the user takes care of plugging into the power grid, the system applies
+ a discount of 30% on the last ride.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+The system must be able to recognise the special areas from the normal ones.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+how
+\begin_inset Quotes erd
+\end_inset
+
+ corresponds to the requirement 8.
+\end_layout
+
+\begin_layout Enumerate
+How can the user show his/her will to plug the car and not exit and end
+ the service?
+\end_layout
+
+\begin_layout Enumerate
+Same doubts and assertions over the discount topic as requirements A and
+ B.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+We thought about two ways to solve the problem of point 2.
+ An easy one is user-driven: he/she has just to leave the door open, plug
+ in the car, enter to see if the discount message is shown (and so applied)
+ and end the service.
+ The other solution requires more car complexity: the user can manually
+ select the 
+\begin_inset Quotes eld
+\end_inset
+
+recharge
+\begin_inset Quotes erd
+\end_inset
+
+ option from a menu on the car and the charging door will open.
+ The discount will be applied only if the user really plugs in the car.
+\end_layout
+
+\begin_layout Section
+D) If the car is left at more than 3 km from the nearest power grid station
+ or with more than 80% of the battery empty, the system charges 30% more
+ on the last ride to compensate for the cost required to recharge the car
+ on-site.
+\end_layout
+
+\begin_layout Subsection
+Ideas, hypothesis and questions
+\end_layout
+
+\begin_layout Enumerate
+The system must keep trace of the car position and should detect when it
+ stops and the user leaves the car (possibly closing the door).
+ 
+\end_layout
+
+\begin_layout Enumerate
+As mentioned before, when the car stops, the display show not just the money
+ counter but also the possible discounts/overcharges of the ride to the
+ user.
+\end_layout
+
+\begin_layout Enumerate
+The terms 
+\begin_inset Quotes eld
+\end_inset
+
+recharge the car on-site
+\begin_inset Quotes erd
+\end_inset
+
+ implies that the car is rechargable everywhere, not just in the special
+ safe areas.
+ How is the recharge discount dealt with in that case?
+\end_layout
+
+\begin_layout Enumerate
+Same doubts and assertions over the discount topic as requirements A, B
+ and C.
+\end_layout
+
+\begin_layout Subsection
+Possible solutions
+\end_layout
+
+\begin_layout Standard
+Point 3 can be solved in more than one way.
+ One idea is to grant everyone the permission to recharge it everywhere
+ but just those who do that in a special safe area receive the discount.
+ Then the car can have a special plug that is accessible only by the pluggers
+ located in the special areas or given to technicians so that unautorized
+ users can't access it everywhere.
+ Lastly, the plugging can be available only in special safe areas (special
+ lock on the plug) and technicians can access it using a special badge or
+ code.
+\end_layout
+
+\begin_layout Section
+Hours of work
+\end_layout
+
+\begin_layout Subsubsection
+Matteo Frosi
+\end_layout
+
+\begin_layout Standard
+18-10-2016: 1.30 hours (meeting)
+\begin_inset Newline newline
+\end_inset
+
+20-10-2016: 0.45 hours (meeting)
+\begin_inset Newline newline
+\end_inset
+
+24-10-2016: 2.00 hours (document writing)
+\begin_inset Newline newline
+\end_inset
+
+25-10-2016: 0.30 hours (document revision + meeting)
+\end_layout
+
+\begin_layout Subsubsection
+Luca Costa
+\end_layout
+
+\begin_layout Standard
+18-10-2016: 1.30 hours (meeting)
+\begin_inset Newline newline
+\end_inset
+
+20-10-2016: 0.45 hours (meeting)
+\begin_inset Newline newline
+\end_inset
+
+24-10-2016: 1.00 hours (document revision)
+\begin_inset Newline newline
+\end_inset
+
+25-10-2016: 0.30 hours (document revision + meeting)
+\end_layout
+
+\end_body
+\end_document
