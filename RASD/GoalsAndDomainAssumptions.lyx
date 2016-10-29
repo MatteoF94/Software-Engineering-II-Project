@@ -159,7 +159,7 @@ on.
 
 \begin_layout Itemize
 [G12] Ensures that when the user leaves the car and closes the door, the
- service ends.
+ service ends and the user isn't charghed anymore.
 \end_layout
 
 \begin_layout Itemize
@@ -290,7 +290,142 @@ Technicians and other services (police, ambulances, firetrucks) will reach
 
 \begin_layout Itemize
 Every car is able to detect it a mechanical/electrical problem occurs, and
- modify its status.
+ modify its internal status.
+\end_layout
+
+\begin_layout Itemize
+The set of safe areas for parking cars is pre-defined by the management
+ system.
+\end_layout
+
+\begin_layout Section
+Glossary
+\end_layout
+
+\begin_layout Itemize
+User: is the person that benefits of the car-sharing service.
+ The user is able to make reservations, check cars and ask for notification
+ using his/her own account.
+ To register and be able to use the service, the user must provide name,
+ surname, phone number, e-mail, payment information, such as a credit card
+ number, and his/her Driver License.
+ The user is, in fact, the person who drives a car.
+\end_layout
+
+\begin_layout Itemize
+Car: is one of the electric car provided by the service.
+ The car contains various sensors which are able to detect the number of
+ passengers, the status of the mechanical and electrical components of the
+ car.
+ It also possess its own system, connected to the main system of the service.
+ This system is costantly updated on the status of the car.
+ The car has also a screen that makes possible an interaction between the
+ user and the car system, and a button that the user can press in case of
+ emergency.
+\end_layout
+
+\begin_layout Itemize
+Reservation: it's the process by which the user can make a request for a
+ car.
+ First, the user must access his/her own account.
+ From there, he can insert an address or chose his location, via GPS, to
+ search for available cars from the suggested zone.
+ Lastly, he can request a specific car to use.
+\end_layout
+
+\begin_layout Itemize
+GPS: global navigation satellite system that provides location and time
+ information in all weather conditions, anywhere on or near the Earth where
+ there is an unobstructed line of sight to four or more GPS satellites.
+ 
+\end_layout
+
+\begin_layout Itemize
+Picking up time / Reservation time: it's the period of time between the
+ time when the user reserves a car from his/her account and the unlocking
+ of the car by the same user.
+ The maximum reservation time, allowed by the system, is one hour.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Status: referred to a car, it is the set of the information that
+ describes it.
+ They include: 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Location
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Battery charge
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Money counter
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Components state
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Passenger: is a person who can benefit of the service without driving the
+ car.
+ The passenger can use a car only when an user is driving it, and it doesn't
+ need to be registered to use the service.
 \end_layout
 
 \begin_layout Section
@@ -855,8 +990,8 @@ begin {itemize}
 
 \backslash
 item{} [R11.1] When the user leaves the car, along with the passengers, the
- car system shall check the status of the car and communicate it to the
- system, that updates the database.
+ car system shall stop the charging counter, save the car status and communicate
+ it to the system, that updates the database.
  After five minutes, this process is repeated.
 \end_layout
 
@@ -930,7 +1065,7 @@ end {itemize}
 
 \backslash
 item{} [G12] Ensures that when the user leaves the car and closes the door,
- the service ends:
+ the service ends and the user isn't charghed anymore:
 \end_layout
 
 \begin_layout Plain Layout
@@ -989,6 +1124,13 @@ item{} [R13.1] When a car detects a problem, the car system shall inform
 item{} [R13.2] When the car system notifies the main system that all the
  problems are solved, the system shall update the car status, reset the
  access code of the car and tag it as available.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
 \end_layout
 
 \begin_layout Plain Layout
