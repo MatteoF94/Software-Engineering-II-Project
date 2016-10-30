@@ -428,6 +428,89 @@ Passenger: is a person who can benefit of the service without driving the
  need to be registered to use the service.
 \end_layout
 
+\begin_layout Itemize
+Technician: is the person dedicated to repair and fix the car.
+ It is provided by an external company.
+\end_layout
+
+\begin_layout Itemize
+Opertor: is the person that communicates with the user whenever an accident
+ happens during the service and emergency button on the used car is pressed.
+ The operator contacts other services depending on which type of accident
+ occured, such as ambulance, police, firetrucks, technicians.
+ As the latter ones, the operator is provided by an external company.
+\end_layout
+
+\begin_layout Itemize
+Safe area: it is a specific area where the electric cars of PowerEnJoy service
+ can park.
+ The set of safe areas is pre-defined and owned by the company/society that
+ requested the management system for the service.
+\end_layout
+
+\begin_layout Itemize
+System: it is the new system to create.
+ It refers to the software and hardware needed in order to make the service
+ work.
+ The system is composed of a database (or more than one) to store the users
+ and cars information, and the software needed to manage users actions and
+ the single cars.
+\end_layout
+
+\begin_layout Itemize
+Car system: is the system, mostly hardware, contained in every car.
+ It checks and elaborates the status of the car and interfaces the transport,
+ the user and the system.
+ The user can interact with the car thanks to an installed screen, that
+ shows informations about the service cost, a GPS based map, discounts and
+ so on.
+ Every car system sends information to the system via 3G connection, and
+ viceversa.
+ 
+\end_layout
+
+\begin_layout Itemize
+Discount: is an amount of money that has to be subtracted from the ride
+ cost of a user, at the end of the service, if certain conditions (described
+ in section 1.1, goals specification 3) are met.
+\end_layout
+
+\begin_layout Itemize
+Overcharge: is an amount of money that has to be added to the ride cost
+ of a user, at the end of the service, if certain conditions (described
+ in section 1.1, goals specification 3) are met.
+\end_layout
+
+\begin_layout Itemize
+Ride: it is the journey in the electric car.
+ It starts when the user turns on the car and ends when the user leaves
+ the car and closes the open doors.
+ In the way a ride is defined, its duration coincides with the period of
+ time where the user is charged for the service.
+\end_layout
+
+\begin_layout Itemize
+Service: it refers to the whole process of reservation, ride and payment
+ of a car, done by the user.
+\end_layout
+
+\begin_layout Itemize
+Push notification/ push message: it is a notification sent to a smartphone
+ using the mobile application.
+\end_layout
+
+\begin_layout Itemize
+SMS: short message service; it is a notification sent to a mobile phone,
+ we need a GSM gateway to use it.
+\end_layout
+
+\begin_layout Itemize
+GMS gateway: device that allows SMS text messages to be sent and/or received
+ by email, from Web pages or from other software applications by acquiring
+ a unique identifier from the mobile phone's Subscriber Identity Module,
+ or SIM card.
+\end_layout
+
 \begin_layout Section
 Requirements
 \end_layout
@@ -609,8 +692,9 @@ end {itemize}
 item{} [G4] Allows the user to see the status of the available cars within
  an area that he/she specified, or in the nearby areas, for a possible reservati
 on.
- If the car has a low battery charge, such as less than 20%, it does not
- appear on the user interface:
+ If the car has a low battery charge, such as less than 20
+\backslash
+%, it does not appear on the user interface:
 \end_layout
 
 \begin_layout Plain Layout
@@ -641,7 +725,9 @@ item{} [R4.2] The system shall be able to recognise and locate the address
 
 \backslash
 item{} [R4.3] The system shall display a list of the available cars with
- more than 20% of the battery charge, within 5km from the given location.
+ more than 20
+\backslash
+% of the battery charge, within 5km from the given location.
  
 \end_layout
 
