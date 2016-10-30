@@ -79,12 +79,35 @@
 RASD
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
 
 \begin_layout Subsection
-Description of the problem
+Purpose of the system and brief description of the problem
 \end_layout
 
 \begin_layout Standard
@@ -187,40 +210,46 @@ on.
 \end_layout
 
 \begin_layout Itemize
-[G7] Ensures that the user is informed real-time on the current cost of
+[G8] Ensures that the user is informed real-time on the current cost of
  the service, when using it, and the possible discounts and overcharges.
 \end_layout
 
 \begin_layout Itemize
-[G8] Allows the user to stop the car for a brief moment to rest or to pick
+[G9] Allows the user to stop the car for a brief moment to rest or to pick
  up / leave passengers.
  He/she will however still be charged.
 \end_layout
 
 \begin_layout Itemize
-[G9] Ensures that the user knows the safe area around him/her.
+[G10] Ensures that the user knows the safe area around him/her.
  is informed by the car internal system of the safe-areas around him/her,
  within a specified range (like a mini-map).
 \end_layout
 
 \begin_layout Itemize
-[G10] Allows the user to press a button on the car to contact an operator
+[G11] Allows the user to press a button on the car to contact an operator
  in case of emergency, such as a car accident, a mechanical problem or sudden
  ilness.
 \end_layout
 
 \begin_layout Itemize
-[G11] Ensures that the user receive a discount or overcharge when specific
+[G12] Ensures that when the user leaves the car and closes the door, the
+ service ends.
+ 
+\end_layout
+
+\begin_layout Itemize
+[G13] Ensures that the user receives a discount or overcharge when specific
  conditions are met.
 \end_layout
 
 \begin_layout Itemize
-[G12] Ensures that when the user leaves the car and closes the door, the
- service ends and the user isn't charghed anymore.
+[G14] Ensures that the user is notified of the applied discount and overcharges
+ once the service ends and payment is applied
 \end_layout
 
 \begin_layout Itemize
-[G13] Ensures that when the user picks up a car, it has no mechanical or
+[G15] Ensures that when the user picks up a car, it has no mechanical or
  electrical problem.
 \end_layout
 
@@ -239,7 +268,11 @@ Goals further description
 \end_layout
 
 \begin_layout Itemize
-[G4] denies the 
+[G4] denies the possibility to use a car when the battery is very low, less
+ than 20% of charge.
+ This represents the behavior of a person in the real world.
+ Nobody would chose a car if it would not be able to reach the destination.
+ A user would prefer a charged car, to drive for longer distances.
 \end_layout
 
 \begin_layout Itemize
@@ -269,8 +302,68 @@ help
  to abandon the car midway.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G12] can be further broken into two implicit sub-goals:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G12.1] Ensures that when the user is in a safe area and leaves the
+ car the car system stops charging him/her.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G12.2] Ensures that when the user has left the car and closed the
+ door, the service ends.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
-[G11] refers to the particular condition expressed in the project description.
+[G13] refers to the particular condition expressed in the project description.
  If the user takes on two ore more passengers, he/she receives a discount
  of 10% on the cost of the ride.
  If the user leaves the car with more than 50% of the battery available,
@@ -282,94 +375,7 @@ help
  cost of the ride.
 \end_layout
 
-\begin_layout Section*
-Domain assumptions
-\end_layout
-
-\begin_layout Itemize
-All the GPS localisation services have no fault and always returns the correct
- position of a device (car, phone, tablet...).
-\end_layout
-
-\begin_layout Itemize
-If a car is locked, nobody can access it.
- However, technicians are able to use a code to operate on it.
-\end_layout
-
-\begin_layout Itemize
-The databases on which the system relies on works without problems (no data
- loss, no incoherence).
-\end_layout
-
-\begin_layout Itemize
-Once a user is registered, the system won't accept any other registration
- with his/her data.
- In other words, a user can register only once.
-\end_layout
-
-\begin_layout Itemize
-Once a user is registered, his/her information will be saved and present
- in the system database.
-\end_layout
-
-\begin_layout Itemize
-All the notifications that a user can receive from his/her account are immediate
- and always working.
-\end_layout
-
-\begin_layout Itemize
-All the updates of the status of a car are immediate and correct.
-\end_layout
-
-\begin_layout Itemize
-A user will never leave the car in a zone unreachable by GPS localisation
- or too far from the nearest safe-area.
-\end_layout
-
-\begin_layout Itemize
-A user will never leave the car with a door open, and neither the passengers
- will.
-\end_layout
-
-\begin_layout Itemize
-Users will encounter no problems when accessing the car using a code.
-\end_layout
-
-\begin_layout Itemize
-When registering, users will insert only Credit Card info or Debit Card
- info as methods of payment.
-\end_layout
-
-\begin_layout Itemize
-Technicians and operators are always available and provided by a third party
- agent.
-\end_layout
-
-\begin_layout Itemize
-Passwords and codes are unique.
-\end_layout
-
-\begin_layout Itemize
-Discounts and overcharges are always calculated and applied in the correct
- way.
-\end_layout
-
-\begin_layout Itemize
-Technicians and other services (police, ambulances, firetrucks) will reach
- the location addressed by the user/operator in the shortest possible time.
-\end_layout
-
-\begin_layout Itemize
-Every car is able to detect it a mechanical/electrical problem occurs, and
- modify its internal status.
-\end_layout
-
-\begin_layout Itemize
-The set of safe areas for parking cars is pre-defined by the management
- system.
-\end_layout
-
-\begin_layout Section
+\begin_layout Subsection
 Glossary
 \end_layout
 
@@ -580,6 +586,267 @@ GMS gateway: device that allows SMS text messages to be sent and/or received
  by email, from Web pages or from other software applications by acquiring
  a unique identifier from the mobile phone's Subscriber Identity Module,
  or SIM card.
+\end_layout
+
+\begin_layout Subsection
+References and overview
+\end_layout
+
+\begin_layout Section
+Overall description
+\end_layout
+
+\begin_layout Subsection
+Interfaces description
+\end_layout
+
+\begin_layout Itemize
+Interface with GSM provider to send SMS notifications to the users.
+\end_layout
+
+\begin_layout Itemize
+Interface with the external staff.
+ Technicians and operators are provided by a different company and the system
+ needs to interact with them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Interface between the user and the car system.
+ There are two levels of interaction:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} The user can check for general informations of a car via his/her
+ account, on the app.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} The user has more detailed informations on the car, the service cost
+ and the location during the ride, interacting with the car screen.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Interface between the user and the system, via app.
+ The user is able to access the offered services thanks to the application.
+\end_layout
+
+\begin_layout Itemize
+Interface between the car system and the system, to enable the communication
+ of data.
+\end_layout
+
+\begin_layout Itemize
+Interface between the system and the GPS map provider.
+\end_layout
+
+\begin_layout Itemize
+Interface between the cars and the recharge stations, that enables the recharge
+ of the vehicle.
+ It is composed by a plug and sensors connected to the car system that are
+ able to recognise if the car is plugged (and recharging).
+\end_layout
+
+\begin_layout Itemize
+Interface between the cars and the people, both users and technicians.
+ This interface refers to a device connected to the car system that is able
+ to recognise codes and unlock the car.
+\end_layout
+
+\begin_layout Subsection
+Product functions
+\end_layout
+
+\begin_layout Subsection
+Constraints
+\end_layout
+
+\begin_layout Subsubsection
+Regulatory policies
+\end_layout
+
+\begin_layout Standard
+When registering, the system shows the user the license he/she has to accept
+ in order to benefit from the offered services.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Treatment of personal data follows the rules described by the law (Law D.
+ Lgs.
+ 196/2003 in Italy).
+\begin_inset Newline newline
+\end_inset
+
+The system also asks the permission to use and manage sensible data such
+ as position, mail and phone number, in order to achieve its purposes, respectin
+g in every conditions and cases the privacy law.
+\begin_inset Newline newline
+\end_inset
+
+The system mustn't use push notifications and SMSs to send SPAM and third
+ party advertising, but can only use such means according to the offered
+ services.
+\end_layout
+
+\begin_layout Subsubsection
+Possible software limitations
+\end_layout
+
+\begin_layout Standard
+Problem regarding APIs management and integration can arise, leading to
+ major complexities of the system and delays in the development of the system
+ software.
+\begin_inset Newline newline
+\end_inset
+
+The software that manages the system may not implement all the needed functional
+ities.
+ Such problem is mostly due to a bad development.
+\end_layout
+
+\begin_layout Subsubsection
+Hardware limitations
+\end_layout
+
+\begin_layout Standard
+The mobile device owned by the user
+\end_layout
+
+\begin_layout Section*
+Domain assumptions
+\end_layout
+
+\begin_layout Itemize
+All the GPS localisation services have no fault and always returns the correct
+ position of a device (car, phone, tablet...).
+\end_layout
+
+\begin_layout Itemize
+If a car is locked, nobody can access it.
+ However, technicians are able to use a code to operate on it.
+\end_layout
+
+\begin_layout Itemize
+The databases on which the system relies on works without problems (no data
+ loss, no incoherence).
+\end_layout
+
+\begin_layout Itemize
+Once a user is registered, the system won't accept any other registration
+ with his/her data.
+ In other words, a user can register only once.
+\end_layout
+
+\begin_layout Itemize
+Once a user is registered, his/her information will be saved and present
+ in the system database.
+\end_layout
+
+\begin_layout Itemize
+All the notifications that a user can receive from his/her account are immediate
+ and always working.
+\end_layout
+
+\begin_layout Itemize
+All the updates of the status of a car are immediate and correct.
+\end_layout
+
+\begin_layout Itemize
+A user will never leave the car in a zone unreachable by GPS localisation
+ or too far from the nearest safe-area.
+\end_layout
+
+\begin_layout Itemize
+A user will never leave the car with a door open, and neither the passengers
+ will.
+\end_layout
+
+\begin_layout Itemize
+A user will never leave a door open for more than ten minutes.
+\end_layout
+
+\begin_layout Itemize
+Users will encounter no problems when accessing the car using a code.
+\end_layout
+
+\begin_layout Itemize
+When registering, users will insert only Credit Card info or Debit Card
+ info as methods of payment.
+\end_layout
+
+\begin_layout Itemize
+Technicians and operators are always available and provided by a third party
+ agent.
+\end_layout
+
+\begin_layout Itemize
+Passwords and codes are unique.
+\end_layout
+
+\begin_layout Itemize
+Discounts and overcharges are always calculated and applied in the correct
+ way.
+\end_layout
+
+\begin_layout Itemize
+Technicians and other services (police, ambulances, firetrucks) will reach
+ the location addressed by the user/operator in the shortest possible time.
+\end_layout
+
+\begin_layout Itemize
+Every car is able to detect it a mechanical/electrical problem occurs, and
+ modify its internal status.
+\end_layout
+
+\begin_layout Itemize
+The set of safe areas for parking cars is pre-defined by the management
+ system.
 \end_layout
 
 \begin_layout Section
@@ -990,7 +1257,37 @@ end {itemize}
 
 
 \backslash
-item{} [G8] Allows the user to stop the car for a brief moment to rest or
+item{} [G8] Ensures that the user is informed real-time on the current cost
+ of the service, when using it:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R8.1] Every minute, the car system shall increase the money counter
+ and display its value on the screen of the car.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G9] Allows the user to stop the car for a brief moment to rest or
  to pick up / leave passengers.
  He/she will however still be charged:
 \end_layout
@@ -1006,7 +1303,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R8.1] If the user stops the car, the car system shall continue to
+item{} [R9.1] If the user stops the car, the car system shall continue to
  charge him/her per minute.
 \end_layout
 
@@ -1014,7 +1311,7 @@ item{} [R8.1] If the user stops the car, the car system shall continue to
 
 
 \backslash
-item{} [R8.2] When one or more passengers leave, the car system shall detect
+item{} [R9.2] When one or more passengers leave, the car system shall detect
  the change and update the status of the car, displaying it to the user.
 \end_layout
 
@@ -1029,7 +1326,7 @@ end {itemize}
 
 
 \backslash
-item{} [G9] Ensures that the user knows the safe area around him/her during
+item{} [G10] Ensures that the user knows the safe area around him/her during
  the car ride:
 \end_layout
 
@@ -1044,7 +1341,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R9.1] When the service starts, described in requirement [R7.1], the
+item{} [R10.1] When the service starts, described in requirement [R7.1], the
  car system shall elaborate a detailed map of a 10km radius zone from the
  car location, using GPS.
  The map status in continuosly elaborated during the ride.
@@ -1054,7 +1351,7 @@ item{} [R9.1] When the service starts, described in requirement [R7.1], the
 
 
 \backslash
-item{} [R9.2] Referring to requirement [R9.1] the car system shall show the
+item{} [R10.2] Referring to requirement [R9.1] the car system shall show the
  map on the car screen, along with the car status, as stated in requirement
  [R8.2], and the current cost of the ride.
 \end_layout
@@ -1063,7 +1360,7 @@ item{} [R9.2] Referring to requirement [R9.1] the car system shall show the
 
 
 \backslash
-item{} [R9.3] When the service starst, in addition to requirement [R9.1],
+item{} [R10.3] When the service starts, in addition to requirement [R9.1],
  the system shall inform the car system of the location of the safe-zones,
  distinguishing between normal safe-zones and the ones with power grids.
  Only the safe-zones with available parking places are shown.
@@ -1080,7 +1377,7 @@ end {itemize}
 
 
 \backslash
-item{} [G10] Allows the user to press a button on the car to contact an
+item{} [G11] Allows the user to press a button on the car to contact an
  operator in case of emergency, such as a car accident, a mechanical problem
  or sudden ilness:
 \end_layout
@@ -1096,7 +1393,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R10.1] When the user presses the button, the system shall notify
+item{} [R11.1] When the user presses the button, the system shall notify
  an operator on the location of the car and its status.
  The operator belongs to an outer service provider agency.
  
@@ -1106,18 +1403,18 @@ item{} [R10.1] When the user presses the button, the system shall notify
 
 
 \backslash
-item{} [R10.2] When the user presses the button, the system shall arrange
+item{} [R11.2] When the user presses the button, the system shall arrange
  a call between the user inside the call and the operator of requirement
- [R10.2].
+ [R11.2].
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R10.3] If the user presses the button multiple times in a short period,
+item{} [R11.3] If the user presses the button multiple times in a short period,
  less than 2 minutes, the system shall recognise only the first and start
- the procedure described in the requirements [R10.1] and [R10.2].
+ the procedure described in the requirements [R11.1] and [R11.2].
 \end_layout
 
 \begin_layout Plain Layout
@@ -1131,7 +1428,118 @@ end {itemize}
 
 
 \backslash
-item{} [G11] Ensures that the user receives a discount or overcharge when
+item{} [G12] Ensures that when the user leaves the car and closes the door,
+ the service ends:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G12.1] Ensures that when the user is in a safe area and leaves the
+ car the car system stops charging him/her:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R12.1] When the user leaves the car, along with the passengers, the
+ car system shall check if the car is located in a safe area or not, communicati
+ng with the system.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R12.2] If the user has left the car in a safe area, the car system
+ shall stop the charging counter and save the car status.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R12.3] If the user has left the car in a non safe area, the car system
+ shall continue charging the user, as long as all the doors are closed.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G12.2] Ensures that when the user has left the car and closed the
+ door, the service ends:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R12.4] When the user has left the car and closed all the doors, the
+ car system shall communicate the car status to the system.
+ The system shall execute the payment process, communicate the car system
+ to lock the car.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R12.5] When the car system has locked the car and informed the system,
+ the latter shall update the car status in the database, and tag the car
+ available once again.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G13] Ensures that the user receives a discount or overcharge when
  specific conditions are met:
 \end_layout
 
@@ -1146,18 +1554,8 @@ begin {itemize}
 
 
 \backslash
-item{} [R11.1] When the user leaves the car, along with the passengers, the
- car system shall stop the charging counter, save the car status and communicate
- it to the system, that updates the database.
- After five minutes, this process is repeated.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} [R11.2] When requirement [R11.1] is accomplished, the system shall
- check the battery of the used car.
+item{} [R13.1] When the user leaves the car and closes all the doors, the
+ system shall check the battery of the used car.
  If more than 50
 \backslash
 % remains and the car is located in a safe-area, the system shall apply
@@ -1175,9 +1573,9 @@ item{} [R11.2] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.3] When requirement [R11.1] is accomplished, the system shall
- check the number of passengers, calculated when the user reached the safe
- zone.
+item{} [R13.2] When the user leaves the car and closes all the doors, the
+ system shall check the number of passengers, calculated when the user reached
+ the safe zone.
  If it is more than two and the car is located in a safe-area, the system
  shall apply a discount of 10
 \backslash
@@ -1188,8 +1586,8 @@ item{} [R11.3] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.4] When requirement [R11.1] is accomplished, the system shall
- check if the car is plugged into a power grid.
+item{} [R13.3] When the user leaves the car and closes all the doors, the
+ system shall check if the car is plugged into a power grid.
  If such condition is met and the car is located in a safe-area, the system
  shall apply a discount of 30
 \backslash
@@ -1200,10 +1598,10 @@ item{} [R11.4] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.5] When requirement [R11.1] is accomplished, the system shall
- check if the car is in a safe-area or not.
- The "true" branch consequences are described in requirements [R11.2], [R11.3]
- and [R11.4].
+item{} [R13.4] When the user leaves the car and closes all the doors, the
+ system shall check if the car is in a safe-area or not.
+ The "true" branch consequences are described in requirements [R13.1], [R13.2]
+ and [R13.3].
  If the car it's located at more than 3km from the nearest safe area, the
  system shall apply an overcharge of 30
 \backslash
@@ -1221,8 +1619,8 @@ end {itemize}
 
 
 \backslash
-item{} [G12] Ensures that when the user leaves the car and closes the door,
- the service ends and the user isn't charghed anymore:
+item{} [G14] Ensures that the user is notified of the applied discount and
+ overcharges once the service ends and payment is applied:
 \end_layout
 
 \begin_layout Plain Layout
@@ -1236,9 +1634,9 @@ begin {itemize}
 
 
 \backslash
-item{} [R12.1] After the procedure described in requirements [R11.X], the
- system shall execute the payment process, communicate the car system to
- lock the car and update the car status on the database.
+item{} [R14.1] When the system applies the payment process on the user, it
+ shall inform the user with a push notification of the applied discount
+ and overcharges, based on the requirements [R13.X].
 \end_layout
 
 \begin_layout Plain Layout
@@ -1252,7 +1650,7 @@ end {itemize}
 
 
 \backslash
-item{} [G13] Ensures that when the user picks up a car, it has no mechanical
+item{} [G15] Ensures that when the user picks up a car, it has no mechanical
  or electrical problem:
 \end_layout
 
@@ -1267,7 +1665,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R13.1] When a car detects a problem, the car system shall inform
+item{} [R15.1] When a car detects a problem, the car system shall inform
  the main system of the new status.
  The system shall then contact third party technicians, giving them the
  location of the car and a unique code to access it.
@@ -1278,7 +1676,7 @@ item{} [R13.1] When a car detects a problem, the car system shall inform
 
 
 \backslash
-item{} [R13.2] When the car system notifies the main system that all the
+item{} [R15.2] When the car system notifies the main system that all the
  problems are solved, the system shall update the car status, reset the
  access code of the car and tag it as available.
 \end_layout
