@@ -76,10 +76,67 @@
 \begin_body
 
 \begin_layout Title
-Goals and Domain Assumptions
+RASD
 \end_layout
 
 \begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Description of the problem
+\end_layout
+
+\begin_layout Standard
+PowerEnJoy is an electrical car sharing service, based on a mobile application.
+ The targets of the service, intended as users, are people that needs to
+ move from a place to another within a city and requires a conveyance to
+ move (because they don't have their own or simply can't use it).
+\begin_inset Newline newline
+\end_inset
+
+A user can make a reservation for a car, using the mobile app and his/her
+ account, and check for the availability and status of all the cars within
+ his/her position, identified using GPS localisation, or a specific one,
+ inserted manually by the user.
+ As stated before, to access the service, the user must possess a private
+ account, so a registration is needed.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The system provides the users a safe way (identification code) to access
+ the cars, and the riding service and keeps trace of the status of all the
+ cars.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, the system prizes or punishes a respectively good or bad behavior
+ from the users, applying a discount or an overcharge on the cost of a ride.
+ As esxample, if the user leaves the car without much battery, he/she will
+ have to pay more than the standard cost of the ride, because the car will
+ need to be charged and this operation has a cost.
+ On the other hand, if a user plugs the car before ending the service, it
+ receives a discount.
+\begin_inset Newline newline
+\end_inset
+
+The system includes other functionalities, such as GPS based maps available
+ in every car, an emergency procedure in case an accident occur during a
+ ride and the notification of a car status if the user requested it.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The purpose of the system, referring to both the main and each car systems,
+ is to offer a reliable, efficient and safe service, allowing the user to
+ benefit of the offered electric cars when needed.
+\end_layout
+
+\begin_layout Subsection
 Goals
 \end_layout
 
@@ -130,45 +187,63 @@ on.
 \end_layout
 
 \begin_layout Itemize
-[G7] Ensures that the user is informed real-time on the current cost of
+[G8] Ensures that the user is informed real-time on the current cost of
  the service, when using it, and the possible discounts and overcharges.
 \end_layout
 
 \begin_layout Itemize
-[G8] Allows the user to stop the car for a brief moment to rest or to pick
+[G9] Allows the user to stop the car for a brief moment to rest or to pick
  up / leave passengers.
  He/she will however still be charged.
 \end_layout
 
 \begin_layout Itemize
-[G9] Ensures that the user knows the safe area around him/her.
+[G10] Ensures that the user knows the safe area around him/her.
  is informed by the car internal system of the safe-areas around him/her,
  within a specified range (like a mini-map).
 \end_layout
 
 \begin_layout Itemize
-[G10] Allows the user to press a button on the car to contact an operator
+[G11] Allows the user to press a button on the car to contact an operator
  in case of emergency, such as a car accident, a mechanical problem or sudden
  ilness.
 \end_layout
 
 \begin_layout Itemize
-[G11] Ensures that the user receive a discount or overcharge when specific
+[G12] Ensures that the user receive a discount or overcharge when specific
  conditions are met.
 \end_layout
 
 \begin_layout Itemize
-[G12] Ensures that when the user leaves the car and closes the door, the
+[G13] Ensures that when the user leaves the car and closes the door, the
  service ends and the user isn't charghed anymore.
 \end_layout
 
 \begin_layout Itemize
-[G13] Ensures that when the user picks up a car, it has no mechanical or
+[G14] Ensures that when the user picks up a car, it has no mechanical or
  electrical problem.
 \end_layout
 
 \begin_layout Subsection
-Specification about goals
+Goals further description
+\end_layout
+
+\begin_layout Itemize
+[G1] leaves out a particular scenario.
+ The system won't actually be able to know if the person accessing the account
+ is the real owner.
+ A user can just give the credential to a friend, and this friend can access
+ and use the service as if it was the real user.
+ Such case, is a decision, or problem, of the user and the system can't
+ do anything to avoid or simply recognise it.
+\end_layout
+
+\begin_layout Itemize
+[G4] denies the possibility to use a car when the battery is very low, less
+ than 20% of charge.
+ This represents the behavior of a person in the real world.
+ Nobody would chose a car if it would not be able to reach the destination.
+ A user would prefer a charged car, to drive for longer distances.
 \end_layout
 
 \begin_layout Itemize
@@ -692,8 +767,9 @@ end {itemize}
 item{} [G4] Allows the user to see the status of the available cars within
  an area that he/she specified, or in the nearby areas, for a possible reservati
 on.
- If the car has a low battery charge, such as less than 20%, it does not
- appear on the user interface:
+ If the car has a low battery charge, such as less than 20
+\backslash
+%, it does not appear on the user interface:
 \end_layout
 
 \begin_layout Plain Layout
@@ -724,7 +800,9 @@ item{} [R4.2] The system shall be able to recognise and locate the address
 
 \backslash
 item{} [R4.3] The system shall display a list of the available cars with
- more than 20% of the battery charge, within 5km from the given location.
+ more than 20
+\backslash
+% of the battery charge, within 5km from the given location.
  
 \end_layout
 
@@ -916,7 +994,46 @@ end {itemize}
 
 
 \backslash
-item{} [G8] Allows the user to stop the car for a brief moment to rest or
+item{} [G8] Ensures that the user is informed real-time on the current cost
+ of the service, when using it, and the possible discounts and overcharges:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R8.1] Every minute, the car system shall increase the money counter
+ and display its value on the screen of the car.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R8.2] When the conditions described in requirements [R12.2] to [R12.5],
+ the car system shall display on the screen a phrase describing the possible
+ discounts or overcharges.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [G9] Allows the user to stop the car for a brief moment to rest or
  to pick up / leave passengers.
  He/she will however still be charged:
 \end_layout
@@ -932,7 +1049,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R8.1] If the user stops the car, the car system shall continue to
+item{} [R9.1] If the user stops the car, the car system shall continue to
  charge him/her per minute.
 \end_layout
 
@@ -940,7 +1057,7 @@ item{} [R8.1] If the user stops the car, the car system shall continue to
 
 
 \backslash
-item{} [R8.2] When one or more passengers leave, the car system shall detect
+item{} [R9.2] When one or more passengers leave, the car system shall detect
  the change and update the status of the car, displaying it to the user.
 \end_layout
 
@@ -955,7 +1072,7 @@ end {itemize}
 
 
 \backslash
-item{} [G9] Ensures that the user knows the safe area around him/her during
+item{} [G10] Ensures that the user knows the safe area around him/her during
  the car ride:
 \end_layout
 
@@ -970,7 +1087,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R9.1] When the service starts, described in requirement [R7.1], the
+item{} [R10.1] When the service starts, described in requirement [R7.1], the
  car system shall elaborate a detailed map of a 10km radius zone from the
  car location, using GPS.
  The map status in continuosly elaborated during the ride.
@@ -980,7 +1097,7 @@ item{} [R9.1] When the service starts, described in requirement [R7.1], the
 
 
 \backslash
-item{} [R9.2] Referring to requirement [R9.1] the car system shall show the
+item{} [R10.2] Referring to requirement [R9.1] the car system shall show the
  map on the car screen, along with the car status, as stated in requirement
  [R8.2], and the current cost of the ride.
 \end_layout
@@ -989,7 +1106,7 @@ item{} [R9.2] Referring to requirement [R9.1] the car system shall show the
 
 
 \backslash
-item{} [R9.3] When the service starst, in addition to requirement [R9.1],
+item{} [R10.3] When the service starts, in addition to requirement [R9.1],
  the system shall inform the car system of the location of the safe-zones,
  distinguishing between normal safe-zones and the ones with power grids.
  Only the safe-zones with available parking places are shown.
@@ -1006,7 +1123,7 @@ end {itemize}
 
 
 \backslash
-item{} [G10] Allows the user to press a button on the car to contact an
+item{} [G11] Allows the user to press a button on the car to contact an
  operator in case of emergency, such as a car accident, a mechanical problem
  or sudden ilness:
 \end_layout
@@ -1022,7 +1139,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R10.1] When the user presses the button, the system shall notify
+item{} [R11.1] When the user presses the button, the system shall notify
  an operator on the location of the car and its status.
  The operator belongs to an outer service provider agency.
  
@@ -1032,18 +1149,18 @@ item{} [R10.1] When the user presses the button, the system shall notify
 
 
 \backslash
-item{} [R10.2] When the user presses the button, the system shall arrange
+item{} [R11.2] When the user presses the button, the system shall arrange
  a call between the user inside the call and the operator of requirement
- [R10.2].
+ [R11.2].
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R10.3] If the user presses the button multiple times in a short period,
+item{} [R11.3] If the user presses the button multiple times in a short period,
  less than 2 minutes, the system shall recognise only the first and start
- the procedure described in the requirements [R10.1] and [R10.2].
+ the procedure described in the requirements [R11.1] and [R11.2].
 \end_layout
 
 \begin_layout Plain Layout
@@ -1057,7 +1174,7 @@ end {itemize}
 
 
 \backslash
-item{} [G11] Ensures that the user receives a discount or overcharge when
+item{} [G12] Ensures that the user receives a discount or overcharge when
  specific conditions are met:
 \end_layout
 
@@ -1072,7 +1189,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R11.1] When the user leaves the car, along with the passengers, the
+item{} [R12.1] When the user leaves the car, along with the passengers, the
  car system shall stop the charging counter, save the car status and communicate
  it to the system, that updates the database.
  After five minutes, this process is repeated.
@@ -1082,7 +1199,7 @@ item{} [R11.1] When the user leaves the car, along with the passengers, the
 
 
 \backslash
-item{} [R11.2] When requirement [R11.1] is accomplished, the system shall
+item{} [R12.2] When requirement [R12.1] is accomplished, the system shall
  check the battery of the used car.
  If more than 50
 \backslash
@@ -1101,7 +1218,7 @@ item{} [R11.2] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.3] When requirement [R11.1] is accomplished, the system shall
+item{} [R12.3] When requirement [R12.1] is accomplished, the system shall
  check the number of passengers, calculated when the user reached the safe
  zone.
  If it is more than two and the car is located in a safe-area, the system
@@ -1114,7 +1231,7 @@ item{} [R11.3] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.4] When requirement [R11.1] is accomplished, the system shall
+item{} [R12.4] When requirement [R12.1] is accomplished, the system shall
  check if the car is plugged into a power grid.
  If such condition is met and the car is located in a safe-area, the system
  shall apply a discount of 30
@@ -1126,10 +1243,10 @@ item{} [R11.4] When requirement [R11.1] is accomplished, the system shall
 
 
 \backslash
-item{} [R11.5] When requirement [R11.1] is accomplished, the system shall
+item{} [R12.5] When requirement [R12.1] is accomplished, the system shall
  check if the car is in a safe-area or not.
- The "true" branch consequences are described in requirements [R11.2], [R11.3]
- and [R11.4].
+ The "true" branch consequences are described in requirements [R12.2], [R12.3]
+ and [R12.4].
  If the car it's located at more than 3km from the nearest safe area, the
  system shall apply an overcharge of 30
 \backslash
@@ -1147,7 +1264,7 @@ end {itemize}
 
 
 \backslash
-item{} [G12] Ensures that when the user leaves the car and closes the door,
+item{} [G13] Ensures that when the user leaves the car and closes the door,
  the service ends and the user isn't charghed anymore:
 \end_layout
 
@@ -1162,7 +1279,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R12.1] After the procedure described in requirements [R11.X], the
+item{} [R13.1] After the procedure described in requirements [R11.X], the
  system shall execute the payment process, communicate the car system to
  lock the car and update the car status on the database.
 \end_layout
@@ -1178,7 +1295,7 @@ end {itemize}
 
 
 \backslash
-item{} [G13] Ensures that when the user picks up a car, it has no mechanical
+item{} [G14] Ensures that when the user picks up a car, it has no mechanical
  or electrical problem:
 \end_layout
 
@@ -1193,7 +1310,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R13.1] When a car detects a problem, the car system shall inform
+item{} [R14.1] When a car detects a problem, the car system shall inform
  the main system of the new status.
  The system shall then contact third party technicians, giving them the
  location of the car and a unique code to access it.
@@ -1204,7 +1321,7 @@ item{} [R13.1] When a car detects a problem, the car system shall inform
 
 
 \backslash
-item{} [R13.2] When the car system notifies the main system that all the
+item{} [R14.2] When the car system notifies the main system that all the
  problems are solved, the system shall update the car status, reset the
  access code of the car and tag it as available.
 \end_layout

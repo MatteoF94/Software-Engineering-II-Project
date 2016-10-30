@@ -76,10 +76,67 @@
 \begin_body
 
 \begin_layout Title
-Goals and Domain Assumptions
+RASD
 \end_layout
 
 \begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Description of the problem
+\end_layout
+
+\begin_layout Standard
+PowerEnJoy is an electrical car sharing service, based on a mobile application.
+ The targets of the service, intended as users, are people that needs to
+ move from a place to another within a city and requires a conveyance to
+ move (because they don't have their own or simply can't use it).
+\begin_inset Newline newline
+\end_inset
+
+A user can make a reservation for a car, using the mobile app and his/her
+ account, and check for the availability and status of all the cars within
+ his/her position, identified using GPS localisation, or a specific one,
+ inserted manually by the user.
+ As stated before, to access the service, the user must possess a private
+ account, so a registration is needed.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The system provides the users a safe way (identification code) to access
+ the cars, and the riding service and keeps trace of the status of all the
+ cars.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, the system prizes or punishes a respectively good or bad behavior
+ from the users, applying a discount or an overcharge on the cost of a ride.
+ As esxample, if the user leaves the car without much battery, he/she will
+ have to pay more than the standard cost of the ride, because the car will
+ need to be charged and this operation has a cost.
+ On the other hand, if a user plugs the car before ending the service, it
+ receives a discount.
+\begin_inset Newline newline
+\end_inset
+
+The system includes other functionalities, such as GPS based maps available
+ in every car, an emergency procedure in case an accident occur during a
+ ride and the notification of a car status if the user requested it.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The purpose of the system, referring to both the main and each car systems,
+ is to offer a reliable, efficient and safe service, allowing the user to
+ benefit of the offered electric cars when needed.
+\end_layout
+
+\begin_layout Subsection
 Goals
 \end_layout
 
@@ -168,7 +225,21 @@ on.
 \end_layout
 
 \begin_layout Subsection
-Specification about goals
+Goals further description
+\end_layout
+
+\begin_layout Itemize
+[G1] leaves out a particular scenario.
+ The system won't actually be able to know if the person accessing the account
+ is the real owner.
+ A user can just give the credential to a friend, and this friend can access
+ and use the service as if it was the real user.
+ Such case, is a decision, or problem, of the user and the system can't
+ do anything to avoid or simply recognise it.
+\end_layout
+
+\begin_layout Itemize
+[G4] denies the 
 \end_layout
 
 \begin_layout Itemize
@@ -495,8 +566,8 @@ Service: it refers to the whole process of reservation, ride and payment
 \end_layout
 
 \begin_layout Itemize
-Push notification: it is a notification sent to a smartphone using the mobile
- application.
+Push notification/ push message: it is a notification sent to a smartphone
+ using the mobile application.
 \end_layout
 
 \begin_layout Itemize
@@ -692,8 +763,9 @@ end {itemize}
 item{} [G4] Allows the user to see the status of the available cars within
  an area that he/she specified, or in the nearby areas, for a possible reservati
 on.
- If the car has a low battery charge, such as less than 20%, it does not
- appear on the user interface:
+ If the car has a low battery charge, such as less than 20
+\backslash
+%, it does not appear on the user interface:
 \end_layout
 
 \begin_layout Plain Layout
@@ -724,7 +796,9 @@ item{} [R4.2] The system shall be able to recognise and locate the address
 
 \backslash
 item{} [R4.3] The system shall display a list of the available cars with
- more than 20% of the battery charge, within 5km from the given location.
+ more than 20
+\backslash
+% of the battery charge, within 5km from the given location.
  
 \end_layout
 
