@@ -435,7 +435,7 @@ If the car stops, so does the money counter (just think about the situation
 
 \begin_layout Section
 7) The system stops charging the user as soon as the car is parked in a
- safe area dn the user exits the car, at this point the system locks the
+ safe area and the user exits the car, at this point the system locks the
  car automatically.
 \end_layout
 

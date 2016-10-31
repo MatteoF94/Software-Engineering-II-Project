@@ -55,9 +55,9 @@
 \color #008000
 \end_index
 \leftmargin 20col%
-\topmargin 15col%
+\topmargin 20col%
 \rightmargin 20col%
-\bottommargin 15col%
+\bottommargin 20col%
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -157,6 +157,37 @@ The system includes other functionalities, such as GPS based maps available
 The purpose of the system, referring to both the main and each car systems,
  is to offer a reliable, efficient and safe service, allowing the user to
  benefit of the offered electric cars when needed.
+\end_layout
+
+\begin_layout Subsection
+Actors and stakeholders
+\end_layout
+
+\begin_layout Standard
+We can clearly make a distinction between who asks for the service and who
+ will actually use it.
+\end_layout
+
+\begin_layout Itemize
+As in the Car2Go service, the stakeholder may be a corporation realted to
+ the automotive world.
+ However we don't exclude the possibility that a city government could ask
+ for this software, to improve the transport condition of the city or simply
+ to lessen the environmental impact of transport.
+ 
+\end_layout
+
+\begin_layout Itemize
+The clients of the service are the so called users.
+ User is whoever needs the car sharing service benefits of it.
+\end_layout
+
+\begin_layout Standard
+We can also increase the scope to include more actors, implicitely present
+ in the service: the cars, that plays a fundamental role of interaction
+ between the user and the system (other than being a brainless transport),
+ and the operators of companies that provides services like technical and
+ emergency support.
 \end_layout
 
 \begin_layout Subsection
@@ -331,6 +362,11 @@ Car: is one of the electric car provided by the service.
 \end_layout
 
 \begin_layout Itemize
+Mobile application: it is the app that the user has to install on his/her
+ mobile device in order to use the service.
+\end_layout
+
+\begin_layout Itemize
 Reservation: it's the process by which the user can make a request for a
  car.
  First, the user must access his/her own account.
@@ -451,7 +487,7 @@ Technician: is the person dedicated to repair and fix the car.
 \end_layout
 
 \begin_layout Itemize
-Opertor: is the person that communicates with the user whenever an accident
+Operator: is the person that communicates with the user whenever an accident
  happens during the service and emergency button on the used car is pressed.
  The operator contacts other services depending on which type of accident
  occured, such as ambulance, police, firetrucks, technicians.
@@ -463,6 +499,15 @@ Safe area: it is a specific area where the electric cars of PowerEnJoy service
  can park.
  The set of safe areas is pre-defined and owned by the company/society that
  requested the management system for the service.
+\end_layout
+
+\begin_layout Itemize
+Special safe area: it is a safe area where power grid stations are installed.
+\end_layout
+
+\begin_layout Itemize
+Power grid station: it is an installation that allows the recgharge of an
+ electric car.
 \end_layout
 
 \begin_layout Itemize
@@ -529,7 +574,71 @@ GMS gateway: device that allows SMS text messages to be sent and/or received
 \end_layout
 
 \begin_layout Subsection
-References and overview
+Text assumptions
+\end_layout
+
+\begin_layout Itemize
+We do not consider the case where someone can use the credentials of someone
+ else, maybe a friend: such possibility is purely user-related and the system
+ has no way to control it.
+\end_layout
+
+\begin_layout Itemize
+We should develop a mobile application able to use the position of a device
+ through a GPS or asking it to the user.
+\end_layout
+
+\begin_layout Itemize
+Users are asked to make a reservation before using an electric car.
+ Other car-sharing service like Car2Go allow also a use without reservation,
+ but such case is not contemplated.
+\end_layout
+
+\begin_layout Itemize
+There must be some components that allow an interaction between the user
+ and the car, to make the first able to access the second.
+ We assume the existance of a numeric keypad connected to the internal car
+ system.
+ Such keypad is also used by technicians to unlock the car during repairs
+ and controls.
+\end_layout
+
+\begin_layout Itemize
+Users must first register to gain access to the main functionalities offered
+ by the system.
+\end_layout
+
+\begin_layout Itemize
+The car possesses a screen to make possible an interaction with the user
+ and the car system.
+\end_layout
+
+\begin_layout Itemize
+The ride fee calculated per minute depends on the situation.
+ An higher fee is applied when using the car, while a lower fee is applied
+ if the car is not parked in a safe zone and the service is still active.
+ If the car is parked in a safe area, the service is free.
+\end_layout
+
+\begin_layout Itemize
+We assume that the parking areas are provided by the PowerEnJoy owners.
+\end_layout
+
+\begin_layout Itemize
+The system is able to control some functionalities of the cars, such as
+ the door lock.
+\end_layout
+
+\begin_layout Itemize
+The car possesses multiple sensors that allows, every moment, to know its
+ status, such as battery charge, decay of the mechanical components or number
+ of passengers.
+\end_layout
+
+\begin_layout Itemize
+We assume that there are other societies that collaborate with the system
+ of PowerEnJoy.
+ Technicians, operators, and other actors belong to such companies.
 \end_layout
 
 \begin_layout Section
@@ -716,7 +825,58 @@ Space for app package on the device memory
 Battery consumption
 \end_layout
 
-\begin_layout Section*
+\begin_layout Subsection
+Proposed system
+\end_layout
+
+\begin_layout Standard
+We will implement a client-server architecture, based on the common REST
+ APIs, to manage the web application.
+ A MySQL based database is needed to store the data of users and cars.
+ A possible framework for the server is Mono, derived on the .NET Framework
+ offered by Microsoft, but working on a large number of OS, such as iOS,
+ Android, OSX and Microsoft.
+ Lastly, the car interfaces with the user using some of its artifacts, such
+ as the emergency button (User -> Car System -> System -> Operators), the
+ car screen or the numeric keypad to access the car or to end the service.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ProposedSystem.png
+	width 100col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Domain assumptions
 \end_layout
 
@@ -1390,17 +1550,6 @@ item{} [R10.1] When the user leaves and turns off the car, the system shall
  apply a new rate over the ride cost.
  When the user turns on the car once again, the old rate is applied once
  again and the riding service continues.
- The new rate is 0 EUR/min if the car is in a safe area, otherwise it is
- a fixed positive value.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} [R10.2] If the user leaves, turns off the car and uses on the numeric
- keypad the same code he/she used to unlock the car when picking it up,
- the service end, and the system shall apply the respective procedure.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1428,16 +1577,17 @@ begin {itemize}
 
 
 \backslash
-item{} [R12.1] When the user leaves the car, along with the passengers, the
- car system shall check if the car is located in a safe area or not, communicati
-ng with the system.
+item{} [R11.1] When the user leaves and turns off the car, the car system
+ shall check if the car is located in a safe area or not, communicating
+ with the system.
+ 
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R12.2] If the user has left the car in a safe area, the car system
+item{} [R11.2] If the user has left the car in a safe area, the car system
  shall stop the charging counter and save the car status.
  
 \end_layout
@@ -1446,27 +1596,29 @@ item{} [R12.2] If the user has left the car in a safe area, the car system
 
 
 \backslash
-item{} [R12.3] If the user has left the car in a non safe area, the car system
- shall continue charging the user, as long as all the doors are closed.
+item{} [R11.3] If the user has left the car in a non safe area, the car system
+ shall continue charging the user with a different rate.
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R12.4] When the user has left the car and closed all the doors, the
- car system shall communicate the car status to the system.
+item{} [R11.4] When the user has left the car, closed all the doors, and
+ inserted into the numeric keypad the code he/she used to access the car,
+ the car system shall communicate the car status to the system.
  The system shall execute the payment process, communicate the car system
  to lock the car.
+ 
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R12.5] When the car system has locked the car and informed the system,
- the latter shall update the car status in the database, and tag the car
- available once again.
+item{} [R11.5] When the car system has locked the car and informed the system,
+ the latter shall update the car status in the main database, and tag the
+ car available once again.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1480,7 +1632,7 @@ end {itemize}
 
 
 \backslash
-item{} [G13] Ensures that the user receives a discount or overcharge when
+item{} [G12] Ensures that the user receives a discount or overcharge when
  specific conditions are met:
 \end_layout
 
@@ -1495,12 +1647,12 @@ begin {itemize}
 
 
 \backslash
-item{} [R13.1] When the user leaves the car and closes all the doors, the
- system shall check the battery of the used car.
+item{} [R12.1] When the user uses the access code to end the service and
+ the car system provided the car status to the system, the system shall
+ check the battery of the used car.
  If more than 50
 \backslash
-% remains and the car is located in a safe-area, the system shall apply
- a discount of 20
+% remains the system shall apply a discount of 20
 \backslash
 % on the cost of the ride with that car.
  If less than 20
@@ -1514,11 +1666,10 @@ item{} [R13.1] When the user leaves the car and closes all the doors, the
 
 
 \backslash
-item{} [R13.2] When the user leaves the car and closes all the doors, the
- system shall check the number of passengers, calculated when the user reached
- the safe zone.
- If it is more than two and the car is located in a safe-area, the system
- shall apply a discount of 10
+item{} [R12.2] When the user uses the access code to end the service and
+ the car system provided the car status to the system, the system shall
+ check the number of passengers.
+ If it is more than two the system shall apply a discount of 10
 \backslash
 % on the cost of the ride with that car.
 \end_layout
@@ -1527,8 +1678,9 @@ item{} [R13.2] When the user leaves the car and closes all the doors, the
 
 
 \backslash
-item{} [R13.3] When the user leaves the car and closes all the doors, the
- system shall check if the car is plugged into a power grid.
+item{} [R12.3] When the user uses the access code to end the service and
+ the car system provided the car status to the system, the system shall
+ check if the car is plugged into a power grid.
  If such condition is met and the car is located in a safe-area, the system
  shall apply a discount of 30
 \backslash
@@ -1539,12 +1691,10 @@ item{} [R13.3] When the user leaves the car and closes all the doors, the
 
 
 \backslash
-item{} [R13.4] When the user leaves the car and closes all the doors, the
- system shall check if the car is in a safe-area or not.
- The "true" branch consequences are described in requirements [R13.1], [R13.2]
- and [R13.3].
- If the car it's located at more than 3km from the nearest safe area, the
- system shall apply an overcharge of 30
+item{} [R12.4] When the user uses the access code to end the service and
+ the car system provided the car status to the system, if the car it is
+ located at more than 3km from the nearest safe area, the system shall apply
+ an overcharge of 30
 \backslash
 % on the cost of the ride with that car.
 \end_layout
@@ -1560,7 +1710,7 @@ end {itemize}
 
 
 \backslash
-item{} [G14] Ensures that the user is notified of the applied discount and
+item{} [G13] Ensures that the user is notified of the applied discount and
  overcharges once the service ends and payment is applied:
 \end_layout
 
@@ -1575,9 +1725,9 @@ begin {itemize}
 
 
 \backslash
-item{} [R14.1] When the system applies the payment process on the user, it
+item{} [R13.1] When the system applies the payment process on the user, it
  shall inform the user with a push notification of the applied discount
- and overcharges, based on the requirements [R13.X].
+ and overcharges, based on the requirements [R12.X].
 \end_layout
 
 \begin_layout Plain Layout
@@ -1591,7 +1741,7 @@ end {itemize}
 
 
 \backslash
-item{} [G15] Ensures that when the user picks up a car, it has no mechanical
+item{} [G14] Ensures that when the user picks up a car, it has no mechanical
  or electrical problem:
 \end_layout
 
@@ -1606,7 +1756,7 @@ begin {itemize}
 
 
 \backslash
-item{} [R15.1] When a car detects a problem, the car system shall inform
+item{} [R14.1] When a car detects a problem, the car system shall inform
  the main system of the new status.
  The system shall then contact third party technicians, giving them the
  location of the car and a unique code to access it.
@@ -1617,7 +1767,7 @@ item{} [R15.1] When a car detects a problem, the car system shall inform
 
 
 \backslash
-item{} [R15.2] When the car system notifies the main system that all the
+item{} [R14.2] When the car system notifies the main system that all the
  problems are solved, the system shall update the car status, reset the
  access code of the car and tag it as available.
 \end_layout
@@ -1638,6 +1788,52 @@ end {itemize}
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Subsection
+Non functional requirements
+\end_layout
+
+\begin_layout Subsubsection
+Usability
+\end_layout
+
+\begin_layout Itemize
+[R15] The system shall provide different languages that the users can chose.
+\end_layout
+
+\begin_layout Itemize
+[R16] Both the mobile app and the car screen shall use different way to
+ represent safe area and special areas with power grid stations on the maps.
+\end_layout
+
+\begin_layout Itemize
+[R17] The mobile application shall be installable on different OS.
+\end_layout
+
+\begin_layout Itemize
+[R18] Along with the push notifications, the mobile application shall emit
+ a brief sound.
+\end_layout
+
+\begin_layout Itemize
+[R19] The system shall provide trivial information about the service, such
+ as discounts and overcharges conditions, rate table and contacts.
+\end_layout
+
+\begin_layout Subsubsection
+Performance
+\end_layout
+
+\begin_layout Standard
+All the possible issues regarding the performance of the whole system (system,
+ mobile app and car systems) are already covered in the domain assumptions
+ and as such not considered as requirements.
+ 
+\end_layout
+
+\begin_layout Itemize
 
 \end_layout
 
