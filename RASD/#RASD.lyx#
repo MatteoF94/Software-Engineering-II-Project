@@ -27,7 +27,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\spacing single
+\spacing other 1.2
 \use_hyperref false
 \papersize default
 \use_geometry true
@@ -54,9 +54,9 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 20col%
+\leftmargin 25col%
 \topmargin 20col%
-\rightmargin 20col%
+\rightmargin 25col%
 \bottommargin 20col%
 \secnumdepth 3
 \tocdepth 3
@@ -1841,7 +1841,533 @@ Operations are elaborated and completed without delays and in a short amount
 \end_layout
 
 \begin_layout Itemize
-Menus, devices screen and 
+The menus and screens of all the devices will be smooth and without graphical
+ problems.
+\end_layout
+
+\begin_layout Subsubsection
+Interfaces mockup
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AppMockupV1.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mobile application sample 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Modeling
+\end_layout
+
+\begin_layout Subsection
+Scenario identifying
+\end_layout
+
+\begin_layout Standard
+In this sub-section we present some of the possible situations that can
+ happen.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Lilith just finished her work and can not wait to go home.
+ However her car had some problems in the past few days and this morning
+ Lilith decided to have it fixed.
+ She opens her PowerEnJoy app on her phone and logs in her personal account.
+ From there, she searches for the available cars around her.
+ Fortunately, Lilith finds a car 500 meters from her position.
+ The car is available and with a high battery charge, 75%.
+ Lilith makes the reservation, specifying that in about half of an hour
+ she will pick up the car.
+ It just takes 20 minutes to reach the car and Lilith uses a special option
+ on her page to receive via SMS a special code to unlock the car.
+ The girl picks up the car and drives, enjoying the ride.
+ She parks the car in the nearest safe area from her home, ends the service
+ using the previous code and walks away.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+Mitch needs to go pick up his son at the elementary school and wants to
+ use the PowerEnJoy service.
+ He opens the app, logs in and reserves a car.
+ Lilith just got out of her office and needs to go shopping for some food.
+ She lend her car to her younger brother and because she is already accustomed
+ to the PowerEnJoy service, she immediately logs in her account and searches
+ for an available car.
+ However, there is only one car in the neighborhood and it is already reserved
+ (by Mitch).
+ Lilith is faithful that the one that reserved it will have some problems
+ and take back the reservation, so she requests to monitor the car and receives
+ notifications about it.
+ Meanwhile Mitch receives a phone call from her wife, telling him that she
+ already picked up their son.
+ The reservation time still hasn't expired yet and Mitch is able to take
+ back his reservation.
+ Lilith receives then a notification on her cellphone that the car she was
+ monitoring became available.
+ Happy about how things turned out, she reserves the car, goes pick it up
+ and drives to a shopping centre.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Mitch and his wife are going on a date and they are using a car offered
+ by the PowerEnJoy service.
+ Only Mitch needed to log in his account and make the reservation, before
+ picking up the car, because he is the one who drives, while his wife is
+ only a passenger.
+ Mitch's wife is enjoying the ride but suddenly shouts to her husband to
+ stop the car immediately: they just passed in front of a flower shop, and
+ she loves flowers.
+ Mitch satisfies the request of his wife, parks the car, after they have
+ exited, he locks it with the ignition key.
+ They pass about an hour in that shop, having fun.
+ After that, Mitch opens the car and starts driving again, continuing the
+ rest of the date with his wife.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 4
+\end_layout
+
+\begin_layout Standard
+Lilith and her two sisters just got out of the jym and wants to go eat something.
+ Hilda, one of the sisters, suggests a nice restaurant but it's pretty far
+ from them, and they don't want to catch a bus to go there.
+ Lilith tells then her sisters about PowerEnJoy and shows them how to make
+ a reservation.
+ Fortunately they find an available car just 100 meters from them.
+ They go pick up the car and Lilith, the one who made the reservation, drives
+ to the restaurant.
+ Realizing that they will spend a lot of time there, Lilith decides to end
+ the service when exiting the car, inserting once again the code she used
+ to access the car.
+ During the meal, Lilith realizes that after having picked up the car she
+ turned off her phone.
+ Once she turns it on, she sees that not long ago, just after the end of
+ the service, she received a notification about the cost of the ride and
+ its discounts.
+ However, what she sees is unexpected: she received a discount because she
+ took two passengers, her sisters, in the car, but she also had an overcharge
+ of 30% because she parked the car 5 km away from the nearest safe area.
+ Hilda laughing says: 
+\begin_inset Quotes eld
+\end_inset
+
+I told you it was pretty far!
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Poor Lilith, looks like she won't enjoy her meal after all.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 5
+\end_layout
+
+\begin_layout Standard
+Lilith has been working for 10 straight hours and feels very tired.
+ She opens her PowerEnJoy application, searches for the available cars near
+ her and reserves one.
+ After having picked up the car using a special code received via SMS, she
+ starts driving.
+ Unfortunately, when waiting at a semaphore, someone collides with the car
+ that Lilith is driving.
+ No one is hurt, but boh the cars are in a bad shape.
+ Lilith knows what to do and quicly presses the emergency button on the
+ car and after a few seconds she is able to speak with an operator to explain
+ the situation.
+ The person that picks up the emergency call is Marie, that asks Lilith
+ information about the accident, such as location, type of problem and general
+ information.
+ After that, Marie contacts a society that allocates some technicians and
+ send them to the accident point.
+ If needed, Marie contacts also police, ambulances and firefighters.
+ Lilith doesn't have to worry: when she pressed the button, the service
+ ended and she doesn't have to pay more than needed.
+ Unlucky Lilith, looks like she won't be able to relax after her hard day.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 6
+\end_layout
+
+\begin_layout Standard
+Mitch and his wife are thinking to go on a vacation, but they are undecided
+ about the destination.
+ The travel agency isn't far from their home so they decide to book an electric
+ car and use it.
+ Mitch opens the PowerEnJoy application, searches for the available cars
+ and find one available.
+ After having reserved it, requested the code to acces it, and picked it
+ up, he drives, directed to the destination.
+ Having used it a lot of times, Mitch knows the rate of the service, calculated
+ per minute, and realizes that on his credit card there isn't enough money
+ to pay the ride.
+ However he also knows all the possible discounts and to spend less he parks
+ the car in a safe zone with a power grid station and plugs it to recharge
+ the battery.
+ Luckily for him, he also left the car with more than 50% of the battery,
+ so as soon as he ends the service, he receives a notification on his phone
+ about the 30% discount due to the plugging in and 20% due to the battery
+ level.
+ Mitch is very happy because he only payed half of the cost, but so isn't
+ his wife: to receive the first discount he parked 2km away from the travel
+ agency, so they now have to go by feet.
+ 
+\end_layout
+
+\begin_layout Subsection
+UML models
+\end_layout
+
+\begin_layout Subsubsection
+Use case diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UseCaseDiagram.png
+	lyxscale 20
+	scale 29
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Use case diagram, portraying all the functionalities that the user expects
+ from the service
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Use case descriptions
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Name:
+\series default
+ ServiceNormalUsage
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ User (Lilith, Scenario 1)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client is already registered to the application
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user logs in the app using his/her credentials.
+\end_layout
+
+\begin_layout Itemize
+The user searches for an available car using a special section of the app.
+\end_layout
+
+\begin_layout Itemize
+The user selects an available car and inputs the time he/she thinks will
+ be necessary to reach the car and pick it up.
+\end_layout
+
+\begin_layout Itemize
+The user uses a special option on the app that allows him/her to communicate
+ that he/she's nearby and needs the code to access the car.
+\end_layout
+
+\begin_layout Itemize
+The system sends the user an SMS or mail containing the access code.
+\end_layout
+
+\begin_layout Itemize
+The user uses the received code to access the car.
+\end_layout
+
+\begin_layout Itemize
+The user turns on the car and drives.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user exits the car, and uses again the code neede to open it.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR.
+ If the user already received the code to access the car, the system invalidates
+ it.
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0col%"
+width "70col%"
+height "0.5pt"
+
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ ServiceCancellation
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, scenario 2)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client is already registered to the application.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user logs in the app using his/her credentials.
+\end_layout
+
+\begin_layout Itemize
+The user searches for an available car using a special section of the app.
+\end_layout
+
+\begin_layout Itemize
+The user selects an available car and inputs the time he/she thinks will
+ be necessary to reach the car and pick it up.
+\end_layout
+
+\begin_layout Itemize
+Before the reservation time expires, the user can select the cancellation
+ option from his/her app.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user cancels the reservation he/she previously made.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0col%"
+width "70col%"
+height "0.5pt"
+
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ CarMonitorning
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Lilith, scenario 2)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client is already registered to the application and has already logged
+ in.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user searches for the cars, available or not, within a certain zone,
+ that could be his/her position or a specific address.
+\end_layout
+
+\begin_layout Itemize
+Instead of making a reservation, the user can select multiple car to monitor.
+\end_layout
+
+\begin_layout Itemize
+The system sends push notification to the user when the status of the car
+ he/she requested to monitor changes.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The status of a car changes to picked up, and the system deletes all the
+ monitoring lists on that car after having sent a notification, or the user
+ cancels the monitoring request.
 \end_layout
 
 \end_body
