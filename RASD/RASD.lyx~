@@ -27,7 +27,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\spacing single
+\spacing other 1.2
 \use_hyperref false
 \papersize default
 \use_geometry true
@@ -2153,6 +2153,10 @@ The user uses a special option on the app that allows him/her to communicate
 \end_layout
 
 \begin_layout Itemize
+The system sends the user an SMS or mail containing the access code.
+\end_layout
+
+\begin_layout Itemize
 The user uses the received code to access the car.
 \end_layout
 
@@ -2187,13 +2191,419 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR.
 \end_layout
 
 \begin_layout Standard
-\align center
+\align left
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
 \begin_inset CommandInset line
 LatexCommand rule
-offset "0.5ex"
+offset "0col%"
 width "70col%"
 height "0.5pt"
 
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ ServiceCancellation
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, scenario 2)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client is already registered to the application.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user logs in the app using his/her credentials.
+\end_layout
+
+\begin_layout Itemize
+The user searches for an available car using a special section of the app.
+\end_layout
+
+\begin_layout Itemize
+The user selects an available car and inputs the time he/she thinks will
+ be necessary to reach the car and pick it up.
+\end_layout
+
+\begin_layout Itemize
+Before the reservation time expires, the user can select the cancellation
+ option from his/her app.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user cancels the reservation he/she previously made.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0col%"
+width "70col%"
+height "0.5pt"
+
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ CarMonitorning
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Lilith, scenario 2)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client is already registered to the application and has already logged
+ in.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user searches for the cars, available or not, within a certain zone,
+ that could be his/her position or a specific address.
+\end_layout
+
+\begin_layout Itemize
+The user selects the cars she wants to monitor.
+\end_layout
+
+\begin_layout Itemize
+Every time that a car's satus changes, the user receives a notification
+ on her phone with the new status of that car.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions: 
+\series default
+The user stops monitoring a determined car.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exceptions
+\series default
+: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ StopBy
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, Lilith scenario 3)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client unlocks the car and turns it on
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user turns on the car and drives.
+\end_layout
+
+\begin_layout Itemize
+After some km the user stops the car bacause he and his wife have some things
+ to do.
+\end_layout
+
+\begin_layout Itemize
+The user extracts the key from the car and turn it off.
+\end_layout
+
+\begin_layout Itemize
+After a while the users return on the car and proceed to their destination.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user enters the lock code to end the service.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The car has no fuel and remains stuck near the shop, far from any safe area.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ Accident
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, scenario 5)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client unlocks the car and turns it on
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user turns on the car and drives.
+\end_layout
+
+\begin_layout Itemize
+Suddently an other car is not able to stop and the 2 cars have a crush.
+\end_layout
+
+\begin_layout Itemize
+The user, if not badly injured, is able to press the button and speack with
+ an operator.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ An operator arrives on site (where the accident occurred).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+There is no accident during the drive.
+\end_layout
+
+\begin_layout Itemize
+Multiple operator are called on site.
+\end_layout
+
+\begin_layout Itemize
+The Button is not working.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ AfterService
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Lilith, scenario 5)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client drives the car and ends the service 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+After a while the user receives a notification on her phone with the details
+ of the billing and every single discount that have been applied.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ Visualize the notification.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The user receives no notification.
+\end_layout
+
+\begin_layout Itemize
+There has been a wrong overcharge.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
 \end_inset
 
 

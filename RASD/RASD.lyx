@@ -2351,5 +2351,341 @@ The user searches for the cars, available or not, within a certain zone,
  that could be his/her position or a specific address.
 \end_layout
 
+\begin_layout Itemize
+The user selects the cars she wants to monitor.
+\end_layout
+
+\begin_layout Itemize
+Every time that a car's satus changes, the user receives a notification
+ on her phone with the new status of that car.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions: 
+\series default
+The user stops monitoring a determined car.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exceptions
+\series default
+: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ StopBy
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, Lilith scenario 3)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client unlocks the car and turns it on
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user turns on the car and drives.
+\end_layout
+
+\begin_layout Itemize
+After some km the user stops the car bacause he and his wife have some things
+ to do.
+\end_layout
+
+\begin_layout Itemize
+The user extracts the key from the car and turn it off.
+\end_layout
+
+\begin_layout Itemize
+After a while the users return on the car and proceed to their destination.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user enters the lock code to end the service.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The car has no fuel and remains stuck near the shop, far from any safe area.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ Accident
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, scenario 5)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client unlocks the car and turns it on
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user turns on the car and drives.
+\end_layout
+
+\begin_layout Itemize
+Suddently an other car is not able to stop and the 2 cars have a crush.
+\end_layout
+
+\begin_layout Itemize
+The user, if not badly injured, is able to press the button and speack with
+ an operator.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ An operator arrives on site (where the accident occurred).
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+There is no accident during the drive.
+\end_layout
+
+\begin_layout Itemize
+Multiple operator are called on site.
+\end_layout
+
+\begin_layout Itemize
+The Button is not working.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ AfterService
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Lilith, scenario 5)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client drives the car and ends the service 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+After a while the user receives a notification on her phone with the details
+ of the billing and every single discount that have been applied.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ Visualize the notification.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The user receives no notification.
+\end_layout
+
+\begin_layout Itemize
+There has been a wrong overcharge.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ NoMoney
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, Lilith, scenario 6)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client searches for cars nearby and selects one.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The User searches for a car and selects one.
+\end_layout
+
+\begin_layout Itemize
+The user is aware that he hasn't enough money on his paycard, so we has
+ to choose between challenging the system and trying to get as much discounts
+ as he can, or to give up and go by feet.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ Proceed in the reservation or exit the procedure.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document

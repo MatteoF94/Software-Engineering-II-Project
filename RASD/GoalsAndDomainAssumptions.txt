@@ -1,0 +1,244 @@
+Goals and Domain Assumptions
+
+1 Goals
+
+• [G1] Ensures that only the account owner can access his/her own 
+  account, if he/she is already registered.
+
+• [G2] Allows the user to reserve an available car for up to one 
+  hour before the service starts.
+
+• [G3] Allows the user to take back his/her reservation for an 
+  available car before the “picking up time” expires.
+
+• [G4] Allows the user to monitor the status of the available 
+  cars within an area that he/she specified, or in the nearby 
+  areas, for a possible reservation. If the car has a low battery 
+  charge, such as less than 20%, it does not appear on the user 
+  interface.
+
+• [G5] Ensures that the user is able to trace/check the status of 
+  a car, available or already reserved, and receive push 
+  notification about it.
+
+• [G6] Ensures that the user is able to access, and open, the car 
+  he/she reserved, if he/she is in time.
+
+• [G7] Ensures that the service, and the carghing on the user, 
+  starts only when the engine of a car is ignited.
+
+• [G7] Ensures that the user is informed real-time on the current 
+  cost of the service, when using it, and the possible discounts 
+  and overcharges.
+
+• [G8] Allows the user to stop the car for a brief moment to rest 
+  or to pick up / leave passengers. He/she will however still be 
+  charged.
+
+• [G9] Ensures that the user knows the safe area around him/her. 
+  is informed by the car internal system of the safe-areas around 
+  him/her, within a specified range (like a mini-map).
+
+• [G10] Allows the user to press a button on the car to contact 
+  an operator in case of emergency, such as a car accident, a 
+  mechanical problem or sudden ilness.
+
+• [G11] Ensures that the user receive a discount or overcharge 
+  when specific conditions are met.
+
+• [G12] Ensures that when the user leaves the car and closes the 
+  door, the service ends and the user isn't charghed anymore.
+
+• [G13] Ensures that when the user picks up a car, it has no 
+  mechanical or electrical problem.
+
+1.1 Specification about goals
+
+• [G5] derives from the idea that multiple users may want to use 
+  tha same available car. Only one is able to make a reservation, 
+  but the others may be interested to check if the car is 
+  effectively taken by the reserving user. It could happen that 
+  he/she takes back the reservation or simply doesn't pick up the 
+  car within the reservation time. In such case, the car would be 
+  available once again and all the interested users will receive 
+  a notification about it. 
+
+• [G9] is one of the functional goals that provides the user a 
+  reliable way to “help” the service to work correctely. Being 
+  notified of the nearby zones to park, it will be unlikely for 
+  him/her to abandon the car midway.
+
+• [G11] refers to the particular condition expressed in the 
+  project description. If the user takes on two ore more 
+  passengers, he/she receives a discount of 10% on the cost of 
+  the ride. If the user leaves the car with more than 50% of the 
+  battery available, a discount of 20% is applied. If the user 
+  plugs in the car before ending the service, the applied 
+  discount is 30% over the total. However, if the user leaves the 
+  car 3 km far from a safe area or with less than 20% of the 
+  battery available, he/she is overcharged of 30% of the cost of 
+  the ride.
+
+  Domain assumptions
+
+• All the GPS localisation services have no fault and always 
+  returns the correct position of a device (car, phone, 
+  tablet...).
+
+• If a car is locked, nobody can access it. However, technicians 
+  are able to use a code to operate on it.
+
+• The databases on which the system relies on works without 
+  problems (no data loss, no incoherence).
+
+• Once a user is registered, the system won't accept any other 
+  registration with his/her data. In other words, a user can 
+  register only once.
+
+• Once a user is registered, his/her information will be saved 
+  and present in the system database.
+
+• All the notifications that a user can receive from his/her 
+  account are immediate and always working.
+
+• All the updates of the status of a car are immediate and 
+  correct.
+
+• A user will never leave the car in a zone unreachable by GPS 
+  localisation or too far from the nearest safe-area.
+
+• A user will never leave the car with a door open, and neither 
+  the passengers will.
+
+• Users will encounter no problems when accessing the car using a 
+  code.
+
+• When registering, users will insert only Credit Card info or 
+  Debit Card info as methods of payment.
+
+• Technicians and operators are always available and provided by 
+  a third party agent.
+
+• Passwords and codes are unique.
+
+• Discounts and overcharges are always calculated and applied in 
+  the correct way.
+
+• Technicians and other services (police, ambulances, firetrucks) 
+  will reach the location addressed by the user/operator in the 
+  shortest possible time.
+
+• Every car is able to detect it a mechanical/electrical problem 
+  occurs, and modify its internal status.
+
+• The set of safe areas for parking cars is pre-defined by the 
+  management system.
+
+2 Glossary
+
+• User: is the person that benefits of the car-sharing service. 
+  The user is able to make reservations, check cars and ask for 
+  notification using his/her own account. To register and be able 
+  to use the service, the user must provide name, surname, phone 
+  number, e-mail, payment information, such as a credit card 
+  number, and his/her Driver License. The user is, in fact, the 
+  person who drives a car.
+
+• Car: is one of the electric car provided by the service. The 
+  car contains various sensors which are able to detect the 
+  number of passengers, the status of the mechanical and 
+  electrical components of the car. It also possess its own 
+  system, connected to the main system of the service. This 
+  system is costantly updated on the status of the car. The car 
+  has also a screen that makes possible an interaction between 
+  the user and the car system, and a button that the user can 
+  press in case of emergency.
+
+• Reservation: it's the process by which the user can make a 
+  request for a car. First, the user must access his/her own 
+  account. From there, he can insert an address or chose his 
+  location, via GPS, to search for available cars from the 
+  suggested zone. Lastly, he can request a specific car to use.
+
+• GPS: global navigation satellite system that provides location 
+  and time information in all weather conditions, anywhere on or 
+  near the Earth where there is an unobstructed line of sight to 
+  four or more GPS satellites. 
+
+• Picking up time / Reservation time: it's the period of time 
+  between the time when the user reserves a car from his/her 
+  account and the unlocking of the car by the same user. The 
+  maximum reservation time, allowed by the system, is one hour.
+
+
+
+• Passenger: is a person who can benefit of the service without 
+  driving the car. The passenger can use a car only when an user 
+  is driving it, and it doesn't need to be registered to use the 
+  service.
+
+• Technician: is the person dedicated to repair and fix the car. 
+  It is provided by an external company.
+
+• Opertor: is the person that communicates with the user whenever 
+  an accident happens during the service and emergency button on 
+  the used car is pressed. The operator contacts other services 
+  depending on which type of accident occured, such as ambulance, 
+  police, firetrucks, technicians. As the latter ones, the 
+  operator is provided by an external company.
+
+• Safe area: it is a specific area where the electric cars of 
+  PowerEnJoy service can park. The set of safe areas is 
+  pre-defined and owned by the company/society that requested the 
+  management system for the service.
+
+• System: it is the new system to create. It refers to the 
+  software and hardware needed in order to make the service work. 
+  The system is composed of a database (or more than one) to 
+  store the users and cars information, and the software needed 
+  to manage users actions and the single cars.
+
+• Car system: is the system, mostly hardware, contained in every 
+  car. It checks and elaborates the status of the car and 
+  interfaces the transport, the user and the system. The user can 
+  interact with the car thanks to an installed screen, that shows 
+  informations about the service cost, a GPS based map, discounts 
+  and so on. Every car system sends information to the system via 
+  3G connection, and viceversa. 
+
+• Discount: is an amount of money that has to be subtracted from 
+  the ride cost of a user, at the end of the service, if certain 
+  conditions (described in section 1.1, goals specification 3) 
+  are met.
+
+• Overcharge: is an amount of money that has to be added to the 
+  ride cost of a user, at the end of the service, if certain 
+  conditions (described in section 1.1, goals specification 3) 
+  are met.
+
+• Ride: it is the journey in the electric car. It starts when the 
+  user turns on the car and ends when the user leaves the car and 
+  closes the open doors. In the way a ride is defined, its 
+  duration coincides with the period of time where the user is 
+  charged for the service.
+
+• Service: it refers to the whole process of reservation, ride 
+  and payment of a car, done by the user.
+
+• Push notification/ push message: it is a notification sent to a 
+  smartphone using the mobile application.
+
+• SMS: short message service; it is a notification sent to a 
+  mobile phone, we need a GSM gateway to use it.
+
+• GMS gateway: device that allows SMS text messages to be sent 
+  and/or received by email, from Web pages or from other software 
+  applications by acquiring a unique identifier from the mobile 
+  phone's Subscriber Identity Module, or SIM card.
+
+3 Requirements
+
+3.1 Functional requirements
+
+
+
