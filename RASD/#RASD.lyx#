@@ -241,7 +241,7 @@ Goals
 \begin_layout Itemize
 [G9] Allows the user to press a button on the car to contact an operator
  in case of emergency, such as a car accident, a mechanical problem or sudden
- illness.
+ ilness.
 \end_layout
 
 \begin_layout Itemize
@@ -312,14 +312,14 @@ help
 \begin_inset Quotes erd
 \end_inset
 
- the service to work correctly.
+ the service to work correctely.
  Being notified of the nearby zones to park, it will be unlikely for him/her
  to abandon the car midway.
 \end_layout
 
 \begin_layout Itemize
 [G10] considers the real world, where a user may take the car to do shopping.
- The service provided should allow the user to stop and do his/her business.
+ The service provided shoul allow the user to stop and do his/her business.
 \end_layout
 
 \begin_layout Itemize
@@ -490,7 +490,7 @@ Technician: is the person dedicated to repair and fix the car.
 Operator: is the person that communicates with the user whenever an accident
  happens during the service and emergency button on the used car is pressed.
  The operator contacts other services depending on which type of accident
- occurred, such as ambulance, police, firetrucks, technicians.
+ occured, such as ambulance, police, firetrucks, technicians.
  As the latter ones, the operator is provided by an external company.
 \end_layout
 
@@ -506,7 +506,7 @@ Special safe area: it is a safe area where power grid stations are installed.
 \end_layout
 
 \begin_layout Itemize
-Power grid station: it is an installation that allows the recharge of an
+Power grid station: it is an installation that allows the recgharge of an
  electric car.
 \end_layout
 
@@ -597,7 +597,7 @@ Users are asked to make a reservation before using an electric car.
 \begin_layout Itemize
 There must be some components that allow an interaction between the user
  and the car, to make the first able to access the second.
- We assume the existence of a numeric keypad connected to the internal car
+ We assume the existance of a numeric keypad connected to the internal car
  system.
  Such keypad is also used by technicians to unlock the car during repairs
  and controls.
@@ -738,13 +738,13 @@ Interface between the system and the GPS map provider.
 Interface between the cars and the recharge stations, that enables the recharge
  of the vehicle.
  It is composed by a plug and sensors connected to the car system that are
- able to recognize if the car is plugged (and recharging).
+ able to recognise if the car is plugged (and recharging).
 \end_layout
 
 \begin_layout Itemize
 Interface between the cars and the people, both users and technicians.
  This interface refers to a device connected to the car system that is able
- to recognize codes and unlock the car.
+ to recognise codes and unlock the car.
 \end_layout
 
 \begin_layout Subsection
@@ -805,7 +805,7 @@ Hardware limitations
 
 \begin_layout Standard
 The mobile device owned by the user is subject to many problems, mostly
- regarding the connectivity of network and localization services:
+ regarding the connectivity of network and localisation services:
 \end_layout
 
 \begin_layout Itemize
@@ -881,7 +881,7 @@ Domain assumptions
 \end_layout
 
 \begin_layout Itemize
-All the GPS localization services have no fault and always returns the correct
+All the GPS localisation services have no fault and always returns the correct
  position of a device (car, phone, tablet...).
 \end_layout
 
@@ -916,7 +916,7 @@ All the updates of the status of a car are immediate and correct.
 \end_layout
 
 \begin_layout Itemize
-A user will never leave the car in a zone unreachable by GPS localization
+A user will never leave the car in a zone unreachable by GPS localisation
  or too far from the nearest safe area.
 \end_layout
 
@@ -1857,8 +1857,24 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
+\align center
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1870,10 +1886,67 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Mobile application sample 1
+Car research mockup
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AppMockupV2.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Registration mockup
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1972,7 +2045,7 @@ Scenario 4
 \end_layout
 
 \begin_layout Standard
-Lilith and her two sisters just got out of the gym and wants to go eat something.
+Lilith and her two sisters just got out of the jym and wants to go eat something.
  Hilda, one of the sisters, suggests a nice restaurant but it's pretty far
  from them, and they don't want to catch a bus to go there.
  Lilith tells then her sisters about PowerEnJoy and shows them how to make
@@ -2016,7 +2089,7 @@ Lilith has been working for 10 straight hours and feels very tired.
  Unfortunately, when waiting at a semaphore, someone collides with the car
  that Lilith is driving.
  No one is hurt, but boh the cars are in a bad shape.
- Lilith knows what to do and quickly presses the emergency button on the
+ Lilith knows what to do and quicly presses the emergency button on the
  car and after a few seconds she is able to speak with an operator to explain
  the situation.
  The person that picks up the emergency call is Marie, that asks Lilith
@@ -2041,7 +2114,7 @@ Mitch and his wife are thinking to go on a vacation, but they are undecided
  car and use it.
  Mitch opens the PowerEnJoy application, searches for the available cars
  and find one available.
- After having reserved it, requested the code to access it, and picked it
+ After having reserved it, requested the code to acces it, and picked it
  up, he drives, directed to the destination.
  Having used it a lot of times, Mitch knows the rate of the service, calculated
  per minute, and realizes that on his credit card there isn't enough money
@@ -2188,7 +2261,7 @@ The user turns on the car and drives.
 \series bold
 Exit conditions:
 \series default
- The user exits the car, and uses again the code needed to open it.
+ The user exits the car, and uses again the code neede to open it.
 \begin_inset Newline newline
 \end_inset
 
@@ -2371,66 +2444,17 @@ The user searches for the cars, available or not, within a certain zone,
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
-The user selects the cars she wants to monitor.
-\end_layout
-
-\begin_layout Itemize
-Every time that a car's status changes, the user receives a notification
- on her phone with the new status of that car.
-=======
 Instead of making a reservation, the user can select multiple car to monitor.
 \end_layout
 
 \begin_layout Itemize
 The system sends push notifications to the user when the status of the car
  he/she requested to monitor changes.
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-<<<<<<< HEAD
-Exit conditions: 
-\series default
-The user stops monitoring a determined car.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Exceptions
-\series default
-: 
-\end_layout
-
-\begin_layout Itemize
-The credentials furnished by the client are not correct.
- In this case the system doesn't redirect the user to the main page of the
- app but notifies him/her with an error message on the screen.
-\end_layout
-
-\begin_layout Itemize
-The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
- and cannot cancel the reservation anymore.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-Name:
-\series default
- StopBy
-=======
 Exit conditions:
 \series default
  The status of a car changes to picked up, and the system deletes all the
@@ -2470,7 +2494,6 @@ height "0.5pt"
 Name:
 \series default
  Temporary pause of the service
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2478,11 +2501,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
- Client (Mitch, Lilith scenario 3)
-=======
  User (Mitch, scenario 3)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2490,11 +2509,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
- The client unlocks the car and turns it on
-=======
  The registered client reserved a car and picked it up.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2504,22 +2519,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
-The user turns on the car and drives.
-\end_layout
-
-\begin_layout Itemize
-After some km the user stops the car because he and his wife have some things
- to do.
-\end_layout
-
-\begin_layout Itemize
-The user extracts the key from the car and turn it off.
-\end_layout
-
-\begin_layout Itemize
-After a while the users return on the car and proceed to their destination.
-=======
 The client decides to stop the car for a certain amount of time, still wanting
  to benefit of the service.
 \end_layout
@@ -2532,7 +2531,6 @@ The client stops the car and locks it.
 The system checks if the car is parked in a safe area or not.
  If it is, the halt has no further cost, otherwise the system changes the
  service fee (lowering it, the client isn't consuming battery).
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
@@ -2540,35 +2538,6 @@ The system checks if the car is parked in a safe area or not.
 \series bold
 Exit conditions:
 \series default
-<<<<<<< HEAD
- The user enters the lock code to end the service.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Exceptions: 
-\end_layout
-
-\begin_layout Itemize
-The car has no fuel and remains stuck near the shop, far from any safe area.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-Name:
-\series default
- Accident
-=======
  The clients unlocks the car and turns it on, to continue driving or ends
  the service using the access code of the car.
 \end_layout
@@ -2605,7 +2574,6 @@ height "0.5pt"
 Name:
 \series default
  Bonuses application
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2613,11 +2581,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
- Client (Mitch, scenario 5)
-=======
  User (Lilith and her sisters, scenario 4; Mitch, scenario 6)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2625,12 +2589,8 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
- The client unlocks the car and turns it on
-=======
  The registered client reserved a car, picked it up and is about to end
  the service.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2640,48 +2600,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
-The user turns on the car and drives.
-\end_layout
-
-\begin_layout Itemize
-Suddenly an other car is not able to stop and the 2 cars have a crush.
-\end_layout
-
-\begin_layout Itemize
-The user, if not badly injured, is able to press the button and speak with
- an operator.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Exit conditions:
-\series default
- An operator arrives on site (where the accident occurred).
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Exceptions: 
-\end_layout
-
-\begin_layout Itemize
-There is no accident during the drive.
-\end_layout
-
-\begin_layout Itemize
-Multiple operator are called on site.
-\end_layout
-
-\begin_layout Itemize
-The Button is not working.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-=======
 The user parks the car, exits and uses the access code to end the service.
 \end_layout
 
@@ -2777,14 +2695,11 @@ end {itemize}
 end {itemize}
 \end_layout
 
->>>>>>> origin/master
 \end_inset
 
 
 \end_layout
 
-<<<<<<< HEAD
-=======
 \begin_layout Itemize
 The system calculates the new cost of the ride, based on the applied discounts/o
 vercharges.
@@ -2799,16 +2714,10 @@ Exit conditions:
  total cost of the ride and the applied discounts/overcharges.
 \end_layout
 
->>>>>>> origin/master
 \begin_layout Standard
 \align left
 
 \series bold
-<<<<<<< HEAD
-Name:
-\series default
- AfterService
-=======
 \begin_inset space \hspace{}
 \length 15col%
 \end_inset
@@ -2837,7 +2746,6 @@ height "0.5pt"
 Name:
 \series default
  Emergency handling
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2845,11 +2753,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
- Client (Lilith, scenario 5)
-=======
  User (Mitch, scenario 3)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2857,11 +2761,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
- The client drives the car and ends the service 
-=======
  The registered client reserved a car and picked it up.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2871,10 +2771,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
-After a while the user receives a notification on her phone with the details
- of the billing and every single discount that have been applied.
-=======
 The client decides to stop the car for a certain amount of time, still wanting
  to benefit of the service.
 \end_layout
@@ -2887,7 +2783,6 @@ The client stops the car and locks it.
 The system checks if the car is parked in a safe area or not.
  If it is, the halt has no further cost, otherwise the system changes the
  service fee (lowering it, the client isn't consuming battery).
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
@@ -2895,39 +2790,6 @@ The system checks if the car is parked in a safe area or not.
 \series bold
 Exit conditions:
 \series default
-<<<<<<< HEAD
- Visualize the notification.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Exceptions: 
-\end_layout
-
-\begin_layout Itemize
-The user receives no notification.
-\end_layout
-
-\begin_layout Itemize
-There has been a wrong overcharge.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-Name:
-\series default
- NoMoney
-=======
  The clients unlocks the car and turns it on, to continue driving or ends
  the service using the access code of the car.
 \end_layout
@@ -2964,7 +2826,6 @@ height "0.5pt"
 Name:
 \series default
  Registration
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2972,11 +2833,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
- Client (Mitch, Lilith, scenario 6)
-=======
  User (Hilda, scenario 7)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2984,12 +2841,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
- The client searches for cars nearby and selects one.
- 
-=======
  None.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2999,69 +2851,102 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
-The User searches for a car and selects one.
+The user downloads the app and starts it.
 \end_layout
 
 \begin_layout Itemize
-The user is aware that he hasn't enough money on his credit card, so we
- has to choose between challenging the system and trying to get as much
- discounts as he can, or to give up and go by feet.
+The user select the registration option from the main menu of the app.
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
 
-\series bold
-Exit conditions:
-\series default
- Proceed in the reservation or exit the procedure.
-\begin_inset Newline newline
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} The user inserts data in order to complete the registration:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Name and surname
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Fiscal code or ID Card information (optional)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Phone number
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Mail address
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Preference over the notification channel (SMS? Mail? Or both?)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} Driver Licence number and postcode
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
 \end_inset
 
-
-\series bold
-Exceptions: 
-\end_layout
-
-\begin_layout Itemize
-The credentials furnished by the client are not correct.
- In this case the system doesn't redirect the user to the main page of the
- app but notifies him/her with an error message on the screen.
-\end_layout
-
-\begin_layout Itemize
-The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
- and cannot cancel the reservation anymore.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-=======
-The client decides to stop the car for a certain amount of time, still wanting
- to benefit of the service.
-\end_layout
-
-\begin_layout Itemize
-The client stops the car and locks it.
-\end_layout
-
-\begin_layout Itemize
-The system checks if the car is parked in a safe area or not.
- If it is, the halt has no further cost, otherwise the system changes the
- service fee (lowering it, the client isn't consuming battery).
-\end_layout
-
-\begin_layout Standard
 
 \series bold
 Exit conditions:
 \series default
  The user unlocks receives the password thanks which he/she can log in to
  the personal area of the mobile app.
->>>>>>> origin/master
 \end_layout
 
 \end_body
