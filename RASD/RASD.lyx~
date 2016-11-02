@@ -2609,5 +2609,83 @@ There has been a wrong overcharge.
 
 \end_layout
 
+\begin_layout Standard
+\align left
+
+\series bold
+Name:
+\series default
+ NoMoney
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Client (Mitch, Lilith, scenario 6)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The client searches for cars nearby and selects one.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The User searches for a car and selects one.
+\end_layout
+
+\begin_layout Itemize
+The user is aware that he hasn't enough money on his paycard, so we has
+ to choose between challenging the system and trying to get as much discounts
+ as he can, or to give up and go by feet.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ Proceed in the reservation or exit the procedure.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_layout Itemize
+The credentials furnished by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\begin_layout Itemize
+The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
+ and cannot cancel the reservation anymore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document

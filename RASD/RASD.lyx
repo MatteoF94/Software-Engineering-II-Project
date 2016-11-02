@@ -241,7 +241,7 @@ Goals
 \begin_layout Itemize
 [G9] Allows the user to press a button on the car to contact an operator
  in case of emergency, such as a car accident, a mechanical problem or sudden
- ilness.
+ illness.
 \end_layout
 
 \begin_layout Itemize
@@ -312,14 +312,14 @@ help
 \begin_inset Quotes erd
 \end_inset
 
- the service to work correctely.
+ the service to work correctly.
  Being notified of the nearby zones to park, it will be unlikely for him/her
  to abandon the car midway.
 \end_layout
 
 \begin_layout Itemize
 [G10] considers the real world, where a user may take the car to do shopping.
- The service provided shoul allow the user to stop and do his/her business.
+ The service provided should allow the user to stop and do his/her business.
 \end_layout
 
 \begin_layout Itemize
@@ -490,7 +490,7 @@ Technician: is the person dedicated to repair and fix the car.
 Operator: is the person that communicates with the user whenever an accident
  happens during the service and emergency button on the used car is pressed.
  The operator contacts other services depending on which type of accident
- occured, such as ambulance, police, firetrucks, technicians.
+ occurred, such as ambulance, police, firetrucks, technicians.
  As the latter ones, the operator is provided by an external company.
 \end_layout
 
@@ -506,7 +506,7 @@ Special safe area: it is a safe area where power grid stations are installed.
 \end_layout
 
 \begin_layout Itemize
-Power grid station: it is an installation that allows the recgharge of an
+Power grid station: it is an installation that allows the recharge of an
  electric car.
 \end_layout
 
@@ -597,7 +597,7 @@ Users are asked to make a reservation before using an electric car.
 \begin_layout Itemize
 There must be some components that allow an interaction between the user
  and the car, to make the first able to access the second.
- We assume the existance of a numeric keypad connected to the internal car
+ We assume the existence of a numeric keypad connected to the internal car
  system.
  Such keypad is also used by technicians to unlock the car during repairs
  and controls.
@@ -738,13 +738,13 @@ Interface between the system and the GPS map provider.
 Interface between the cars and the recharge stations, that enables the recharge
  of the vehicle.
  It is composed by a plug and sensors connected to the car system that are
- able to recognise if the car is plugged (and recharging).
+ able to recognize if the car is plugged (and recharging).
 \end_layout
 
 \begin_layout Itemize
 Interface between the cars and the people, both users and technicians.
  This interface refers to a device connected to the car system that is able
- to recognise codes and unlock the car.
+ to recognize codes and unlock the car.
 \end_layout
 
 \begin_layout Subsection
@@ -805,7 +805,7 @@ Hardware limitations
 
 \begin_layout Standard
 The mobile device owned by the user is subject to many problems, mostly
- regarding the connectivity of network and localisation services:
+ regarding the connectivity of network and localization services:
 \end_layout
 
 \begin_layout Itemize
@@ -881,7 +881,7 @@ Domain assumptions
 \end_layout
 
 \begin_layout Itemize
-All the GPS localisation services have no fault and always returns the correct
+All the GPS localization services have no fault and always returns the correct
  position of a device (car, phone, tablet...).
 \end_layout
 
@@ -916,7 +916,7 @@ All the updates of the status of a car are immediate and correct.
 \end_layout
 
 \begin_layout Itemize
-A user will never leave the car in a zone unreachable by GPS localisation
+A user will never leave the car in a zone unreachable by GPS localization
  or too far from the nearest safe area.
 \end_layout
 
@@ -1972,7 +1972,7 @@ Scenario 4
 \end_layout
 
 \begin_layout Standard
-Lilith and her two sisters just got out of the jym and wants to go eat something.
+Lilith and her two sisters just got out of the gym and wants to go eat something.
  Hilda, one of the sisters, suggests a nice restaurant but it's pretty far
  from them, and they don't want to catch a bus to go there.
  Lilith tells then her sisters about PowerEnJoy and shows them how to make
@@ -2016,7 +2016,7 @@ Lilith has been working for 10 straight hours and feels very tired.
  Unfortunately, when waiting at a semaphore, someone collides with the car
  that Lilith is driving.
  No one is hurt, but boh the cars are in a bad shape.
- Lilith knows what to do and quicly presses the emergency button on the
+ Lilith knows what to do and quickly presses the emergency button on the
  car and after a few seconds she is able to speak with an operator to explain
  the situation.
  The person that picks up the emergency call is Marie, that asks Lilith
@@ -2041,7 +2041,7 @@ Mitch and his wife are thinking to go on a vacation, but they are undecided
  car and use it.
  Mitch opens the PowerEnJoy application, searches for the available cars
  and find one available.
- After having reserved it, requested the code to acces it, and picked it
+ After having reserved it, requested the code to access it, and picked it
  up, he drives, directed to the destination.
  Having used it a lot of times, Mitch knows the rate of the service, calculated
  per minute, and realizes that on his credit card there isn't enough money
@@ -2169,7 +2169,7 @@ The user turns on the car and drives.
 \series bold
 Exit conditions:
 \series default
- The user exits the car, and uses again the code neede to open it.
+ The user exits the car, and uses again the code needed to open it.
 \begin_inset Newline newline
 \end_inset
 
@@ -2356,7 +2356,7 @@ The user selects the cars she wants to monitor.
 \end_layout
 
 \begin_layout Itemize
-Every time that a car's satus changes, the user receives a notification
+Every time that a car's status changes, the user receives a notification
  on her phone with the new status of that car.
 \end_layout
 
@@ -2430,7 +2430,7 @@ The user turns on the car and drives.
 \end_layout
 
 \begin_layout Itemize
-After some km the user stops the car bacause he and his wife have some things
+After some km the user stops the car because he and his wife have some things
  to do.
 \end_layout
 
@@ -2503,11 +2503,11 @@ The user turns on the car and drives.
 \end_layout
 
 \begin_layout Itemize
-Suddently an other car is not able to stop and the 2 cars have a crush.
+Suddenly an other car is not able to stop and the 2 cars have a crush.
 \end_layout
 
 \begin_layout Itemize
-The user, if not badly injured, is able to press the button and speack with
+The user, if not badly injured, is able to press the button and speak with
  an operator.
 \end_layout
 
@@ -2646,9 +2646,9 @@ The User searches for a car and selects one.
 \end_layout
 
 \begin_layout Itemize
-The user is aware that he hasn't enough money on his paycard, so we has
- to choose between challenging the system and trying to get as much discounts
- as he can, or to give up and go by feet.
+The user is aware that he hasn't enough money on his credit card, so we
+ has to choose between challenging the system and trying to get as much
+ discounts as he can, or to give up and go by feet.
 \end_layout
 
 \begin_layout Standard
@@ -2680,10 +2680,6 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
 \begin_inset Separator plain
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
