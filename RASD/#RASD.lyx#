@@ -2169,7 +2169,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename UseCaseDiagram.png
-	lyxscale 40
+	lyxscale 20
 	scale 29
 
 \end_inset
@@ -2946,8 +2946,7 @@ Driver Licence number and postcode
 \series bold
 Exit conditions:
 \series default
- The user receives the password and with it he/she can log in to the personal
- area of the mobile app.
+ The user receives the password 
 \begin_inset Newline newline
 \end_inset
 
@@ -2957,7 +2956,11 @@ Exceptions:
 \end_layout
 
 \begin_layout Itemize
-The user is already registeres.
+There is no accident during the drive.
+\end_layout
+
+\begin_layout Itemize
+The button is not working.
 \end_layout
 
 \end_body
