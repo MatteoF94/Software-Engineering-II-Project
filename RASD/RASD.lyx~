@@ -2059,25 +2059,6 @@ Mitch and his wife are thinking to go on a vacation, but they are undecided
  
 \end_layout
 
-\begin_layout Subsubsection
-Scenario 7
-\end_layout
-
-\begin_layout Standard
-Lilith and her sister Hilda are talking about the services offered by PowerEnJoy.
- Lilith is actually a registered user and she appreciates the car sharing
- service, so she decided to invite her sister and make her register to benefits
- of PowerEnJoy.
- Lilith explains that in order to register, Hilda must insert in the app,
- under the registration section, her name, surname, number phone, mail,
- Driver Licence informations (number and postcode) and the optional fiscal
- code (of the ID Card).
- Hilda inserts all the information carefully and without errors, and after
- less then a minute, she receives an SMS and a mail containing the password
- to log in to her personal area of the app.
- 
-\end_layout
-
 \begin_layout Subsection
 UML models
 \end_layout
@@ -2128,7 +2109,7 @@ Use case descriptions
 \series bold
 Name:
 \series default
- Normal usage of the service
+ ServiceNormalUsage
 \begin_inset Newline newline
 \end_inset
 
@@ -2240,11 +2221,7 @@ height "0.5pt"
 
 Name:
 \series default
-<<<<<<< HEAD
  ServiceCancellation
-=======
- Cancellation of a reservation
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2252,11 +2229,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
  Client (Mitch, scenario 2)
-=======
- User (Mitch, scenario 2)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2325,8 +2298,6 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
 \end_inset
 
 
-<<<<<<< HEAD
-=======
 \begin_inset CommandInset line
 LatexCommand rule
 offset "0col%"
@@ -2349,93 +2320,7 @@ height "0.5pt"
 
 Name:
 \series default
- Monitoring of cars
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Actors:
-\series default
- User (Lilith, scenario 2)
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Entry conditions:
-\series default
- The client is already registered to the application and has already logged
- in.
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Flow of events:
-\end_layout
-
-\begin_layout Itemize
-The user searches for the cars, available or not, within a certain zone,
- that could be his/her position or a specific address.
-\end_layout
-
-\begin_layout Itemize
-Instead of making a reservation, the user can select multiple car to monitor.
-\end_layout
-
-\begin_layout Itemize
-The system sends push notifications to the user when the status of the car
- he/she requested to monitor changes.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Exit conditions:
-\series default
- The status of a car changes to picked up, and the system deletes all the
- monitoring lists on that car after having sent a notification, or the user
- cancels the monitoring request.
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-\begin_inset space \hspace{}
-\length 15col%
-\end_inset
-
-
->>>>>>> origin/master
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0col%"
-width "70col%"
-height "0.5pt"
-
-\end_inset
-
-
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-
-\begin_inset Newline newline
-\end_inset
-
-Name:
-\series default
-<<<<<<< HEAD
  CarMonitorning
-=======
- Temporary pause of the service
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2443,11 +2328,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
  Client (Lilith, scenario 2)
-=======
- User (Mitch, scenario 3)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2455,12 +2336,8 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
  The client is already registered to the application and has already logged
  in.
-=======
- The registered client reserved a car and picked it up.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2470,7 +2347,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
 The user searches for the cars, available or not, within a certain zone,
  that could be his/her position or a specific address.
 \end_layout
@@ -2482,26 +2358,11 @@ The user selects the cars she wants to monitor.
 \begin_layout Itemize
 Every time that a car's satus changes, the user receives a notification
  on her phone with the new status of that car.
-=======
-The client decides to stop the car for a certain amount of time, still wanting
- to benefit of the service.
-\end_layout
-
-\begin_layout Itemize
-The client stops the car and locks it.
-\end_layout
-
-\begin_layout Itemize
-The system checks if the car is parked in a safe area or not.
- If it is, the halt has no further cost, otherwise the system changes the
- service fee (lowering it, the client isn't consuming battery).
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-<<<<<<< HEAD
 Exit conditions: 
 \series default
 The user stops monitoring a determined car.
@@ -2540,46 +2401,6 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
 Name:
 \series default
  StopBy
-=======
-Exit conditions:
-\series default
- The clients unlocks the car and turns it on, to continue driving or ends
- the service using the access code of the car.
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-\begin_inset space \hspace{}
-\length 15col%
-\end_inset
-
-
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0col%"
-width "70col%"
-height "0.5pt"
-
-\end_inset
-
-
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-
-\begin_inset Newline newline
-\end_inset
-
-Name:
-\series default
- Bonuses application
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2587,11 +2408,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
  Client (Mitch, Lilith scenario 3)
-=======
- User (Lilith and her sisters, scenario 4; Mitch, scenario 6)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2599,12 +2416,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
  The client unlocks the car and turns it on
-=======
- The registered client reserved a car, picked it up and is about to end
- the service.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2614,7 +2426,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
 The user turns on the car and drives.
 \end_layout
 
@@ -2698,111 +2509,6 @@ Suddently an other car is not able to stop and the 2 cars have a crush.
 \begin_layout Itemize
 The user, if not badly injured, is able to press the button and speack with
  an operator.
-=======
-The user parks the car, exits and uses the access code to end the service.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin {itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} The system checks if the conditions to gain a discount or overcharge
- are met:
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin {itemize} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} For the majority of the ride there were more than two passengers,
- 10
-\backslash
-% discount.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} When the service ended the car had more than 50
-\backslash
-% of the battery filled, 20
-\backslash
-% discount.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} When the service ended the car had less than 20
-\backslash
-% of the battery filled, 30
-\backslash
-% overcharge.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} When the service ended the car was plugged into a power grid station,
- 30
-\backslash
-% discount.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} When the service ended the car was parked more than 3km from the
- nearest safe area, 30
-\backslash
-% overcharge.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end {itemize}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end {itemize}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-The system calculates the new cost of the ride, based on the applied discounts/o
-vercharges.
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
@@ -2810,7 +2516,6 @@ vercharges.
 \series bold
 Exit conditions:
 \series default
-<<<<<<< HEAD
  An operator arrives on site (where the accident occurred).
 \begin_inset Newline newline
 \end_inset
@@ -2846,44 +2551,6 @@ The Button is not working.
 Name:
 \series default
  AfterService
-=======
- The system sends push notifications to the user informing him/her of the
- total cost of the ride and the applied discounts/overcharges.
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-\begin_inset space \hspace{}
-\length 15col%
-\end_inset
-
-
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0col%"
-width "70col%"
-height "0.5pt"
-
-\end_inset
-
-
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-
-\begin_inset Newline newline
-\end_inset
-
-Name:
-\series default
- Emergency handling
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2891,11 +2558,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
  Client (Lilith, scenario 5)
-=======
- User (Mitch, scenario 3)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2903,11 +2566,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
  The client drives the car and ends the service 
-=======
- The registered client reserved a car and picked it up.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -2917,23 +2576,8 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
 After a while the user receives a notification on her phone with the details
  of the billing and every single discount that have been applied.
-=======
-The client decides to stop the car for a certain amount of time, still wanting
- to benefit of the service.
-\end_layout
-
-\begin_layout Itemize
-The client stops the car and locks it.
-\end_layout
-
-\begin_layout Itemize
-The system checks if the car is parked in a safe area or not.
- If it is, the halt has no further cost, otherwise the system changes the
- service fee (lowering it, the client isn't consuming battery).
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
@@ -2941,7 +2585,6 @@ The system checks if the car is parked in a safe area or not.
 \series bold
 Exit conditions:
 \series default
-<<<<<<< HEAD
  Visualize the notification.
 \begin_inset Newline newline
 \end_inset
@@ -2973,44 +2616,6 @@ There has been a wrong overcharge.
 Name:
 \series default
  NoMoney
-=======
- The clients unlocks the car and turns it on, to continue driving or ends
- the service using the access code of the car.
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\series bold
-\begin_inset space \hspace{}
-\length 15col%
-\end_inset
-
-
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0col%"
-width "70col%"
-height "0.5pt"
-
-\end_inset
-
-
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-
-\begin_inset Newline newline
-\end_inset
-
-Name:
-\series default
- Registration
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -3018,11 +2623,7 @@ Name:
 \series bold
 Actors:
 \series default
-<<<<<<< HEAD
  Client (Mitch, Lilith, scenario 6)
-=======
- User (Hilda, scenario 7)
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -3030,12 +2631,8 @@ Actors:
 \series bold
 Entry conditions:
 \series default
-<<<<<<< HEAD
  The client searches for cars nearby and selects one.
  
-=======
- The registered client reserved a car and picked it up.
->>>>>>> origin/master
 \begin_inset Newline newline
 \end_inset
 
@@ -3045,7 +2642,6 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-<<<<<<< HEAD
 The User searches for a car and selects one.
 \end_layout
 
@@ -3085,32 +2681,10 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
 \end_inset
 
 
-=======
-The client decides to stop the car for a certain amount of time, still wanting
- to benefit of the service.
-\end_layout
-
-\begin_layout Itemize
-The client stops the car and locks it.
-\end_layout
-
-\begin_layout Itemize
-The system checks if the car is parked in a safe area or not.
- If it is, the halt has no further cost, otherwise the system changes the
- service fee (lowering it, the client isn't consuming battery).
->>>>>>> origin/master
 \end_layout
 
 \begin_layout Standard
 
-<<<<<<< HEAD
-=======
-\series bold
-Exit conditions:
-\series default
- The clients unlocks the car and turns it on, to continue driving or ends
- the service using the access code of the car.
->>>>>>> origin/master
 \end_layout
 
 \end_body
