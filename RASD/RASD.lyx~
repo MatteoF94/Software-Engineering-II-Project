@@ -3200,8 +3200,8 @@ end{adjustwidth}
 
 \end_inset
 
-Figure 9: diagram representing the system behavior, orientated towards a
- user-like vision of the problem, when the service ends.
+The diagram representing the system behavior, orientated towards a user-like
+ vision of the problem, when the service ends.
  After the user has left the car and ended the service using the access
  code to unlock the car before picking it up after the reservation, the
  system begins the payment and notification procedure.
@@ -3219,6 +3219,63 @@ Figure 9: diagram representing the system behavior, orientated towards a
  However, the user needs to know if the payment was succesful, so the system
  sends him/her push notifications to inform him/her of the effective cost
  of the ride and the applied discounts and overcharges.
+\end_layout
+
+\begin_layout Subsubsection
+State diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ServiceState.png
+	lyxscale 40
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+diagram representing the change of state of the service for a single user.
+ In a real situation, the log in state of a user doesn't stay alive for
+ the eternity, but after a fixed amount of time expires.
+ Thus, the system needs to remember the last state of a user before the
+ logout.
+ As stated more times in this document, once logged in a user can reserve
+ a car or monitor multiple cars.
+ After the reservation follows the request of a code to access the car,
+ the unlock and access to the car and the ride, that is a complex composed
+ state (not shown in figure).
+ Obviously, if the user doesn't pick up the car in time, there is no ride
+ and the service ends.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
