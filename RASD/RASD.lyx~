@@ -2169,7 +2169,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename UseCaseDiagram.png
-	lyxscale 20
+	lyxscale 40
 	scale 29
 
 \end_inset
@@ -2217,7 +2217,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client is already registered to the application.
+ The user is already registered to the application.
 \begin_inset Newline newline
 \end_inset
 
@@ -2321,7 +2321,7 @@ Name:
 \series bold
 Actors:
 \series default
- Client (Mitch, scenario 2)
+ User (Mitch, scenario 2)
 \begin_inset Newline newline
 \end_inset
 
@@ -2329,7 +2329,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client is already registered to the application.
+ The user is already registered to the application.
 \begin_inset Newline newline
 \end_inset
 
@@ -2412,7 +2412,7 @@ height "0.5pt"
 
 Name:
 \series default
- CarMonitorning
+ Monitoring of cars
 \begin_inset Newline newline
 \end_inset
 
@@ -2420,7 +2420,7 @@ Name:
 \series bold
 Actors:
 \series default
- Client (Lilith, scenario 2)
+ User (Lilith, scenario 2)
 \begin_inset Newline newline
 \end_inset
 
@@ -2428,7 +2428,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client is already registered to the application and has already logged
+ The user is already registered to the application and has already logged
  in.
 \begin_inset Newline newline
 \end_inset
@@ -2458,11 +2458,11 @@ Every time that a car's status changes, the user receives a notification
 Exit conditions: 
 \series default
 The user stops monitoring a determined car.
-\end_layout
-
-\begin_layout Standard
-
 \series bold
+
+\begin_inset Newline newline
+\end_inset
+
 Exceptions
 \series default
 : 
@@ -2510,7 +2510,7 @@ height "0.5pt"
 
 Name:
 \series default
- StopBy
+ Temporary stop by
 \begin_inset Newline newline
 \end_inset
 
@@ -2518,7 +2518,7 @@ Name:
 \series bold
 Actors:
 \series default
- Client (Mitch, Lilith scenario 3)
+ User (Mitch, scenario 3)
 \begin_inset Newline newline
 \end_inset
 
@@ -2526,7 +2526,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client unlocks the car and turns it on
+ The registered user unlocks the reserved car and turns it on.
 \begin_inset Newline newline
 \end_inset
 
@@ -2540,16 +2540,18 @@ The user turns on the car and drives.
 \end_layout
 
 \begin_layout Itemize
-After some km the user stops the car because he and his wife have some things
- to do.
+The user decides to stop the car for a certain amount of time, still wanting
+ to benefit of the service.
 \end_layout
 
 \begin_layout Itemize
-The user extracts the key from the car and turn it off.
+The user extracts the key from the car after having turned it off.
 \end_layout
 
 \begin_layout Itemize
-After a while the users return on the car and proceed to their destination.
+The system checks if the car is parked in a safe area or not.
+ If it is, the halt has no further cost, otherwise the system changes the
+ service fee (lowering it, because the user isn't consuming battery).
 \end_layout
 
 \begin_layout Standard
@@ -2557,7 +2559,8 @@ After a while the users return on the car and proceed to their destination.
 \series bold
 Exit conditions:
 \series default
- The user enters the lock code to end the service.
+ The user unlocks the car and turns it on, to continue driving or ends the
+ service using the access code of the car.
 \begin_inset Newline newline
 \end_inset
 
@@ -2567,7 +2570,9 @@ Exceptions:
 \end_layout
 
 \begin_layout Itemize
-The car has no fuel and remains stuck near the shop, far from any safe area.
+Before stopping by, the user realizes that the car has not enough battery
+ to continue the trip.
+ He/she can find a power grid or end the service.
 \end_layout
 
 \begin_layout Standard
@@ -2600,7 +2605,7 @@ height "0.5pt"
 
 Name:
 \series default
- Accident
+ Bonuses application
 \begin_inset Newline newline
 \end_inset
 
@@ -2608,7 +2613,7 @@ Name:
 \series bold
 Actors:
 \series default
- Client (Mitch, scenario 5)
+ User (Lilith and her sisters, scenario 4; Mitch, scenario 6)
 \begin_inset Newline newline
 \end_inset
 
@@ -2616,7 +2621,179 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client unlocks the car and turns it on
+ The registered user reserved a car, picked it up and is about to end the
+ service.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The user parks the car, exits and uses the access code to end the service.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} The system checks if the conditions to gain a discount or overcharge
+ are met:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} For the majority of the ride there were more than two passengers,
+ 10
+\backslash
+% discount.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} When the service ended, the car had more than 50
+\backslash
+% of the battery filled, 20
+\backslash
+% discount.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} When the service ended, the car had less than 20
+\backslash
+% of the battery filled, 30
+\backslash
+% overcharge.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} When the service enede, the car was plugged into a power grid station,
+ 30
+\backslash
+% discount.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} When the service ended, the car was parked more than 3km from the
+ nearest safe area, 30
+\backslash
+% overcharge.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end {itemize}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The system calculates the new cost of the ride, based on the applied discounts/o
+vercharges.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The system sends push notifications to the user, informing him/her of the
+ total cost of the ride and the applied discounts/overcharges.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0col%"
+width "70col%"
+height "0.5pt"
+
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ Emergency handling
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ User (Mitch, scenario 5)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The registered user reserved a car and picked it up.
 \begin_inset Newline newline
 \end_inset
 
@@ -2630,12 +2807,23 @@ The user turns on the car and drives.
 \end_layout
 
 \begin_layout Itemize
-Suddenly an other car is not able to stop and the 2 cars have a crush.
+An accident occurs, that can be a sudden illness of the user, a collision
+ or a malfunction of the car.
 \end_layout
 
 \begin_layout Itemize
-The user, if not badly injured, is able to press the button and speak with
- an operator.
+The user presses the emergency button.
+\end_layout
+
+\begin_layout Itemize
+The systems redirects the user call to an available operator, that can now
+ talk with the user.
+\end_layout
+
+\begin_layout Itemize
+After having asked information about the accident, the operator contacts
+ other services, as ambulances, police or technicians to go at the accident
+ location.
 \end_layout
 
 \begin_layout Standard
@@ -2643,7 +2831,7 @@ The user, if not badly injured, is able to press the button and speak with
 \series bold
 Exit conditions:
 \series default
- An operator arrives on site (where the accident occurred).
+ The needed employees arrive on site (where the accident occurred).
 \begin_inset Newline newline
 \end_inset
 
@@ -2657,11 +2845,7 @@ There is no accident during the drive.
 \end_layout
 
 \begin_layout Itemize
-Multiple operator are called on site.
-\end_layout
-
-\begin_layout Itemize
-The Button is not working.
+The button is not working.
 \end_layout
 
 \begin_layout Standard
@@ -2694,7 +2878,7 @@ height "0.5pt"
 
 Name:
 \series default
- AfterService
+ Registration
 \begin_inset Newline newline
 \end_inset
 
@@ -2702,7 +2886,7 @@ Name:
 \series bold
 Actors:
 \series default
- Client (Lilith, scenario 5)
+ User (Hilda, scenario 7)
 \begin_inset Newline newline
 \end_inset
 
@@ -2710,7 +2894,7 @@ Actors:
 \series bold
 Entry conditions:
 \series default
- The client drives the car and ends the service 
+ The user downloaded and installed the app.
 \begin_inset Newline newline
 \end_inset
 
@@ -2720,16 +2904,50 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-After a while the user receives a notification on her phone with the details
- of the billing and every single discount that have been applied.
+The user starts the app.
 \end_layout
 
+\begin_layout Itemize
+The user selects the registration option from the main menu of the app.
+\end_layout
+
+\begin_layout Itemize
+The user inserts data in order to complete the registration:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Name and surname
+\end_layout
+
+\begin_layout Itemize
+Fiscal code (optional)
+\end_layout
+
+\begin_layout Itemize
+Phone number
+\end_layout
+
+\begin_layout Itemize
+Mail address
+\end_layout
+
+\begin_layout Itemize
+Preference over the notification channel (SMS, Mail or both)
+\end_layout
+
+\begin_layout Itemize
+Driver Licence number and postcode
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 
 \series bold
 Exit conditions:
 \series default
- Visualize the notification.
+ The user receives the password and with it he/she can log in to the personal
+ area of the mobile app.
 \begin_inset Newline newline
 \end_inset
 
@@ -2739,102 +2957,249 @@ Exceptions:
 \end_layout
 
 \begin_layout Itemize
-The user receives no notification.
+The user is already registered.
 \end_layout
 
-\begin_layout Itemize
-There has been a wrong overcharge.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\begin_inset space \hspace{}
-\length 15col%
-\end_inset
-
-
-\begin_inset CommandInset line
-LatexCommand rule
-offset "0col%"
-width "70col%"
-height "0.5pt"
-
-\end_inset
-
-
-\series default
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-
-\begin_inset Newline newline
-\end_inset
-
-Name:
-\series default
- NoMoney
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Actors:
-\series default
- Client (Mitch, Lilith, scenario 6)
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Entry conditions:
-\series default
- The client searches for cars nearby and selects one.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-Flow of events:
-\end_layout
-
-\begin_layout Itemize
-The User searches for a car and selects one.
-\end_layout
-
-\begin_layout Itemize
-The user is aware that he hasn't enough money on his credit card, so we
- has to choose between challenging the system and trying to get as much
- discounts as he can, or to give up and go by feet.
+\begin_layout Subsubsection
+Class diagram
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
 
-\series bold
-Exit conditions:
-\series default
- Proceed in the reservation or exit the procedure.
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Main.png
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Class diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Sequence diagrams
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ReservationSequence.png
+	lyxscale 20
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename CarTempStop.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Accident.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Activity diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{adjustwidth*}{-2cm}{-2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename EndOfService.png
+	lyxscale 30
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
 
-\series bold
-Exceptions: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{adjustwidth*}
 \end_layout
 
-\begin_layout Itemize
-The credentials furnished by the client are not correct.
- In this case the system doesn't redirect the user to the main page of the
- app but notifies him/her with an error message on the screen.
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR
- and cannot cancel the reservation anymore.
+
 \end_layout
 
 \end_body
