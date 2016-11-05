@@ -5,6 +5,9 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{changepage}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -3033,7 +3036,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+diagram representing the reservation process.
+ After having logged in, from his/her app the user can search for a car.
+ Once the system has elaborated and shown the list of cars, the user can
+ reserve one.
+ The reservation fails if the user has already made a reservation or inserts
+ a reservation time longer than one hour.
 \end_layout
 
 \end_inset
@@ -3074,7 +3082,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+diagram representing the real case when the user interrupts temporarily
+ the service.
+ After having turned off the car and locked it, the car system communicates
+ the change of its status to the system.
+ The car has been turned off and locked, this means that the user is contining
+ to benefit from the service.
+ So, there will be only a change of fee, depending on the position of the
+ car, and consequently the ride object associated to the user and the car.
+ After a while the user will came back and a specular sequence of operations
+ is made: the system changes the status of the car and updates the fee and
+ the information of the ride.
+ Lastly, the user turns on the car, and continues his/her drive.
 \end_layout
 
 \end_inset
@@ -3115,7 +3134,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
+diagram representing the behavior of the whole system, in case of accident.
+ When the user presses the emergency button on the car, this communicates
+ to the system that there is a problem, and so a change of status of the
+ car.
+ The system turns off the car, to avoid further problems and possible user
+ misbehaviors.
+ Then the systems contacts an operator, giving the necessary informations
+ about the accident: location, car status, and so on.
+ The operator redirects the call directly to the user.
+ After the conversation, which can even end abruptly (maybe the user suffered
+ a sudden illness), the operator decides what to do and what resources have
+ to be allocated and what other agents has to be called.
 \end_layout
 
 \end_inset
@@ -3144,46 +3174,17 @@ status open
 
 
 \backslash
-begin{adjustwidth*}{-2cm}{-2cm}
+begin{adjustwidth}{-2.5cm}{-2cm}
 \end_layout
 
 \end_inset
 
 
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
 	filename EndOfService.png
-	lyxscale 30
-	scale 25
+	lyxscale 10
+	scale 30
 
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -3194,12 +3195,30 @@ status open
 
 
 \backslash
-end{adjustwidth*}
+end{adjustwidth}
 \end_layout
 
 \end_inset
 
-
+Figure 9: diagram representing the system behavior, orientated towards a
+ user-like vision of the problem, when the service ends.
+ After the user has left the car and ended the service using the access
+ code to unlock the car before picking it up after the reservation, the
+ system begins the payment and notification procedure.
+ After having changed the car status, that involves a major number of activities
+ - such as car locking, change of the car tag, check of the car condition
+ with possible interaction with external operators, database update -, the
+ system proceeds calculating the real cost of the ride, that is the standard
+ cost (SC = RideTime*StdFee + PauseTime*SpFee) on which all the possible
+ bonuses are applied.
+ This is followed by the effective payment of the ride, handled by the PSP
+ of the system.
+ This is not included in the diagram because from the point of view of the
+ user, the system just have to handle the payment, doesn't care on how it
+ does.
+ However, the user needs to know if the payment was succesful, so the system
+ sends him/her push notifications to inform him/her of the effective cost
+ of the ride and the applied discounts and overcharges.
 \end_layout
 
 \end_body
