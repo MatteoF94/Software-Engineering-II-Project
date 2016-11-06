@@ -2988,15 +2988,20 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Class diagram
 \end_layout
 
-\end_inset
-
-
+\begin_layout Plain Layout
+The diagram is characterized by a Client-Server architecture in which the
+ Server (System) is able to coordinate the car, the user and the external
+ operator.
+ The clients are the Car and User.
+ The server is able to manage multiple clients at the same time.
+ Moreover the whole service has been designed using some Patterns : the
+ “monitoring” of the car has been solved through the Observer Pattern and
+ the State Pattern has been used to manages the states of the service after
+ log-in.
+ The last pattern used is the the MVC.
+ 
 \end_layout
 
 \begin_layout Plain Layout
