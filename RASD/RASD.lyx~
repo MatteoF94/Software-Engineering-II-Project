@@ -2983,7 +2983,7 @@ status open
 \begin_inset Graphics
 	filename Main.png
 	lyxscale 40
-	scale 25
+	scale 50
 
 \end_inset
 
@@ -3281,6 +3281,1198 @@ diagram representing the change of state of the service for a single user.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Alloy
+\end_layout
+
+\begin_layout Subsection
+Script of the model
+\end_layout
+
+\begin_layout Standard
+open util/ boolean
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ------- User and car definition --------*/ 
+\begin_inset Newline newline
+\end_inset
+
+sig User {} 
+\begin_inset Newline newline
+\end_inset
+
+sig Car { 
+\end_layout
+
+\begin_layout Standard
+position: Position,
+\end_layout
+
+\begin_layout Standard
+battery: Int
+\begin_inset Newline newline
+\end_inset
+
+} {
+\end_layout
+
+\begin_layout Standard
+battery > 0 and battery < 15
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Two car cannot share the same position...they would be overlapping! 
+\begin_inset Newline newline
+\end_inset
+
+fact uniquePositions { 
+\end_layout
+
+\begin_layout Standard
+all disj c1, c2: Car | c1.position != c2.position
+\begin_inset Newline newline
+\end_inset
+
+} 
+\begin_inset Newline newline
+\end_inset
+
+/* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* --------- System definition -----------*/
+\begin_inset Newline newline
+\end_inset
+
+one sig System { 
+\end_layout
+
+\begin_layout Standard
+users: set User, 
+\end_layout
+
+\begin_layout Standard
+cars: set Car, 
+\end_layout
+
+\begin_layout Standard
+reservations: set Reservation, 
+\end_layout
+
+\begin_layout Standard
+monitorings: set Monitoring, 
+\end_layout
+
+\begin_layout Standard
+codeRequests: set CodeRequest,
+\end_layout
+
+\begin_layout Standard
+rides: set Ride, 
+\end_layout
+
+\begin_layout Standard
+safeAreas: set SafeArea
+\begin_inset Newline newline
+\end_inset
+
+} { 
+\end_layout
+
+\begin_layout Standard
+#cars >0 
+\end_layout
+
+\begin_layout Standard
+#safeAreas > 0
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// The system contains all of the service objects
+\begin_inset Newline newline
+\end_inset
+
+fact systemContainsAll { 
+\end_layout
+
+\begin_layout Standard
+all u: User | u in System.users
+\end_layout
+
+\begin_layout Standard
+all c: Car | c in System.cars
+\end_layout
+
+\begin_layout Standard
+all r: Reservation | r in System.reservations 
+\end_layout
+
+\begin_layout Standard
+all m: Monitoring | m in System.monitorings
+\end_layout
+
+\begin_layout Standard
+all c: CodeRequest | c in System.codeRequests
+\end_layout
+
+\begin_layout Standard
+all r: Ride | r in System.rides
+\begin_inset Newline newline
+\end_inset
+
+} 
+\begin_inset Newline newline
+\end_inset
+
+/* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ----------- Service states ------------*/ 
+\begin_inset Newline newline
+\end_inset
+
+sig Reservation { 
+\end_layout
+
+\begin_layout Standard
+user: one User,
+\end_layout
+
+\begin_layout Standard
+car: one Car 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+fact reservationUniqueness { 
+\end_layout
+
+\begin_layout Standard
+// A user cannot make more than one reservation 
+\end_layout
+
+\begin_layout Standard
+all disj r1, r2: Reservation | r1.user != r2.user
+\end_layout
+
+\begin_layout Standard
+// A car cannot be reserved by more than one user
+\end_layout
+
+\begin_layout Standard
+all disj r1, r2: Reservation | r1.car != r2.car 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+sig Monitoring {
+\end_layout
+
+\begin_layout Standard
+mon_users: set User, 
+\end_layout
+
+\begin_layout Standard
+mon_car: Car 
+\begin_inset Newline newline
+\end_inset
+
+} {
+\end_layout
+
+\begin_layout Standard
+#mon_users > 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// There are no multiple monitorings on the same car
+\begin_inset Newline newline
+\end_inset
+
+fact oneMonitorForCar {
+\end_layout
+
+\begin_layout Standard
+all disj m1, m2: Monitoring | m1.mon_car != m2.mon_car 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Monitoring and reservations only on the permitted cars 
+\begin_inset Newline newline
+\end_inset
+
+fact permittedCarsMonitorReservation { 
+\end_layout
+
+\begin_layout Standard
+all m: Monitoring | m.mon_car in System.cars
+\end_layout
+
+\begin_layout Standard
+all r: Reservation | r.car in System.cars 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// A user cannot be reserving a car and monitoring others
+\begin_inset Newline newline
+\end_inset
+
+fact monitorOrReservation { 
+\end_layout
+
+\begin_layout Standard
+all r: Reservation, m: Monitoring | #(r.user & m.mon_users) = 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Asserts that not every user has made a reservation or is monitoring a
+ car
+\begin_inset Newline newline
+\end_inset
+
+assert someUserIdle {
+\end_layout
+
+\begin_layout Standard
+some u: User | no r: Reservation, m: Monitoring | r.user = u and u in m.mon_users
+ 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+ /* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ---- Code request after a reservation ----*/
+\begin_inset Newline newline
+\end_inset
+
+sig CodeRequest { 
+\end_layout
+
+\begin_layout Standard
+user: one User,
+\end_layout
+
+\begin_layout Standard
+accessCode: one Code 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+sig Code{}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// All the codes to access a car are unique 
+\begin_inset Newline newline
+\end_inset
+
+fact codeUniqueness {
+\end_layout
+
+\begin_layout Standard
+no disj c1, c2: CodeRequest | c1.accessCode = c2.accessCode 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* A user can request for an access code only if he/she has already made
+ a reservation.
+ Moreover, a user cannot make more than one reservation */ 
+\begin_inset Newline newline
+\end_inset
+
+fact codeRequestFollowsReservation {
+\end_layout
+
+\begin_layout Standard
+all c: CodeRequest | one r: Reservation | c.user = r.user 
+\end_layout
+
+\begin_layout Standard
+all disj c1, c2: CodeRequest | c1.user != c2.user 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// All the codes of the world are generated only for a code request 
+\begin_inset Newline newline
+\end_inset
+
+fact noUnusedCode {
+\end_layout
+
+\begin_layout Standard
+#CodeRequest = #Code 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+ /* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* -------------- Ride ----------------*/ 
+\begin_inset Newline newline
+\end_inset
+
+sig Ride { 
+\end_layout
+
+\begin_layout Standard
+user: User, 
+\end_layout
+
+\begin_layout Standard
+car: Car, 
+\end_layout
+
+\begin_layout Standard
+cost: Int, 
+\end_layout
+
+\begin_layout Standard
+currentFee: Fee, 
+\end_layout
+
+\begin_layout Standard
+rideDuration: Int, 
+\end_layout
+
+\begin_layout Standard
+possibleBonuses: set Bonus, 
+\end_layout
+
+\begin_layout Standard
+carStopped: Bool 
+\begin_inset Newline newline
+\end_inset
+
+} { 
+\end_layout
+
+\begin_layout Standard
+rideDuration > 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// A user cannot be in more than one ride and so does a car 
+\begin_inset Newline newline
+\end_inset
+
+fact rideSingularity { 
+\end_layout
+
+\begin_layout Standard
+all disj r1, r2: Ride | r1.user != r2.user and r1.car != r2.car 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// When the user is riding a car, the reservation and monitorings users
+ are cancelled 
+\begin_inset Newline newline
+\end_inset
+
+fact onceRidingReservationAndMonitoringExpire { 
+\end_layout
+
+\begin_layout Standard
+all r: Ride, u: User, c: Car | r.user = u and r.car = c 
+\end_layout
+
+\begin_layout Standard
+implies 
+\end_layout
+
+\begin_layout Standard
+(no res: Reservation | res.user = u or res.car = c) 
+\end_layout
+
+\begin_layout Standard
+and 
+\end_layout
+
+\begin_layout Standard
+(no m: Monitoring | u in m.mon_users or m.car = c) 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+fact rideFeeConstraint { 
+\end_layout
+
+\begin_layout Standard
+all r: Ride | (r.carStopped = True and r.car in SafeArea.parkedCars) implies
+ r.currentFee = SafeAreaFee 
+\end_layout
+
+\begin_layout Standard
+all r: Ride | (r.carStopped = True and r.car not in SafeArea.parkedCars) implies
+ r.currentFee = StopFee
+\end_layout
+
+\begin_layout Standard
+all r: Ride | r.carStopped = False implies r.currentFee = StandardFee 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Even the code request should expire after the ride begins
+\begin_inset Newline newline
+\end_inset
+
+assert rideImpliesNoCodeRequest { 
+\end_layout
+
+\begin_layout Standard
+all r: Ride | no c: CodeRequest | r.user = c.user 
+\begin_inset Newline newline
+\end_inset
+
+} 
+\begin_inset Newline newline
+\end_inset
+
+/* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* --------- Accident description --------*/ 
+\begin_inset Newline newline
+\end_inset
+
+sig Accident { 
+\end_layout
+
+\begin_layout Standard
+unfortunateRide: one Ride, 
+\end_layout
+
+\begin_layout Standard
+assignedOperators: set Operator 
+\begin_inset Newline newline
+\end_inset
+
+} { 
+\end_layout
+
+\begin_layout Standard
+#assignedOperators > 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+sig Operator{}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// An accident can occur only during a ride
+\begin_inset Newline newline
+\end_inset
+
+fact noAccidentWithoutRide { 
+\end_layout
+
+\begin_layout Standard
+all a: Accident | a.unfortunateRide.currentFee = SafeAreaFee 
+\begin_inset Newline newline
+\end_inset
+
+} 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ----------- Fee description ----------*/ 
+\begin_inset Newline newline
+\end_inset
+
+abstract sig Fee{ 
+\end_layout
+
+\begin_layout Standard
+fee: Int 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+one sig StopFee extends Fee{ 
+\end_layout
+
+\begin_layout Standard
+stopMultiplier: Int 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+one sig SafeAreaFee extends Fee { 
+\end_layout
+
+\begin_layout Standard
+safeMultiplier: Int 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+one sig StandardFee extends Fee {
+\end_layout
+
+\begin_layout Standard
+standardMultiplier: Int 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* When stopping and leaving the car in a safe zone, the fee is zero.
+ When leaving the car there is a small fee due to the continue use of the
+ service.
+ However, this fee is smaller than the one used during a ride because there
+ is no battery consumption */ 
+\begin_inset Newline newline
+\end_inset
+
+fact feeConstraints { 
+\end_layout
+
+\begin_layout Standard
+StopFee.stopMultiplier > SafeAreaFee.safeMultiplier and 
+\end_layout
+
+\begin_layout Standard
+StandardFee.standardMultiplier > StopFee.stopMultiplier and
+\end_layout
+
+\begin_layout Standard
+SafeAreaFee.safeMultiplier = 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+/* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ----- Position and areas description ----*/
+\begin_inset Newline newline
+\end_inset
+
+sig Position{
+\end_layout
+
+\begin_layout Standard
+latitude: Int,
+\end_layout
+
+\begin_layout Standard
+longitude: Int 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+sig SafeArea{ 
+\end_layout
+
+\begin_layout Standard
+parkedCars: set Car, 
+\end_layout
+
+\begin_layout Standard
+availablePositions: set Position 
+\begin_inset Newline newline
+\end_inset
+
+}{ 
+\end_layout
+
+\begin_layout Standard
+#availablePositions > 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+sig SpecialSafearea extends SafeArea{
+\end_layout
+
+\begin_layout Standard
+availableChargers: Int 
+\begin_inset Newline newline
+\end_inset
+
+} { 
+\end_layout
+
+\begin_layout Standard
+availableChargers > 0 && availableChargers < 10 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// It is a third person/society that owns parking areas and can sell/buy
+ it to/from our society 
+\begin_inset Newline newline
+\end_inset
+
+sig Stakeholder { 
+\end_layout
+
+\begin_layout Standard
+owned_areas: set SafeArea 
+\begin_inset Newline newline
+\end_inset
+
+} { 
+\end_layout
+
+\begin_layout Standard
+#owned_areas > 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Safe areas is a set contained within the system and the stakeholders
+ 
+\begin_inset Newline newline
+\end_inset
+
+fact safeAreaDomain { 
+\end_layout
+
+\begin_layout Standard
+no s: SafeArea | s in Stakeholder.owned_areas and s in System.safeAreas
+\end_layout
+
+\begin_layout Standard
+SafeArea = Stakeholder.owned_areas + System.safeAreas 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// A position that is in a safe area cannot appear in another safe area
+ 
+\begin_inset Newline newline
+\end_inset
+
+fact allSafeAreaHaveDisjPositions { 
+\end_layout
+
+\begin_layout Standard
+all s1, s2: SafeArea | s1!=s2 implies #(s1.availablePositions & s2.availablePositi
+ons) = 0 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// The positions of the parked cars in a safe area are some of the positions
+ available in such area 
+\begin_inset Newline newline
+\end_inset
+
+fact parkedCarPositionInSafeAreaPositions { 
+\end_layout
+
+\begin_layout Standard
+all s: SafeArea | s.parkedCars.position in s.availablePositions 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// There isn't any car parked in the stakeholders areas 
+\begin_inset Newline newline
+\end_inset
+
+fact noServiceInStakeholderAreas { 
+\end_layout
+
+\begin_layout Standard
+no c: Car | c in Stakeholder.owned_areas.parkedCars 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// There should not be any position in a stakeholder area, given the previous
+ assumptions
+\begin_inset Newline newline
+\end_inset
+
+assert noCarPositionInStakeholderSafeAreas { 
+\end_layout
+
+\begin_layout Standard
+no c: Car | c.position in Stakeholder.owned_areas.availablePositions 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Predicates the addition of a safe area to the system, sold by some stakeholde
+r
+\begin_inset Newline newline
+\end_inset
+
+pred addSafeArea[sa: SafeArea, s,s': System, st,st': Stakeholder] { 
+\end_layout
+
+\begin_layout Standard
+sa in st.owned_areas and sa not in s.safeAreas 
+\end_layout
+
+\begin_layout Standard
+implies 
+\end_layout
+
+\begin_layout Standard
+st'.owned_areas = st.owned_areas - sa and s'.safeAreas = s.safeAreas + sa 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Predicates the subtraction of a safe area from the system, bought by
+ some stakeholder
+\begin_inset Newline newline
+\end_inset
+
+pred delSafeArea[sa: SafeArea, s,s': System, st,st': Stakeholder] { 
+\end_layout
+
+\begin_layout Standard
+sa not in st.owned_areas and sa in s.safeAreas
+\end_layout
+
+\begin_layout Standard
+implies
+\end_layout
+
+\begin_layout Standard
+st'.owned_areas = st.owned_areas + sa and s'.safeAreas = s.safeAreas - sa 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Predicates the parking of a car in a safe area
+\begin_inset Newline newline
+\end_inset
+
+pred parkingCar[c: Car, s,s': SafeArea] { 
+\end_layout
+
+\begin_layout Standard
+c not in SafeArea.parkedCars and c.position in s.availablePositions
+\end_layout
+
+\begin_layout Standard
+implies
+\end_layout
+
+\begin_layout Standard
+s'.parkedCars = s.parkedCars + c 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// Predicates the leaving of a car from a parking zone
+\begin_inset Newline newline
+\end_inset
+
+pred leavingCar[c: Car, s,s': SafeArea] { 
+\end_layout
+
+\begin_layout Standard
+c in s.parkedCars and c.position in s.availablePositions
+\end_layout
+
+\begin_layout Standard
+implies
+\end_layout
+
+\begin_layout Standard
+s'.parkedCars = s.parkedCars - c and c not in SafeArea.parkedCars and c.position
+ in s'.availablePositions 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+ /* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+/* ------ Some bonuses description ------*/ 
+\begin_inset Newline newline
+\end_inset
+
+abstract sig Bonus {}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+one sig HighBattery extends Bonus { 
+\end_layout
+
+\begin_layout Standard
+discount = 10 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ one sig LowBattery extends Bonus { 
+\end_layout
+
+\begin_layout Standard
+overcharge = 15 
+\begin_inset Newline newline
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Standard
+/* If during a ride a car has more than 10 battery (50%) the user may get
+ a discount if the condition persists.
+ On the other side if during a ride a car has less than 5 battery (20%),
+ the user may incur in a 30% overcharge if the condition persists */ fact
+ possibleBonusesPerRide { all r: Ride | r.car.battery > 10 implies (HighBattery
+ in r.possibleBonuses and #r.possibleBonuses = 1) all r: Ride | r.car.battery
+ < 5 implies LowBattery in r.possibleBonuses and #r.possibleBonuses = 1 all
+ r: Ride | (r.car.battery >= 5 and r.car.battery <= 10) implies #r.possibleBonuses
+ = 0 }
+\end_layout
+
+\begin_layout Standard
+/* A car should not have both bonuses related to the battery percentage
+ */ assert noRideHasBothBatteryBonuses { no r: Ride | HighBattery in r.possibleBo
+nuses and LowBattery in r.possibleBonuses } /* ----------------------------------
+-*/
+\end_layout
+
+\begin_layout Standard
+/* Utilities constraints.
+ - Sum of #Ride and #Reservation < #User - Sum of #Ride and #Reservation
+ < #Car - #CodeRequest < #Reservation */ fact { #User = 6 #Reservation =2
+ #CodeRequest = 1 #Monitoring < 3 && #Monitoring > 0 #Ride = 2 #SafeArea
+ = 2 #Operator < 3 #Accident = 1 #Stakeholder = 1 some r: Reservation |
+ r.car in SafeArea.parkedCars some p: Position | p not in SafeArea.availablePositio
+ns some r: Ride | r.car.position in System.safeAreas.availablePositions some
+ r: Ride | LowBattery in r.possibleBonuses some c: Car | c.battery < 5 some
+ c: Car | c.battery > 10 }
+\end_layout
+
+\begin_layout Standard
+pred show[] {}
+\end_layout
+
+\begin_layout Standard
+//Utility assertion assert someResOutArea { some r: Reservation | r.car.position
+ not in SafeArea.availablePositions }
+\end_layout
+
+\begin_layout Standard
+// World controls and check check someResOutArea check rideImpliesNoCodeRequest
+ check someUserIdle check noRideHasBothBatteryBonuses check noCarPositionInStake
+holderSafeAreas run addSafeArea for 7 but 5 Int run delSafeArea for 7 but
+ 5 Int run parkingCar for 7 but 5 Int run leavingCar for 7 but 5 Int run
+ show for 7 but 5 Int 
 \end_layout
 
 \end_body

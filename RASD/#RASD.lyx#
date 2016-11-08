@@ -4450,198 +4450,43 @@ all r: Ride | r.car.battery > 10 implies (HighBattery in r.possibleBonuses
 \begin_layout Standard
 all r: Ride | r.car.battery < 5 implies LowBattery in r.possibleBonuses and
  #r.possibleBonuses = 1 all r: Ride | (r.car.battery >= 5 and r.car.battery <=
- 10) implies #r.possibleBonuses = 0 
-\begin_inset Newline newline
-\end_inset
+ 10) implies #r.possibleBonuses = 0 }
+\end_layout
 
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 /* A car should not have both bonuses related to the battery percentage
- */ 
-\begin_inset Newline newline
-\end_inset
-
-assert noRideHasBothBatteryBonuses { 
+ */ assert noRideHasBothBatteryBonuses { no r: Ride | HighBattery in r.possibleBo
+nuses and LowBattery in r.possibleBonuses } /* ----------------------------------
+-*/
 \end_layout
 
 \begin_layout Standard
-no r: Ride | HighBattery in r.possibleBonuses and LowBattery in r.possibleBonuses
- 
-\begin_inset Newline newline
-\end_inset
-
-} 
-\begin_inset Newline newline
-\end_inset
-
-/* -----------------------------------*/
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
 /* Utilities constraints.
- 
+ - Sum of #Ride and #Reservation < #User - Sum of #Ride and #Reservation
+ < #Car - #CodeRequest < #Reservation */ fact { #User = 6 #Reservation =2
+ #CodeRequest = 1 #Monitoring < 3 && #Monitoring > 0 #Ride = 2 #SafeArea
+ = 2 #Operator < 3 #Accident = 1 #Stakeholder = 1 some r: Reservation |
+ r.car in SafeArea.parkedCars some p: Position | p not in SafeArea.availablePositio
+ns some r: Ride | r.car.position in System.safeAreas.availablePositions some
+ r: Ride | LowBattery in r.possibleBonuses some c: Car | c.battery < 5 some
+ c: Car | c.battery > 10 }
 \end_layout
 
 \begin_layout Standard
-- Sum of #Ride and #Reservation < #User 
-\end_layout
-
-\begin_layout Standard
-- Sum of #Ride and #Reservation < #Car 
-\end_layout
-
-\begin_layout Standard
-- #CodeRequest < #Reservation */ 
-\begin_inset Newline newline
-\end_inset
-
-fact { 
-\end_layout
-
-\begin_layout Standard
-#User = 6 
-\end_layout
-
-\begin_layout Standard
-#Reservation = 2 
-\end_layout
-
-\begin_layout Standard
-#CodeRequest = 1 
-\end_layout
-
-\begin_layout Standard
-#Monitoring < 3 && #Monitoring > 0 
-\end_layout
-
-\begin_layout Standard
-#Ride = 2 
-\end_layout
-
-\begin_layout Standard
-#SafeArea = 2 
-\end_layout
-
-\begin_layout Standard
-#Operator < 3 
-\end_layout
-
-\begin_layout Standard
-#Accident = 1 
-\end_layout
-
-\begin_layout Standard
-#Stakeholder = 1 
-\end_layout
-
-\begin_layout Standard
-some r: Reservation | r.car in SafeArea.parkedCars 
-\end_layout
-
-\begin_layout Standard
-some p: Position | p not in SafeArea.availablePositions 
-\end_layout
-
-\begin_layout Standard
-some r: Ride | r.car.position in System.safeAreas.availablePositions 
-\end_layout
-
-\begin_layout Standard
-some r: Ride | LowBattery in r.possibleBonuses 
-\end_layout
-
-\begin_layout Standard
-some c: Car | c.battery < 5 some c: Car | c.battery > 10 
-\begin_inset Newline newline
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
 pred show[] {}
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-//Utility assertion assert
-\begin_inset Newline newline
-\end_inset
-
-someResOutArea { 
 \end_layout
 
 \begin_layout Standard
-some r: Reservation | r.car.position not in SafeArea.availablePositions 
-\begin_inset Newline newline
-\end_inset
+//Utility assertion assert someResOutArea { some r: Reservation | r.car.position
+ not in SafeArea.availablePositions }
+\end_layout
 
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-// World controls and checks 
-\begin_inset Newline newline
-\end_inset
-
-check someResOutArea 
-\begin_inset Newline newline
-\end_inset
-
-check rideImpliesNoCodeRequest 
-\begin_inset Newline newline
-\end_inset
-
-check someUserIdle 
-\begin_inset Newline newline
-\end_inset
-
-check noRideHasBothBatteryBonuses 
-\begin_inset Newline newline
-\end_inset
-
-check noCarPositionInStakeholderSafeAreas
-\begin_inset Newline newline
-\end_inset
-
- run addSafeArea for 7 but 5 Int 
-\begin_inset Newline newline
-\end_inset
-
-run delSafeArea for 7 but 5 Int 
-\begin_inset Newline newline
-\end_inset
-
-run parkingCar for 7 but 5 Int 
-\begin_inset Newline newline
-\end_inset
-
-run leavingCar for 7 but 5 Int 
-\begin_inset Newline newline
-\end_inset
-
-run show for 7 but 5 Int 
+\begin_layout Standard
+// World controls and check check someResOutArea check rideImpliesNoCodeRequest
+ check someUserIdle check noRideHasBothBatteryBonuses check noCarPositionInStake
+holderSafeAreas run addSafeArea for 7 but 5 Int run delSafeArea for 7 but
+ 5 Int run parkingCar for 7 but 5 Int run leavingCar for 7 but 5 Int run
+ show for 7 but 5 Int 
 \end_layout
 
 \end_body
