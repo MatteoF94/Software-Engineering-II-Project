@@ -14,12 +14,12 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "default"
+\font_roman "default" "Cambria"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -751,10 +751,6 @@ Interface between the cars and the people, both users and technicians.
 \end_layout
 
 \begin_layout Subsection
-Product functions
-\end_layout
-
-\begin_layout Subsection
 Constraints
 \end_layout
 
@@ -884,7 +880,7 @@ Domain assumptions
 \end_layout
 
 \begin_layout Itemize
-All the GPS localization services have no fault and always returns the correct
+All the GPS localization services have no fault and always return the correct
  position of a device (car, phone, tablet...).
 \end_layout
 
@@ -919,17 +915,12 @@ All the updates of the status of a car are immediate and correct.
 \end_layout
 
 \begin_layout Itemize
-A user will never leave the car in a zone unreachable by GPS localization
- or too far from the nearest safe area.
+A user will never leave the car in a zone unreachable by GPS localization.
 \end_layout
 
 \begin_layout Itemize
-A user will never leave the car with a door open, and neither the passengers
+A user will never leave the car with a door open, and neither a passenger
  will.
-\end_layout
-
-\begin_layout Itemize
-A user will never leave a door open for more than ten minutes.
 \end_layout
 
 \begin_layout Itemize
@@ -937,13 +928,13 @@ Users will encounter no problems when accessing the car using a code.
 \end_layout
 
 \begin_layout Itemize
-When registering, users will insert only Credit Card info or Debit Card
- info as methods of payment.
+When registering, users will insert only credit card info as methods of
+ payment.
 \end_layout
 
 \begin_layout Itemize
 Technicians and operators are always available and provided by a third party
- agent.
+ society.
 \end_layout
 
 \begin_layout Itemize
@@ -966,8 +957,19 @@ Every car is able to detect it a mechanical/electrical problem occurs, and
 \end_layout
 
 \begin_layout Itemize
+No fault occurs to a car during a reservation or monitoring event (so only
+ when the car is available).
+\end_layout
+
+\begin_layout Itemize
 The set of safe areas for parking cars is pre-defined by the management
  system.
+\end_layout
+
+\begin_layout Itemize
+The set of safe areas can change, so that new safe area are introduced or
+ removed from the available ones.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1553,6 +1555,15 @@ item{} [R10.1] When the user leaves and turns off the car, the system shall
  apply a new rate over the ride cost.
  When the user turns on the car once again, the old rate is applied once
  again and the riding service continues.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} [R10.2] After a fixed amount of time from when the user left the car,
+ the system shall send a push notification to the user, reminding him/her
+ that the service is still ongoing.
 \end_layout
 
 \begin_layout Plain Layout
@@ -2154,6 +2165,23 @@ Lilith and her sister Hilda are talking about the services offered by PowerEnJoy
  to log in to her personal area of the app.
 \end_layout
 
+\begin_layout Subsubsection
+Scenario 8
+\end_layout
+
+\begin_layout Standard
+A car is waiting for the next user that will make a reservation and use
+ it.
+ However, suddenly one sensor detects that there is a problem in the battery
+ charge, it is not stable but the monitoring goes up and down, as if the
+ car was heavily charged and discharged simultaneously.
+ The car system communicate this to the system, in one of the usual periodic
+ update that it does.
+ The system makes than a request to an esternal operator, providing an access
+ code to that car.
+ In the next hours, a technicians reaches the car and fixes it.
+\end_layout
+
 \begin_layout Subsection
 UML models
 \end_layout
@@ -2170,10 +2198,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename UseCaseDiagram.png
+	filename UseCaseDiagram_v2.png
 	lyxscale 40
-	scale 29
+	scale 22
 
 \end_inset
 
@@ -2963,6 +2992,88 @@ Exceptions:
 The user is already registered.
 \end_layout
 
+\begin_layout Standard
+
+\series bold
+\begin_inset space \hspace{}
+\length 15col%
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0col%"
+width "70col%"
+height "0.5pt"
+
+\end_inset
+
+
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Name:
+\series default
+ Fault of a car
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Actors:
+\series default
+ Car (car, scenario 8)
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Entry conditions:
+\series default
+ The car is waiting for the next resevation/operation and it sensorial system
+ detects an anomaly.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_layout Itemize
+The car system communicates to the system the problem, through the usual
+ periodic updates
+\end_layout
+
+\begin_layout Itemize
+The system tags the car as not available and updates the databese
+\end_layout
+
+\begin_layout Itemize
+The system contacts an operator, providing him/her an access code to open
+ the car.
+\end_layout
+
+\begin_layout Itemize
+A technician reaches the broken car and fixes it.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The technician communicates to the system that the car is now fixed.
+\end_layout
+
 \begin_layout Subsubsection
 Class diagram
 \end_layout
@@ -2975,15 +3086,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Main.png
 	lyxscale 40
-	scale 50
+	scale 21
 
 \end_inset
 
@@ -4236,7 +4343,7 @@ fact noServiceInStakeholderAreas {
 \end_layout
 
 \begin_layout Standard
-no c: Car | c in Stakeholder.owned_areas.parkedCars 
+no c: Car | c.position in Stakeholder.owned_areas.availablePositions 
 \begin_inset Newline newline
 \end_inset
 
@@ -4253,11 +4360,11 @@ no c: Car | c in Stakeholder.owned_areas.parkedCars
 \begin_inset Newline newline
 \end_inset
 
-assert noCarPositionInStakeholderSafeAreas { 
+assert noCarInStakeholderSafeAreas { 
 \end_layout
 
 \begin_layout Standard
-no c: Car | c.position in Stakeholder.owned_areas.availablePositions 
+no c: Car | c in Stakeholder.owned_areas.parkedCars
 \begin_inset Newline newline
 \end_inset
 
@@ -4450,43 +4557,273 @@ all r: Ride | r.car.battery > 10 implies (HighBattery in r.possibleBonuses
 \begin_layout Standard
 all r: Ride | r.car.battery < 5 implies LowBattery in r.possibleBonuses and
  #r.possibleBonuses = 1 all r: Ride | (r.car.battery >= 5 and r.car.battery <=
- 10) implies #r.possibleBonuses = 0 }
-\end_layout
+ 10) implies #r.possibleBonuses = 0 
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 /* A car should not have both bonuses related to the battery percentage
- */ assert noRideHasBothBatteryBonuses { no r: Ride | HighBattery in r.possibleBo
-nuses and LowBattery in r.possibleBonuses } /* ----------------------------------
--*/
+ */ 
+\begin_inset Newline newline
+\end_inset
+
+assert noRideHasBothBatteryBonuses { 
 \end_layout
 
 \begin_layout Standard
+no r: Ride | HighBattery in r.possibleBonuses and LowBattery in r.possibleBonuses
+ 
+\begin_inset Newline newline
+\end_inset
+
+} 
+\begin_inset Newline newline
+\end_inset
+
+/* -----------------------------------*/
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 /* Utilities constraints.
- - Sum of #Ride and #Reservation < #User - Sum of #Ride and #Reservation
- < #Car - #CodeRequest < #Reservation */ fact { #User = 6 #Reservation =2
- #CodeRequest = 1 #Monitoring < 3 && #Monitoring > 0 #Ride = 2 #SafeArea
- = 2 #Operator < 3 #Accident = 1 #Stakeholder = 1 some r: Reservation |
- r.car in SafeArea.parkedCars some p: Position | p not in SafeArea.availablePositio
-ns some r: Ride | r.car.position in System.safeAreas.availablePositions some
- r: Ride | LowBattery in r.possibleBonuses some c: Car | c.battery < 5 some
- c: Car | c.battery > 10 }
+ 
 \end_layout
 
 \begin_layout Standard
+- Sum of #Ride and #Reservation < #User 
+\end_layout
+
+\begin_layout Standard
+- Sum of #Ride and #Reservation < #Car 
+\end_layout
+
+\begin_layout Standard
+- #CodeRequest < #Reservation */ 
+\begin_inset Newline newline
+\end_inset
+
+fact { 
+\end_layout
+
+\begin_layout Standard
+#User = 6 
+\end_layout
+
+\begin_layout Standard
+#Reservation = 2 
+\end_layout
+
+\begin_layout Standard
+#CodeRequest = 1 
+\end_layout
+
+\begin_layout Standard
+#Monitoring < 3 && #Monitoring > 0 
+\end_layout
+
+\begin_layout Standard
+#Ride = 2 
+\end_layout
+
+\begin_layout Standard
+#SafeArea = 2 
+\end_layout
+
+\begin_layout Standard
+#Operator < 3 
+\end_layout
+
+\begin_layout Standard
+#Accident = 1 
+\end_layout
+
+\begin_layout Standard
+#Stakeholder = 1 
+\end_layout
+
+\begin_layout Standard
+some r: Reservation | r.car in SafeArea.parkedCars 
+\end_layout
+
+\begin_layout Standard
+some p: Position | p not in SafeArea.availablePositions 
+\end_layout
+
+\begin_layout Standard
+some r: Ride | r.car.position in System.safeAreas.availablePositions 
+\end_layout
+
+\begin_layout Standard
+some r: Ride | LowBattery in r.possibleBonuses 
+\end_layout
+
+\begin_layout Standard
+some c: Car | c.battery < 5 some c: Car | c.battery > 10 
+\end_layout
+
+\begin_layout Standard
+#System.safeAreas.parkedCars = 2
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 pred show[] {}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+//Utility assertion assert
+\begin_inset Newline newline
+\end_inset
+
+someResOutArea { 
 \end_layout
 
 \begin_layout Standard
-//Utility assertion assert someResOutArea { some r: Reservation | r.car.position
- not in SafeArea.availablePositions }
+some r: Reservation | r.car.position not in SafeArea.availablePositions 
+\begin_inset Newline newline
+\end_inset
+
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+// World controls and checks 
+\begin_inset Newline newline
+\end_inset
+
+check someResOutArea 
+\begin_inset Newline newline
+\end_inset
+
+check rideImpliesNoCodeRequest 
+\begin_inset Newline newline
+\end_inset
+
+check someUserIdle 
+\begin_inset Newline newline
+\end_inset
+
+check noRideHasBothBatteryBonuses 
+\begin_inset Newline newline
+\end_inset
+
+check noCarInStakeholderSafeAreas
+\begin_inset Newline newline
+\end_inset
+
+ run addSafeArea for 7 but 5 Int 
+\begin_inset Newline newline
+\end_inset
+
+run delSafeArea for 7 but 5 Int 
+\begin_inset Newline newline
+\end_inset
+
+run parkingCar for 7 but 5 Int 
+\begin_inset Newline newline
+\end_inset
+
+run leavingCar for 7 but 5 Int 
+\begin_inset Newline newline
+\end_inset
+
+run show for 7 but 5 Int 
+\end_layout
+
+\begin_layout Subsection
+Generated world
 \end_layout
 
 \begin_layout Standard
-// World controls and check check someResOutArea check rideImpliesNoCodeRequest
- check someUserIdle check noRideHasBothBatteryBonuses check noCarPositionInStake
-holderSafeAreas run addSafeArea for 7 but 5 Int run delSafeArea for 7 but
- 5 Int run parkingCar for 7 but 5 Int run leavingCar for 7 but 5 Int run
- show for 7 but 5 Int 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename GeneratedWorld1.png
+	lyxscale 30
+	scale 60
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename GeneratedWorld2.png
+	lyxscale 30
+	scale 60
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+generated world
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
