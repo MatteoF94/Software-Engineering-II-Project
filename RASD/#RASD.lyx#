@@ -7,6 +7,7 @@
 \textclass article
 \begin_preamble
 \usepackage{changepage}
+\date{}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -79,7 +80,38 @@
 \begin_body
 
 \begin_layout Title
-RASD
+Requirements Analysis and Specifications Document
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset VSpace vfill
+\end_inset
+
+
+\series bold
+\size large
+Document Version 4.3
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+Matteo Frosi (mat.
+ 875393)
+\begin_inset Newline newline
+\end_inset
+
+Luca Costa (mat.
+ 808109)
 \end_layout
 
 \begin_layout Standard
@@ -139,7 +171,7 @@ The system provides the users a safe way (identification code) to access
 
 Moreover, the system prizes or punishes a respectively good or bad behavior
  from the users, applying a discount or an overcharge on the cost of a ride.
- As esxample, if the user leaves the car without much battery, he/she will
+ As example, if the user leaves the car without much battery, he/she will
  have to pay more than the standard cost of the ride, because the car will
  need to be charged and this operation has a cost.
  On the other hand, if a user plugs the car before ending the service, it
@@ -644,6 +676,13 @@ We assume that there are other societies that collaborate with the system
  Technicians, operators, and other actors belong to such companies.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Overall description
 \end_layout
@@ -970,6 +1009,13 @@ The set of safe areas for parking cars is pre-defined by the management
 The set of safe areas can change, so that new safe area are introduced or
  removed from the available ones.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1972,6 +2018,10 @@ Registration mockup
 \end_inset
 
 
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2259,59 +2309,220 @@ Flow of events:
 \end_layout
 
 \begin_layout Itemize
-The user logs in the app using his/her credentials.
+Sub Use Case 1
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Name:
+\series default
+ Log in
 \end_layout
 
 \begin_layout Itemize
-The user searches for an available car using a special section of the app.
+
+\series bold
+Entry conditions:
+\series default
+ None
 \end_layout
 
 \begin_layout Itemize
-The user selects an available car and inputs the time he/she thinks will
- be necessary to reach the car and pick it up.
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The user inserts the log in credentials in the dedicated area of the app.
 \end_layout
 
 \begin_layout Itemize
-The user uses a special option on the app that allows him/her to communicate
- that he/she's nearby and needs the code to access the car.
+The system checks for the validity of the inserted credentials.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Exit conditions:
+\series default
+ The system confirms the inserted credentials and the user identity, allowing
+ him/her to access the whole service benefits.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Exceptions: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The credentials inserted by the client are not correct.
+ In this case the system doesn't redirect the user to the main page of the
+ app but notifies him/her with an error message on the screen.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Sub Use Case 2
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Name:
+\series default
+ Reservation procedure
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Entry conditions:
+\series default
+ The user logged in correctly.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The user searches for an available car using one of the sections of the
+ app.
+\end_layout
+
+\begin_layout Itemize
+The system shows only the available cars, with more than 20% of the batery
+ charged.
+\end_layout
+
+\begin_layout Itemize
+The user selects a car and inputs the time he/she thinks will be necessary
+ to reach the car and pick it up.
+\end_layout
+
+\begin_layout Itemize
+The system adds an area allowing the user to take back the reservation,
+ 
+\end_layout
+
+\begin_layout Itemize
+When in proximity of the car (the user decides how much), the user uses
+ a special area on the app to request a code to access the car.
 \end_layout
 
 \begin_layout Itemize
 The system sends the user an SMS or mail containing the access code.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-The user uses the received code to access the car.
-\end_layout
-
-\begin_layout Itemize
-The user turns on the car and drives.
-\end_layout
-
-\begin_layout Standard
 
 \series bold
 Exit conditions:
 \series default
- The user exits the car, and uses again the code needed to open it.
-\begin_inset Newline newline
-\end_inset
+ The user picks up the car using the code and the system disables the countdown
+ and the option to take back the reservation.
+\end_layout
 
+\begin_layout Itemize
 
 \series bold
 Exceptions: 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-The credentials furnished by the client are not correct.
- In this case the system doesn't redirect the user to the main page of the
- app but notifies him/her with an error message on the screen.
+The user inserted an invalid reservation time so that his/her request is
+ rejected.
 \end_layout
 
 \begin_layout Itemize
 The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR.
  If the user already received the code to access the car, the system invalidates
  it.
+\end_layout
+
+\begin_layout Itemize
+The user takes back the reservation.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Sub Use Case 3
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Name:
+\series default
+ Ride
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Entry conditions:
+\series default
+ The user picked up the car in time.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Flow of events:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The user turns on the car with its ignition key.
+\end_layout
+
+\begin_layout Itemize
+The user drives.
+\end_layout
+
+\begin_layout Itemize
+The user searches on the car screen an available parking spot in a displayed
+ safe area (optional).
+\end_layout
+
+\begin_layout Itemize
+The user parks the car.
+ The parking can be anywhere permitted by the law, not necessarily in a
+ safe area.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Exit conditions: 
+\series default
+The turns off the car and leaves it.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Exit conditions:
+\series default
+ The user exits the car, and uses again the code needed to open it.
 \end_layout
 
 \begin_layout Standard
@@ -3075,6 +3286,294 @@ Exit conditions:
 \end_layout
 
 \begin_layout Subsubsection
+Traceability matrix
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="4">
+<features tabularvalignment="middle" tabularwidth="100col%">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="14col%">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="middle" width="60col%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Goal ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Req ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Use Case ID
+\end_layout
+
+\end_inset
+</cell>
+<cell mroffset="10text%" alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Comments
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R1.1
+\backslash
+R1.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UC.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The log in process is actually composed by the credential insertion and
+ the system check of their validity.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R2.1 to R2.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UC.1
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+R3.1 to R3.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UC.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Class diagram
 \end_layout
 
@@ -3098,21 +3597,46 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-The diagram is characterized by a Client-Server architecture in which the
- Server (System) is able to coordinate the car, the user and the external
- operator.
- The clients are the Car and User.
- The server is able to manage multiple clients at the same time.
- Moreover the whole service has been designed using some Patterns : the
- “monitoring” of the car has been solved through the Observer Pattern and
- the State Pattern has been used to manages the states of the service after
- log-in.
- The last pattern used is the the MVC.
+The shown class diagram is only an high representation of the future class
+ model of the whole system.
+ For now, just the most important objects and actors of the problem are
+ represented, and their interaction.
+ The system keeps trace of the registered users and the owned cars.
+ Moreover, every choice of a user is saved.
+ As example, let's consider a user that is making a reservation: the system
+ shall know that that registered user, that has logged in the personal area,
+ made a reservation on a certain car, which is available.
+ Same considerations can be made for a monitoring on a car, a ride and so
+ on, for all the possible states in which a user and the service are related.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Now, a brief introduction to possible patterns that can be associated to
+ the class diagram.
  
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Itemize
+Obviously an MVC pattern can be usd to fulfill the Client-Server relationship,
+ that will implement the User-System relationship (the MobileInterface class
+ behaves as a view).
+ 
+\end_layout
 
+\begin_layout Itemize
+Mutiple Observers to manage the monitorings and the system update on a single
+ car (change of availability tag).
+\end_layout
+
+\begin_layout Itemize
+A Factory can be used for the code generation (based on the assumption that
+ the structure differs for passwords, operational codes, access codes...)
+\end_layout
+
+\begin_layout Itemize
+A State Pattern related to the service states for a single user, as described
+ before in the paragraph introduction.
 \end_layout
 
 \end_inset
@@ -3381,10 +3905,10 @@ diagram representing the change of state of the service for a single user.
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-\end_layout
 
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -4753,6 +5277,47 @@ run leavingCar for 7 but 5 Int
 \end_inset
 
 run show for 7 but 5 Int 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlloyAnalisys.png
+	lyxscale 40
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+alloy analisys over the model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4823,7 +5388,365 @@ generated world
 
 \end_inset
 
+Here follows a brief description of the generated world and what is represented
+ in it.
+ The first thing to say is that some elements are hidden, because otherwise
+ the dimension and complexity of the view would have been difficult to interpret
+ and simplify.
+ The hidden elements are the System, that here only serves as a container
+ of other elements, such as cars, users, reservations and so on, the Integers
+ used to describe positions, batteries and available places in safe areas
+ and Strings.
+ 
+\begin_inset Newline newline
+\end_inset
 
+Let's analize, from left to ride, the captured state of this generated world:
+\end_layout
+
+\begin_layout Itemize
+User1 had an accident on Car0 that is parked in SafeArea, so an operator
+ is assigned to survey the car.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scenario 1: the car doesn't turn on and the user is communicating the problem
+\end_layout
+
+\begin_layout Itemize
+Scenario 2: the user suddenly feels an illness and requests help
+\end_layout
+
+\begin_layout Itemize
+Scenario 3: when parking the user crashes towards a pillar or another car
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+User3 made a reservation on Car2 parked in SafeArea
+\end_layout
+
+\begin_layout Itemize
+User4 is monitoring the reserved Car3 that in SafeArea
+\end_layout
+
+\begin_layout Itemize
+User5 reserved Car3 and being in proximity of the car, requested the access
+ code to unlock it.
+\end_layout
+
+\begin_layout Itemize
+User2 is driving Car1 (in Ride0) and is passing on Position6
+\end_layout
+
+\begin_layout Itemize
+User0 isn't doing anything, probably searching for a car or being idle
+\end_layout
+
+\begin_layout Itemize
+An external agent, Stakeholder, owns an area that in future could be bought
+ by the system as a safe area
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Document further informations
+\end_layout
+
+\begin_layout Subsection
+References
+\end_layout
+
+\begin_layout Standard
+In writing the document, the following sites/materials have been consulted:
+\end_layout
+
+\begin_layout Itemize
+Assignments AA 2016-2017.pdf
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.monperrus.net/martin/alloy-quick-ref.pdf
+\end_layout
+
+\end_inset
+
+, a document containing Alloy basics
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://alloy.mit.edu/alloy/
+\end_layout
+
+\end_inset
+
+, for a deeper documentation about Alloy
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.ics.uci.edu/~alspaugh/cls/shr/alloy.html
+\end_layout
+
+\end_inset
+
+, for informations about Alloy relations and operators
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.car2go.com/US/en/austin/
+\end_layout
+
+\end_inset
+
+, to analyse the similarities with a service much similar to the problem
+ we studied
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.smashingmagazine.com/2011/04/taking-credit-card-payments-online-whats-
+involved/
+\end_layout
+
+\end_inset
+
+, which contains a description on how a site can implement an online payment
+ (mostly read because of possible future implementations)
+\end_layout
+
+\begin_layout Itemize
+RASD sample from Oct.
+ 20 lecture.pdf
+\end_layout
+
+\begin_layout Itemize
+Requirements Analysis Document Template.pdf
+\end_layout
+
+\begin_layout Itemize
+RAD-V1.10.docx
+\end_layout
+
+\begin_layout Itemize
+guidelines_v211.pdf
+\end_layout
+
+\begin_layout Itemize
+IEEE standard on requirement engineering.pdf
+\end_layout
+
+\begin_layout Subsection
+Used tools
+\end_layout
+
+\begin_layout Standard
+In creating the RASD document, the following tools have been used:
+\end_layout
+
+\begin_layout Itemize
+Github, for version controller
+\end_layout
+
+\begin_layout Itemize
+LyX, to write the document and converting in pdf
+\end_layout
+
+\begin_layout Itemize
+StarUML, for UML diagrams and image export
+\end_layout
+
+\begin_layout Itemize
+Alloy Analizer 4.2, to prove the consistency of the model and view some scenarios
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://ninjamock.com
+\end_layout
+
+\end_inset
+
+, for interface mockups
+\end_layout
+
+\begin_layout Itemize
+Pencil, for the system architecture sample
+\end_layout
+
+\begin_layout Itemize
+TextEdit, for the spell check of the document
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Hours and description of work
+\end_layout
+
+\begin_layout Subsubsection*
+Matteo Frosi
+\end_layout
+
+\begin_layout Standard
+18-10-2016: 1.30 hours (meeting to discuss about an informal analisys of
+ the problem)
+\begin_inset Newline newline
+\end_inset
+
+20-10-2016: 0.45 hours (meeting to discuss about an informal analisys of
+ the problem)
+\begin_inset Newline newline
+\end_inset
+
+24-10-2016: 2.00 hours (informal analisys of project description writing)
+\begin_inset Newline newline
+\end_inset
+
+25-10-2016: 0.30 hours (informal analisys of project document revision +
+ meeting about RASD definition)
+\begin_inset Newline newline
+\end_inset
+
+29-10-2016: 7.30 hours (description of goals, domain assumption and requierments)
+\begin_inset Newline newline
+\end_inset
+
+30-10-2016: 8.00 hours (document shaping, glossary and introduction additions
+ and further analisys of requirements)
+\begin_inset Newline newline
+\end_inset
+
+31-10-2016: 7.00 hours (improvement of various document sections, addition
+ of Non functional requirements)
+\begin_inset Newline newline
+\end_inset
+
+1-11-2016: 8.00 hours (scenarios, interface mockups and UML diagrams additions)
+\begin_inset Newline newline
+\end_inset
+
+2-11-2016: 2.00 hours (addition of some use case descriptions and minor correctio
+ns)
+\begin_inset Newline newline
+\end_inset
+
+3-11-2016: 2:00 hours (addition of the first version of the class diagram)
+\begin_inset Newline newline
+\end_inset
+
+4-11-2016: 2.30 hours (addition of state diagram and diagrams descriptions)
+\begin_inset Newline newline
+\end_inset
+
+from 5 to 8-11-2016: 16.00 hours (addition of alloy model)
+\begin_inset Newline newline
+\end_inset
+
+9-11-2016: 3.00 hours (minor changes in alloy model, addition of the world
+ generated with alloy model and of a scenario about [G14] requirements)
+\begin_inset Newline newline
+\end_inset
+
+10-11-2016: 2.00 hours (addition of document final sections and descriptions)
+\begin_inset Newline newline
+\end_inset
+
+11-11-2016: 1.00 hours (review of the document)
+\begin_inset Newline newline
+\end_inset
+
+Total work hours: 63.45 hours
+\end_layout
+
+\begin_layout Subsubsection*
+Luca Costa
+\end_layout
+
+\begin_layout Standard
+18-10-2016: 1.30 hours (meeting to discuss about an informal analisys of
+ the problem)
+\begin_inset Newline newline
+\end_inset
+
+20-10-2016: 0.45 hours (meeting to discuss about an informal analisys of
+ the problem)
+\begin_inset Newline newline
+\end_inset
+
+24-10-2016: 1.00 hours (informal analisys of project description revision)
+\begin_inset Newline newline
+\end_inset
+
+25-10-2016: 0.30 hours (informal analisys of project document revision +
+ meeting about RASD definition)
+\begin_inset Newline newline
+\end_inset
+
+29-10-2016: 2.30 hours (description of goals and requirements)
+\begin_inset Newline newline
+\end_inset
+
+1-12-2016: 1.00 hours (discussion about requirement minor changes)
+\begin_inset Newline newline
+\end_inset
+
+2-11-2016: 1.30 + 2.30 hours (grammar correction + use cade description)
+\begin_inset Newline newline
+\end_inset
+
+4-11-2016: 4.00 hours (class diagram building)
+\begin_inset Newline newline
+\end_inset
+
+5-11-2016: 2.30 hours (diagrams description)
+\begin_inset Newline newline
+\end_inset
+
+from 6 to 9-11-2016: 3.00 hours (alloy check and coherence evaluation)
+\begin_inset Newline newline
+\end_inset
+
+Total work hours: 17.45 hours
 \end_layout
 
 \end_body
