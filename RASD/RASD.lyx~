@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.4
+Document Version 4.5
 \begin_inset Newline newline
 \end_inset
 
@@ -4155,7 +4155,7 @@ diagram representing the behavior of the whole system, in case of accident.
 \end_layout
 
 \begin_layout Subsubsection
-Activity diagram
+Activity diagrams
 \end_layout
 
 \begin_layout Standard
@@ -4211,6 +4211,34 @@ The diagram representing the system behavior, orientated towards a user-like
  However, the user needs to know if the payment was successful, so the system
  sends him/her push notifications to inform him/her of the effective cost
  of the ride and the applied discounts and overcharges.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The diagram shown below represents the sequence of activities during a normal
+ service, described in the use case model 1.
+ 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename NormalServiceActivity.png
+	lyxscale 30
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection

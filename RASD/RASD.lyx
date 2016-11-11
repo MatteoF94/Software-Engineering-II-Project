@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.4.1
+Document Version 4.5
 \begin_inset Newline newline
 \end_inset
 
@@ -889,7 +889,7 @@ We will implement a client-server architecture, based on the common REST
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1948,7 +1948,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename AppMockupV1.png
+	filename Mockups/AppMockupV1.png
 	lyxscale 30
 	scale 30
 
@@ -1997,7 +1997,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename AppMockupV2.png
+	filename Mockups/AppMockupV2.png
 	lyxscale 30
 	scale 30
 
@@ -2255,7 +2255,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename UseCaseDiagram_v2.png
+	filename UML/UseCaseDiagram_v2.png
 	lyxscale 40
 	scale 22
 
@@ -3943,7 +3943,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Main.png
+	filename UML/ClassDiagram.png
 	lyxscale 40
 	scale 21
 
@@ -4018,7 +4018,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ReservationSequence.png
+	filename UML/ReservationSequence.png
 	lyxscale 20
 	scale 30
 
@@ -4064,7 +4064,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename CarTempStop.png
+	filename UML/CarTempStop.png
 	lyxscale 30
 	scale 30
 
@@ -4116,7 +4116,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Accident.png
+	filename UML/Accident.png
 	lyxscale 30
 	scale 30
 
@@ -4155,7 +4155,7 @@ diagram representing the behavior of the whole system, in case of accident.
 \end_layout
 
 \begin_layout Subsubsection
-Activity diagram
+Activity diagrams
 \end_layout
 
 \begin_layout Standard
@@ -4173,7 +4173,7 @@ begin{adjustwidth}{-2.5cm}{-2cm}
 
 
 \begin_inset Graphics
-	filename EndOfService.png
+	filename UML/EndOfService.png
 	lyxscale 10
 	scale 30
 
@@ -4211,6 +4211,34 @@ The diagram representing the system behavior, orientated towards a user-like
  However, the user needs to know if the payment was successful, so the system
  sends him/her push notifications to inform him/her of the effective cost
  of the ride and the applied discounts and overcharges.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The diagram shown below represents the sequence of activities during a normal
+ service, described in the use case model 1.
+ 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UML/NormalServiceActivity.png
+	lyxscale 30
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -4231,7 +4259,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ServiceState.png
+	filename UML/ServiceState.png
 	lyxscale 40
 	scale 35
 
@@ -5649,7 +5677,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename AlloyAnalisys.png
+	filename Alloy/AlloyAnalisys.png
 	lyxscale 40
 	scale 80
 
@@ -5690,7 +5718,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename GeneratedWorld1.png
+	filename Alloy/GeneratedWorld1.png
 	lyxscale 30
 	scale 60
 	rotateAngle -90
@@ -5719,7 +5747,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename GeneratedWorld2.png
+	filename Alloy/GeneratedWorld2.png
 	lyxscale 30
 	scale 60
 	rotateAngle -90
@@ -6082,11 +6110,15 @@ Luca Costa
 \begin_inset Newline newline
 \end_inset
 
-1-12-2016: 1.00 hours (discussion about requirement minor changes)
+1-12-2016: 2.30 hours (discussion about requirement minor changes)
 \begin_inset Newline newline
 \end_inset
 
-2-11-2016: 1.30 + 2.30 hours (grammar correction + use case description)
+2-11-2016: 1.30 + 3.30 hours (grammar correction + scenarios analysis
+\begin_inset Newline newline
+\end_inset
+
+3-11-2016: 2.30 hours (use case description)
 \begin_inset Newline newline
 \end_inset
 
@@ -6102,7 +6134,12 @@ from 6 to 9-11-2016: 3.00 hours (alloy check and coherence evaluation)
 \begin_inset Newline newline
 \end_inset
 
-Total work hours: 17.45 hours
+11-11-2016: 2.15 hours (addition of an activity diagram describing use case
+ 1)
+\begin_inset Newline newline
+\end_inset
+
+Total work hours: 25.30 hours + periodic revision of the document
 \end_layout
 
 \end_body
