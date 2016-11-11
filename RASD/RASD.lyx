@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.4
+Document Version 4.4.1
 \begin_inset Newline newline
 \end_inset
 
@@ -5965,7 +5965,7 @@ Pencil, for the system architecture sample
 \end_layout
 
 \begin_layout Itemize
-TextEdit, for the spell check of the document
+Hunspell, for the spell check of the document
 \end_layout
 
 \begin_layout Standard

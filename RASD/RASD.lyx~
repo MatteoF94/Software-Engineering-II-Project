@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.3
+Document Version 4.4
 \begin_inset Newline newline
 \end_inset
 
@@ -155,7 +155,7 @@ PowerEnJoy is an electrical car sharing service, based on a mobile application.
 
 A user can make a reservation for a car, using the mobile app and his/her
  account, and check for the availability and status of all the cars within
- his/her position, identified using GPS localisation, or a specific one,
+ his/her position, identified using GPS localization, or a specific one,
  inserted manually by the user.
  As stated before, to access the service, the user must possess a private
  account, so a registration is needed.
@@ -179,7 +179,7 @@ Moreover, the system prizes or punishes a respectively good or bad behavior
 \begin_inset Newline newline
 \end_inset
 
-The system includes other functionalities, such as GPS based maps available
+The system includes other functionality, such as GPS based maps available
  in every car, an emergency procedure in case an accident occur during a
  ride and the notification of a car status if the user requested it.
 \begin_inset Newline newline
@@ -204,7 +204,7 @@ We can clearly make a distinction between who asks for the service and who
 \end_layout
 
 \begin_layout Itemize
-As in the Car2Go service, the stakeholder may be a corporation realted to
+As in the Car2Go service, the stakeholder may be a corporation related to
  the automotive world.
  However we don't exclude the possibility that a city government could ask
  for this software, to improve the transport condition of the city or simply
@@ -218,7 +218,7 @@ The clients of the service are the so called users.
 \end_layout
 
 \begin_layout Standard
-We can also increase the scope to include more actors, implicitely present
+We can also increase the scope to include more actors, implicitly present
  in the service: the cars, that plays a fundamental role of interaction
  between the user and the system (other than being a brainless transport),
  and the operators of companies that provides services like technical and
@@ -314,7 +314,7 @@ Goals further description
  A user can just give the credential to a friend, and this friend can access
  and use the service as if it was the real user.
  Such case, is a decision, or problem, of the user and the system can't
- do anything to avoid or simply recognise it.
+ do anything to avoid or simply recognize it.
 \end_layout
 
 \begin_layout Itemize
@@ -326,7 +326,7 @@ Goals further description
 \end_layout
 
 \begin_layout Itemize
-[G4] derives from the idea that multiple users may want to use tha same
+[G4] derives from the idea that multiple users may want to use the same
  available car.
  Only one is able to make a reservation, but the others may be interested
  to check if the car is effectively taken by the reserving user.
@@ -390,7 +390,7 @@ Car: is one of the electric car provided by the service.
  passengers, the status of the mechanical and electrical components of the
  car.
  It also possess its own system, connected to the main system of the service.
- This system is costantly updated on the status of the car.
+ This system is constantly updated on the status of the car.
  The car has also a screen that makes possible an interaction between the
  user and the car system, and a button that the user can press in case of
  emergency.
@@ -559,7 +559,7 @@ Car system: is the system, mostly hardware, contained in every car.
  It checks and elaborates the status of the car and interfaces the transport,
  the user and the system.
  The user can interact with the car thanks to an installed screen, that
- shows informations about the service cost, a GPS based map, discounts and
+ shows information about the service cost, a GPS based map, discounts and
  so on.
  Every car system sends information to the system via 3G connection, and
  viceversa.
@@ -608,6 +608,11 @@ GMS gateway: device that allows SMS text messages to be sent and/or received
  or SIM card.
 \end_layout
 
+\begin_layout Itemize
+PSP (payment service provider): offers shops online services for accepting
+ electronic payments by a variety of payment methods including credit card.
+\end_layout
+
 \begin_layout Subsection
 Text assumptions
 \end_layout
@@ -639,7 +644,7 @@ There must be some components that allow an interaction between the user
 \end_layout
 
 \begin_layout Itemize
-Users must first register to gain access to the main functionalities offered
+Users must first register to gain access to the main functionality offered
  by the system.
 \end_layout
 
@@ -660,8 +665,8 @@ We assume that the parking areas are provided by the PowerEnJoy owners.
 \end_layout
 
 \begin_layout Itemize
-The system is able to control some functionalities of the cars, such as
- the door lock.
+The system is able to control some functionality of the cars, such as the
+ door lock.
 \end_layout
 
 \begin_layout Itemize
@@ -816,7 +821,7 @@ g in every conditions and cases the privacy law.
 \begin_inset Newline newline
 \end_inset
 
-The system mustn't use push notifications and SMSs to send SPAM and third
+The system mustn't use push notifications and SMS to send SPAM and third
  party advertising, but can only use such means according to the offered
  services.
 \end_layout
@@ -826,14 +831,14 @@ Possible software limitations
 \end_layout
 
 \begin_layout Standard
-Problem regarding APIs management and integration can arise, leading to
- major complexities of the system and delays in the development of the system
+Problem regarding API management and integration can arise, leading to major
+ complexities of the system and delays in the development of the system
  software.
 \begin_inset Newline newline
 \end_inset
 
 The software that manages the system may not implement all the needed functional
-ities.
+ity.
  Such problem is mostly due to a bad development.
 \end_layout
 
@@ -2082,7 +2087,7 @@ Mitch needs to go pick up his son at the elementary school and wants to
  Lilith receives then a notification on her cellphone that the car she was
  monitoring became available.
  Happy about how things turned out, she reserves the car, goes pick it up
- and drives to a shopping centre.
+ and drives to a shopping center.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2153,7 +2158,7 @@ Lilith has been working for 10 straight hours and feels very tired.
  starts driving.
  Unfortunately, when waiting at a semaphore, someone collides with the car
  that Lilith is driving.
- No one is hurt, but boh the cars are in a bad shape.
+ No one is hurt, but both the cars are in a bad shape.
  Lilith knows what to do and quickly presses the emergency button on the
  car and after a few seconds she is able to speak with an operator to explain
  the situation.
@@ -2208,7 +2213,7 @@ Lilith and her sister Hilda are talking about the services offered by PowerEnJoy
  of PowerEnJoy.
  Lilith explains that in order to register, Hilda must insert in the app,
  under the registration section, her name, surname, number phone, mail,
- Driver Licence informations (number and postcode) and the optional fiscal
+ Driver License information (number and postcode) and the optional fiscal
  code (of the ID Card).
  Hilda inserts all the information carefully and without errors, and after
  less then a minute, she receives an SMS and a mail containing the password
@@ -2227,7 +2232,7 @@ A car is waiting for the next user that will make a reservation and use
  car was heavily charged and discharged simultaneously.
  The car system communicate this to the system, in one of the usual periodic
  update that it does.
- The system makes than a request to an esternal operator, providing an access
+ The system makes than a request to an external operator, providing an access
  code to that car.
  In the next hours, a technicians reaches the car and fixes it.
 \end_layout
@@ -2260,7 +2265,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Use case diagram, portraying all the functionalities that the user expects
+Use case diagram, portraying all the functionality that the user expects
  from the service
 \end_layout
 
@@ -2427,7 +2432,7 @@ The user searches for an available car using one of the sections of the
 \end_layout
 
 \begin_layout Itemize
-The system shows only the available cars, with more than 20% of the batery
+The system shows only the available cars, with more than 20% of the battery
  charged.
 \end_layout
 
@@ -3976,8 +3981,8 @@ Obviously an MVC pattern can be usd to fulfill the Client-Server relationship,
 \end_layout
 
 \begin_layout Itemize
-Mutiple Observers to manage the monitorings and the system update on a single
- car (change of availability tag).
+Multiple Observers to manage the monitorings and the system update on a
+ single car (change of availability tag).
 \end_layout
 
 \begin_layout Itemize
@@ -4126,8 +4131,8 @@ diagram representing the behavior of the whole system, in case of accident.
  to the system that there is a problem, and so a change of status of the
  car.
  The system turns off the car, to avoid further problems and possible user
- misbehaviors.
- Then the systems contacts an operator, giving the necessary informations
+ misbehavior.
+ Then the systems contacts an operator, giving the necessary information
  about the accident: location, car status, and so on.
  The operator redirects the call directly to the user.
  After the conversation, which can even end abruptly (maybe the user suffered
@@ -4203,7 +4208,7 @@ The diagram representing the system behavior, orientated towards a user-like
  This is not included in the diagram because from the point of view of the
  user, the system just have to handle the payment, doesn't care on how it
  does.
- However, the user needs to know if the payment was succesful, so the system
+ However, the user needs to know if the payment was successful, so the system
  sends him/her push notifications to inform him/her of the effective cost
  of the ride and the applied discounts and overcharges.
 \end_layout
@@ -5752,7 +5757,7 @@ Here follows a brief description of the generated world and what is represented
 \begin_inset Newline newline
 \end_inset
 
-Let's analize, from left to ride, the captured state of this generated world:
+Let's analyze, from left to ride, the captured state of this generated world:
 \end_layout
 
 \begin_layout Itemize
@@ -5808,7 +5813,7 @@ An external agent, Stakeholder, owns an area that in future could be bought
 \end_layout
 
 \begin_layout Section
-Document further informations
+Document further information
 \end_layout
 
 \begin_layout Subsection
@@ -5960,7 +5965,7 @@ Pencil, for the system architecture sample
 \end_layout
 
 \begin_layout Itemize
-TextEdit, for the spell check of the document
+Hunspell, for the spell check of the document
 \end_layout
 
 \begin_layout Standard
@@ -5979,31 +5984,31 @@ Matteo Frosi
 \end_layout
 
 \begin_layout Standard
-18-10-2016: 1.30 hours (meeting to discuss about an informal analisys of
+18-10-2016: 1.30 hours (meeting to discuss about an informal analysis of
  the problem)
 \begin_inset Newline newline
 \end_inset
 
-20-10-2016: 0.45 hours (meeting to discuss about an informal analisys of
+20-10-2016: 0.45 hours (meeting to discuss about an informal analysis of
  the problem)
 \begin_inset Newline newline
 \end_inset
 
-24-10-2016: 2.00 hours (informal analisys of project description writing)
+24-10-2016: 2.00 hours (informal analysis of project description writing)
 \begin_inset Newline newline
 \end_inset
 
-25-10-2016: 0.30 hours (informal analisys of project document revision +
+25-10-2016: 0.30 hours (informal analysis of project document revision +
  meeting about RASD definition)
 \begin_inset Newline newline
 \end_inset
 
-29-10-2016: 7.30 hours (description of goals, domain assumption and requierments)
+29-10-2016: 7.30 hours (description of goals, domain assumption and requirements)
 \begin_inset Newline newline
 \end_inset
 
 30-10-2016: 8.00 hours (document shaping, glossary and introduction additions
- and further analisys of requirements)
+ and further analysis of requirements)
 \begin_inset Newline newline
 \end_inset
 
@@ -6054,21 +6059,21 @@ Luca Costa
 \end_layout
 
 \begin_layout Standard
-18-10-2016: 1.30 hours (meeting to discuss about an informal analisys of
+18-10-2016: 1.30 hours (meeting to discuss about an informal analysis of
  the problem)
 \begin_inset Newline newline
 \end_inset
 
-20-10-2016: 0.45 hours (meeting to discuss about an informal analisys of
+20-10-2016: 0.45 hours (meeting to discuss about an informal analysis of
  the problem)
 \begin_inset Newline newline
 \end_inset
 
-24-10-2016: 1.00 hours (informal analisys of project description revision)
+24-10-2016: 1.00 hours (informal analysis of project description revision)
 \begin_inset Newline newline
 \end_inset
 
-25-10-2016: 0.30 hours (informal analisys of project document revision +
+25-10-2016: 0.30 hours (informal analysis of project document revision +
  meeting about RASD definition)
 \begin_inset Newline newline
 \end_inset
@@ -6081,7 +6086,7 @@ Luca Costa
 \begin_inset Newline newline
 \end_inset
 
-2-11-2016: 1.30 + 2.30 hours (grammar correction + use cade description)
+2-11-2016: 1.30 + 2.30 hours (grammar correction + use case description)
 \begin_inset Newline newline
 \end_inset
 
