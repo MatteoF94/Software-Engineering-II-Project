@@ -1,0 +1,365 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "Cambria"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing other 1.2
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 25col%
+\topmargin 20col%
+\rightmargin 25col%
+\bottommargin 20col%
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Design Document
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset VSpace vfill
+\end_inset
+
+
+\series bold
+\size large
+Document Version 0.1
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+Matteo Frosi (mat.
+ 875393)
+\begin_inset Newline newline
+\end_inset
+
+Luca Costa (mat.
+ 808109)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This document, addressed mainly to developers, aims to go into further details
+ regarding the specification of the project, described in the RASD.
+ Here more technical features will be described, including:
+\end_layout
+
+\begin_layout Itemize
+The high level architecture
+\end_layout
+
+\begin_layout Itemize
+Some possible design patterns 
+\end_layout
+
+\begin_layout Itemize
+The description of the main components and their interaction (Runtime View)
+\end_layout
+
+\begin_layout Itemize
+A brief description of the algorithms on which the software relies
+\end_layout
+
+\begin_layout Itemize
+A more detailed overview of the user interfaces
+\end_layout
+
+\begin_layout Standard
+Although these are the main topics of the document, other minor details
+ will be touched and discussed, such as the architectural style and a brief
+ comparison with other styles and the mapping between the requirements defined
+ in the RASD and the designed elements described in this document.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+PowerEnJoy is an electrical car sharing service, based on a mobile application.
+ The targets of the service, intended as users, are people that needs to
+ move from a place to another within a city and requires a conveyance to
+ move (because they don't have their own or simply can't use it).
+\begin_inset Newline newline
+\end_inset
+
+A user can make a reservation for a car, using the mobile app and his/her
+ account, and check for the availability and status of all the cars within
+ his/her position, identified using GPS localization, or a specific one,
+ inserted manually by the user.
+ As stated before, to access the service, the user must possess a private
+ account, so a registration is needed.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The system provides the users a safe way (identification code) to access
+ the cars, and the riding service and keeps trace of the status of all the
+ cars.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, the system prizes or punishes a respectively good or bad behavior
+ from the users, applying a discount or an overcharge on the cost of a ride.
+ As example, if the user leaves the car without much battery, he/she will
+ have to pay more than the standard cost of the ride, because the car will
+ need to be charged and this operation has a cost.
+ On the other hand, if a user plugs the car before ending the service, it
+ receives a discount.
+\begin_inset Newline newline
+\end_inset
+
+The system includes other functionality, such as GPS based maps available
+ in every car, an emergency procedure in case an accident occur during a
+ ride and the notification of a car status if the user requested it.
+\end_layout
+
+\begin_layout Subsection
+Definitions, acronyms, abbreviations
+\end_layout
+
+\begin_layout Itemize
+RASD: document about the requirements analysis of the project.
+\end_layout
+
+\begin_layout Itemize
+DD: document about the design choices and the components description of
+ the project.
+\end_layout
+
+\begin_layout Itemize
+GPS: global navigation satellite system that provides location and time
+ information in all weather conditions, anywhere on or near the Earth where
+ there is an unobstructed line of sight to four or more GPS satellites.
+ 
+\end_layout
+
+\begin_layout Itemize
+SMS: short message service; it is a notification sent to a mobile phone,
+ we need a GSM gateway to use it.
+\end_layout
+
+\begin_layout Itemize
+GMS gateway: device that allows SMS text messages to be sent and/or received
+ by email, from Web pages or from other software applications by acquiring
+ a unique identifier from the mobile phone's Subscriber Identity Module,
+ or SIM card.
+\end_layout
+
+\begin_layout Itemize
+Push notification/ push message: it is a notification sent to a smartphone
+ using the mobile application.
+\end_layout
+
+\begin_layout Itemize
+API: application programming interface; it is a common way to communicate
+ with another system.
+\end_layout
+
+\begin_layout Itemize
+REST: representational state transfer, it's one way of providing interoperabilit
+y between computer systems on the Internet.
+\end_layout
+
+\begin_layout Itemize
+RESTFul: REST with no session.
+\end_layout
+
+\begin_layout Itemize
+URL: uniform resource locator.
+\end_layout
+
+\begin_layout Itemize
+MVC: model view controller, it's a design pattern.
+\end_layout
+
+\begin_layout Itemize
+SOA: service oriented architecture, it's a style of software design where
+ services are provided to the other components by application components,
+ through a communication protocol over a network.
+\end_layout
+
+\begin_layout Itemize
+Layer: way of organizing code in sections sharing a common goal.
+ The highest partition includes Presentation Layer, Business or Logic Layer
+ and Data Layer.
+\end_layout
+
+\begin_layout Itemize
+Tier: physical deployment of layers.
+\end_layout
+
+\begin_layout Itemize
+Safe area: it is a specific area where the electric cars of PowerEnJoy service
+ can park.
+ The set of safe areas is pre-defined and owned by the company/society that
+ requested the management system for the service.
+\end_layout
+
+\begin_layout Itemize
+Special safe area: it is a safe area where power grid stations are installed.
+\end_layout
+
+\begin_layout Itemize
+Power grid station: it is an installation that allows the recharge of an
+ electric car.
+\end_layout
+
+\begin_layout Itemize
+Communication primitives: set of instructions and procedure that allow a
+ communication between machines and devices over a network.
+\end_layout
+
+\begin_layout Itemize
+Sensor data retrieval: procedure that consists in getting all the information
+ collected by the sensors of the car.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Document further information
+\end_layout
+
+\begin_layout Subsection
+ChangeLog
+\end_layout
+
+\begin_layout Itemize
+[21/11/2016] [
+\series bold
+Version 0.1
+\series default
+] :: Added first part of the document introduction, including preface, Purpose,
+ Scope and Definitions.
+ ChangeLog and Hours of work sections also introduced.
+\end_layout
+
+\begin_layout Subsection
+Hours of work
+\end_layout
+
+\begin_layout Subsubsection*
+Matteo Frosi
+\end_layout
+
+\begin_layout Standard
+[Before 21/11/2016]: 3.00 hours (spent in analyzing well known architectures,
+ to study and apply them at our problem).
+\begin_inset Newline newline
+\end_inset
+
+[21/11/2016]: 2.00 hours (further analysis of an applicable architecture
+ to our problem, alleging to the classic 3 Tier architectures).
+\end_layout
+
+\end_body
+\end_document
