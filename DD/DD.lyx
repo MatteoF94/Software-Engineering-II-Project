@@ -87,7 +87,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 0.1
+Document Version 0.2
 \begin_inset Newline newline
 \end_inset
 
@@ -269,6 +269,10 @@ RESTFul: REST with no session.
 \end_layout
 
 \begin_layout Itemize
+UX: user experience design
+\end_layout
+
+\begin_layout Itemize
 URL: uniform resource locator.
 \end_layout
 
@@ -318,6 +322,50 @@ Sensor data retrieval: procedure that consists in getting all the information
  collected by the sensors of the car.
 \end_layout
 
+\begin_layout Subsection
+Document structure
+\end_layout
+
+\begin_layout Itemize
+Introduction: this section introduces the design document.
+ It gives an overview on what topics will be covered and what aspects described
+ in the RASD will be improved here.
+\end_layout
+
+\begin_layout Itemize
+Architecture Design: this section is divided into different parts, each
+ describing an aspect of the software design.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Overview: brief description of the division in tiers and layers of the applicati
+on.
+\end_layout
+
+\begin_layout Itemize
+High level components and interaction: high level view of the components
+ of the application and the way they communicate.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Algorithm Design: this section describes some of the algorithms that the
+ application will rely on.
+ To focus on the algorithm idea and not the fine grained implementation,
+ pseudo-code will be used.
+\end_layout
+
+\begin_layout Itemize
+User Interface Design: this section presents mockups and user experience
+ explained via UX diagrams.
+\end_layout
+
+\begin_layout Itemize
+Requirements Traceability: this section aims to explain how the decisions
+ taken in the RASD are linked to design elements.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -327,6 +375,101 @@ Sensor data retrieval: procedure that consists in getting all the information
 
 \begin_layout Section
 Document further information
+\end_layout
+
+\begin_layout Subsection
+References
+\end_layout
+
+\begin_layout Itemize
+RASD, before Version 4.5
+\end_layout
+
+\begin_layout Itemize
+Assignments AA 2016-2017.pdf
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://msdn.microsoft.com/en-us/library/ee658116.aspx
+\end_layout
+
+\end_inset
+
+, containing some information about layers design
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://alistair.cockburn.us/Hexagonal+architecture
+\end_layout
+
+\end_inset
+
+, contains some information about the Hexagonal architecture
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.nginx.com/blog/introduction-to-microservices/
+\end_layout
+
+\end_inset
+
+, contains some information about the Microservices architecture
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://8thlight.com/blog/uncle-bob/2011/09/30/Screaming-Architecture.html
+\end_layout
+
+\end_inset
+
+, contains some advices over the architecture choice and implementation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.uxbooth.com/articles/8-must-see-ux-diagrams/
+\end_layout
+
+\end_inset
+
+, contains some examples of user experience diagrams
+\end_layout
+
+\begin_layout Itemize
+Sample Design Deliverable Discussed on Nov.
+ 2.pdf
+\end_layout
+
+\begin_layout Itemize
+Paper on the green move project.pdf
+\end_layout
+
+\begin_layout Itemize
+Second paper on the green move project.pdf
 \end_layout
 
 \begin_layout Subsection
@@ -341,6 +484,15 @@ Version 0.1
 ] :: Added first part of the document introduction, including preface, Purpose,
  Scope and Definitions.
  ChangeLog and Hours of work sections also introduced.
+\end_layout
+
+\begin_layout Itemize
+[21/11/2016] [
+\series bold
+Version 0.2
+\series default
+] :: Added the References and Document structure sections.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -359,6 +511,10 @@ Matteo Frosi
 
 [21/11/2016]: 2.00 hours (further analysis of an applicable architecture
  to our problem, alleging to the classic 3 Tier architectures).
+\begin_inset Newline newline
+\end_inset
+
+[21/11/2016]: 1.00 hours (writing of the first part of the document)
 \end_layout
 
 \end_body
