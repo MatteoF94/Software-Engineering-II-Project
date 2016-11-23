@@ -527,10 +527,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename CarSystemDetailed.png
@@ -551,13 +547,142 @@ High level car system
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Architectural styles
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+3-Tier Architecture
+\series default
+ : Basically a 3-Tier Architecture is a more complex 1-2 tier architecture.
+\end_layout
+
+\begin_layout Itemize
+Specialized (there is 1 more tier dedicated to a certain task).
+\end_layout
+
+\begin_layout Itemize
+Flexible (if something goes wrong with a tier, the other 2 can work as well).
+\end_layout
+
+\begin_layout Itemize
+Secure (the client will not have direct access to the database).
+\end_layout
+
+\begin_layout Itemize
+Performing (tasks are shared between servers).
+\end_layout
+
+\begin_layout Itemize
+Deployed as a Monolith.
+\end_layout
+
+\begin_layout Itemize
+Simple to test and deploy.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Hexagonal 
+\series default
+: The core is a business logic implemented by modules with attached several
+ services by specific adapters.
+\end_layout
+
+\begin_layout Itemize
+Deployes as a Monolith.
+\end_layout
+
+\begin_layout Itemize
+Simple to test and deploy.
+\end_layout
+
+\begin_layout Standard
+A Hexagonal architecture is more suitable for bigger system than our.
+ Moreover there are more interfaces to be implemented.
+ 
+\begin_inset Newline newline
+\end_inset
+
+For these reasons we choose the 3-Tier Architecture.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Microservises
+\series default
+ : set of smaller, interconnected servises.
+ Each one has its own hexagonal architecture.
+\end_layout
+
+\begin_layout Itemize
+Easy to deploy indipendently.
+\end_layout
+
+\begin_layout Itemize
+Each service has its own database.
+\end_layout
+
+\begin_layout Standard
+Microservise pattern is more simple and efficient than a monolith.
+ In fact, every microservice is a mini-monolith.
+ The worse part is that different microservises have different databases
+ and sometimes there is incoherence between them.
+ 
+\begin_inset Newline newline
+\end_inset
+
+For these reasons we choose the 3-Tier architecture.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+SOA
+\series default
+ : architecture is split up into various servises.
+\end_layout
+
+\begin_layout Itemize
+Scalable.
+\end_layout
+
+\begin_layout Itemize
+Reusable.
+\end_layout
+
+\begin_layout Itemize
+Easy testing and debugging.
+\end_layout
+
+\begin_layout Itemize
+Flexible.
+\end_layout
+
+\begin_layout Standard
+SOA architecture is not suitable for GUI functionalities because it requires
+ a heavy data exchange.
+\begin_inset Newline newline
+\end_inset
+
+For these reason we choose 3-Tier architecture.
 \end_layout
 
 \begin_layout Section
@@ -688,7 +813,16 @@ Version 0.2
 Version 0.3
 \series default
 ] :: Added the overview of the architecture of the project and a brief descripti
-on of the car system, so sections 2.1 and 2.2
+on of the car system, so sections 2.1 and 2.2.
+\end_layout
+
+\begin_layout Itemize
+[23/11/2016] [
+\series bold
+Version 0.4
+\series default
+] :: Added the description of the different architectural styles that were
+ considered and their brief comparison.
 \end_layout
 
 \begin_layout Subsection
@@ -716,6 +850,29 @@ Matteo Frosi
 
 [23/11/2016]: 2.00 hours (writing of the overview section of the document
  and drawing of architectures images)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Luca Costa
+\begin_inset Newline newline
+\end_inset
+
+[Before 21/11/2016]: 2.30 hours (spent learning about the various architectures
+ and apply them to our problem)
+\begin_inset Newline newline
+\end_inset
+
+[22/11/16]: 1.00 hours (spent learning about a possible implementation of
+ the different architecture styles)
+\begin_inset Newline newline
+\end_inset
+
+[23/11/16]: 3.00 hours (spent writing comparison between architectures and
+ informing about DD document in general)
 \end_layout
 
 \end_body
