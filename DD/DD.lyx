@@ -87,7 +87,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 0.3
+Document Version 1.0
 \begin_inset Newline newline
 \end_inset
 
@@ -553,6 +553,136 @@ High level car system
 \end_layout
 
 \begin_layout Subsection
+Components of the system
+\end_layout
+
+\begin_layout Subsubsection
+High level view
+\end_layout
+
+\begin_layout Standard
+From an high point of view, the system can be divided into four elements.
+ The users can interact with the server, that is the main central where
+ all the logic is concentrated, directly or with the support of the car.
+ A user can initiate the interaction with the server using his/her mobile
+ application.
+ To proceed in using the service, the user must first be logged into the
+ system and for every action he/she does (monitoring request, reservation
+ request, take back of a reservation, code request and so on), he/she has
+ to wait for the server response, informing the user that the request has
+ been succesful or not.
+ Because of this sequentiality of actions, the communication directed from
+ user to server has to follow synchronous rules when proceeding in a certain
+ sequence and leave all the other non-interactive options as to be implemented
+ in an asynchronous way.
+ As example the user shouldn't be prohibited to search for an available
+ car even if he/she already made a reservation, but he/she cannot made a
+ code request if there is no reservation made.
+ A clever way to implement the user-server relationship is to made all the
+ communications asynchronous but thanks to particular patterns, MVC among
+ them, denying the usage of particular services if certain conditions are
+ not met.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The user can also interact indirectly with the server using the car - or
+ it can be said that the car interacts with the server -.
+ Some physical interfaces, such as the emergency button or the numeric keypad,
+ allow the user to modify the condition of a car and, consequentially, of
+ his/her service.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The server/central acts mainly as an elaborator, or referring to the chosen
+ architecture, as a monolithic logic processor.
+ Its job is to coordinate the requests from the users and the change of
+ status of all the cars.
+ As said before, the interaction between user and server can be described
+ with a simple MVC pattern.
+ From a very high view, the user makes an action, communicates it to the
+ server, the server elaborates the request and confirms/rejects the will
+ of the user.
+ The server-car-user relationship is a bit more complex.
+ Firstly, there is a continous interaction between every car and the server,
+ that follows this sequence: 
+\end_layout
+
+\begin_layout Enumerate
+Data retrieval 
+\end_layout
+
+\begin_layout Enumerate
+Car status update (car to server) 
+\end_layout
+
+\begin_layout Enumerate
+Database update (server to database) 
+\end_layout
+
+\begin_layout Enumerate
+[Optional] Car update (server to car), as example the lock following the
+ end of the service
+\end_layout
+
+\begin_layout Standard
+Moreover, to this sequence must be added the interaction with the user,
+ that is both passive and active as said in the previous section.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The server communicates with all the other components using asynchronous
+ messagges, because it does not depend on their status but acts as the independe
+nt core of the software.
+ Just referring to the user behavior, it would be unthinkable to have the
+ server wait for a user decision, stated that the thinktime can be to long,
+ and each communication would become a bottleneck for the whole system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename HighViewComponents.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level view of the components of the system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Architectural styles
 \end_layout
 
@@ -813,7 +943,7 @@ Version 0.2
 Version 0.3
 \series default
 ] :: Added the overview of the architecture of the project and a brief descripti
-on of the car system, so sections 2.1 and 2.2.
+on of the car system, so subsections 2.1 and 2.2.
 \end_layout
 
 \begin_layout Itemize
@@ -823,6 +953,15 @@ Version 0.4
 \series default
 ] :: Added the description of the different architectural styles that were
  considered and their brief comparison.
+\end_layout
+
+\begin_layout Itemize
+[24/11/2016] [
+\series bold
+Version 1.0
+\series default
+] :: Added high view of the components of the system with a detailed description
+, subsubsection 2.3.1.
 \end_layout
 
 \begin_layout Subsection
@@ -850,6 +989,11 @@ Matteo Frosi
 
 [23/11/2016]: 2.00 hours (writing of the overview section of the document
  and drawing of architectures images)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.00 hours (drawing up of the component view and writing of
+ the component high view section)
 \begin_inset Newline newline
 \end_inset
 
