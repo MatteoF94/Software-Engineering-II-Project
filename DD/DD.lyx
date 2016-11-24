@@ -964,6 +964,14 @@ Version 1.0
 , subsubsection 2.3.1.
 \end_layout
 
+\begin_layout Itemize
+[24/11/2016] [
+\series bold
+Version 1.1
+\series default
+] :: Added Component Diagram to .mdj file.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -1001,7 +1009,15 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
+
+\series bold
 Luca Costa
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -1017,6 +1033,11 @@ Luca Costa
 
 [23/11/16]: 3.00 hours (spent writing comparison between architectures and
  informing about DD document in general)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.00 hours (learning about how to draw a component diagram
+ and its effective first drawing)
 \end_layout
 
 \end_body

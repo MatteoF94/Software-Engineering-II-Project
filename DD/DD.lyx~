@@ -87,7 +87,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 0.4
+Document Version 1.0
 \begin_inset Newline newline
 \end_inset
 
@@ -943,7 +943,7 @@ Version 0.2
 Version 0.3
 \series default
 ] :: Added the overview of the architecture of the project and a brief descripti
-on of the car system, so sections 2.1 and 2.2.
+on of the car system, so subsections 2.1 and 2.2.
 \end_layout
 
 \begin_layout Itemize
@@ -953,6 +953,15 @@ Version 0.4
 \series default
 ] :: Added the description of the different architectural styles that were
  considered and their brief comparison.
+\end_layout
+
+\begin_layout Itemize
+[24/11/2016] [
+\series bold
+Version 1.0
+\series default
+] :: Added high view of the components of the system with a detailed description
+, subsubsection 2.3.1.
 \end_layout
 
 \begin_layout Subsection
@@ -980,6 +989,11 @@ Matteo Frosi
 
 [23/11/2016]: 2.00 hours (writing of the overview section of the document
  and drawing of architectures images)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.00 hours (drawing up of the component view and writing of
+ the component high view section)
 \begin_inset Newline newline
 \end_inset
 
