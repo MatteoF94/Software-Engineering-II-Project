@@ -87,7 +87,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.0
+Document Version 1.1
 \begin_inset Newline newline
 \end_inset
 
@@ -393,12 +393,12 @@ PowerEnJoy relies on a three tier architecture.
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename TierDivision.png
+	filename ArchitecturePNGs/TierDivision.png
 	lyxscale 50
 	scale 60
 
@@ -470,7 +470,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename LayerDivision.png
+	filename ArchitecturePNGs/LayerDivision.png
 	lyxscale 50
 	scale 60
 
@@ -572,7 +572,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename CarSystemDetailed.png
+	filename ArchitecturePNGs/CarSystemDetailed.png
 	lyxscale 50
 	scale 60
 
@@ -694,8 +694,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename HighViewComponents.png
-	lyxscale 50
+	filename StructureDiagrams/HighViewComponents.png
+	lyxscale 20
 	scale 35
 
 \end_inset
@@ -735,8 +735,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename MidDetComponent.png
-	lyxscale 35
+	filename StructureDiagrams/MidDetComponent.png
+	lyxscale 20
 	scale 20
 
 \end_inset
@@ -807,7 +807,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename DetailedComponent.png
+	filename StructureDiagrams/DetailedComponent.png
 	lyxscale 15
 	scale 22
 	rotateAngle -90
@@ -895,6 +895,88 @@ CarApplication: contains all the procedures that elaborates the data retrieved
 
 \begin_layout Itemize
 Database: device used to store the model data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deployment 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/DeploymentDiagram.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deployment diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The PowerEnJoy software can be divided into three cores.
+ The user-related core is deployed on the mobile device and in the same
+ way the car-related core, which slightly differs from the first because
+ it mainly takes care of the car logic and data elaboration, is deployed
+ on the car processor / computer.
+ The last core is obviously related to the logic tier of the whole software,
+ deployed on the server machine(s).
+ 
+\begin_inset Newline newline
+\end_inset
+
+The Apache Tomcat server runs on the application server and the Spring framework
+, that provides a comprehensive programming and configuration model for
+ modern Java-based enterprise applications - on any kind of deployment platform.
+ A key element of Spring is infrastructural support at the application level.
+ Moreover it provides foundational support for JDBC, allowing a simple and
+ easy interaction with the main database.
 \end_layout
 
 \end_inset
@@ -1190,7 +1272,15 @@ Version 1.0
 \series bold
 Version 1.1
 \series default
-] :: 
+] :: Added two detailed component diagrams, subsubsection 2.3.2.
+\end_layout
+
+\begin_layout Itemize
+[25/11/2016] [
+\series bold
+Version 1.2
+\series default
+] :: Added the deployment diagram and its description, subsection 2.4.
 \end_layout
 
 \begin_layout Subsection
@@ -1230,22 +1320,24 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-
+[25/11/2016]: 1.00 hours (writing of the section about the detailed component
+ diagrams)
 \begin_inset Newline newline
 \end_inset
 
+[25/11/2016]: 3.00 hours (thinking, drawing and deploying the deployment
+ diagram)
+\end_layout
+
+\begin_layout Subsubsection*
 
 \series bold
-Luca Costa
+Luca Cost
 \series default
+a
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 [Before 21/11/2016]: 2.30 hours (spent learning about the various architectures
  and apply them to our problem)
 \begin_inset Newline newline
