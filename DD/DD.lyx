@@ -87,7 +87,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.0
+Document Version 1.1
 \begin_inset Newline newline
 \end_inset
 
@@ -393,7 +393,7 @@ PowerEnJoy relies on a three tier architecture.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -419,6 +419,26 @@ Proposed architecture, tier division - red: client, blue: server, azure:
 
 \end_inset
 
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
 The client side includes all the possible ways by which a user can interact
  with the server (and the service), that are the mobile application and
  the car itself.
@@ -438,7 +458,9 @@ ve interface.
  
 \end_layout
 
-\begin_layout Standard
+\end_inset
+
+
 \begin_inset Float figure
 placement H
 wide false
@@ -474,13 +496,34 @@ Proposed architecture, layer division - red: presentation, blue: logic/business,
 \end_inset
 
 
-\end_layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
 
-\begin_layout Standard
+\begin_layout Plain Layout
 The mobile application is also part of the logic layer because it can hold
  some immediate processes, instead of delegating them to the main server.
  An immediate example could be the elaboration of the GPS based map during
  the research of an available car.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -570,7 +613,7 @@ From an high point of view, the system can be divided into four elements.
  system and for every action he/she does (monitoring request, reservation
  request, take back of a reservation, code request and so on), he/she has
  to wait for the server response, informing the user that the request has
- been succesful or not.
+ been successful or not.
  Because of this sequentiality of actions, the communication directed from
  user to server has to follow synchronous rules when proceeding in a certain
  sequence and leave all the other non-interactive options as to be implemented
@@ -605,7 +648,7 @@ The server/central acts mainly as an elaborator, or referring to the chosen
  server, the server elaborates the request and confirms/rejects the will
  of the user.
  The server-car-user relationship is a bit more complex.
- Firstly, there is a continous interaction between every car and the server,
+ Firstly, there is a continuous interaction between every car and the server,
  that follows this sequence: 
 \end_layout
 
@@ -634,8 +677,8 @@ Moreover, to this sequence must be added the interaction with the user,
 \end_inset
 
 The server communicates with all the other components using asynchronous
- messagges, because it does not depend on their status but acts as the independe
-nt core of the software.
+ messages, because it does not depend on their status but acts as the independen
+t core of the software.
  Just referring to the user behavior, it would be unthinkable to have the
  server wait for a user decision, stated that the thinktime can be to long,
  and each communication would become a bottleneck for the whole system.
@@ -647,10 +690,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -682,6 +721,187 @@ High level view of the components of the system
 
 \end_layout
 
+\begin_layout Subsubsection
+Detailed views
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename MidDetComponent.png
+	lyxscale 35
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deeper high level component diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Deepening the high level component diagram, each big node can be fragmented
+ into smaller parts, each characterized by its functionality.
+ As previously said, The user can interact directly with the main server/central
+ using his/her mobile application, or, indirectly, using some of the car
+ physical devices (the button and the numeric keypad).
+ Focusing more on the server composition, multiple components to handle
+ and manage every part of the service are needed.
+ Purely from a topological point of view, the server consists of two big
+ areas.
+ One refers to all the structures and components that handles and addresses
+ incoming data from and to the external world, while the other refers to
+ all the functionality and procedures that allow the elaboration of an event
+ and the consequent updates on the server itself, but also on the external
+ world (database, clients or cars).
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename DetailedComponent.png
+	lyxscale 15
+	scale 22
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detailed component diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Figure 6 represents an even more detailed component diagram, including sub
+ components, interfaces, products (artifacts) and ports.
+ One of the two area previously described can be seen as a mail office.
+ The component ConnectionHandler, as the name suggests, handles the incoming
+ and outgoing data, sorting it to the specific controller.
+ The other area, composed by the Model and the ServiceCore interacts with
+ the Database, providing it the information about the Model itself.
+ The NotificationManager component takes care of the communication and interacti
+on needed with the user's device.
+ In detail:
+\end_layout
+
+\begin_layout Itemize
+GMSGateway: device that allows SMS text messages to be sent and/or received
+ by email, from software applications.
+\end_layout
+
+\begin_layout Itemize
+PushGateway: device(s) that manages push notifications.
+\end_layout
+
+\begin_layout Itemize
+NotificationManager: component that takes care of the interaction with the
+ user's device.
+\end_layout
+
+\begin_layout Itemize
+ConnectionHandler: component that sorts incoming and outgoing messages (data
+ transfer).
+\end_layout
+
+\begin_layout Itemize
+ServiceCore: contains all the procedures supporting the software (algorithms,
+ functions and so on).
+\end_layout
+
+\begin_layout Itemize
+ModelSkeleton: representation of the analyzed world
+\end_layout
+
+\begin_layout Itemize
+CarApplication: contains all the procedures that elaborates the data retrieved
+ by the sensor system of the car and interacts with the server.
+\end_layout
+
+\begin_layout Itemize
+Database: device used to store the model data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Architectural styles
 \end_layout
@@ -692,6 +912,7 @@ Architectural styles
 3-Tier Architecture
 \series default
  : Basically a 3-Tier Architecture is a more complex 1-2 tier architecture.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -728,7 +949,7 @@ Hexagonal
 \end_layout
 
 \begin_layout Itemize
-Deployes as a Monolith.
+Deployed as a Monolith.
 \end_layout
 
 \begin_layout Itemize
@@ -752,14 +973,14 @@ For these reasons we choose the 3-Tier Architecture.
 
 
 \series bold
-Microservises
+Microservices
 \series default
- : set of smaller, interconnected servises.
+ : set of smaller, interconnected services.
  Each one has its own hexagonal architecture.
 \end_layout
 
 \begin_layout Itemize
-Easy to deploy indipendently.
+Easy to deploy independently.
 \end_layout
 
 \begin_layout Itemize
@@ -767,9 +988,9 @@ Each service has its own database.
 \end_layout
 
 \begin_layout Standard
-Microservise pattern is more simple and efficient than a monolith.
+Microservice pattern is more simple and efficient than a monolith.
  In fact, every microservice is a mini-monolith.
- The worse part is that different microservises have different databases
+ The worse part is that different microservices have different databases
  and sometimes there is incoherence between them.
  
 \begin_inset Newline newline
@@ -787,7 +1008,7 @@ For these reasons we choose the 3-Tier architecture.
 \series bold
 SOA
 \series default
- : architecture is split up into various servises.
+ : architecture is split up into various services.
 \end_layout
 
 \begin_layout Itemize
@@ -807,7 +1028,7 @@ Flexible.
 \end_layout
 
 \begin_layout Standard
-SOA architecture is not suitable for GUI functionalities because it requires
+SOA architecture is not suitable for GUI functionality because it requires
  a heavy data exchange.
 \begin_inset Newline newline
 \end_inset
@@ -969,7 +1190,7 @@ Version 1.0
 \series bold
 Version 1.1
 \series default
-] :: Added Component Diagram to .mdj file.
+] :: Added two detailed component diagrams, subsubsection 2.3.2
 \end_layout
 
 \begin_layout Subsection
@@ -1002,6 +1223,15 @@ Matteo Frosi
 
 [24/11/2016]: 2.00 hours (drawing up of the component view and writing of
  the component high view section)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.30 hours (drawing of the component in a more detailed view)
+\begin_inset Newline newline
+\end_inset
+
+[25/11/2016]: 1.00 hours (writing of the section about the detailed component
+ diagrams)
 \begin_inset Newline newline
 \end_inset
 
