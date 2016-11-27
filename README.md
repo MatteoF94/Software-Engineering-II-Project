@@ -14,7 +14,7 @@ __CommonRefDocs__ folder.
   
 __Each document has its own folder__, characterized by the same name (so the RASD documents are contained in the RASD folder, and so on).  
 The __Releases__ folder contains the most recent version of the documents that are finished, while you can check the unfinished document in 
-their respective folder. This is the most important folder because it contains all the documents you may be interested in.
+their respective folder. This is the most important folder because it contains all the documents you may be interested in.  
 If you are particularly curious, there is also the __OldReleases__ folder, that contains all the document versions after the delivery date, 
 with an exception for the most recent ones.  
 The __PowerEnJoy.mdj__ file is a collection of UML diagrams, made with StarUML. You can find each diagram as an image in the dedicated document.  
