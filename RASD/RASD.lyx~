@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.5
+Document Version 4.6
 \begin_inset Newline newline
 \end_inset
 
@@ -2442,8 +2442,7 @@ The user selects a car and inputs the time he/she thinks will be necessary
 \end_layout
 
 \begin_layout Itemize
-The system adds an area allowing the user to take back the reservation,
- 
+The system adds an area allowing the user to take back the reservation.
 \end_layout
 
 \begin_layout Itemize
@@ -2976,6 +2975,13 @@ status open
 
 \backslash
 begin {itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item{} The car locks the doors and resets the access code
 \end_layout
 
 \begin_layout Plain Layout

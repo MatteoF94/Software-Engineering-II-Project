@@ -5,6 +5,10 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{changepage}
+\date{}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -87,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.1
+Document Version 1.2
 \begin_inset Newline newline
 \end_inset
 
@@ -344,8 +348,12 @@ on.
 \end_layout
 
 \begin_layout Itemize
-High level components and interaction: high level view of the components
+Components and interaction: high level and detailed view of the components
  of the application and the way they communicate.
+\end_layout
+
+\begin_layout Itemize
+Deployment: view of the physical devices and the way they contains components
 \end_layout
 
 \end_deeper
@@ -985,6 +993,323 @@ The Apache Tomcat server runs on the application server and the Spring framework
 \end_layout
 
 \begin_layout Subsection
+Runtime diagrams
+\end_layout
+
+\begin_layout Subsubsection
+Login runtime diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeLogin.png
+	lyxscale 30
+	scale 23
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Login runtime sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+This diagram describes, as the name implies, the interaction of some components
+ during the login phase.
+ After having accessed the login section on the mobile application, the
+ user has to insert the login credentials.
+ The app communicates with the server, thanks to the ConnectionHandler component
+, that makes a request on the database to retrieve the couple user/password.
+ As the diagram represents the 
+\shape italic
+use case description 1.1
+\shape default
+, described in the RASD, it holds the assumption that the user has already
+ registered.
+ Otherwise a double check is needed: before searching for the couple user/passwo
+rd the server has to check if the user is in the database, meaning he/she
+ already registered.
+ The user may have inserted a wrong password, so he/she sees an error message
+ on the screen, instead of the main page of the app.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Reservation runtime diagram - purpose of model -
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{adjustwidth}{-2cm}{-2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeReservation.png
+	lyxscale 10
+	scale 21
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reservation runtime sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{adjustwidth}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram represents the first part of the 
+\shape italic
+use case description 1.2
+\shape default
+ in the RASD, not considering the pickup phase.
+ The user accesses the car search section on the mobile app and can decide
+ if using his/her own location or a specific address.
+ The mobile app converts the address into coordinates (and this denotes
+ a part of logic in the app, to lighten the server logic core) and communicates
+ them to the server.
+ The ConnectionHandler component interacts directly with the model.
+ The model searches for the nearby cars, in a 5km range zone, and selects
+ the ones with more than 20% of the battery.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Why the model and not the database? After having delayed the description
+ of the model from the components description, it is necessary to explain
+ the purpose of the model.
+ It acts as a sort of cache: instead of interacting continuously with the
+ database, the server contains, in the model, a bit chunk of information,
+ such as car location and minimal status, user status of login and so on.
+\begin_inset Newline newline
+\end_inset
+
+The server communicates then the list of cars to the mobile app, that displays
+ it to the user.
+ He/she can now select a car and make a reservation.
+ After having informed the server of the reservation request, the ReservationCon
+troller component handles the request, creating a timer (to count the expiring
+ time before the reservation expires), the reservation object and updating
+ Model and Database.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+End of service runtime diagram
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeEndService.png
+	lyxscale 10
+	scale 22
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+End of service runtime sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram describes, with some simplifications, the relations of the component
+s during the end phase of the service, referring to the 
+\shape italic
+use case description 5
+\shape default
+ of the RASD.
+ The phase begins when the user inserts the access code of the service using
+ the numeric keypad of the car.
+ The latter detects that the service is going to end, so the code is reset
+ (to avoid further uses of the car) and all the doors are locked.
+ Meanwhile the server is informed of the end of the ride, so it collects
+ from the model all the data about the ride and starts all the core functionalit
+y, in the ServiceCore component, concerning this phase, such as ride cost
+ calculation, payment, and so on.
+ The Model and the Database are updated (the model doesn't need to know
+ the ride anymore, but the database does, for future usage of such data).
+ The ServiceCore will also use the NotificationManager to notify the user
+ of the service cost, through the PushGateway described in section 2.3.2.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Architectural styles
 \end_layout
 
@@ -1205,6 +1530,36 @@ http://www.uxbooth.com/articles/8-must-see-ux-diagrams/
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://projects.spring.io/spring-framework/
+\end_layout
+
+\end_inset
+
+, contains some information about the Spring framework
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.agilemodeling.com/artifacts/componentDiagram.htm
+\end_layout
+
+\end_inset
+
+.
+ contains a brief description of the component diagrams from an AGILE point
+ of view
+\end_layout
+
+\begin_layout Itemize
 Sample Design Deliverable Discussed on Nov.
  2.pdf
 \end_layout
@@ -1283,6 +1638,16 @@ Version 1.2
 ] :: Added the deployment diagram and its description, subsection 2.4.
 \end_layout
 
+\begin_layout Itemize
+[26-27/11/2016] [
+\series bold
+Version 1.3
+\series default
+] :: Added three runtime views with the respective description (login, reservati
+on and end of the service), subsubsections 2.5.1, 2.5.2, 2.5.3.
+ 
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -1327,6 +1692,15 @@ Matteo Frosi
 
 [25/11/2016]: 3.00 hours (thinking, drawing and deploying the deployment
  diagram)
+\begin_inset Newline newline
+\end_inset
+
+[26-27/11/2016]: 4.00 hours (thinking, drawing and describing three runtime
+ views, of Version 1.3)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 20.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1348,13 +1722,17 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[23/11/16]: 3.00 hours (spent writing comparison between architectures and
+[23/11/16]: 2.30 hours (spent writing comparison between architectures and
  informing about DD document in general)
 \begin_inset Newline newline
 \end_inset
 
 [24/11/2016]: 2.00 hours (learning about how to draw a component diagram
  and its effective first drawing)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 8 hours
 \end_layout
 
 \end_body
