@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.4
+Document Version 1.5
 \begin_inset Newline newline
 \end_inset
 
@@ -1463,7 +1463,22 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
+The diagram describes the sequence of activities of the components of the
+ system involved in the emergency handling, described in the use case descriptio
+n 6 of the RASD.
+ During the ride suddenly can happen an accident or a health problem to
+ the driver that makes him / her press the emergency button.
+ The car system detects the button pressed and calls the car application
+ that starts the emergency procedure.
+ This procedure will slow down the car together with notifying the Model
+ wrought the ConnectionHandler.
+ The CarStatus is changed to Emergency by the Model and the ServiceCore
+ starts the emergency call procedure which notifies the Database to update
+ the old data and use the CollaboratorInterface to call to the user in the
+ car and to know what is the problem.
+ Finally the sequence ends when the external operator called by the collaborator
+, arrives on site.
+ 
 \end_layout
 
 \end_inset
@@ -1625,6 +1640,60 @@ es architectures is not a good option in describing and developing the PoerEnJoy
 
 \begin_layout Subsubsection
 Protocols
+\end_layout
+
+\begin_layout Standard
+The tiers of the PowerEnJoy software communicate through the network and
+ exchange data in respect of the following protocols.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+JDBC, used by the BLL to communicate with the DAL.
+ Considering all the drivers, the supported database servers are: 
+\end_layout
+
+\begin_layout Itemize
+MySql 5.1 
+\end_layout
+
+\begin_layout Itemize
+Java DB 10.5.3.0 
+\end_layout
+
+\begin_layout Itemize
+Oracle 11 
+\end_layout
+
+\begin_layout Itemize
+PostgreSQL 8.4 
+\end_layout
+
+\begin_layout Itemize
+DB2 9.7 
+\end_layout
+
+\begin_layout Itemize
+Sybase ASE 15 
+\end_layout
+
+\begin_layout Itemize
+Microsoft SQL Server 2008
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+RESTful API with JSON
+\series default
+ used by clients to interact with the BLL.
+ API calls that need authentication are required to authenticate via HTTP
+ basic authentication for each request.
+ 
 \end_layout
 
 \begin_layout Section
@@ -1945,7 +2014,20 @@ a
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 8 hours
+[25/11/2016]: 1.00 hour (informing on runtime and deploy diagram)
+\begin_inset Newline newline
+\end_inset
+
+[26/11/2016]: 3.30 hours (thinking and drawing architecture schema)
+\begin_inset Newline newline
+\end_inset
+
+[28/11/2016]: 2.30 hours (drawing emergency handling runtime diagrma and
+ its description, together with drawing other architecture schema)
+\end_layout
+
+\begin_layout Standard
+TOTAL: 15 hours
 \end_layout
 
 \end_body
