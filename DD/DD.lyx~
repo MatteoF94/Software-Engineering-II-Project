@@ -1400,6 +1400,77 @@ use case description 4
 
 \end_layout
 
+\begin_layout Subsubsection
+Emergency handling runtime diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeEmergency.png
+	lyxscale 20
+	scale 20
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Emergency handling runtime diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Component interfaces
 \end_layout
@@ -1413,9 +1484,9 @@ Overall architecture and comparison with other architectures
 \end_layout
 
 \begin_layout Standard
-As described in the introduction (Overview 2.1), our software will be deployed
- following a 3-Tier architecture, composed of a database, a server and a
- client.
+As described in the introduction (Overview 2.1), PowerEnJoy software will
+ be deployed following a 3-Tier architecture, composed of a database, a
+ server and a client.
  The client consists of both the mobile app and the car (that is the other
  main actor, along with the user).
  Here some features of this architecture:
@@ -1445,11 +1516,7 @@ Secure: the client will not have direct access to the database, but each
 \end_layout
 
 \begin_layout Itemize
-Performing (tasks are shared between servers).
-\end_layout
-
-\begin_layout Itemize
-Deployed as a Monolith.
+Deployed as a Monolith, so easier implementation of module interactions.
 \end_layout
 
 \begin_layout Itemize
@@ -1457,100 +1524,103 @@ Simple to test and deploy.
 \end_layout
 
 \begin_layout Standard
+Before making a paragon with other architectures, here is made a compartmentaliz
+ation between layers, already described in the previously said Overview:
+\end_layout
+
+\begin_layout Itemize
+Client: contains an interface to the Business Logic Layer (BLL).
+\end_layout
+
+\begin_layout Itemize
+Server, containing the biggest chunk of software logic: Business Logic Layer,
+ that is separate from other tiers or layers, such as the data access layer
+ or service layer.
+\end_layout
+
+\begin_layout Itemize
+Database, containing the Data Access Layer (DAL).
+\end_layout
+
+\begin_layout Paragraph
 
 \series bold
-Hexagonal 
-\series default
-: The core is a business logic implemented by modules with attached several
- services by specific adapters.
-\end_layout
-
-\begin_layout Itemize
-Deployed as a Monolith.
-\end_layout
-
-\begin_layout Itemize
-Simple to test and deploy.
+3T vs Hexagonal
 \end_layout
 
 \begin_layout Standard
-A Hexagonal architecture is more suitable for bigger system than our.
- Moreover there are more interfaces to be implemented.
- 
-\begin_inset Newline newline
-\end_inset
+The core of the hexagonal architecture is logic implemented by modules with
+ attached several services using specific adapters.
+ As the 3T it is also deployed as a Monolith and due to the modularity it
+ is simple to test and deploy.
+ However hexagonal architectures are more suitable for big and complex systems,
+ dealing with multiple services and actors.
+ The developing complexity is also higher, due to the implementation of
+ more modules and adapters/interfaces than a 3T
+\series bold
+.
+\end_layout
 
-For these reasons we choose the 3-Tier Architecture.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Paragraph
 
 \series bold
-Microservices
-\series default
- : set of smaller, interconnected services.
- Each one has its own hexagonal architecture.
-\end_layout
-
-\begin_layout Itemize
-Easy to deploy independently.
-\end_layout
-
-\begin_layout Itemize
-Each service has its own database.
+3T vs SOA
 \end_layout
 
 \begin_layout Standard
-Microservice pattern is more simple and efficient than a monolith.
- In fact, every microservice is a mini-monolith.
- The worse part is that different microservices have different databases
- and sometimes there is incoherence between them.
- 
-\begin_inset Newline newline
-\end_inset
-
-For these reasons we choose the 3-Tier architecture.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\series bold
-SOA
-\series default
- : architecture is split up into various services.
+The SOA, service oriented architecture, is a style of software design where
+ services are provided to the other components by application components,
+ through a communication protocol over a network.
+ A service is a discrete unit of functionality that can be accessed remotely
+ and acted upon and updated independently, such as retrieving a credit card
+ statement online.
+ SOA is:
 \end_layout
 
 \begin_layout Itemize
-Scalable.
+Scalable
 \end_layout
 
 \begin_layout Itemize
-Reusable.
+Reusable
 \end_layout
 
 \begin_layout Itemize
-Easy testing and debugging.
-\end_layout
-
-\begin_layout Itemize
-Flexible.
+Flexible
 \end_layout
 
 \begin_layout Standard
-SOA architecture is not suitable for GUI functionality because it requires
- a heavy data exchange.
+SOA would not be a good idea for PowerEnJoy due to the heavy data exchange
+ and the lack of the underlying idea of services: in the studied problem
+ all the 
+\begin_inset Quotes eld
+\end_inset
+
+services
+\begin_inset Quotes erd
+\end_inset
+
+ are fragment and functionality provided by the same provider, such as the
+ reservation request or the monitoring request.
+\end_layout
+
+\begin_layout Paragraph
+3T vs Microservices
+\end_layout
+
+\begin_layout Standard
+The Microservices architecture is a specialization of and implementation
+ approach for service oriented architectures (SOA) used to build flexible,
+ independently deployable software systems.
+ Services in a microservices architecture are processes that communicate
+ with each other over a network in order to fulfill a goal and services
+ should have a small granularity.
 \begin_inset Newline newline
 \end_inset
 
-For these reason we choose 3-Tier architecture.
+For the same reasons described in the paragraph, 3T vs SOA, also the Microservic
+es architectures is not a good option in describing and developing the PoerEnJoy
+ software, despite the better efficiency and the very low dependence factor.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1777,7 +1847,9 @@ Version 1.4
 \series bold
 Version 1.5
 \series default
-] :: Added runtime diagram of the Emergency Handling.
+] :: Added runtime diagram of an emergency handling, subsubsection 2.5.5 and
+ rewriting of section 2.7, including the addition of Protocols subsubsection,
+ 2.7.2.
 \end_layout
 
 \begin_layout Subsection
@@ -1836,7 +1908,12 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 22.00 hours
+[28/11/2016]: 1.00 hours (rewriting of subsection 2.7 and addition of subsubsectio
+n 2.7.2)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 23.00 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1868,20 +1945,7 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[25/11/2016]: 1.00 hour (learning about runtime and deploy diagrams)
-\begin_inset Newline newline
-\end_inset
-
-[26/11/2016]: 3.30 hours (learning and writing architecture schema)
-\begin_inset Newline newline
-\end_inset
-
-[28/11/2016]: 1.30 hours (drawing the runtime diagram of emergency handling
- )
-\end_layout
-
-\begin_layout Standard
-TOTAL: 14 hours
+TOTAL: 8 hours
 \end_layout
 
 \end_body
