@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.7
+Document Version 4.6
 \begin_inset Newline newline
 \end_inset
 
@@ -2873,22 +2873,13 @@ The user extracts the key from the car after having turned it off.
 \begin_layout Itemize
 The car system stops the counter and informs the system of the stop by,
  giving all the information about the car, including the parking location
- and the current charge.
-\end_layout
-
-\begin_layout Itemize
-The car system also turns off the power of some components of the car, like
- the screen and the dashboard.
+ and 
 \end_layout
 
 \begin_layout Itemize
 The system checks if the car is parked in a safe area or not.
  If it is, the halt has no further cost, otherwise the system changes the
  service fee (lowering it, because the user isn't consuming battery).
-\end_layout
-
-\begin_layout Itemize
-The car system, informed of the new fee, starts the charging once again.
 \end_layout
 
 \begin_layout Standard
@@ -6206,14 +6197,6 @@ Version 4.6
 \series default
 ] :: Added the ChangeLog and minor changes due to the DD writing (such as
  the change of the server framework in the Proposed system section, 2.3.
-\begin_inset Newline newline
-\end_inset
-
-[28/11/2016] [
-\series bold
-Version 4.7
-\series default
-] :: Added more details to the use case description 4.
 \end_layout
 
 \begin_layout Subsection

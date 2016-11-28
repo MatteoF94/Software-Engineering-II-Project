@@ -2871,9 +2871,24 @@ The user extracts the key from the car after having turned it off.
 \end_layout
 
 \begin_layout Itemize
+The car system stops the counter and informs the system of the stop by,
+ giving all the information about the car, including the parking location
+ and the current charge.
+\end_layout
+
+\begin_layout Itemize
+The car system also turns off the power of some components of the car, like
+ the screen and the dashboard.
+\end_layout
+
+\begin_layout Itemize
 The system checks if the car is parked in a safe area or not.
  If it is, the halt has no further cost, otherwise the system changes the
  service fee (lowering it, because the user isn't consuming battery).
+\end_layout
+
+\begin_layout Itemize
+The car system, informed of the new fee, starts the charging once again.
 \end_layout
 
 \begin_layout Standard
@@ -3980,7 +3995,7 @@ Now, a brief introduction to possible patterns that can be associated to
 \end_layout
 
 \begin_layout Itemize
-Obviously an MVC pattern can be usd to fulfill the Client-Server relationship,
+Obviously an MVC pattern can be used to fulfill the Client-Server relationship,
  that will implement the User-System relationship (the MobileInterface class
  behaves as a view).
  
@@ -4084,7 +4099,7 @@ diagram representing the real case when the user interrupts temporarily
  the service.
  After having turned off the car and locked it, the car system communicates
  the change of its status to the system.
- The car has been turned off and locked, this means that the user is contining
+ The car has been turned off and locked, this means that the user is continuing
  to benefit from the service.
  So, there will be only a change of fee, depending on the position of the
  car, and consequently the ride object associated to the user and the car.
@@ -6007,6 +6022,190 @@ Hunspell, for the spell check of the document
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+ChangeLog
+\end_layout
+
+\begin_layout Standard
+[29/10/2016] [
+\series bold
+Version 1.0
+\series default
+] :: Initial description of goals, domain assumptions and requirements.
+\begin_inset Newline newline
+\end_inset
+
+[30/10/2016] [
+\series bold
+Version 1.1
+\series default
+] :: Added first part of the glossary and made some language adjustments.
+\begin_inset Newline newline
+\end_inset
+
+[30/10/2016] [
+\series bold
+Version 1.2
+\series default
+] :: Completed the glossary.
+\begin_inset Newline newline
+\end_inset
+
+[30/10/2016] [
+\series bold
+Version 1.3
+\series default
+] :: Added an introduction to the document.
+ Updated the indexing of requirements and goals.
+\begin_inset Newline newline
+\end_inset
+
+[30/10/2016] [
+\series bold
+Version 2.0
+\series default
+] :: Added constraints and corrections to the Requirement section.
+\begin_inset Newline newline
+\end_inset
+
+[31/10/2016] [
+\series bold
+Version 2.1
+\series default
+] :: Changed some goals.
+ It is at this point supported a real world situation where a user may stop
+ the car to do something but still need the service to continue.
+ Other corrections about requirements consistency were made.
+\begin_inset Newline newline
+\end_inset
+
+[31/10/2016] [
+\series bold
+Version 2.2
+\series default
+] :: Improved the glossary and added Text assumptions and some Non functional
+ requirements, such as Usability and Performance requirements.
+\begin_inset Newline newline
+\end_inset
+
+[01/11/2016] [
+\series bold
+Version 3.0
+\series default
+] :: Added other Text assumptions, system architecture diagram, a mockup
+ of the mobile app and multiple scenarios.
+ Major change regarding the UML section and in particular the Use case diagram.
+ Started the use case description considering the use case diagram and the
+ previously introduced scenarios.
+\begin_inset Newline newline
+\end_inset
+
+[01/11/2016] [
+\series bold
+Version 3.1
+\series default
+] :: Added some use cases description and mockup of the registration page
+ of the mobile app.
+\begin_inset Newline newline
+\end_inset
+
+[02/11/2016] [
+\series bold
+Version 3.2
+\series default
+] :: Added use case descriptions and minor corrections.
+\begin_inset Newline newline
+\end_inset
+
+[03/11/2016] [
+\series bold
+Version 3.3
+\series default
+] :: Added first version of the class diagram.
+\begin_inset Newline newline
+\end_inset
+
+[05/11/2016] [
+\series bold
+Version 3.4
+\series default
+] :: Added sequence diagrams and an activity diagram.
+ Also added the UML project document to the folder (“RASD.mdj”).
+\begin_inset Newline newline
+\end_inset
+
+[06/11/2016] [
+\series bold
+Version 3.5
+\series default
+] :: Added a state diagram, describing the service form a user point of
+ view, but still related to the class diagram and thus to the software implement
+ation.
+ Added also a description for all the UML diagrams, Class diagram excluded.
+\begin_inset Newline newline
+\end_inset
+
+[08/11/2016] [
+\series bold
+Version 4.0
+\series default
+] :: Added alloy model.
+\begin_inset Newline newline
+\end_inset
+
+[09/11/2016] [
+\series bold
+Version 4.1
+\series default
+] :: Minor changes in alloy model.
+ Addition of one generated world, based on such model (broken in two pages).
+ Addition of a scenario and a use case description (about [G14], considered
+ until now only in the requirements).
+\begin_inset Newline newline
+\end_inset
+
+[10/11/2016] [
+\series bold
+Version 4.2
+\series default
+] :: Improved description of the class diagram.
+ Started the traceability table and the refining process of use cases (bigger
+ use cases now will be composed of multiple sub use cases).
+\begin_inset Newline newline
+\end_inset
+
+[10/11/2016] [
+\series bold
+Version 4.3
+\series default
+] :: Grammar correction and minor changes of the glossary.
+\begin_inset Newline newline
+\end_inset
+
+[10/11/2016] [
+\series bold
+Version 4.4
+\series default
+] :: Added the final sections of the documents (references, hours of work).
+\begin_inset Newline newline
+\end_inset
+
+[11/11/2016] [
+\series bold
+Version 4.5
+\series default
+] :: Revision of the document and minor corrections over grammar and coherence.
+\begin_inset Newline newline
+\end_inset
+
+[27/11/2016] [
+\series bold
+Version 4.6
+\series default
+] :: Added the ChangeLog and minor changes due to the DD writing (such as
+ the change of the server framework in the Proposed system section, 2.3.
 \end_layout
 
 \begin_layout Subsection

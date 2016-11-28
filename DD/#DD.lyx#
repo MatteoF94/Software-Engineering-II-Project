@@ -1767,9 +1767,7 @@ on and end of the service), subsubsections 2.5.1, 2.5.2, 2.5.3.
 \series bold
 Version 1.4
 \series default
-] :: Added runtime diagram of the service temporarily stop by, subsubsection
- 2.5.4.
- 
+] :: Added runtime diagram of the service stem 
 \end_layout
 
 \begin_layout Subsection
@@ -1824,11 +1822,7 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-[28/11/2016]: 1.30 hours (addition of the fourth runtime diagram)
-\begin_inset Newline newline
-\end_inset
-
-TOTAL: 22.00 hours
+TOTAL: 20.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
