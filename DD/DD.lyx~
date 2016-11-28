@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.3
+Document Version 1.4
 \begin_inset Newline newline
 \end_inset
 
@@ -1772,6 +1772,14 @@ Version 1.4
  
 \end_layout
 
+\begin_layout Itemize
+[28/11/2016][
+\series bold
+Version 1.5
+\series default
+] :: Added runtime diagram of the Emergency Handling.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -1860,7 +1868,20 @@ a
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 8 hours
+[25/11/2016]: 1.00 hour (learning about runtime and deploy diagrams)
+\begin_inset Newline newline
+\end_inset
+
+[26/11/2016]: 3.30 hours (learning and writing architecture schema)
+\begin_inset Newline newline
+\end_inset
+
+[28/11/2016]: 1.30 hours (drawing the runtime diagram of emergency handling
+ )
+\end_layout
+
+\begin_layout Standard
+TOTAL: 14 hours
 \end_layout
 
 \end_body
