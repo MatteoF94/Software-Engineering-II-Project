@@ -1466,8 +1466,8 @@ status open
 The diagram describes the sequence of activities of the components of the
  system involved in the emergency handling, described in the use case descriptio
 n 6 of the RASD.
- During the ride suddenly can happen an accident or a health problem to
- the driver that makes him / her press the emergency button.
+ During the ride an accident or a health problem to the driver can suddenly
+ happen, making him/her press the emergency button.
  The car system detects the button pressed and calls the car application
  that starts the emergency procedure.
  This procedure will slow down the car together with notifying the Model
@@ -1645,15 +1645,22 @@ Protocols
 \begin_layout Standard
 The tiers of the PowerEnJoy software communicate through the network and
  exchange data in respect of the following protocols.
- 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Paragraph
 
-\begin_inset Newline newline
-\end_inset
+\shape italic
+JDBC
+\end_layout
 
-JDBC, used by the BLL to communicate with the DAL.
+\begin_layout Standard
+Java Database Connectivity (JDBC) is an application programming interface
+ (API) for the programming language Java, which defines how a client may
+ access a database.
+ It is part of the Java Standard Edition platform, from Oracle Corporation.
+ It provides methods to query and update data in a database, and is oriented
+ towards relational databases.
+ It is used by the BLL to communicate with the DAL.
  Considering all the drivers, the supported database servers are: 
 \end_layout
 
@@ -1686,14 +1693,496 @@ Microsoft SQL Server 2008
 \end_layout
 
 \begin_layout Standard
+The value-add provided by the Spring Framework JDBC abstraction is perhaps
+ best shown by the sequence of actions outlined in the table below.
+ The table shows what actions Spring will take care of and which actions
+ are the responsibility of the application developers.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \series bold
+Action
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Spring
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Define connection parameters.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open the connection.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Specify the SQL statement.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Declare parameters and provide parameter values
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prepare and execute the statement.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Set up the loop to iterate through the results (if any).
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Do the work for each iteration.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Process any exception.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Handle transactions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Close the connection, statement and resultset.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\shape italic
 RESTful API with JSON
-\series default
- used by clients to interact with the BLL.
- API calls that need authentication are required to authenticate via HTTP
- basic authentication for each request.
+\end_layout
+
+\begin_layout Standard
+The word REST refers to web services that are one way of providing interoperabil
+ity between computer systems on the Internet.
+ REST-compliant web services allow requesting systems to access and manipulate
+ textual representations of web resources using a uniform and predefined
+ set of stateless operations.
+ They are used by clients to interact with the BLL.
  
+\end_layout
+
+\begin_layout Subsubsection
+Design patterns
+\end_layout
+
+\begin_layout Standard
+Most of the applicable design patterns are already described in the RASD,
+ especially in the Class diagram subsubsection 4.2.4.
+ Here follows some detailed information about some of them.
+ 
+\end_layout
+
+\begin_layout Paragraph
+MVC
+\end_layout
+
+\begin_layout Standard
+Spring is a big framework, that contains a lot of components.
+ One of these is Spring MVC, a module that lets the developers implement
+ the web application according to the model-view-controller design pattern.
+ Inside the application the following objects will be implemented:
+\end_layout
+
+\begin_layout Itemize
+Models: represented by the classes that in turn represent the handled objects
+ and the access classes to the database.
+\end_layout
+
+\begin_layout Itemize
+Views: represented by various JSP files (compiled in HTML) and some classes
+ related to the exportation of files which format differs from HTML (PDF,
+ XLS, CSV...).
+\end_layout
+
+\begin_layout Itemize
+Controllers: represented by classes that keep listening from incoming messages
+ on a specific URL each, and thanks to Models and Views handle the user's
+ requests.
+\end_layout
+
+\begin_layout Paragraph
+Adapter 
+\end_layout
+
+\begin_layout Standard
+Adapters are used in our mobile application to adapt the Driver interface
+ to the RESTful API interface.
+\end_layout
+
+\begin_layout Paragraph
+SOA and Microservices
+\end_layout
+
+\begin_layout Standard
+SOA and Microservices may be software architectures, but the underlying
+ idea can be also applied to pieces of software.
+ Along with the controllers and models, those 
+\begin_inset Quotes eld
+\end_inset
+
+simil-patterns
+\begin_inset Quotes erd
+\end_inset
+
+ can improve the modularity of the software, disjointing the model data
+ (so that there is not a monolithic model but multiple fragmented ones)
+ and the business logic (proven by the fact that multiple controllers coexist
+ an the ServiceCore component could be broken into minor cores, each containing
+ functions and procedures related only to a specific event, such as the
+ logic of the service end rather than the login phase).
+\end_layout
+
+\begin_layout Paragraph
+Client - Server
+\end_layout
+
+\begin_layout Standard
+As already described in previous sections, the software development will
+ follow the client - server paradigm, where the large part of network communicat
+ion happens between the users and the server.
+ The client-server paradigm has the following advantages:
+\end_layout
+
+\begin_layout Itemize
+High maintainability
+\end_layout
+
+\begin_layout Itemize
+Independence from the number of clients connected
+\end_layout
+
+\begin_layout Itemize
+Good level of security, regarding data transfer
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1921,6 +2410,15 @@ Version 1.5
  2.7.2.
 \end_layout
 
+\begin_layout Itemize
+[29/11/2016] [
+\series bold
+Version 1.6
+\series default
+] :: Added Spring/developer matrix in the Protocols subsubsection 2.7.2 and
+ added the Architecture patterns, subsubsection 2.7.3.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -1931,7 +2429,7 @@ Matteo Frosi
 
 \begin_layout Standard
 [Before 21/11/2016]: 3.00 hours (spent in analyzing well known architectures,
- to study and apply them at our problem).
+ to study and apply them to our problem).
 \begin_inset Newline newline
 \end_inset
 
@@ -1982,7 +2480,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 23.00 hours
+[29/11/2016]: 2.30 hours (writing of subsubsection 2.7.3 about architecture
+ patterns and addition of concepts to subsubsection 2.7.2)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 25.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2018,15 +2521,16 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[26/11/2016]: 3.30 hours (thinking and drawing architecture schema)
+[26/11/2016]: 3.30 hours (thinking and drawing architecture schema, not part
+ of the DD)
 \begin_inset Newline newline
 \end_inset
 
-[28/11/2016]: 2.30 hours (drawing emergency handling runtime diagrma and
+[28/11/2016]: 2.30 hours (drawing emergency handling runtime diagram and
  its description, together with drawing other architecture schema)
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 TOTAL: 15 hours
 \end_layout
 
