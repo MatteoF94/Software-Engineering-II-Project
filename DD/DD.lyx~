@@ -2178,12 +2178,33 @@ Independence from the number of clients connected
 Good level of security, regarding data transfer
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Algorithm design
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 User Interface design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2697,9 +2718,11 @@ Version 1.6
 \begin_layout Itemize
 [30/11/2016] [[
 \series bold
-Version 1.7
+Version 2.0
 \series default
-] :: 
+] :: Added Requirement traceability, section 5.
+ Incomplete sections about algorithm design and user interfaces (respectively
+ 3 and 4) also were added.
 \end_layout
 
 \begin_layout Subsection
@@ -2768,7 +2791,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 25.30 hours
+[30/11/2016]: 1.30 hours (writing of the requirement traceability section,
+ with some modifications of the RASD)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 27.00 hours
 \end_layout
 
 \begin_layout Subsubsection*

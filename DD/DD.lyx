@@ -1490,6 +1490,46 @@ n 6 of the RASD.
 Component interfaces
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename StructureDiagrams/ComponentInterfaceDiagram.png
+	lyxscale 50
+	scale 50
+	BoundingBox 0bp 0bp 2980bp 1092bp
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Component interfaces
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Architectural styles and patterns
 \end_layout
@@ -2725,6 +2765,14 @@ Version 2.0
  3 and 4) also were added.
 \end_layout
 
+\begin_layout Itemize
+[30/11/2016] [
+\series bold
+Version 2.1
+\series default
+] :: Added ComponentInterfaceDiagram
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -2842,7 +2890,11 @@ a
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 15 hours
+[30/11/2016]: 2.00 hours (thinking and drawing componentInterface diagram)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 17 hours
 \end_layout
 
 \end_body
