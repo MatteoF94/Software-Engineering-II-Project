@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.7
+Document Version 4.8
 \begin_inset Newline newline
 \end_inset
 
@@ -1104,7 +1104,9 @@ begin {itemize}
 
 \backslash
 item{} [R2.1] When the user selects the option to reserve a car, the system
- shall verify if it is already reserved.
+ shall verify if he/she has already made a reservation.
+ If he/she has, the system shall notify him/her with a message on the mobile
+ screen.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1120,26 +1122,16 @@ item{} [R2.2] When the user selects the option to reserve a car, the system
 
 
 \backslash
-item{} [R2.3] If the check described in requirement [R2.2] is negative, meaning
- that the user expressed a reservation time longer than one hour, the system
- shall reject the user's request.
+item{} [R2.3] If the check described in requirements [R2.2] or [R2.1] are negative,
+ meaning that the user expressed a reservation time longer than one hour
+ or has already made a reservation, the system shall reject the user's request.
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-item{} [R2.4] When the user selects the option to reserve a car, the system
- shall verify if it the user has already made a reservation.
- If he/she has, the system shall notify him/her with a message on the mobile
- screen.
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-item{} [R2.5] If the reservation time expires, meaning that the user didn't
+item{} [R2.4] If the reservation time expires, meaning that the user didn't
  reach the car in time, the system shall cancel the user reservation and
  charge him/her of 1 EUR.
  The system shall also send a push notification the user to inform him/her
@@ -1151,7 +1143,7 @@ item{} [R2.5] If the reservation time expires, meaning that the user didn't
 
 
 \backslash
-item{} [R2.6] When the user makes a reservation for an available car, the
+item{} [R2.5] When the user makes a reservation for an available car, the
  system shall provide him/her an option to take back the reservation, from
  his/her account.
 \end_layout
@@ -1160,7 +1152,7 @@ item{} [R2.6] When the user makes a reservation for an available car, the
 
 
 \backslash
-item{} [R2.7] When the user picks up the car or the reservation time expires,
+item{} [R2.6] When the user picks up the car or the reservation time expires,
  the system shall disable the option to take back the reservation.
 \end_layout
 
@@ -1168,7 +1160,7 @@ item{} [R2.7] When the user picks up the car or the reservation time expires,
 
 
 \backslash
-item{} [R2.8] When the user picks up the car, the car system shall notify
+item{} [R2.7] When the user picks up the car, the car system shall notify
  the system and disable the reservation countdown.
 \end_layout
 
@@ -1531,7 +1523,7 @@ end {itemize}
 \backslash
 item{} [G9] Allows the user to press a button on the car to contact an operator
  in case of emergency, such as a car accident, a mechanical problem or sudden
- ilness:
+ illness:
 \end_layout
 
 \begin_layout Plain Layout
@@ -1643,9 +1635,8 @@ begin {itemize}
 
 \backslash
 item{} [R11.1] When the user leaves and turns off the car, the car system
- shall check if the car is located in a safe area or not, communicating
- with the system.
- 
+ shall communicates to the system that the car stopped, providing the car
+ data (location, battery and so on).
 \end_layout
 
 \begin_layout Plain Layout
@@ -1653,8 +1644,7 @@ item{} [R11.1] When the user leaves and turns off the car, the car system
 
 \backslash
 item{} [R11.2] If the user has left the car in a safe area, the car system
- shall stop the charging counter and save the car status.
- 
+ shall stop the charging counter.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1662,7 +1652,8 @@ item{} [R11.2] If the user has left the car in a safe area, the car system
 
 \backslash
 item{} [R11.3] If the user has left the car in a non safe area, the car system
- shall continue charging the user with a different rate.
+ shall continue charging the user with a different rate, after having communicat
+ed with the system.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1671,10 +1662,10 @@ item{} [R11.3] If the user has left the car in a non safe area, the car system
 \backslash
 item{} [R11.4] When the user has left the car, closed all the doors, and
  inserted into the numeric keypad the code he/she used to access the car,
- the car system shall communicate the car status to the system.
- The system shall execute the payment process, communicate the car system
- to lock the car.
- 
+ the car system shall notify the system of the end of the ride.
+ The system shall execute the payment process, reset and tag the car as
+ available once again.
+ The car system shall also lock the door and reset the access code.
 \end_layout
 
 \begin_layout Plain Layout
@@ -2484,6 +2475,10 @@ The user doesn't pick up in time the car, so it has to pay a fee of 1 EUR.
 
 \begin_layout Itemize
 The user takes back the reservation.
+\end_layout
+
+\begin_layout Itemize
+The user already made a reservation.
 \end_layout
 
 \end_deeper
@@ -3810,7 +3805,7 @@ R11.4
 \begin_inset Text
 
 \begin_layout Plain Layout
-UC.1
+UC.1.3 and UC.5, both partially
 \end_layout
 
 \end_inset
@@ -6214,6 +6209,16 @@ Version 4.6
 Version 4.7
 \series default
 ] :: Added more details to the use case description 4.
+\begin_inset Newline newline
+\end_inset
+
+[30/11/2016] [
+\series bold
+Version 4.8
+\series default
+] :: Fused old requirements [R2.1] and [R2.4] in new [R2.1].
+ Fused also old requirements [R11.4] and [R11.5].
+ Updated the traceability matrix.
 \end_layout
 
 \begin_layout Subsection

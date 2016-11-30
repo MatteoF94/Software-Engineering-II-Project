@@ -2186,6 +2186,302 @@ Good level of security, regarding data transfer
 \end_layout
 
 \begin_layout Section
+Algorithm design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+User Interface design
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Requirements traceability
+\end_layout
+
+\begin_layout Standard
+In this section it is defined list of the requirements and goals described
+ in the RASD and how they map with the designed components of the application.
+\end_layout
+
+\begin_layout Itemize
+[G1] Ensures that only the account owner can access his/her own account,
+ if he/she is already registered.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R1.1] Mobile app, ConnectionHandler, ServiceCore (for code generation),
+ interface to Database (to store the registration data), NotificationManager
+ and GMSGateway (to notify the user).
+\end_layout
+
+\begin_layout Itemize
+[R2.2] Mobile app, ConnectionHandler, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G2] Allows the user to reserve an available car for up to one hour before
+ the service starts and to take back such reservation before the picking
+ up time expires.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R2.1] Mobile app, ConnectionHandler, Model, Database.
+\end_layout
+
+\begin_layout Itemize
+[R2.2] Mobile app.
+\end_layout
+
+\begin_layout Itemize
+[R2.3] Mobile app, ConnectionHandler.
+\end_layout
+
+\begin_layout Itemize
+[R2.4] ServiceCore, Model, NotificationManager, PushGateway.
+\end_layout
+
+\begin_layout Itemize
+[R2.5] MobileApp, ConnectionHandler, ReservationController, Model, Database
+ (for the reservation).
+\end_layout
+
+\begin_layout Itemize
+[R2.6] MobileApp, CarSensorSystem, CarApplication, ConnectionHandler, Model,
+ Database (for the pick up event).
+\end_layout
+
+\begin_layout Itemize
+[R2.7] MobileApp, CarSensorSystem, CarApplication, ConnectionHandler, Reservation
+Controller.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G3] Allows the user to look for the available cars within an area that
+ he/she specified, or in the nearby areas, for a possible reservation.
+ If the car has a low battery charge, such as less than 20
+\backslash
+%, it does not appear on the user interface.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R3.1] Mobile app.
+\end_layout
+
+\begin_layout Itemize
+[R3.2] Mobile app, ConnectionHandler, ServiceCore.
+\end_layout
+
+\begin_layout Itemize
+[R3.3] ServiceCore, Model.
+\end_layout
+
+\begin_layout Itemize
+[R3.4] ServiceCore, Model, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4] Ensures that the user is able to trace/check the status of a car, available
+ or already reserved, and receive push notification about it.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R4.1] ServiceCore, Model.
+\end_layout
+
+\begin_layout Itemize
+[R4.2] Mobile app
+\end_layout
+
+\begin_layout Itemize
+[R4.3] ReservationController, Model, NotificationManager, PushGateway.
+\end_layout
+
+\begin_layout Itemize
+[R4.4] Mobile app, MonitoringController, Model.
+\end_layout
+
+\begin_layout Itemize
+[R4.5] Model, Database, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Ensures that the user is able to access, and open, the car he/she reserved,
+ if he/she is in time.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R5.1] Mobile app, ConnectionHandler, ServiceCore, NotificationManager, PushGatew
+ay.
+\end_layout
+
+\begin_layout Itemize
+[R5.2] Mobile app, ConnectionHandler, ServiceCore, CarApplication, CarSensorSyste
+m.
+\end_layout
+
+\begin_layout Itemize
+[R5.3] ServiceCore, Model, ConnectionHandler, CarApplication, CarSensorSystem.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Ensures that the service, and the charge on the user, starts only when
+ the engine of a car is ignited.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R6.1] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R6.2] CarSensorSystem, CarApplication, ConnectionHandler, RideController.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G7] Ensures that the user is informed real-time on the current cost of
+ the service, when using it, and the possible discounts and overcharges.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R7.1] to [R7.5] CarSensorSystem, CarApplication.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Ensures that the user knows the safe areas around him/her during the
+ ride.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R8.1] CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R8.2] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R8.3] CarApplication, ConnectionHandler, Model.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G9] Allows the user to press a button on the car to contact an operator
+ in case of emergency, such as a car accident, a mechanical problem or sudden
+ illness.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R9.1] to [R9.4] CarSensorSystem, CarApplication, ConnectionHandler, RideControlle
+r, Model, Database, CollaboratorInterface.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G10] Allows the user to leave the car but continue to use the service.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R10.1] CarSensorSystem, CarApplication, ConnectionHandler, RideController,
+ Model, ServiceCore.
+\end_layout
+
+\begin_layout Itemize
+[R10.2] RideController, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G11] Ensures that the user can end the service at any time.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R11.1] and [R11.3] CarSensorSystem, CarApplication, ConnectionHandler, RideContro
+ller, Model.
+\end_layout
+
+\begin_layout Itemize
+[R11.2] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R11.4] CarSensorSystem, CarApplication, ConnectionHandler, RideController,
+ ServiceCore, Model, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G12] Ensures that the user receives a discount or overcharge when specific
+ conditions are met.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R12.1] to [R12.4] CarSensorSystem, CarApplication, ConnectionHandler, RideControl
+ler, Model, ServiceCore, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G13] Ensures that the user is notified of the applied discount and overcharges
+ once the service ends and payment is applied.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R13.1] ServiceCore, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G14] Ensures that when the user picks up a car, it has no mechanical or
+ electrical problem.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R14.1] and [R14.2] CarSensorSystem, CarApplication, ConnectionHandler, Model,
+ CollaboratorInterface.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Document further information
 \end_layout
 
@@ -2419,6 +2715,16 @@ Version 1.6
  added the Architecture patterns, subsubsection 2.7.3.
 \end_layout
 
+\begin_layout Itemize
+[30/11/2016] [[
+\series bold
+Version 2.0
+\series default
+] :: Added Requirement traceability, section 5.
+ Incomplete sections about algorithm design and user interfaces (respectively
+ 3 and 4) also were added.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -2485,7 +2791,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 25.30 hours
+[30/11/2016]: 1.30 hours (writing of the requirement traceability section,
+ with some modifications of the RASD)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 27.00 hours
 \end_layout
 
 \begin_layout Subsubsection*
