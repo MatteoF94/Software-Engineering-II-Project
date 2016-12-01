@@ -91,7 +91,7 @@ Requirements Analysis and Specifications Document
 
 \series bold
 \size large
-Document Version 4.7
+Document Version 4.8
 \begin_inset Newline newline
 \end_inset
 
@@ -6217,6 +6217,8 @@ Version 4.7
 Version 4.8
 \series default
 ] :: Fused old requirements [R2.1] and [R2.4] in new [R2.1].
+ Fused also old requirements [R11.4] and [R11.5].
+ Updated the traceability matrix.
 \end_layout
 
 \begin_layout Subsection

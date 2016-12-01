@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 1.6
+Document Version 2.2
 \begin_inset Newline newline
 \end_inset
 
@@ -1490,6 +1490,43 @@ n 6 of the RASD.
 Component interfaces
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/ComponentInterfaceDiagram.png
+	lyxscale 50
+	scale 50
+	BoundingBox 0bp 0bp 2980bp 1092bp
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Component interfaces
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Architectural styles and patterns
 \end_layout
@@ -2200,6 +2237,485 @@ Algorithm design
 User Interface design
 \end_layout
 
+\begin_layout Subsection
+Interfaces mockups
+\end_layout
+
+\begin_layout Subsubsection
+Mobile dashboard
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_1.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_3.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_4.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_5.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_6.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_7.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Car screen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/Mock_8.png
+	lyxscale 30
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_9.png
+	lyxscale 30
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+User experience diagrams
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/UXs/UX_1.png
+	lyxscale 20
+	scale 24
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schematic vision of the PowerEnJoy application
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/UXs/UX_2.jpg
+	lyxscale 20
+	scale 18
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Consumer Journey Map of the service use
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The reader may wonder why such diagrams, concerning about a user point of
+ view of the service, are in the design document.
+ For Figure 14 the reason is obvious: the diagram represents both how the
+ user will find the page arrangement of the app pages (sections), so it
+ also implies a design choice.
+ Figure 15 is more subtle.
+ Apparently the journey map tells of the experience of a particular user,
+ Lilith in the case - that is also one protagonist of the scenarios described
+ in the RASD -.
+ However, a bad experience of the user or whichever point of disappoint
+ corresponds to an improvable design choice, or a better assumption.
+ The first problem in the diagram clearly represents what just mentioned:
+ the user found difficult to proceed in the usage of the service because
+ she didn't know what to do.
+ It could be better to inform the user on the 
+\begin_inset Quotes eld
+\end_inset
+
+how to
+\begin_inset Quotes erd
+\end_inset
+
+ as soon as possible, maybe adding a link on the welcome screen, asking
+ whether the user know how to proceed or not, linking to a page of the app
+ where instructions on the service are described (see also Figure 14).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -2611,6 +3127,62 @@ Second paper on the green move project.pdf
 \end_layout
 
 \begin_layout Subsection
+Used tools
+\end_layout
+
+\begin_layout Standard
+In creating the DD document, the following tools have been used:
+\end_layout
+
+\begin_layout Itemize
+Github, for version controller
+\end_layout
+
+\begin_layout Itemize
+LyX, to write the document and converting in .pdf format
+\end_layout
+
+\begin_layout Itemize
+StarUML, for UML diagrams and image exporting
+\end_layout
+
+\begin_layout Itemize
+Pencil, for the architecture logic and physical design
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://uxpressia.com
+\end_layout
+
+\end_inset
+
+, for the Consumer Journey Map
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.draw.io
+\end_layout
+
+\end_inset
+
+, for the interface mockups
+\end_layout
+
+\begin_layout Itemize
+Hunspell, for the spell check of the document
+\end_layout
+
+\begin_layout Subsection
 ChangeLog
 \end_layout
 
@@ -2716,13 +3288,30 @@ Version 1.6
 \end_layout
 
 \begin_layout Itemize
-[30/11/2016] [[
+[30/11/2016] [
 \series bold
 Version 2.0
 \series default
 ] :: Added Requirement traceability, section 5.
  Incomplete sections about algorithm design and user interfaces (respectively
  3 and 4) also were added.
+\end_layout
+
+\begin_layout Itemize
+[30/11/2016] [
+\series bold
+Version 2.1
+\series default
+] :: Added ComponentInterfaceDiagram
+\end_layout
+
+\begin_layout Itemize
+[1/12/2016] [
+\series bold
+Version 2.2
+\series default
+] :: Added mockups in subsection 4.1 and two User eXperience diagrams in
+ subsection 4.2.
 \end_layout
 
 \begin_layout Subsection
@@ -2796,7 +3385,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 27.00 hours
+[1/12/2016]: 2.30 hours (drawing and insertion of the first two user experience
+ diagrams)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 29.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2837,12 +3431,20 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[28/11/2016]: 2.30 hours (drawing emergency handling runtime diagram and
+[28/11/2016]: 2.00 hours (drawing emergency handling runtime diagram and
  its description, together with drawing other architecture schema)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 15 hours
+[30/11/2016]: 2.00 hours (thinking and drawing componentInterface diagram)
+\begin_inset Newline newline
+\end_inset
+
+[1/12/2016]: 4.30 hours (drawing the mockups)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 21.00 hours
 \end_layout
 
 \end_body
