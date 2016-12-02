@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 2.2
+Document Version 3.0
 \begin_inset Newline newline
 \end_inset
 
@@ -2226,6 +2226,233 @@ Good level of security, regarding data transfer
 Algorithm design
 \end_layout
 
+\begin_layout Subsection
+Monitoring request
+\end_layout
+
+\begin_layout Subsubsection
+Pseudo code
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ the user has already made a reservation
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the Model contains a reservation made by the user 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+communicate error and handle it
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else continue
+\series default
+\shape default
+ with the algorithm
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ there is already someone monitoring the car which request is made about
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the Model contains a monitoring with the same car the user wants to monitor
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the user is already monitoring that car
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+communicate error and handle it
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+else
+\series default
+\shape default
+ add user to the monitorers list on that car
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else
+\series default
+\shape default
+ create a new monitoring to add in the Model
+\end_layout
+
+\begin_layout Subsubsection
+Possible simplified implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP1.png
+	lyxscale 30
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm, contained in the MonitoringController component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm parts inside the model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Even though the pseudo code is clear in the description of the sequence
+ of procedures and actions to be invoked, the possible implementation that
+ has been thought using Java, given the architectural decisions described
+ in the document, needs some explanations.
+ Only the essential parts are shown in the figures, and all the support
+ methods in various classes are omitted.
+ One software design idea is to reduce the information usable by the controllers
+ (MonitoringController in this case) making the model expose only the needed
+ methods, which differs for each controller.
+ Moreover, to improve modularity, for each controller the respective procedure
+ is divided into the controller itself and the Model, and possibly all the
+ classes involved.
+ However the Model contains only utility functions, such as the ones described
+ in Figure 15, where some search are made on the list of reservations and
+ monitoring of the server.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -3182,6 +3409,10 @@ https://www.draw.io
 Hunspell, for the spell check of the document
 \end_layout
 
+\begin_layout Itemize
+Atom, for the project markdown
+\end_layout
+
 \begin_layout Subsection
 ChangeLog
 \end_layout
@@ -3315,6 +3546,15 @@ Version 2.2
  Also added subsection about used tools, 6.3.
 \end_layout
 
+\begin_layout Itemize
+[2/12/2016] [
+\series bold
+Version 3.0
+\series default
+] :: Added the monitoring algorithm, section 3.1, both in pseudo code and
+ a possible implementation in Java.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -3391,7 +3631,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 29.30 hours
+[2/12/2016]: 3.00 hours (writing and testing the monitoring algorithm, creating
+ a fragment of code)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 32.30 hours
 \end_layout
 
 \begin_layout Subsubsection*

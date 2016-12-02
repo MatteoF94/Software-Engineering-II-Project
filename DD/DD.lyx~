@@ -2226,6 +2226,129 @@ Good level of security, regarding data transfer
 Algorithm design
 \end_layout
 
+\begin_layout Subsection
+Monitoring request
+\end_layout
+
+\begin_layout Subsubsection
+Pseudo code
+\end_layout
+
+\begin_layout Subsubsection
+Possible simplified implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP1.png
+	lyxscale 30
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm, contained in the MonitoringController component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm parts inside the model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Even though the pseudo code is clear in the description of the sequence
+ of procedures and actions to be invoked, the possible implementation that
+ has been thought using Java, given the architectural decisions described
+ in the document, needs some explanations.
+ Only the essential parts are shown in the figures, and all the support
+ methods in various classes are omitted.
+ One software design idea is to reduce the information usable by the controllers
+ (MonitoringController in this case) making the model expose only the needed
+ methods, which differs for each controller.
+ Moreover, to improve modularity, for each controller the respective procedure
+ is divided into the controller itself and the Model, and possibly all the
+ classes involved.
+ However the Model contains only utility functions, such as the ones described
+ in Figure 15, where some search are made on the list of reservations and
+ monitoring of the server.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -3182,6 +3305,10 @@ https://www.draw.io
 Hunspell, for the spell check of the document
 \end_layout
 
+\begin_layout Itemize
+Atom, for the project markdown
+\end_layout
+
 \begin_layout Subsection
 ChangeLog
 \end_layout
@@ -3312,6 +3439,7 @@ Version 2.2
 \series default
 ] :: Added mockups in subsection 4.1 and two User eXperience diagrams in
  subsection 4.2.
+ Also added subsection about used tools, 6.3.
 \end_layout
 
 \begin_layout Subsection
