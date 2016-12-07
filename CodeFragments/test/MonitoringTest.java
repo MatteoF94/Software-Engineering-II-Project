@@ -19,8 +19,8 @@ public class MonitoringTest {
 
         u0 = new User("Lilith","gravure", "1152");
         u1 = new User("Mitch", "wife", "2333");
-        c0 = new Car("LD111");
-        c1 = new Car("LS122");
+        c0 = new Car("LD111", new Position());
+        c1 = new Car("LS122", new Position());
     }
 
     @Test public void correctRequest() throws ReservationAlreadyDoneException, AlreadyRequestedException {

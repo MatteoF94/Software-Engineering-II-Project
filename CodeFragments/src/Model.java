@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Matteo on 02/12/16.
  */
-public class Model implements SysMonitoringInterface{
-    List<Monitoring> monitorings;
-    List<Reservation> reservations;
+public class Model implements SysMonitoringInterface, SysRideInterface{
+    private List<Monitoring> monitorings;
+    private List<Reservation> reservations;
+    private SafeAreas safeAreas;
 
     public Model() {
         monitorings = new ArrayList<>();
         reservations = new ArrayList<>();
+        safeAreas = new SafeAreas();
     }
 
     public void addMonitoring(Monitoring monitoring) {
@@ -46,11 +49,11 @@ public class Model implements SysMonitoringInterface{
         return monitoring;
     }
 
-    public List<Monitoring> retrieveMonitorings() {
-        return monitorings;
+    public void setSafeAreas(SafeAreas safeAreas) {
+        this.safeAreas = safeAreas;
     }
 
-    public List<Reservation> retrieveReservations() {
-        return reservations;
+    public Set<List<FixedPosition>> getSafeAreas() {
+        return safeAreas.getSafeAreas();
     }
 }

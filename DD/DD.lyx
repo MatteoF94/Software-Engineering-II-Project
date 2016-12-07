@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 3.0
+Document Version 3.1
 \begin_inset Newline newline
 \end_inset
 
@@ -389,6 +389,10 @@ Architecture design
 Overview
 \end_layout
 
+\begin_layout Subsubsection
+General description
+\end_layout
+
 \begin_layout Standard
 PowerEnJoy relies on a three tier architecture.
  Referring to the proposed system architecture presented in section 2.3 of
@@ -401,7 +405,7 @@ PowerEnJoy relies on a three tier architecture.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -444,7 +448,7 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The client side includes all the possible ways by which a user can interact
@@ -473,7 +477,7 @@ ve interface.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -520,13 +524,119 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The mobile application is also part of the logic layer because it can hold
  some immediate processes, instead of delegating them to the main server.
  An immediate example could be the elaboration of the GPS based map during
  the research of an available car.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Layers
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/LogicView.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Layer representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+The figure is quite self explanatory but it is worth to spend some words
+ about each layer.
+\begin_inset Newline newline
+\end_inset
+
+The presentation layer can be found in the mobile application and in each
+ car, however with a major difference.
+ In the car the presentation layer consists of the devices that allows an
+ interaction with the user, that are not just the screen and the way the
+ information is displayed to the user.
+ Obviously, the car screen works in the same way, elaborating and showing
+ the information of the car and the ride, but other objects are already
+ 
+\begin_inset Quotes eld
+\end_inset
+
+presenting
+\begin_inset Quotes erd
+\end_inset
+
+ something useful for the user: the numeric keypad to insert the access
+ code and the emergency button.
+\begin_inset Newline newline
+\end_inset
+
+The logic layer is divided into two minor parts, that are located on the
+ mobile device and on the car, and a major section, that is on the server(s).
+ The first parts have the goal to elaborate small chunk of information (car
+ data) or to simply remodeling the view presented to the user (mobile app
+ and car screen) , while the latter represents the real core of the software,
+ where all the decisions and interactions are taken.
+\begin_inset Newline newline
+\end_inset
+
+Lastly, the data layer involves the data filtering and interaction with
+ the server, when requested.
+\end_layout
+
+\begin_layout Plain Layout
+It is noticeable that all the layers share critical components, mostly regarding
+ the security and communication of the software.
 \end_layout
 
 \end_inset
@@ -575,7 +685,7 @@ know
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -595,6 +705,44 @@ High level car system
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/carStructure.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Car structure, including electronics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -1492,6 +1640,7 @@ Component interfaces
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -1500,17 +1649,13 @@ status open
 \align center
 \begin_inset Graphics
 	filename StructureDiagrams/ComponentInterfaceDiagram.png
-	lyxscale 50
-	scale 50
-	BoundingBox 0bp 0bp 2980bp 1092bp
+	lyxscale 30
+	scale 45
 	rotateAngle -90
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1519,6 +1664,10 @@ Component interfaces
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -2226,6 +2375,26 @@ Good level of security, regarding data transfer
 Algorithm design
 \end_layout
 
+\begin_layout Standard
+Here follows some simple algorithms that will be needed as logic parts in
+ the implementation of the PowerEnJoy software.
+ These algorithms are implemented and tested with JUnit4 over a small fragment
+ of the code describing the server piece of software.
+ Code and tests can be found at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/MatteoF94/Software-Engineering-II-Project/tree/master/CodeFrag
+ments
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Monitoring request
 \end_layout
@@ -2381,7 +2550,7 @@ Algorithm, contained in the MonitoringController component
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2445,6 +2614,396 @@ Even though the pseudo code is clear in the description of the sequence
  However the Model contains only utility functions, such as the ones described
  in Figure 15, where some search are made on the list of reservations and
  monitoring of the server.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The time complexity of the algorithm is mainly due to the checks that involve
+ the cycling of the elements in the model.
+ If there are n monitoring, u users and m reservations, in the worst case
+ scenario (where for each monitoring there are already u/n users) the time
+ complexity is O(max{u, m}).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ride cost calculation
+\end_layout
+
+\begin_layout Subsubsection
+Pseudo code
+\end_layout
+
+\begin_layout Standard
+calculate standard cost of the ride
+\end_layout
+
+\begin_layout Standard
+get ride time
+\end_layout
+
+\begin_layout Standard
+get stop by time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+subtract
+\series default
+\shape default
+ the stop time to the ride time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+multiply
+\series default
+\shape default
+ effective ride time with standard fee
+\begin_inset Newline newline
+\end_inset
+
+calculate stop cost of the ride
+\end_layout
+
+\begin_layout Standard
+get stop by time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+multiply
+\series default
+\shape default
+ stop by time with stop fee
+\begin_inset Newline newline
+\end_inset
+
+calculate bonus/overcharge multipliers
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the time of multiple passengers > half of the ride total time
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply passenger bonus multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the car battery >= 50
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply high battery bonus multiplier
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else if
+\series default
+\shape default
+ the car battery < 20
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply low battery overcharge multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the car is plugged into a charger
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply plugged bonus multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ the car is more 3km from the nearest safe area
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+for all
+\series default
+\shape default
+ the safe areas
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+for all
+\series default
+\shape default
+ the positions in each safe area
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the euclidean distance from the car and the safe area is less than 3km
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+don't apply any multiplier (0)
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply distance overcharge multiplier
+\begin_inset Newline newline
+\end_inset
+
+apply all the multipliers to the previously calculated cost of the ride
+\end_layout
+
+\begin_layout Subsubsection
+Possible simplified implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP1.png
+	lyxscale 30
+	scale 57
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, part including fees and bonus multipliers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, part including the calculation sub-functions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP3.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, function that checks the distances
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+It is important to stress the fact that the algorithm is improvable in many
+ way.
+ As example, if we consider that there are n safe areas and m positions
+ dedicated, the algorithm has a time complexity (worst case where each safe
+ area contains m/n positions) of O(m), given by the linear time for all
+ the checks added with the exception of the distance multiplier calculation
+ (n time m/n).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Moreover, there are many simplifications.
+ Considering again the distance check, it is calculated in the euclidean
+ way, but in reality it is likely to follow the road lines and it does not
+ follow a straight line from car to safe area.
  
 \end_layout
 
@@ -3413,6 +3972,10 @@ Hunspell, for the spell check of the document
 Atom, for the project markdown
 \end_layout
 
+\begin_layout Itemize
+IntelliJ IDEA, for the algorithms implementation and testing
+\end_layout
+
 \begin_layout Subsection
 ChangeLog
 \end_layout
@@ -3551,8 +4114,19 @@ Version 2.2
 \series bold
 Version 3.0
 \series default
-] :: Added the monitoring algorithm, section 3.1, both in pseudo code and
- a possible implementation in Java.
+] :: Added the monitoring algorithm, subsection 3.1, both in pseudo code
+ and a possible implementation in Java.
+\end_layout
+
+\begin_layout Itemize
+[6-7/12/2016] [
+\series bold
+Version 3.1
+\series default
+] :: Added the ride cost calculation algorithm, subsection 3.2, both in pseudo
+ code and a possible implementation in Java.
+ Also added the car structure image, subsection 2.2 and the layer description
+ of the proposed architecture, subsubsection 2.1.2.
 \end_layout
 
 \begin_layout Subsection
@@ -3636,7 +4210,18 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 32.30 hours
+[6-7/12/2016]: 3.00 hours (writing and testing the ride cost algorithm, improving
+ the previously created fragment of code)
+\begin_inset Newline newline
+\end_inset
+
+[7/12/2016]: 1.00 hours (drawing and inserting the CarStructure figure in
+ subsection 2.2 and the Layer structure figure of the proposed system, in
+ subsubsection 2.1.2.
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 36.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3672,13 +4257,13 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[26/11/2016]: 3.30 hours (thinking and drawing architecture schema, not part
+[26/11/2016]: 0.30 hours (thinking and drawing architecture schema, not part
  of the DD)
 \begin_inset Newline newline
 \end_inset
 
 [28/11/2016]: 2.00 hours (drawing emergency handling runtime diagram and
- its description, together with drawing other architecture schema)
+ its description)
 \begin_inset Newline newline
 \end_inset
 
@@ -3690,7 +4275,7 @@ a
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 21.00 hours
+TOTAL: 18.00 hours
 \end_layout
 
 \end_body

@@ -16,7 +16,8 @@ public class Monitoring {
 
     public Car getCar() {
         String monitoredCarId = monitoredCar.getSerialID();
-        return new Car(monitoredCarId);
+        Position monitoredCarPosition = monitoredCar.getPosition();
+        return new Car(monitoredCarId, monitoredCarPosition);
     }
 
     public void addUser(User newMonitorer) throws AlreadyRequestedException {

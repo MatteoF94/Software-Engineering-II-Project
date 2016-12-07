@@ -12,7 +12,8 @@ public class Reservation {
 
     public Car getCar() {
         String monitoredCarID = reservedCar.getSerialID();
-        return new Car(monitoredCarID);
+        Position monitoredCarPosition = reservedCar.getPosition();
+        return new Car(monitoredCarID, monitoredCarPosition);
     }
 
     public User getUser() {

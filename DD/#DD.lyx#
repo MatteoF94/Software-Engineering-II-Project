@@ -712,10 +712,9 @@ High level car system
 
 
 \begin_inset Float figure
-placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4114,8 +4113,8 @@ Version 2.2
 \series bold
 Version 3.0
 \series default
-] :: Added the monitoring algorithm, subsection 3.1, both in pseudo code
- and a possible implementation in Java.
+] :: Added the monitoring algorithm, section 3.1, both in pseudo code and
+ a possible implementation in Java.
 \end_layout
 
 \begin_layout Itemize
@@ -4123,10 +4122,8 @@ Version 3.0
 \series bold
 Version 3.1
 \series default
-] :: Added the ride cost calculation algorithm, subsection 3.2, both in pseudo
+] :: Added the ride cost calculation algorithm, section 3.2, both in pseudo
  code and a possible implementation in Java.
- Also added the car structure image, subsection 2.2 and the layer description
- of the proposed architecture, subsubsection 2.1.2.
 \end_layout
 
 \begin_layout Subsection
@@ -4215,13 +4212,7 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-[7/12/2016]: 1.00 hours (drawing and inserting the CarStructure figure in
- subsection 2.2 and the Layer structure figure of the proposed system, in
- subsubsection 2.1.2.
-\begin_inset Newline newline
-\end_inset
-
-TOTAL: 36.30 hours
+TOTAL: 35.30 hours
 \end_layout
 
 \begin_layout Subsubsection*
@@ -4257,7 +4248,7 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[26/11/2016]: 0.30 hours (thinking and drawing architecture schema, not part
+[26/11/2016]: 1.30 hours (thinking and drawing architecture schema, not part
  of the DD)
 \begin_inset Newline newline
 \end_inset
@@ -4275,7 +4266,7 @@ a
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 18.00 hours
+TOTAL: 19.00 hours
 \end_layout
 
 \end_body
