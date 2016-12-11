@@ -348,6 +348,11 @@ on.
 \end_layout
 
 \begin_layout Itemize
+Overview of the car system: brief description of the interaction between
+ car hardware (electronics) and software
+\end_layout
+
+\begin_layout Itemize
 Components and interaction: high level and detailed view of the components
  of the application and the way they communicate.
 \end_layout
@@ -356,12 +361,27 @@ Components and interaction: high level and detailed view of the components
 Deployment: view of the physical devices and the way they contains components
 \end_layout
 
+\begin_layout Itemize
+Runtime diagrams: describe the interaction between the components of the
+ system, using some cases described in the RASD, under the use case description
+ section (which also refers to some scenarios).
+\end_layout
+
+\begin_layout Itemize
+Component interfaces: describe 
+\end_layout
+
+\begin_layout Itemize
+Architectural styles and patterns: 
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 Algorithm Design: this section describes some of the algorithms that the
  application will rely on.
  To focus on the algorithm idea and not the fine grained implementation,
- pseudo-code will be used.
+ each one will first be described using pseudo-code and only then will be
+ shown using real code.
 \end_layout
 
 \begin_layout Itemize
@@ -372,6 +392,11 @@ User Interface Design: this section presents mockups and user experience
 \begin_layout Itemize
 Requirements Traceability: this section aims to explain how the decisions
  taken in the RASD are linked to design elements.
+\end_layout
+
+\begin_layout Itemize
+Document further description: containing useful information about changelog,
+ the references and the used tools.
 \end_layout
 
 \begin_layout Standard
