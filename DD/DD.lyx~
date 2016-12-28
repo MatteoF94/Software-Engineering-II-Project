@@ -91,7 +91,7 @@ Design Document
 
 \series bold
 \size large
-Document Version 3.0
+Document Version 3.1
 \begin_inset Newline newline
 \end_inset
 
@@ -1077,6 +1077,13 @@ CarApplication: contains all the procedures that elaborates the data retrieved
 
 \begin_layout Itemize
 Database: device used to store the model data
+\end_layout
+
+\begin_layout Plain Layout
+Lastly, the LoginController handles all the login/logout requests and the
+ registration event.
+ Notice that the logout can happen voluntarily (the user selects it) or
+ by expiration (fixed time of log in expires).
 \end_layout
 
 \end_inset
@@ -4151,6 +4158,15 @@ Version 3.1
 \series default
 ] :: Added the ride cost calculation algorithm, section 3.2, both in pseudo
  code and a possible implementation in Java.
+\end_layout
+
+\begin_layout Itemize
+[27-28/12/2016] [
+\series bold
+Version 3.2
+\series default
+] :: Checked name coherence between the structure diagrams and added the
+ LoginController component in the component diagrams.
 \end_layout
 
 \begin_layout Subsection
