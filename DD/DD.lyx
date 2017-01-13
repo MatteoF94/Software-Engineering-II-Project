@@ -3446,11 +3446,7 @@ Schematic vision of the PowerEnJoy application
 placement H
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \align center
