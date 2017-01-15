@@ -91,7 +91,7 @@ Integration Test Plan Document
 
 \series bold
 \size large
-Document Version 1.0
+Document Version 1.1
 \begin_inset Newline newline
 \end_inset
 
@@ -818,7 +818,7 @@ IS8
 
 \begin_layout Plain Layout
 ConnectionHandler -> ReservationController, MonitoringController, RideController
-, LoginController
+, LoginController, Collaborator interface
 \end_layout
 
 \end_inset
@@ -841,6 +841,10 @@ ConnectionHandler -> ReservationController, MonitoringController, RideController
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -857,7 +861,7 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 A note must be made on the integration tests with ID 4, 5, 6 and 7, referring
@@ -890,15 +894,63 @@ Car
 \end_layout
 
 \begin_layout Standard
-The car needs only one test for integration, assuming that both components,
- the software part of the CarSensorSystem and the CarApplication have already
- been unit tested.
- Without any need of figures describing the situation, we have:
+The car needs only sequential tests for integration, assuming that all the
+ components have already been unit tested.
+ There is actually no need to unit test the sensor system of the car, because
+ it is taken for true that is fully functional and all the ports are fully
+ working (as stated in the DD, the communication port OBD-II will be used
+ when communicating the CAN-bus data of the vehicle).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename IntegrationSequenceImages/IntegrationCar.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration sequence on the vehicle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="3">
+<lyxtabular version="3" rows="3" columns="3">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="6col%">
 <column alignment="left" valignment="top" width="70col%">
@@ -939,7 +991,7 @@ Paragraph
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -948,20 +1000,49 @@ IC1
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-CarApplication -> CarSensorSystem (software)
+VehicleInterface -> CarSensorSystem
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 3.2.1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IC2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CarApplication -> VehicleInterface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.2.2
 \end_layout
 
 \end_inset
@@ -2204,6 +2285,89 @@ Dependencies:
  NONE.
 \end_layout
 
+\begin_layout Standard
+\align center
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "60col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ID:
+\series default
+ IS8T5.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Test Item(s):
+\series default
+ ConnectionHandler -> Collaborator interface.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Input specification:
+\series default
+ Method triggers (accident call request incoming).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Output specification:
+\series default
+ the ConnectionHandler correctly redirects the incoming accident help request
+ from the user to an operator, using the Collaborator interface.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Description/purpose:
+\series default
+ It may be difficult to test a communication interface, but we don't actually
+ need to check if the operator received the call or not.
+ Only the interaction between the two components has to be tested.
+ When the ConnectionHandler receives an incoming message of accident help
+ request it must operate in different ways.
+ First has to update all the information about the ride and the service
+ of the user.
+ Then an operator must be contacted, to interact directly with the user
+ to understand what exactly happened.
+ This testing allows us to check if the messages are exchanged correctly.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dependencies:
+\series default
+ CollaboratorStub
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Note:
+\series default
+ our software doesn't actually need an operator entity to work, nor a component
+ related to it.
+ However, when testing, it would be good to simulate the complete exchange
+ of messages between server and collaborator (incoming request, accept request,
+ start call, end call, and so on).
+\end_layout
+
 \begin_layout Subsection
 Car integration test cases
 \end_layout
@@ -2225,7 +2389,7 @@ ID:
 \series bold
 Test Item(s):
 \series default
- CarApplication -> CarSensorSystem (software)
+ VehicleInterface -> CarSensorSystem
 \end_layout
 
 \begin_layout Itemize
@@ -2233,7 +2397,76 @@ Test Item(s):
 \series bold
 Input specification:
 \series default
- CarSensorSystem data.
+ CarSensorSystem data, communicated through the OBD-II port of the vehicle.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Output specification:
+\series default
+ all the car data and signals are correctly gathered, given the information
+ of the vehicle contained in the VehicleInterface configurator module.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Description/purpose:
+\series default
+ before going to the CarApplication component, the car data, furnished through
+ the CAN-bus and the OBD-II port, have to be correctly gathered.
+ The VehicleInterface component, using the information of the vehicle, contained
+ into its modules, takes the data and processes it, into a more readable
+ form, for both the programmers and the machine.
+ Already built VIs usually work with formats readable by Android systems
+ and Python based devices.
+ However VIs can have their software made 
+\begin_inset Quotes eld
+\end_inset
+
+by hand
+\begin_inset Quotes erd
+\end_inset
+
+, so that the VehicleInterface component will translates the CAN data into
+ the desired format.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dependencies:
+\series default
+ NONE.
+\end_layout
+
+\begin_layout Subsubsection
+Test case IC2
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ID:
+\series default
+ IC2T1.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Test Item(s):
+\series default
+ CarApplication -> VehicleInterface
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Input specification:
+\series default
+ CarSensorSystem data, translated into the correct format .
 \end_layout
 
 \begin_layout Itemize
@@ -2250,8 +2483,9 @@ Output specification:
 Description/purpose:
 \series default
  before the integration with the rest of the subsystems, it is necessary
- to ensure that the car application works correctly, grasping the car electronic
-s data and elaborating it.
+ to ensure that the car application works correctly, taking the translated
+ car data from the VehicleInterface component and elaborating it, to provide
+ it to the server, via network, and to the car screen.
 \end_layout
 
 \begin_layout Itemize
@@ -2619,6 +2853,31 @@ Even before the subsystem integration and tests, during the Server components
  
 \end_layout
 
+\begin_layout Subsubsection
+CollaboratorStub
+\end_layout
+
+\begin_layout Paragraph
+Usages
+\end_layout
+
+\begin_layout Itemize
+IS8T5
+\end_layout
+
+\begin_layout Paragraph
+Description
+\end_layout
+
+\begin_layout Standard
+Such stub doesn't appear in the component views of the project.
+ In fact, the thought system doesn't actually need an operator entity to
+ work, nor a component related to it.
+ However, when testing, it would be good to simulate the complete exchange
+ of messages between server and collaborator (incoming request, accept request,
+ start call, end call, and so on).
+\end_layout
+
 \begin_layout Subsection
 Data needed for the tests
 \end_layout
@@ -2794,6 +3053,15 @@ Version 1.0
 ] :: Added all the sections of the document.
 \end_layout
 
+\begin_layout Itemize
+[15/01/2017] [
+\series bold
+Version 1.1
+\series default
+] :: Rewrite of the car integration tests and addition of the IS8T5 test
+ case.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -2807,7 +3075,11 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 14.00 hours
+[15/01/2017]: 1.30 hours (spent rewriting the car integration tests section)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 15.30 hours
 \end_layout
 
 \begin_layout Subsubsection*

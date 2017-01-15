@@ -303,7 +303,7 @@ Tier: physical deployment of layers.
 \begin_layout Itemize
 Safe area: it is a specific area where the electric cars of PowerEnJoy service
  can park.
- The set of safe areas is pre-defined and owned by the company/society that
+ The set of safe areas is predefined and owned by the company/society that
  requested the management system for the service.
 \end_layout
 
@@ -324,6 +324,25 @@ Communication primitives: set of instructions and procedure that allow a
 \begin_layout Itemize
 Sensor data retrieval: procedure that consists in getting all the information
  collected by the sensors of the car.
+\end_layout
+
+\begin_layout Itemize
+ECU: electronic control unit of a car.
+\end_layout
+
+\begin_layout Itemize
+VI: vehicle interface.
+\end_layout
+
+\begin_layout Itemize
+OBD-II: it is a sort of computer which monitors emissions, mileage, speed,
+ and other useful data.
+\end_layout
+
+\begin_layout Itemize
+CAN bus: the controller area network bus is a system that allows the interaction
+ between a processor and the other peripherals of the device in which it
+ is (usually, a vehicle).
 \end_layout
 
 \begin_layout Subsection
@@ -712,7 +731,7 @@ know
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -742,10 +761,6 @@ High level car system
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -983,10 +998,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename StructureDiagrams/DetailedComponent.png
@@ -1030,7 +1041,7 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-Figure 6 represents an even more detailed component diagram, including sub
+Figure 8 represents an even more detailed component diagram, including sub
  components, interfaces, products (artifacts) and ports.
  One of the two area previously described can be seen as a mail office.
  The component ConnectionHandler, as the name suggests, handles the incoming
@@ -1071,6 +1082,32 @@ ModelSkeleton: representation of the analyzed world
 \end_layout
 
 \begin_layout Itemize
+Vehicle Interface: allows an interaction between the sensor systems of the
+ car and the application installed on a module of the ECUs.
+ It contains different modules, including:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Vehicle configurator: depends from the car, contains information about the
+ hardware of the vehicle, that will be used by the VI component.
+\end_layout
+
+\begin_layout Itemize
+CAN data receiver: interacts with the sensor systems of the car, connecting
+ the VI hardware to the OBD-II port.
+ It receives data in CAN format (figure 9, sub subsection 2.3.3).
+\end_layout
+
+\begin_layout Itemize
+Data transducer: takes the CAN data and traduces it into a readable format
+ for the application.
+ In this case it will be a CAN to Java transduction.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
 CarApplication: contains all the procedures that elaborates the data retrieved
  by the sensor system of the car and interacts with the server.
 \end_layout
@@ -1084,6 +1121,107 @@ Lastly, the LoginController handles all the login/logout requests and the
  registration event.
  Notice that the logout can happen voluntarily (the user selects it) or
  by expiration (fixed time of log in expires).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Car components description and considerations
+\end_layout
+
+\begin_layout Standard
+After having described the components of the whole system, it's now time
+ to discuss further how exactly do they work.
+ This sub subsection, as the title implies, describes how the car data is
+ retrieved and how the communication within its modules (both hardware and
+ software) works.
+\begin_inset Newline newline
+\end_inset
+
+An ECU is a computer with internal pre-programmed and programmable computer
+ chips that is not much different from a home computer or laptop.
+ The vehicle’s engine computer ECU is used to operate the engine by using
+ input sensors and output components to control all engine functions.
+ The ECU needs inputs from vehicle sensors to compute the information using
+ a program that has been stored in the ECU on a programmable memory chip.
+ The ECU program will use the inputted sensor information to compute the
+ needed output like the amount of fuel injected and when to spark the coil
+ in order to start the engine.
+ Some vehicles may incorporate more than one ECU into a single unit called
+ a powertrain control module (PCM).
+ These units can be an advantage by having more modules in one location
+ but may be a disadvantage by adding longer wires to reach the component
+ it operates.
+ 
+\begin_inset Newline newline
+\end_inset
+
+As stated multiple times in this document and in the RASD, the interaction
+ between user and car will be mostly passive and there will be no real modificat
+ion of the vehicle features (speed, breaks, and so on).
+ A standard ECU will be then more than sufficient to the purpose of the
+ thought system.
+ However, more logic is needed, to analyze the retrieved data in site (directly
+ on the car) and communicating it to the user by means of a screen.
+ For this purpose an ECU-line module can be created and incorporated into
+ the PCM of the vehicle.
+ 
+\begin_inset Newline newline
+\end_inset
+
+But how exactly do the data retrieval components of the car and the ECU
+ modules communicate? The vehicle interface (VI) is a device that plugs
+ into the OBD-II port (and thus to the CAN bus), reads and translates OBD-II
+ requests and CAN messages into a standard cross-vehicle format.
+ The translated messages can be sent over USB or Bluetooth, so they can
+ be read by any computer or device.
+ The host device connects to the vehicle interface and reads the translated
+ vehicle data.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The idea is then to connect, using an inner OBD-II port, to a vehicle interface
+ and then send the data directly to the car application, to elaborate it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/OBD_VI_ECU.png
+	lyxscale 40
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Data communication concept
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -3446,11 +3584,7 @@ Schematic vision of the PowerEnJoy application
 placement H
 wide false
 sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -4169,6 +4303,14 @@ Version 3.2
  LoginController component in the component diagrams.
 \end_layout
 
+\begin_layout Itemize
+[15/01/2017] [
+\series bold
+Version 3.3
+\series default
+] :: Added major description to the Car components, going into further detail.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -4225,13 +4367,13 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-[28/11/2016]: 1.00 hours (rewriting of subsection 2.7 and addition of subsubsectio
-n 2.7.2)
+[28/11/2016]: 1.00 hours (rewriting of subsection 2.7 and addition of sub
+ subsection 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-[29/11/2016]: 2.30 hours (writing of subsubsection 2.7.3 about architecture
- patterns and addition of concepts to subsubsection 2.7.2)
+[29/11/2016]: 2.30 hours (writing of sub subsection 2.7.3 about architecture
+ patterns and addition of concepts to sub subsection 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
@@ -4255,7 +4397,12 @@ n 2.7.2)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 35.30 hours
+[15/01/2017]: 1.00 hours (writing sub subsection 2.3.3, about a more detailed
+ description of the car components and interaction between them)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 36.30 hours
 \end_layout
 
 \begin_layout Subsubsection*

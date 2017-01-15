@@ -1,0 +1,4456 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{changepage}
+\date{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "Cambria"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing other 1.2
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 25col%
+\topmargin 20col%
+\rightmargin 25col%
+\bottommargin 20col%
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Design Document
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset VSpace vfill
+\end_inset
+
+
+\series bold
+\size large
+Document Version 3.2
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+Matteo Frosi (mat.
+ 875393)
+\begin_inset Newline newline
+\end_inset
+
+Luca Costa (mat.
+ 808109)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This document, addressed mainly to developers, aims to go into further details
+ regarding the specification of the project, described in the RASD.
+ Here more technical features will be described, including:
+\end_layout
+
+\begin_layout Itemize
+The high level architecture
+\end_layout
+
+\begin_layout Itemize
+Some possible design patterns 
+\end_layout
+
+\begin_layout Itemize
+The description of the main components and their interaction (Runtime View)
+\end_layout
+
+\begin_layout Itemize
+A brief description of the algorithms on which the software relies
+\end_layout
+
+\begin_layout Itemize
+A more detailed overview of the user interfaces
+\end_layout
+
+\begin_layout Standard
+Although these are the main topics of the document, other minor details
+ will be touched and discussed, such as the architectural style and a brief
+ comparison with other styles and the mapping between the requirements defined
+ in the RASD and the designed elements described in this document.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+PowerEnJoy is an electrical car sharing service, based on a mobile application.
+ The targets of the service, intended as users, are people that needs to
+ move from a place to another within a city and requires a conveyance to
+ move (because they don't have their own or simply can't use it).
+\begin_inset Newline newline
+\end_inset
+
+A user can make a reservation for a car, using the mobile app and his/her
+ account, and check for the availability and status of all the cars within
+ his/her position, identified using GPS localization, or a specific one,
+ inserted manually by the user.
+ As stated before, to access the service, the user must possess a private
+ account, so a registration is needed.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The system provides the users a safe way (identification code) to access
+ the cars, and the riding service and keeps trace of the status of all the
+ cars.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, the system prizes or punishes a respectively good or bad behavior
+ from the users, applying a discount or an overcharge on the cost of a ride.
+ As example, if the user leaves the car without much battery, he/she will
+ have to pay more than the standard cost of the ride, because the car will
+ need to be charged and this operation has a cost.
+ On the other hand, if a user plugs the car before ending the service, it
+ receives a discount.
+\begin_inset Newline newline
+\end_inset
+
+The system includes other functionality, such as GPS based maps available
+ in every car, an emergency procedure in case an accident occur during a
+ ride and the notification of a car status if the user requested it.
+\end_layout
+
+\begin_layout Subsection
+Definitions, acronyms, abbreviations
+\end_layout
+
+\begin_layout Itemize
+RASD: document about the requirements analysis of the project.
+\end_layout
+
+\begin_layout Itemize
+DD: document about the design choices and the components description of
+ the project.
+\end_layout
+
+\begin_layout Itemize
+GPS: global navigation satellite system that provides location and time
+ information in all weather conditions, anywhere on or near the Earth where
+ there is an unobstructed line of sight to four or more GPS satellites.
+ 
+\end_layout
+
+\begin_layout Itemize
+SMS: short message service; it is a notification sent to a mobile phone,
+ we need a GSM gateway to use it.
+\end_layout
+
+\begin_layout Itemize
+GMS gateway: device that allows SMS text messages to be sent and/or received
+ by email, from Web pages or from other software applications by acquiring
+ a unique identifier from the mobile phone's Subscriber Identity Module,
+ or SIM card.
+\end_layout
+
+\begin_layout Itemize
+Push notification/ push message: it is a notification sent to a smartphone
+ using the mobile application.
+\end_layout
+
+\begin_layout Itemize
+API: application programming interface; it is a common way to communicate
+ with another system.
+\end_layout
+
+\begin_layout Itemize
+REST: representational state transfer, it's one way of providing interoperabilit
+y between computer systems on the Internet.
+\end_layout
+
+\begin_layout Itemize
+RESTFul: REST with no session.
+\end_layout
+
+\begin_layout Itemize
+UX: user experience design
+\end_layout
+
+\begin_layout Itemize
+URL: uniform resource locator.
+\end_layout
+
+\begin_layout Itemize
+MVC: model view controller, it's a design pattern.
+\end_layout
+
+\begin_layout Itemize
+SOA: service oriented architecture, it's a style of software design where
+ services are provided to the other components by application components,
+ through a communication protocol over a network.
+\end_layout
+
+\begin_layout Itemize
+Layer: way of organizing code in sections sharing a common goal.
+ The highest partition includes Presentation Layer, Business or Logic Layer
+ and Data Layer.
+\end_layout
+
+\begin_layout Itemize
+Tier: physical deployment of layers.
+\end_layout
+
+\begin_layout Itemize
+Safe area: it is a specific area where the electric cars of PowerEnJoy service
+ can park.
+ The set of safe areas is predefined and owned by the company/society that
+ requested the management system for the service.
+\end_layout
+
+\begin_layout Itemize
+Special safe area: it is a safe area where power grid stations are installed.
+\end_layout
+
+\begin_layout Itemize
+Power grid station: it is an installation that allows the recharge of an
+ electric car.
+\end_layout
+
+\begin_layout Itemize
+Communication primitives: set of instructions and procedure that allow a
+ communication between machines and devices over a network.
+\end_layout
+
+\begin_layout Itemize
+Sensor data retrieval: procedure that consists in getting all the information
+ collected by the sensors of the car.
+\end_layout
+
+\begin_layout Itemize
+ECU: electronic control unit of a car.
+\end_layout
+
+\begin_layout Itemize
+VI: vehicle interface.
+\end_layout
+
+\begin_layout Itemize
+OBD-II: it is a sort of computer which monitors emissions, mileage, speed,
+ and other useful data.
+\end_layout
+
+\begin_layout Itemize
+CAN bus: the controller area network bus is a system that allows the interaction
+ between a processor and the other peripherals of the device in which it
+ is (usually, a vehicle).
+\end_layout
+
+\begin_layout Subsection
+Document structure
+\end_layout
+
+\begin_layout Itemize
+Introduction: this section introduces the design document.
+ It gives an overview on what topics will be covered and what aspects described
+ in the RASD will be improved here.
+\end_layout
+
+\begin_layout Itemize
+Architecture Design: this section is divided into different parts, each
+ describing an aspect of the software design.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Overview: brief description of the division in tiers and layers of the applicati
+on.
+\end_layout
+
+\begin_layout Itemize
+Overview of the car system: brief description of the interaction between
+ car hardware (electronics) and software
+\end_layout
+
+\begin_layout Itemize
+Components and interaction: high level and detailed view of the components
+ of the application and the way they communicate.
+\end_layout
+
+\begin_layout Itemize
+Deployment: view of the physical devices and the way they contains components
+\end_layout
+
+\begin_layout Itemize
+Runtime diagrams: describe the interaction between the components of the
+ system, using some cases described in the RASD, under the use case description
+ section (which also refers to some scenarios).
+\end_layout
+
+\begin_layout Itemize
+Component interfaces: describe the interaction between the interfaces of
+ the system.
+\end_layout
+
+\begin_layout Itemize
+Architectural styles and patterns: describes in detail the architecture
+ chosen for our software and the structural patterns supporting it.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Algorithm Design: this section describes some of the algorithms that the
+ application will rely on.
+ To focus on the algorithm idea and not the fine grained implementation,
+ each one will first be described using pseudo-code and only then will be
+ shown using real code.
+\end_layout
+
+\begin_layout Itemize
+User Interface Design: this section presents mockups and user experience
+ explained via UX diagrams.
+\end_layout
+
+\begin_layout Itemize
+Requirements Traceability: this section aims to explain how the decisions
+ taken in the RASD are linked to design elements.
+\end_layout
+
+\begin_layout Itemize
+Document further description: containing useful information about changelog,
+ the references and the used tools.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Architecture design
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Subsubsection
+General description
+\end_layout
+
+\begin_layout Standard
+PowerEnJoy relies on a three tier architecture.
+ Referring to the proposed system architecture presented in section 2.3 of
+ the RASD, the following figure represents the tier division of the system.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/TierDivision.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Proposed architecture, tier division - red: client, blue: server, azure:
+ database
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+The client side includes all the possible ways by which a user can interact
+ with the server (and the service), that are the mobile application and
+ the car itself.
+ The first represents the classical idea of client tier, including a GUI
+ and a minimal amount of processing power that allows the user to have a
+ connection with the rest of the tier, shown in a graphical way, that is
+ more user friendly.
+ The latter is, instead, a particular client tier that acts as a mini server,
+ because it contains more logic than the mobile application.
+ Here there is not a real graphic interface but multiple mechanical interfaces
+ (MUI) can be detected, such as the numeric keypad that make the user able
+ to unlock the car or end the service, the emergency button and the car
+ screen, that is thought more towards an informative interface than an interacti
+ve interface.
+ To better understand this concept, follow the same figure, this time divided
+ in high level layers.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/LayerDivision.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Proposed architecture, layer division - red: presentation, blue: logic/business,
+ purple: data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+The mobile application is also part of the logic layer because it can hold
+ some immediate processes, instead of delegating them to the main server.
+ An immediate example could be the elaboration of the GPS based map during
+ the research of an available car.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Layers
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/LogicView.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Layer representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+The figure is quite self explanatory but it is worth to spend some words
+ about each layer.
+\begin_inset Newline newline
+\end_inset
+
+The presentation layer can be found in the mobile application and in each
+ car, however with a major difference.
+ In the car the presentation layer consists of the devices that allows an
+ interaction with the user, that are not just the screen and the way the
+ information is displayed to the user.
+ Obviously, the car screen works in the same way, elaborating and showing
+ the information of the car and the ride, but other objects are already
+ 
+\begin_inset Quotes eld
+\end_inset
+
+presenting
+\begin_inset Quotes erd
+\end_inset
+
+ something useful for the user: the numeric keypad to insert the access
+ code and the emergency button.
+\begin_inset Newline newline
+\end_inset
+
+The logic layer is divided into two minor parts, that are located on the
+ mobile device and on the car, and a major section, that is on the server(s).
+ The first parts have the goal to elaborate small chunk of information (car
+ data) or to simply remodeling the view presented to the user (mobile app
+ and car screen) , while the latter represents the real core of the software,
+ where all the decisions and interactions are taken.
+\begin_inset Newline newline
+\end_inset
+
+Lastly, the data layer involves the data filtering and interaction with
+ the server, when requested.
+\end_layout
+
+\begin_layout Plain Layout
+It is noticeable that all the layers share critical components, mostly regarding
+ the security and communication of the software.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Overview of the car system
+\end_layout
+
+\begin_layout Standard
+It should be useful to spend some words to discuss more in detail the structure
+ of the car and the way the user can interact with it, and consequentially
+ with the server.
+ Using multiple sensors, information about the car status can be retrieved,
+ such as battery charge, number of passengers, degradation level of the
+ car components, or even the localization data, obtained with GPS.
+ Such data pool is interfaced with the car system, that resembles the shape
+ of an application.
+ The car app can be considered as a cluster of procedures and interfaces
+ that allows user, car hardware and system to communicate and 
+\begin_inset Quotes eld
+\end_inset
+
+know
+\begin_inset Quotes erd
+\end_inset
+
+ about each other.
+ Speaking in pattern terms, the car app emulates the controller entity in
+ the MVC pattern, even if only partially.
+ As said in the previous subsection, while the emergency button and the
+ numeric keypad make the user interact with the car in an active way, the
+ car screen acts as a passive element and is simply needed to inform the
+ user of the car status and the service info.
+ We can consider such feature as a way to diminish the interaction user-system
+ to a very strict level, without changing the user perspective of the service.
+ Such reduction lightens the logic needed in the car, making the project
+ more achievable from a budget and complexity point of view.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/CarSystemDetailed.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level car system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/carStructure.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Car structure, including electronics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Components of the system
+\end_layout
+
+\begin_layout Subsubsection
+High level view
+\end_layout
+
+\begin_layout Standard
+From an high point of view, the system can be divided into four elements.
+ The users can interact with the server, that is the main central where
+ all the logic is concentrated, directly or with the support of the car.
+ A user can initiate the interaction with the server using his/her mobile
+ application.
+ To proceed in using the service, the user must first be logged into the
+ system and for every action he/she does (monitoring request, reservation
+ request, take back of a reservation, code request and so on), he/she has
+ to wait for the server response, informing the user that the request has
+ been successful or not.
+ Because of this sequentiality of actions, the communication directed from
+ user to server has to follow synchronous rules when proceeding in a certain
+ sequence and leave all the other non-interactive options as to be implemented
+ in an asynchronous way.
+ As example the user shouldn't be prohibited to search for an available
+ car even if he/she already made a reservation, but he/she cannot made a
+ code request if there is no reservation made.
+ A clever way to implement the user-server relationship is to made all the
+ communications asynchronous but thanks to particular patterns, MVC among
+ them, denying the usage of particular services if certain conditions are
+ not met.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The user can also interact indirectly with the server using the car - or
+ it can be said that the car interacts with the server -.
+ Some physical interfaces, such as the emergency button or the numeric keypad,
+ allow the user to modify the condition of a car and, consequentially, of
+ his/her service.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The server/central acts mainly as an elaborator, or referring to the chosen
+ architecture, as a monolithic logic processor.
+ Its job is to coordinate the requests from the users and the change of
+ status of all the cars.
+ As said before, the interaction between user and server can be described
+ with a simple MVC pattern.
+ From a very high view, the user makes an action, communicates it to the
+ server, the server elaborates the request and confirms/rejects the will
+ of the user.
+ The server-car-user relationship is a bit more complex.
+ Firstly, there is a continuous interaction between every car and the server,
+ that follows this sequence: 
+\end_layout
+
+\begin_layout Enumerate
+Data retrieval 
+\end_layout
+
+\begin_layout Enumerate
+Car status update (car to server) 
+\end_layout
+
+\begin_layout Enumerate
+Database update (server to database) 
+\end_layout
+
+\begin_layout Enumerate
+[Optional] Car update (server to car), as example the lock following the
+ end of the service
+\end_layout
+
+\begin_layout Standard
+Moreover, to this sequence must be added the interaction with the user,
+ that is both passive and active as said in the previous section.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The server communicates with all the other components using asynchronous
+ messages, because it does not depend on their status but acts as the independen
+t core of the software.
+ Just referring to the user behavior, it would be unthinkable to have the
+ server wait for a user decision, stated that the thinktime can be to long,
+ and each communication would become a bottleneck for the whole system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/HighViewComponents.png
+	lyxscale 20
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level view of the components of the system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Detailed views
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/MidDetComponent.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deeper high level component diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Deepening the high level component diagram, each big node can be fragmented
+ into smaller parts, each characterized by its functionality.
+ As previously said, The user can interact directly with the main server/central
+ using his/her mobile application, or, indirectly, using some of the car
+ physical devices (the button and the numeric keypad).
+ Focusing more on the server composition, multiple components to handle
+ and manage every part of the service are needed.
+ Purely from a topological point of view, the server consists of two big
+ areas.
+ One refers to all the structures and components that handles and addresses
+ incoming data from and to the external world, while the other refers to
+ all the functionality and procedures that allow the elaboration of an event
+ and the consequent updates on the server itself, but also on the external
+ world (database, clients or cars).
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/DetailedComponent.png
+	lyxscale 15
+	scale 22
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detailed component diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Figure 8 represents an even more detailed component diagram, including sub
+ components, interfaces, products (artifacts) and ports.
+ One of the two area previously described can be seen as a mail office.
+ The component ConnectionHandler, as the name suggests, handles the incoming
+ and outgoing data, sorting it to the specific controller.
+ The other area, composed by the Model and the ServiceCore interacts with
+ the Database, providing it the information about the Model itself.
+ The NotificationManager component takes care of the communication and interacti
+on needed with the user's device.
+ In detail:
+\end_layout
+
+\begin_layout Itemize
+GMSGateway: device that allows SMS text messages to be sent and/or received
+ by email, from software applications.
+\end_layout
+
+\begin_layout Itemize
+PushGateway: device(s) that manages push notifications.
+\end_layout
+
+\begin_layout Itemize
+NotificationManager: component that takes care of the interaction with the
+ user's device.
+\end_layout
+
+\begin_layout Itemize
+ConnectionHandler: component that sorts incoming and outgoing messages (data
+ transfer).
+\end_layout
+
+\begin_layout Itemize
+ServiceCore: contains all the procedures supporting the software (algorithms,
+ functions and so on).
+\end_layout
+
+\begin_layout Itemize
+ModelSkeleton: representation of the analyzed world
+\end_layout
+
+\begin_layout Itemize
+Vehicle Interface: allows an interaction between the sensor systems of the
+ car and the application installed on a module of the ECUs.
+ It contains different modules, including:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Vehicle configurator: depends from the car, contains information about the
+ hardware of the vehicle, that will be used by the VI component.
+\end_layout
+
+\begin_layout Itemize
+CAN data receiver: interacts with the sensor systems of the car, connecting
+ the VI hardware to the OBD-II port.
+ It receives data in CAN format (figure 9, sub subsection 2.3.3).
+\end_layout
+
+\begin_layout Itemize
+Data transducer: takes the CAN data and traduces it into a readable format
+ for the application, 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+CarApplication: contains all the procedures that elaborates the data retrieved
+ by the sensor system of the car and interacts with the server.
+\end_layout
+
+\begin_layout Itemize
+Database: device used to store the model data
+\end_layout
+
+\begin_layout Plain Layout
+Lastly, the LoginController handles all the login/logout requests and the
+ registration event.
+ Notice that the logout can happen voluntarily (the user selects it) or
+ by expiration (fixed time of log in expires).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Car components description and considerations
+\end_layout
+
+\begin_layout Standard
+After having described the components of the whole system, it's now time
+ to discuss further how exactly do they work.
+ This sub subsection, as the title implies, describes how the car data is
+ retrieved and how the communication within its modules (both hardware and
+ software) works.
+\begin_inset Newline newline
+\end_inset
+
+An ECU is a computer with internal pre-programmed and programmable computer
+ chips that is not much different from a home computer or laptop.
+ The vehicle’s engine computer ECU is used to operate the engine by using
+ input sensors and output components to control all engine functions.
+ The ECU needs inputs from vehicle sensors to compute the information using
+ a program that has been stored in the ECU on a programmable memory chip.
+ The ECU program will use the inputted sensor information to compute the
+ needed output like the amount of fuel injected and when to spark the coil
+ in order to start the engine.
+ Some vehicles may incorporate more than one ECU into a single unit called
+ a powertrain control module (PCM).
+ These units can be an advantage by having more modules in one location
+ but may be a disadvantage by adding longer wires to reach the component
+ it operates.
+ 
+\begin_inset Newline newline
+\end_inset
+
+As stated multiple times in this document and in the RASD, the interaction
+ between user and car will be mostly passive and there will be no real modificat
+ion of the vehicle features (speed, breaks, and so on).
+ A standard ECU will be then more than sufficient to the purpose of the
+ thought system.
+ However, more logic is needed, to analyze the retrieved data in site (directly
+ on the car) and communicating it to the user by means of a screen.
+ For this purpose an ECU-line module can be created and incorporated into
+ the PCM of the vehicle.
+ 
+\begin_inset Newline newline
+\end_inset
+
+But how exactly do the data retrieval components of the car and the ECU
+ modules communicate? The vehicle interface (VI) is a device that plugs
+ into the OBD-II port (and thus to the CAN bus), reads and translates OBD-II
+ requests and CAN messages into a standard cross-vehicle format.
+ The translated messages can be sent over USB or Bluetooth, so they can
+ be read by any computer or device.
+ The host device connects to the vehicle interface and reads the translated
+ vehicle data.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The idea is then to connect, using an inner OBD-II port, to a vehicle interface
+ and then send the data directly to the car application, to elaborate it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ArchitecturePNGs/OBD_VI_ECU.png
+	lyxscale 40
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Data communication concept
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deployment 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/DeploymentDiagram.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deployment diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The PowerEnJoy software can be divided into three cores.
+ The user-related core is deployed on the mobile device and in the same
+ way the car-related core, which slightly differs from the first because
+ it mainly takes care of the car logic and data elaboration, is deployed
+ on the car processor / computer.
+ The last core is obviously related to the logic tier of the whole software,
+ deployed on the server machine(s).
+ 
+\begin_inset Newline newline
+\end_inset
+
+The Apache Tomcat server runs on the application server and the Spring framework
+, that provides a comprehensive programming and configuration model for
+ modern Java-based enterprise applications - on any kind of deployment platform.
+ A key element of Spring is infrastructural support at the application level.
+ Moreover it provides foundational support for JDBC, allowing a simple and
+ easy interaction with the main database.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Runtime diagrams
+\end_layout
+
+\begin_layout Subsubsection
+Login runtime diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeLogin.png
+	lyxscale 30
+	scale 23
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Login runtime sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+This diagram describes, as the name implies, the interaction of some components
+ during the login phase.
+ After having accessed the login section on the mobile application, the
+ user has to insert the login credentials.
+ The app communicates with the server, thanks to the ConnectionHandler component
+, that makes a request on the database to retrieve the couple user/password.
+ As the diagram represents the 
+\shape italic
+use case description 1.1
+\shape default
+, described in the RASD, it holds the assumption that the user has already
+ registered.
+ Otherwise a double check is needed: before searching for the couple user/passwo
+rd the server has to check if the user is in the database, meaning he/she
+ already registered.
+ The user may have inserted a wrong password, so he/she sees an error message
+ on the screen, instead of the main page of the app.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Reservation runtime diagram - purpose of model -
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{adjustwidth}{-2cm}{-2cm}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeReservation.png
+	lyxscale 10
+	scale 21
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reservation runtime sequence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{adjustwidth}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram represents the first part of the 
+\shape italic
+use case description 1.2
+\shape default
+ in the RASD, not considering the pickup phase.
+ The user accesses the car search section on the mobile app and can decide
+ if using his/her own location or a specific address.
+ The mobile app converts the address into coordinates (and this denotes
+ a part of logic in the app, to lighten the server logic core) and communicates
+ them to the server.
+ The ConnectionHandler component interacts directly with the model.
+ The model searches for the nearby cars, in a 5km range zone, and selects
+ the ones with more than 20% of the battery.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Why the model and not the database? After having delayed the description
+ of the model from the components description, it is necessary to explain
+ the purpose of the model.
+ It acts as a sort of cache: instead of interacting continuously with the
+ database, the server contains, in the model, a bit chunk of information,
+ such as car location and minimal status, user status of login and so on.
+\begin_inset Newline newline
+\end_inset
+
+The server communicates then the list of cars to the mobile app, that displays
+ it to the user.
+ He/she can now select a car and make a reservation.
+ After having informed the server of the reservation request, the ReservationCon
+troller component handles the request, creating a timer (to count the expiring
+ time before the reservation expires), the reservation object and updating
+ Model and Database.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+End of service runtime diagram
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeEndService.png
+	lyxscale 10
+	scale 22
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+End of service runtime activities
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram describes, with some simplifications, the relations of the component
+s during the end phase of the service, referring to the 
+\shape italic
+use case description 5
+\shape default
+ of the RASD.
+ The phase begins when the user inserts the access code of the service using
+ the numeric keypad of the car.
+ The latter detects that the service is going to end, so the code is reset
+ (to avoid further uses of the car) and all the doors are locked.
+ Meanwhile the server is informed of the end of the ride, so it collects
+ from the model all the data about the ride and starts all the core functionalit
+y, in the ServiceCore component, concerning this phase, such as ride cost
+ calculation, payment, and so on.
+ The Model and the Database are updated (the model doesn't need to know
+ the ride anymore, but the database does, for future usage of such data).
+ The ServiceCore will also use the NotificationManager to notify the user
+ of the service cost, through the PushGateway described in section 2.3.2.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Temporary stop by runtime diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeStopBy.png
+	lyxscale 30
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Temporary stop by runtime activities
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram describes the sequence of activities of the components of the
+ system involved in the temporary stop by action, described partially in
+ the 
+\shape italic
+use case description 4
+\shape default
+ of the RASD.
+ After having turned off and locked the car, the CarApplication stops the
+ ride cost counter and powers off some of the car components, such as the
+ dashboard, the internal lights and the screen - the user is gone, there
+ is no need to waste energy -.
+ The server receives information about the stop by action and calculates
+ the new fee, operation done by the ServiceCore, using the data contained
+ in the Model about the ride and the received data.
+ This to check for the coherence of information, in fact the cost on the
+ model should be the same of the cost calculated by the car - logic replica
+ -.
+ After the application of the new fee, the Model is updated and CarApplication
+ is informed of it, ready to begin once again charging the user.
+ Last thing to notice, and it's also written in the diagram, is that the
+ value when the counter stopped and when it begins again, must be the same.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Emergency handling runtime diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/RuntimeEmergency.png
+	lyxscale 20
+	scale 20
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Emergency handling runtime diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The diagram describes the sequence of activities of the components of the
+ system involved in the emergency handling, described in the use case descriptio
+n 6 of the RASD.
+ During the ride an accident or a health problem to the driver can suddenly
+ happen, making him/her press the emergency button.
+ The car system detects the button pressed and calls the car application
+ that starts the emergency procedure.
+ This procedure will slow down the car together with notifying the Model
+ wrought the ConnectionHandler.
+ The CarStatus is changed to Emergency by the Model and the ServiceCore
+ starts the emergency call procedure which notifies the Database to update
+ the old data and use the CollaboratorInterface to call to the user in the
+ car and to know what is the problem.
+ Finally the sequence ends when the external operator called by the collaborator
+, arrives on site.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Component interfaces
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename StructureDiagrams/ComponentInterfaceDiagram.png
+	lyxscale 30
+	scale 45
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Component interfaces
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Architectural styles and patterns
+\end_layout
+
+\begin_layout Subsubsection
+Overall architecture and comparison with other architectures
+\end_layout
+
+\begin_layout Standard
+As described in the introduction (Overview 2.1), PowerEnJoy software will
+ be deployed following a 3-Tier architecture, composed of a database, a
+ server and a client.
+ The client consists of both the mobile app and the car (that is the other
+ main actor, along with the user).
+ Here some features of this architecture:
+\end_layout
+
+\begin_layout Itemize
+Specialized (there is 1 tier dedicated to a certain task).
+\end_layout
+
+\begin_layout Itemize
+Flexible: the server and the database are single points of failure of the
+ system but acts independently.
+ If a client 
+\begin_inset Quotes eld
+\end_inset
+
+brakes
+\begin_inset Quotes erd
+\end_inset
+
+ the other tiers will still continue to work.
+\end_layout
+
+\begin_layout Itemize
+Secure: the client will not have direct access to the database, but each
+ tier acts as a proxy to the next level.
+\end_layout
+
+\begin_layout Itemize
+Deployed as a Monolith, so easier implementation of module interactions.
+\end_layout
+
+\begin_layout Itemize
+Simple to test and deploy.
+\end_layout
+
+\begin_layout Standard
+Before making a paragon with other architectures, here is made a compartmentaliz
+ation between layers, already described in the previously said Overview:
+\end_layout
+
+\begin_layout Itemize
+Client: contains an interface to the Business Logic Layer (BLL).
+\end_layout
+
+\begin_layout Itemize
+Server, containing the biggest chunk of software logic: Business Logic Layer,
+ that is separate from other tiers or layers, such as the data access layer
+ or service layer.
+\end_layout
+
+\begin_layout Itemize
+Database, containing the Data Access Layer (DAL).
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+3T vs Hexagonal
+\end_layout
+
+\begin_layout Standard
+The core of the hexagonal architecture is logic implemented by modules with
+ attached several services using specific adapters.
+ As the 3T it is also deployed as a Monolith and due to the modularity it
+ is simple to test and deploy.
+ However hexagonal architectures are more suitable for big and complex systems,
+ dealing with multiple services and actors.
+ The developing complexity is also higher, due to the implementation of
+ more modules and adapters/interfaces than a 3T
+\series bold
+.
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+3T vs SOA
+\end_layout
+
+\begin_layout Standard
+The SOA, service oriented architecture, is a style of software design where
+ services are provided to the other components by application components,
+ through a communication protocol over a network.
+ A service is a discrete unit of functionality that can be accessed remotely
+ and acted upon and updated independently, such as retrieving a credit card
+ statement online.
+ SOA is:
+\end_layout
+
+\begin_layout Itemize
+Scalable
+\end_layout
+
+\begin_layout Itemize
+Reusable
+\end_layout
+
+\begin_layout Itemize
+Flexible
+\end_layout
+
+\begin_layout Standard
+SOA would not be a good idea for PowerEnJoy due to the heavy data exchange
+ and the lack of the underlying idea of services: in the studied problem
+ all the 
+\begin_inset Quotes eld
+\end_inset
+
+services
+\begin_inset Quotes erd
+\end_inset
+
+ are fragment and functionality provided by the same provider, such as the
+ reservation request or the monitoring request.
+\end_layout
+
+\begin_layout Paragraph
+3T vs Microservices
+\end_layout
+
+\begin_layout Standard
+The Microservices architecture is a specialization of and implementation
+ approach for service oriented architectures (SOA) used to build flexible,
+ independently deployable software systems.
+ Services in a microservices architecture are processes that communicate
+ with each other over a network in order to fulfill a goal and services
+ should have a small granularity.
+\begin_inset Newline newline
+\end_inset
+
+For the same reasons described in the paragraph, 3T vs SOA, also the Microservic
+es architectures is not a good option in describing and developing the PoerEnJoy
+ software, despite the better efficiency and the very low dependence factor.
+\end_layout
+
+\begin_layout Subsubsection
+Protocols
+\end_layout
+
+\begin_layout Standard
+The tiers of the PowerEnJoy software communicate through the network and
+ exchange data in respect of the following protocols.
+\end_layout
+
+\begin_layout Paragraph
+
+\shape italic
+JDBC
+\end_layout
+
+\begin_layout Standard
+Java Database Connectivity (JDBC) is an application programming interface
+ (API) for the programming language Java, which defines how a client may
+ access a database.
+ It is part of the Java Standard Edition platform, from Oracle Corporation.
+ It provides methods to query and update data in a database, and is oriented
+ towards relational databases.
+ It is used by the BLL to communicate with the DAL.
+ Considering all the drivers, the supported database servers are: 
+\end_layout
+
+\begin_layout Itemize
+MySql 5.1 
+\end_layout
+
+\begin_layout Itemize
+Java DB 10.5.3.0 
+\end_layout
+
+\begin_layout Itemize
+Oracle 11 
+\end_layout
+
+\begin_layout Itemize
+PostgreSQL 8.4 
+\end_layout
+
+\begin_layout Itemize
+DB2 9.7 
+\end_layout
+
+\begin_layout Itemize
+Sybase ASE 15 
+\end_layout
+
+\begin_layout Itemize
+Microsoft SQL Server 2008
+\end_layout
+
+\begin_layout Standard
+The value-add provided by the Spring Framework JDBC abstraction is perhaps
+ best shown by the sequence of actions outlined in the table below.
+ The table shows what actions Spring will take care of and which actions
+ are the responsibility of the application developers.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Action
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Spring
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Define connection parameters.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open the connection.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Specify the SQL statement.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Declare parameters and provide parameter values
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prepare and execute the statement.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Set up the loop to iterate through the results (if any).
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Do the work for each iteration.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Process any exception.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Handle transactions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Close the connection, statement and resultset.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\shape italic
+RESTful API with JSON
+\end_layout
+
+\begin_layout Standard
+The word REST refers to web services that are one way of providing interoperabil
+ity between computer systems on the Internet.
+ REST-compliant web services allow requesting systems to access and manipulate
+ textual representations of web resources using a uniform and predefined
+ set of stateless operations.
+ They are used by clients to interact with the BLL.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Design patterns
+\end_layout
+
+\begin_layout Standard
+Most of the applicable design patterns are already described in the RASD,
+ especially in the Class diagram subsubsection 4.2.4.
+ Here follows some detailed information about some of them.
+ 
+\end_layout
+
+\begin_layout Paragraph
+MVC
+\end_layout
+
+\begin_layout Standard
+Spring is a big framework, that contains a lot of components.
+ One of these is Spring MVC, a module that lets the developers implement
+ the web application according to the model-view-controller design pattern.
+ Inside the application the following objects will be implemented:
+\end_layout
+
+\begin_layout Itemize
+Models: represented by the classes that in turn represent the handled objects
+ and the access classes to the database.
+\end_layout
+
+\begin_layout Itemize
+Views: represented by various JSP files (compiled in HTML) and some classes
+ related to the exportation of files which format differs from HTML (PDF,
+ XLS, CSV...).
+\end_layout
+
+\begin_layout Itemize
+Controllers: represented by classes that keep listening from incoming messages
+ on a specific URL each, and thanks to Models and Views handle the user's
+ requests.
+\end_layout
+
+\begin_layout Paragraph
+Adapter 
+\end_layout
+
+\begin_layout Standard
+Adapters are used in our mobile application to adapt the Driver interface
+ to the RESTful API interface.
+\end_layout
+
+\begin_layout Paragraph
+SOA and Microservices
+\end_layout
+
+\begin_layout Standard
+SOA and Microservices may be software architectures, but the underlying
+ idea can be also applied to pieces of software.
+ Along with the controllers and models, those 
+\begin_inset Quotes eld
+\end_inset
+
+simil-patterns
+\begin_inset Quotes erd
+\end_inset
+
+ can improve the modularity of the software, disjointing the model data
+ (so that there is not a monolithic model but multiple fragmented ones)
+ and the business logic (proven by the fact that multiple controllers coexist
+ an the ServiceCore component could be broken into minor cores, each containing
+ functions and procedures related only to a specific event, such as the
+ logic of the service end rather than the login phase).
+\end_layout
+
+\begin_layout Paragraph
+Client - Server
+\end_layout
+
+\begin_layout Standard
+As already described in previous sections, the software development will
+ follow the client - server paradigm, where the large part of network communicat
+ion happens between the users and the server.
+ The client-server paradigm has the following advantages:
+\end_layout
+
+\begin_layout Itemize
+High maintainability
+\end_layout
+
+\begin_layout Itemize
+Independence from the number of clients connected
+\end_layout
+
+\begin_layout Itemize
+Good level of security, regarding data transfer
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithm design
+\end_layout
+
+\begin_layout Standard
+Here follows some simple algorithms that will be needed as logic parts in
+ the implementation of the PowerEnJoy software.
+ These algorithms are implemented and tested with JUnit4 over a small fragment
+ of the code describing the server piece of software.
+ Code and tests can be found at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/MatteoF94/Software-Engineering-II-Project/tree/master/CodeFrag
+ments
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Monitoring request
+\end_layout
+
+\begin_layout Subsubsection
+Pseudo code
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ the user has already made a reservation
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the Model contains a reservation made by the user 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+communicate error and handle it
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else continue
+\series default
+\shape default
+ with the algorithm
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ there is already someone monitoring the car which request is made about
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the Model contains a monitoring with the same car the user wants to monitor
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the user is already monitoring that car
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+communicate error and handle it
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+else
+\series default
+\shape default
+ add user to the monitorers list on that car
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else
+\series default
+\shape default
+ create a new monitoring to add in the Model
+\end_layout
+
+\begin_layout Subsubsection
+Possible simplified implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP1.png
+	lyxscale 30
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm, contained in the MonitoringController component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/MonAlgoP2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Algorithm parts inside the model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Even though the pseudo code is clear in the description of the sequence
+ of procedures and actions to be invoked, the possible implementation that
+ has been thought using Java, given the architectural decisions described
+ in the document, needs some explanations.
+ Only the essential parts are shown in the figures, and all the support
+ methods in various classes are omitted.
+ One software design idea is to reduce the information usable by the controllers
+ (MonitoringController in this case) making the model expose only the needed
+ methods, which differs for each controller.
+ Moreover, to improve modularity, for each controller the respective procedure
+ is divided into the controller itself and the Model, and possibly all the
+ classes involved.
+ However the Model contains only utility functions, such as the ones described
+ in Figure 15, where some search are made on the list of reservations and
+ monitoring of the server.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The time complexity of the algorithm is mainly due to the checks that involve
+ the cycling of the elements in the model.
+ If there are n monitoring, u users and m reservations, in the worst case
+ scenario (where for each monitoring there are already u/n users) the time
+ complexity is O(max{u, m}).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ride cost calculation
+\end_layout
+
+\begin_layout Subsubsection
+Pseudo code
+\end_layout
+
+\begin_layout Standard
+calculate standard cost of the ride
+\end_layout
+
+\begin_layout Standard
+get ride time
+\end_layout
+
+\begin_layout Standard
+get stop by time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+subtract
+\series default
+\shape default
+ the stop time to the ride time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+multiply
+\series default
+\shape default
+ effective ride time with standard fee
+\begin_inset Newline newline
+\end_inset
+
+calculate stop cost of the ride
+\end_layout
+
+\begin_layout Standard
+get stop by time
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+multiply
+\series default
+\shape default
+ stop by time with stop fee
+\begin_inset Newline newline
+\end_inset
+
+calculate bonus/overcharge multipliers
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the time of multiple passengers > half of the ride total time
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply passenger bonus multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the car battery >= 50
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply high battery bonus multiplier
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+else if
+\series default
+\shape default
+ the car battery < 20
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply low battery overcharge multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the car is plugged into a charger
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply plugged bonus multiplier
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+check if
+\series default
+\shape default
+ the car is more 3km from the nearest safe area
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+for all
+\series default
+\shape default
+ the safe areas
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+for all
+\series default
+\shape default
+ the positions in each safe area
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\series bold
+\shape italic
+if
+\series default
+\shape default
+ the euclidean distance from the car and the safe area is less than 3km
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+don't apply any multiplier (0)
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \qquad{}
+\end_inset
+
+apply distance overcharge multiplier
+\begin_inset Newline newline
+\end_inset
+
+apply all the multipliers to the previously calculated cost of the ride
+\end_layout
+
+\begin_layout Subsubsection
+Possible simplified implementation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP1.png
+	lyxscale 30
+	scale 57
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, part including fees and bonus multipliers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, part including the calculation sub-functions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename AlgorithmsScreens/RideCostAlgoP3.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ride cost algorithm, function that checks the distances
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+It is important to stress the fact that the algorithm is improvable in many
+ way.
+ As example, if we consider that there are n safe areas and m positions
+ dedicated, the algorithm has a time complexity (worst case where each safe
+ area contains m/n positions) of O(m), given by the linear time for all
+ the checks added with the exception of the distance multiplier calculation
+ (n time m/n).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Moreover, there are many simplifications.
+ Considering again the distance check, it is calculated in the euclidean
+ way, but in reality it is likely to follow the road lines and it does not
+ follow a straight line from car to safe area.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+User Interface design
+\end_layout
+
+\begin_layout Subsection
+Interfaces mockups
+\end_layout
+
+\begin_layout Subsubsection
+Mobile dashboard
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_1.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_2.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_3.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_4.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_5.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_6.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_7.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Car screen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/Mock_8.png
+	lyxscale 30
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/Mokups/mock_9.png
+	lyxscale 30
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+User experience diagrams
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/UXs/UX_1.png
+	lyxscale 20
+	scale 24
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schematic vision of the PowerEnJoy application
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI_images/UXs/UX_2.jpg
+	lyxscale 20
+	scale 18
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Consumer Journey Map of the service use
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+The reader may wonder why such diagrams, concerning about a user point of
+ view of the service, are in the design document.
+ For Figure 14 the reason is obvious: the diagram represents both how the
+ user will find the page arrangement of the app pages (sections), so it
+ also implies a design choice.
+ Figure 15 is more subtle.
+ Apparently the journey map tells of the experience of a particular user,
+ Lilith in the case - that is also one protagonist of the scenarios described
+ in the RASD -.
+ However, a bad experience of the user or whichever point of disappoint
+ corresponds to an improvable design choice, or a better assumption.
+ The first problem in the diagram clearly represents what just mentioned:
+ the user found difficult to proceed in the usage of the service because
+ she didn't know what to do.
+ It could be better to inform the user on the 
+\begin_inset Quotes eld
+\end_inset
+
+how to
+\begin_inset Quotes erd
+\end_inset
+
+ as soon as possible, maybe adding a link on the welcome screen, asking
+ whether the user know how to proceed or not, linking to a page of the app
+ where instructions on the service are described (see also Figure 14).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Requirements traceability
+\end_layout
+
+\begin_layout Standard
+In this section it is defined list of the requirements and goals described
+ in the RASD and how they map with the designed components of the application.
+\end_layout
+
+\begin_layout Itemize
+[G1] Ensures that only the account owner can access his/her own account,
+ if he/she is already registered.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R1.1] Mobile app, ConnectionHandler, ServiceCore (for code generation),
+ interface to Database (to store the registration data), NotificationManager
+ and GMSGateway (to notify the user).
+\end_layout
+
+\begin_layout Itemize
+[R2.2] Mobile app, ConnectionHandler, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G2] Allows the user to reserve an available car for up to one hour before
+ the service starts and to take back such reservation before the picking
+ up time expires.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R2.1] Mobile app, ConnectionHandler, Model, Database.
+\end_layout
+
+\begin_layout Itemize
+[R2.2] Mobile app.
+\end_layout
+
+\begin_layout Itemize
+[R2.3] Mobile app, ConnectionHandler.
+\end_layout
+
+\begin_layout Itemize
+[R2.4] ServiceCore, Model, NotificationManager, PushGateway.
+\end_layout
+
+\begin_layout Itemize
+[R2.5] MobileApp, ConnectionHandler, ReservationController, Model, Database
+ (for the reservation).
+\end_layout
+
+\begin_layout Itemize
+[R2.6] MobileApp, CarSensorSystem, CarApplication, ConnectionHandler, Model,
+ Database (for the pick up event).
+\end_layout
+
+\begin_layout Itemize
+[R2.7] MobileApp, CarSensorSystem, CarApplication, ConnectionHandler, Reservation
+Controller.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G3] Allows the user to look for the available cars within an area that
+ he/she specified, or in the nearby areas, for a possible reservation.
+ If the car has a low battery charge, such as less than 20
+\backslash
+%, it does not appear on the user interface.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R3.1] Mobile app.
+\end_layout
+
+\begin_layout Itemize
+[R3.2] Mobile app, ConnectionHandler, ServiceCore.
+\end_layout
+
+\begin_layout Itemize
+[R3.3] ServiceCore, Model.
+\end_layout
+
+\begin_layout Itemize
+[R3.4] ServiceCore, Model, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G4] Ensures that the user is able to trace/check the status of a car, available
+ or already reserved, and receive push notification about it.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R4.1] ServiceCore, Model.
+\end_layout
+
+\begin_layout Itemize
+[R4.2] Mobile app
+\end_layout
+
+\begin_layout Itemize
+[R4.3] ReservationController, Model, NotificationManager, PushGateway.
+\end_layout
+
+\begin_layout Itemize
+[R4.4] Mobile app, MonitoringController, Model.
+\end_layout
+
+\begin_layout Itemize
+[R4.5] Model, Database, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G5] Ensures that the user is able to access, and open, the car he/she reserved,
+ if he/she is in time.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R5.1] Mobile app, ConnectionHandler, ServiceCore, NotificationManager, PushGatew
+ay.
+\end_layout
+
+\begin_layout Itemize
+[R5.2] Mobile app, ConnectionHandler, ServiceCore, CarApplication, CarSensorSyste
+m.
+\end_layout
+
+\begin_layout Itemize
+[R5.3] ServiceCore, Model, ConnectionHandler, CarApplication, CarSensorSystem.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G6] Ensures that the service, and the charge on the user, starts only when
+ the engine of a car is ignited.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R6.1] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R6.2] CarSensorSystem, CarApplication, ConnectionHandler, RideController.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G7] Ensures that the user is informed real-time on the current cost of
+ the service, when using it, and the possible discounts and overcharges.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R7.1] to [R7.5] CarSensorSystem, CarApplication.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G8] Ensures that the user knows the safe areas around him/her during the
+ ride.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R8.1] CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R8.2] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R8.3] CarApplication, ConnectionHandler, Model.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G9] Allows the user to press a button on the car to contact an operator
+ in case of emergency, such as a car accident, a mechanical problem or sudden
+ illness.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R9.1] to [R9.4] CarSensorSystem, CarApplication, ConnectionHandler, RideControlle
+r, Model, Database, CollaboratorInterface.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G10] Allows the user to leave the car but continue to use the service.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R10.1] CarSensorSystem, CarApplication, ConnectionHandler, RideController,
+ Model, ServiceCore.
+\end_layout
+
+\begin_layout Itemize
+[R10.2] RideController, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G11] Ensures that the user can end the service at any time.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R11.1] and [R11.3] CarSensorSystem, CarApplication, ConnectionHandler, RideContro
+ller, Model.
+\end_layout
+
+\begin_layout Itemize
+[R11.2] CarSensorSystem, CarApplication.
+\end_layout
+
+\begin_layout Itemize
+[R11.4] CarSensorSystem, CarApplication, ConnectionHandler, RideController,
+ ServiceCore, Model, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G12] Ensures that the user receives a discount or overcharge when specific
+ conditions are met.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R12.1] to [R12.4] CarSensorSystem, CarApplication, ConnectionHandler, RideControl
+ler, Model, ServiceCore, Database.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G13] Ensures that the user is notified of the applied discount and overcharges
+ once the service ends and payment is applied.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R13.1] ServiceCore, NotificationManager, PushGateway.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+[G14] Ensures that when the user picks up a car, it has no mechanical or
+ electrical problem.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+[R14.1] and [R14.2] CarSensorSystem, CarApplication, ConnectionHandler, Model,
+ CollaboratorInterface.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Document further information
+\end_layout
+
+\begin_layout Subsection
+References
+\end_layout
+
+\begin_layout Itemize
+RASD, before Version 4.5
+\end_layout
+
+\begin_layout Itemize
+Assignments AA 2016-2017.pdf
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://msdn.microsoft.com/en-us/library/ee658116.aspx
+\end_layout
+
+\end_inset
+
+, containing some information about layers design
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://alistair.cockburn.us/Hexagonal+architecture
+\end_layout
+
+\end_inset
+
+, contains some information about the Hexagonal architecture
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.nginx.com/blog/introduction-to-microservices/
+\end_layout
+
+\end_inset
+
+, contains some information about the Microservices architecture
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://8thlight.com/blog/uncle-bob/2011/09/30/Screaming-Architecture.html
+\end_layout
+
+\end_inset
+
+, contains some advices over the architecture choice and implementation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.uxbooth.com/articles/8-must-see-ux-diagrams/
+\end_layout
+
+\end_inset
+
+, contains some examples of user experience diagrams
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://projects.spring.io/spring-framework/
+\end_layout
+
+\end_inset
+
+, contains some information about the Spring framework
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.agilemodeling.com/artifacts/componentDiagram.htm
+\end_layout
+
+\end_inset
+
+.
+ contains a brief description of the component diagrams from an AGILE point
+ of view
+\end_layout
+
+\begin_layout Itemize
+Sample Design Deliverable Discussed on Nov.
+ 2.pdf
+\end_layout
+
+\begin_layout Itemize
+Paper on the green move project.pdf
+\end_layout
+
+\begin_layout Itemize
+Second paper on the green move project.pdf
+\end_layout
+
+\begin_layout Subsection
+Used tools
+\end_layout
+
+\begin_layout Standard
+In creating the DD document, the following tools have been used:
+\end_layout
+
+\begin_layout Itemize
+Github, for version controller
+\end_layout
+
+\begin_layout Itemize
+LyX, to write the document and converting in .pdf format
+\end_layout
+
+\begin_layout Itemize
+StarUML, for UML diagrams and image exporting
+\end_layout
+
+\begin_layout Itemize
+Pencil, for the architecture logic and physical design
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://uxpressia.com
+\end_layout
+
+\end_inset
+
+, for the Consumer Journey Map
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.draw.io
+\end_layout
+
+\end_inset
+
+, for the interface mockups
+\end_layout
+
+\begin_layout Itemize
+Hunspell, for the spell check of the document
+\end_layout
+
+\begin_layout Itemize
+Atom, for the project markdown
+\end_layout
+
+\begin_layout Itemize
+IntelliJ IDEA, for the algorithms implementation and testing
+\end_layout
+
+\begin_layout Subsection
+ChangeLog
+\end_layout
+
+\begin_layout Itemize
+[21/11/2016] [
+\series bold
+Version 0.1
+\series default
+] :: Added first part of the document introduction, including preface, Purpose,
+ Scope and Definitions.
+ ChangeLog and Hours of work sections also introduced.
+\end_layout
+
+\begin_layout Itemize
+[21/11/2016] [
+\series bold
+Version 0.2
+\series default
+] :: Added the References and Document structure sections.
+ 
+\end_layout
+
+\begin_layout Itemize
+[23/11/2016] [
+\series bold
+Version 0.3
+\series default
+] :: Added the overview of the architecture of the project and a brief descripti
+on of the car system, so subsections 2.1 and 2.2.
+\end_layout
+
+\begin_layout Itemize
+[23/11/2016] [
+\series bold
+Version 0.4
+\series default
+] :: Added the description of the different architectural styles that were
+ considered and their brief comparison.
+\end_layout
+
+\begin_layout Itemize
+[24/11/2016] [
+\series bold
+Version 1.0
+\series default
+] :: Added high view of the components of the system with a detailed description
+, subsubsection 2.3.1.
+\end_layout
+
+\begin_layout Itemize
+[24/11/2016] [
+\series bold
+Version 1.1
+\series default
+] :: Added two detailed component diagrams, subsubsection 2.3.2.
+\end_layout
+
+\begin_layout Itemize
+[25/11/2016] [
+\series bold
+Version 1.2
+\series default
+] :: Added the deployment diagram and its description, subsection 2.4.
+\end_layout
+
+\begin_layout Itemize
+[26-27/11/2016] [
+\series bold
+Version 1.3
+\series default
+] :: Added three runtime views with the respective description (login, reservati
+on and end of the service), subsubsections 2.5.1, 2.5.2, 2.5.3.
+ 
+\end_layout
+
+\begin_layout Itemize
+[28/11/2016][
+\series bold
+Version 1.4
+\series default
+] :: Added runtime diagram of the service temporarily stop by, subsubsection
+ 2.5.4.
+ 
+\end_layout
+
+\begin_layout Itemize
+[28/11/2016][
+\series bold
+Version 1.5
+\series default
+] :: Added runtime diagram of an emergency handling, subsubsection 2.5.5 and
+ rewriting of section 2.7, including the addition of Protocols subsubsection,
+ 2.7.2.
+\end_layout
+
+\begin_layout Itemize
+[29/11/2016] [
+\series bold
+Version 1.6
+\series default
+] :: Added Spring/developer matrix in the Protocols subsubsection 2.7.2 and
+ added the Architecture patterns, subsubsection 2.7.3.
+\end_layout
+
+\begin_layout Itemize
+[30/11/2016] [
+\series bold
+Version 2.0
+\series default
+] :: Added Requirement traceability, section 5.
+ Incomplete sections about algorithm design and user interfaces (respectively
+ 3 and 4) also were added.
+\end_layout
+
+\begin_layout Itemize
+[30/11/2016] [
+\series bold
+Version 2.1
+\series default
+] :: Added ComponentInterfaceDiagram
+\end_layout
+
+\begin_layout Itemize
+[1/12/2016] [
+\series bold
+Version 2.2
+\series default
+] :: Added mockups in subsection 4.1 and two User eXperience diagrams in
+ subsection 4.2.
+ Also added subsection about used tools, 6.3.
+\end_layout
+
+\begin_layout Itemize
+[2/12/2016] [
+\series bold
+Version 3.0
+\series default
+] :: Added the monitoring algorithm, section 3.1, both in pseudo code and
+ a possible implementation in Java.
+\end_layout
+
+\begin_layout Itemize
+[6-7/12/2016] [
+\series bold
+Version 3.1
+\series default
+] :: Added the ride cost calculation algorithm, section 3.2, both in pseudo
+ code and a possible implementation in Java.
+\end_layout
+
+\begin_layout Itemize
+[27-28/12/2016] [
+\series bold
+Version 3.2
+\series default
+] :: Checked name coherence between the structure diagrams and added the
+ LoginController component in the component diagrams.
+\end_layout
+
+\begin_layout Itemize
+[15/01/2017] [
+\series bold
+Version 3.3
+\series default
+] :: 
+\end_layout
+
+\begin_layout Subsection
+Hours of work
+\end_layout
+
+\begin_layout Subsubsection*
+Matteo Frosi
+\end_layout
+
+\begin_layout Standard
+[Before 21/11/2016]: 3.00 hours (spent in analyzing well known architectures,
+ to study and apply them to our problem).
+\begin_inset Newline newline
+\end_inset
+
+[21/11/2016]: 2.00 hours (further analysis of an applicable architecture
+ to our problem, alleging to the classic 3 Tier architectures).
+\begin_inset Newline newline
+\end_inset
+
+[21/11/2016]: 1.00 hours (writing of the first part of the document).
+\begin_inset Newline newline
+\end_inset
+
+[23/11/2016]: 2.00 hours (writing of the overview section of the document
+ and drawing of architectures images)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.00 hours (drawing up of the component view and writing of
+ the component high view section)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.30 hours (drawing of the component in a more detailed view)
+\begin_inset Newline newline
+\end_inset
+
+[25/11/2016]: 1.00 hours (writing of the section about the detailed component
+ diagrams)
+\begin_inset Newline newline
+\end_inset
+
+[25/11/2016]: 3.00 hours (thinking, drawing and deploying the deployment
+ diagram)
+\begin_inset Newline newline
+\end_inset
+
+[26-27/11/2016]: 4.00 hours (thinking, drawing and describing three runtime
+ views, of Version 1.3)
+\begin_inset Newline newline
+\end_inset
+
+[28/11/2016]: 1.30 hours (addition of the fourth runtime diagram)
+\begin_inset Newline newline
+\end_inset
+
+[28/11/2016]: 1.00 hours (rewriting of subsection 2.7 and addition of subsubsectio
+n 2.7.2)
+\begin_inset Newline newline
+\end_inset
+
+[29/11/2016]: 2.30 hours (writing of subsubsection 2.7.3 about architecture
+ patterns and addition of concepts to subsubsection 2.7.2)
+\begin_inset Newline newline
+\end_inset
+
+[30/11/2016]: 1.30 hours (writing of the requirement traceability section,
+ with some modifications of the RASD)
+\begin_inset Newline newline
+\end_inset
+
+[1/12/2016]: 2.30 hours (drawing and insertion of the first two user experience
+ diagrams)
+\begin_inset Newline newline
+\end_inset
+
+[2/12/2016]: 3.00 hours (writing and testing the monitoring algorithm, creating
+ a fragment of code)
+\begin_inset Newline newline
+\end_inset
+
+[6-7/12/2016]: 3.00 hours (writing and testing the ride cost algorithm, improving
+ the previously created fragment of code)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 35.30 hours
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Luca Cost
+\series default
+a
+\end_layout
+
+\begin_layout Standard
+[Before 21/11/2016]: 2.30 hours (spent learning about the various architectures
+ and apply them to our problem)
+\begin_inset Newline newline
+\end_inset
+
+[22/11/16]: 1.00 hours (spent learning about a possible implementation of
+ the different architecture styles)
+\begin_inset Newline newline
+\end_inset
+
+[23/11/16]: 2.30 hours (spent writing comparison between architectures and
+ informing about DD document in general)
+\begin_inset Newline newline
+\end_inset
+
+[24/11/2016]: 2.00 hours (learning about how to draw a component diagram
+ and its effective first drawing)
+\begin_inset Newline newline
+\end_inset
+
+[25/11/2016]: 1.00 hour (informing on runtime and deploy diagram)
+\begin_inset Newline newline
+\end_inset
+
+[26/11/2016]: 1.30 hours (thinking and drawing architecture schema, not part
+ of the DD)
+\begin_inset Newline newline
+\end_inset
+
+[28/11/2016]: 2.00 hours (drawing emergency handling runtime diagram and
+ its description)
+\begin_inset Newline newline
+\end_inset
+
+[30/11/2016]: 2.00 hours (thinking and drawing componentInterface diagram)
+\begin_inset Newline newline
+\end_inset
+
+[1/12/2016]: 4.30 hours (drawing the mockups)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 19.00 hours
+\end_layout
+
+\end_body
+\end_document
