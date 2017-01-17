@@ -175,7 +175,11 @@ SLOC (Source Lines Of Code): it measures the lines of code of a project
 
 \begin_layout Itemize
 FP (function point): is a unit of measurement to express the amount of business
- functionality an information system provides to a user
+ functionality an information system provides to a user.
+\end_layout
+
+\begin_layout Subsection
+Reference Documents
 \end_layout
 
 \begin_layout Standard
@@ -3980,11 +3984,7 @@ Effort = A ∗ EAF ∗ KSLOC
 \begin_inset Newline newline
 \end_inset
 
-
-\series bold
 2.2.4 Schedule Estimation
-\series default
-
 \begin_inset Newline newline
 \end_inset
 
@@ -4149,14 +4149,6 @@ Version 0.1
 Version 0.2
 \series default
 ] 
-\end_layout
-
-\begin_layout Itemize
-[17/01/2017] [
-\series bold
-Version 0.3
-\series default
-]
 \end_layout
 
 \begin_layout Subsection
