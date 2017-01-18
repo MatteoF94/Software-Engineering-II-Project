@@ -175,11 +175,7 @@ SLOC (Source Lines Of Code): it measures the lines of code of a project
 
 \begin_layout Itemize
 FP (function point): is a unit of measurement to express the amount of business
- functionality an information system provides to a user.
-\end_layout
-
-\begin_layout Subsection
-Reference Documents
+ functionality an information system provides to a user
 \end_layout
 
 \begin_layout Standard
@@ -1449,14 +1445,17 @@ status open
 
 \series bold
 \begin_inset Graphics
-	filename /Users/Luca/Software-Engineering-II-Project/RASD/UML/ClassDiagram.png
-	BoundingBox 0bp 0bp 2166bp 1030bp
+	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 18.25.40.png
 
 \end_inset
 
 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -3984,7 +3983,11 @@ Effort = A ∗ EAF ∗ KSLOC
 \begin_inset Newline newline
 \end_inset
 
+
+\series bold
 2.2.4 Schedule Estimation
+\series default
+
 \begin_inset Newline newline
 \end_inset
 
@@ -4055,7 +4058,57 @@ The duration estimation seems fine, due to the complexity of the realization
 \end_layout
 
 \begin_layout Section
-Tasks
+Schedule
+\end_layout
+
+\begin_layout Standard
+In this section we are going to estimate a possible schedule of the whole
+ project.
+ We used a Gantt graph to display our result.
+ 
+\begin_inset Newline newline
+\end_inset
+
+It is important to precise that in the schedule we have posponed all the
+ code and testing part at the end, while before we have put the design part
+ that we really did during this 6 months.
+ As we can see, have been considered all the parts of a full project to
+ be developed, from design to implementation.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 17.39.50.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4066,7 +4119,63 @@ Tasks
 \end_layout
 
 \begin_layout Section
-Required resources
+Resource allocation
+\end_layout
+
+\begin_layout Standard
+In this section we are going to map the different tasks on the team working
+ at the project (us).
+ Our team is composed of two persons, so we have theoretically split every
+ part of the project in two.
+ 
+\begin_inset Newline newline
+\end_inset
+
+However, during working process, it happens that the working time will not
+ be the same because of common daily issues.
+ 
+\begin_inset Newline newline
+\end_inset
+
+As we said previously, we considered a full project development to represent
+ a more realistic estimation, that won't be really done (implementation
+ and testing).
+ So We have eventully split the Gantt graph in two part, one for each member
+ of the team.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 17.58.09.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4077,7 +4186,7 @@ Required resources
 \end_layout
 
 \begin_layout Section
-Risks
+Risk Managment
 \end_layout
 
 \begin_layout Standard
@@ -4151,6 +4260,14 @@ Version 0.2
 ] 
 \end_layout
 
+\begin_layout Itemize
+[17/01/2017] [
+\series bold
+Version 0.3
+\series default
+]
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -4173,7 +4290,25 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[15 / 01 / 16] : 3 hours (writing and completing the Funciton Points part)
+[15 / 01 / 17] : 3 hours (writing and completing the Funciton Points part)
+\begin_inset Newline newline
+\end_inset
+
+[16 / 01 / 17] : 3 hours (informing and writing the effort and cost estimation
+ part with COCOMO)
+\begin_inset Newline newline
+\end_inset
+
+[17 / 01 / 17] : 1.45 hours (writing and completing the effort and cost estimatio
+n part with COCOMO)
+\begin_inset Newline newline
+\end_inset
+
+[18 / 01 / 17] : 1.30 hours (Thinking and writing Schedule and Source allocation)
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_body
