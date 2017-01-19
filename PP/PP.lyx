@@ -4190,6 +4190,87 @@ Risk Managment
 \end_layout
 
 \begin_layout Standard
+In this section we are going to discuss some of the risks that the project
+ could face during its development.
+ Obviousbly not every single risk will be consiredered because it's impossible
+ to predict what will really happen.
+ This is only an estimation.
+\begin_inset Newline newline
+\end_inset
+
+First of all let's consider the team of the project : a programmer is supposed
+ to be skilled and working 8 hours a day.
+ This estimation fails when the programmer gets ill or quits.
+ A solution to this risk could be splitting the task beetween more programmers,
+ so that when one of them gets ill, the others are able to work as well.
+ Moreover if a person quits, the project doesn't fail and can be finished
+ by someone else.
+ Indeed the task doesn't have to belong to a single person.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Connected to this risks there are also the code loss and the wrong UI.
+ Code loss is the most common risk of a programmer.
+ Fortunately it is easely exceeded by an everyday backup.
+ On the other hand, the UI has to be very intuitive and very userfriendly,
+ to avoid any possible complaint.
+\begin_inset Newline newline
+\end_inset
+
+In second place we need to take care of the cars : every car has a smartphone
+ connected, so data plan has to be arrenged with vendors.
+ The arrangement brings a minimum risk because its a formal contract, but
+ on the other hand the amount of smartphone vendors and their low cost minimizes
+ the risk.
+ Moreover there is however a little risk that the car will not work properly.
+ A car, infact, has a determined cost and it is supposed to last.
+ The solution is simple and consists in buying the cars from a reliable
+ vendor.
+ 
+\begin_inset Newline newline
+\end_inset
+
+A similar risk is caused by the absence of the 3G connection.
+ In this case the user is not able to connect to the server and to reserve
+ the car.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Third, it is important to care about the opinion of the people using the
+ system and if it is popular or not.
+ Apart from the initial period, gaining popularity is the key to back up
+ the project.
+ Once the project is presented, it is important to start collecting possible
+ future users.
+ Otherwise this risk could lead to a bif fail.
+ So it is important to properly advertize the app.
+ 
+\begin_inset Newline newline
+\end_inset
+
+An other risk concerns the business.
+ Car sharing is not a new business, so it is important to focus on imporving
+ some aspects of the service, to have a competitive advantage compated to
+ the other sharing services.
+\begin_inset Newline newline
+\end_inset
+
+As far as money is concerned, istead, there could be a risk in a sudden
+ increase of the storage cost of the database on the cloud that could lead
+ an overprize.
+ Fortunately, theese days, there are planty of cloud services and swithing
+ to a different one is not a big problem.
+\begin_inset Newline newline
+\end_inset
+
+Last but not least risky is the sheduling : a bad schedule can lead to a
+ overestimtion of the cost or the users and to a wrong allocation of all
+ the resources that will become a big fail of the whole project.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -4216,6 +4297,10 @@ DD_3.2, before version 3.2
 Assignments AA 2016-2017.pdf
 \end_layout
 
+\begin_layout Itemize
+myTaxyService project Plan document version 1.1
+\end_layout
+
 \begin_layout Subsection
 Used tools
 \end_layout
@@ -4238,6 +4323,10 @@ Hunspell, for the spell check of the document
 
 \begin_layout Itemize
 Atom, for the project markdown
+\end_layout
+
+\begin_layout Itemize
+Ganttproject: to draw Gantt diagrams
 \end_layout
 
 \begin_layout Subsection
@@ -4272,6 +4361,14 @@ Version 0.3
 [18/01/2017] [
 \series bold
 Version 0.4
+\series default
+]
+\end_layout
+
+\begin_layout Itemize
+[19/01/2017] [
+\series bold
+Version 1.0
 \series default
 ]
 \end_layout
@@ -4313,6 +4410,14 @@ n part with COCOMO)
 \end_inset
 
 [18 / 01 / 17] : 1.30 hours (Thinking and writing Schedule and Source allocation)
+\begin_inset Newline newline
+\end_inset
+
+[19 / 01 / 17] : 2.15 hours (Thinking and writing the Risk Management part)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL : 14 hours
 \begin_inset Newline newline
 \end_inset
 
