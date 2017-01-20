@@ -1442,10 +1442,8 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 18.25.40.png
+	filename Tables/Class/Schermata 2017-01-18 alle 18.25.40.png
 
 \end_inset
 
@@ -2273,7 +2271,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 14.43.44.png
+	filename Tables/Scale Drivers/Scale Factors.png
 
 \end_inset
 
@@ -2609,7 +2607,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 19.51.00.png
+	filename Tables/Cost Drivers/RELY.png
 
 \end_inset
 
@@ -2650,7 +2648,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 19.56.16.png
+	filename Tables/Cost Drivers/DATA.png
 
 \end_inset
 
@@ -2689,7 +2687,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 20.06.16.png
+	filename Tables/Cost Drivers/CPLX.png
 
 \end_inset
 
@@ -2732,7 +2730,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 20.09.08.png
+	filename Tables/Cost Drivers/RUSE.png
 
 \end_inset
 
@@ -2773,7 +2771,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 20.15.57.png
+	filename Tables/Cost Drivers/DOCU.png
 
 \end_inset
 
@@ -2813,7 +2811,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 20.38.14.png
+	filename Tables/Cost Drivers/TIME.png
 
 \end_inset
 
@@ -2854,7 +2852,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-16 alle 21.06.06.png
+	filename Tables/Cost Drivers/STOR.png
 
 \end_inset
 
@@ -2896,7 +2894,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.10.11.png
+	filename Tables/Cost Drivers/PVOL.png
 
 \end_inset
 
@@ -2936,7 +2934,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.16.12.png
+	filename Tables/Cost Drivers/ACAP.png
 
 \end_inset
 
@@ -2976,7 +2974,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.19.07.png
+	filename Tables/Cost Drivers/PCAP.png
 
 \end_inset
 
@@ -3015,7 +3013,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.19.55.png
+	filename Tables/Cost Drivers/APEX.png
 
 \end_inset
 
@@ -3055,7 +3053,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.22.57.png
+	filename Tables/Cost Drivers/PLEX.png
 
 \end_inset
 
@@ -3095,7 +3093,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.23.07.png
+	filename Tables/Cost Drivers/LTEX.png
 
 \end_inset
 
@@ -3136,7 +3134,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.25.30.png
+	filename Tables/Cost Drivers/PCON.png
 
 \end_inset
 
@@ -3178,7 +3176,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.25.40.png
+	filename Tables/Cost Drivers/TOOL.png
 
 \end_inset
 
@@ -3220,7 +3218,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.39.01.png
+	filename Tables/Cost Drivers/SITE.png
 
 \end_inset
 
@@ -3262,7 +3260,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-17 alle 14.43.26.png
+	filename Tables/Cost Drivers/SCED.png
 
 \end_inset
 
@@ -4099,7 +4097,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 17.39.50.png
+	filename Tables/Schedule/Schermata 2017-01-18 alle 17.39.50.png
 
 \end_inset
 
@@ -4166,7 +4164,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /Users/Luca/Desktop/Schermata 2017-01-18 alle 17.58.09.png
+	filename Tables/Resource allocation/Schermata 2017-01-18 alle 17.58.09.png
 
 \end_inset
 
@@ -4368,7 +4366,7 @@ Version 0.4
 \begin_layout Itemize
 [19/01/2017] [
 \series bold
-Version 0.5
+Version 1.0
 \series default
 ]
 \end_layout
@@ -4414,6 +4412,10 @@ n part with COCOMO)
 \end_inset
 
 [19 / 01 / 17] : 2.15 hours (Thinking and writing the Risk Management part)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL : 14 hours
 \begin_inset Newline newline
 \end_inset
 
