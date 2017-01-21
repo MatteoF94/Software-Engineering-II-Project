@@ -91,7 +91,7 @@ Project Plan
 
 \series bold
 \size large
-Document Version 0.1
+Document Version 1.2
 \begin_inset Newline newline
 \end_inset
 
@@ -146,10 +146,10 @@ Purpose and scope
 \end_layout
 
 \begin_layout Standard
-This document represents the Projet Plan Document for Power Enjoy Service.
- Planning is a cricial part of the project because a bad estimation can
+This document represents the Project Plan Document for Power Enjoy service.
+ Planning is a crucial part of the project because a bad estimation can
  lead to a total failure.
- A Project plan gives informaiton about the size of the project, in terms
+ A Project plan gives information about the size of the project, in terms
  of line of code and cost/effort actually required on the base of different
  approaches (Function Points and COCOMO).
  Moreover it studies how to map the different tasks (different parts to
@@ -175,7 +175,53 @@ SLOC (Source Lines Of Code): it measures the lines of code of a project
 
 \begin_layout Itemize
 FP (function point): is a unit of measurement to express the amount of business
- functionality an information system provides to a user
+ functionality an information system provides to a user.
+\end_layout
+
+\begin_layout Itemize
+Gannt diagram: a type of bar chart illustrating a project schedule.
+\end_layout
+
+\begin_layout Itemize
+4GL: is a computer programming language envisioned as a refinement of the
+ style of languages classified as third-generation programming language
+ (3GL).
+ Languages claimed to be 4GL may include support for database management,
+ report generation, mathematical optimization, GUI development, or web developme
+nt.
+ 
+\end_layout
+
+\begin_layout Itemize
+Gearing factor: it is the average number of new plus modified (Effective)
+ Source Lines of Code per function point in the completed project.
+ Gearing factors are calculated by dividing the effective code count for
+ a completed project by the final function point count.
+\end_layout
+
+\begin_layout Itemize
+Internal logic file (ILF): homogeneous set of data used and managed by the
+ application.
+\end_layout
+
+\begin_layout Itemize
+External interface file (EIF): homogeneous set of data used by the application
+ but generated and maintained by other applications.
+\end_layout
+
+\begin_layout Itemize
+External input (EI): elementary operation to elaborate data coming from
+ the external environment.
+\end_layout
+
+\begin_layout Itemize
+External output (EO): elementary operation that generates data for the external
+ environment.
+\end_layout
+
+\begin_layout Itemize
+External inquiry (EQ): elementary operation that involves input and output,
+ without significant elaboration of data from logic files.
 \end_layout
 
 \begin_layout Standard
@@ -581,12 +627,16 @@ Function point analysis is based on 5 user identifiable logical "functions"
 \end_layout
 
 \begin_layout Subsubsection
-External Input (EI)
+External Inputs (EIs)
 \end_layout
 
 \begin_layout Standard
-The application interacts with three different actors, that are users, cars.
- Each of them has its own set of possible interations.
+The application interacts both with users and cars, that are the main actors
+ of the system.
+ We may also consider as a secondary actor the operators called when an
+ accident happens, even though it is not direct part of the system, with
+ the exception of an interface.
+ Each of them has its own set of possible interactions.
  
 \begin_inset Newline newline
 \end_inset
@@ -595,52 +645,90 @@ Considering the user, the system has to grant him:
 \end_layout
 
 \begin_layout Itemize
-login / logout
+Login / Logout: operation that involves the LoginController component of
+ the system.
 \end_layout
 
 \begin_layout Itemize
-check cars nearby : this operation takes palce when the user is going to
- reserve a car.
- Before it, the system checks his position to show him the cars nearby and
- if they are available or not.
- This operation is complex.
+Research of nearby cars: this operation takes place when the user is going
+ to reserve or monitor a car.
+ Before it, the system checks his position, or the suggested one by the
+ user, to show him the cars available within.
+ This operation has medium complexity.
 \end_layout
 
 \begin_layout Itemize
-reserve car : the click of the button reserve make the procedure start.
- After that the system has to notify the car that it has been reserved.
- THis operaiton , due to use of external hw to send / receive messages is
- complex.
+Reservation of a car: after having researched a car and selected it, the
+ user is invited to make a reservation, if it is available, or a monitoring.
+ In the first case, the request is sent and the system has to check for
+ its correctness.
+ After that, the user has to be notified that the car that has been reserved,
+ or that the request has been rejected.
+ This operation , due to use of external elements, as the ones to send or
+ receive messages, is complex.
 \end_layout
 
 \begin_layout Itemize
-monitor car : the button monitor implies that now on, the system will show
- the exactly position of the selected car.
- The position of the car is always in teh database of the system, so the
- client (user phone) has only to connect to it.
- The coplexity in Average - Low.
+Monitoring of a car: after having researched a car and selected it, the
+ user is invited to make a reservation, if it is available, or a monitoring.
+ In the latter case, the request is sent and the system has check for its
+ correctness.
+ After that, the user has to be notified that the request on the car has
+ been successful, or has been rejected.
+ With respect to the reservation process, it's a slightly more complex procedure
+, because it also involves the continuous check of the car status.
 \end_layout
 
 \begin_layout Itemize
-delete a reservation : delating has an average complexity because all the
- monitoring users have to be notified.
+Deletion of a reservation: deleting has an average complexity because all
+ the monitoring users on the interested car have to be notified.
 \end_layout
 
 \begin_layout Itemize
-register a new account : registering implies an average complexity because
- it has to write on the main database new informations.
+Deletion of a monitoring: deleting a monitoring has a low complexity, because
+ it only involves the deletion of the user in the list of monitoring user
+ for a specific car.
 \end_layout
 
 \begin_layout Itemize
-panik button press : The system gets the panic input and ontacts the external
- oprator.
- The complexity is low.
+Request of the access code: when the user has made a reservation and it's
+ in time to pick up the car, he/she has to inform the system that he/she
+ needs the code to access the car and benefit from the service.
+ The complexity is low because the usual checks are made and an unique code
+ is generated and stored for that user, until expiration.
+\end_layout
+
+\begin_layout Itemize
+Registration of a new account: registering implies an average complexity
+ because it has to write on the main database new information.
+\end_layout
+
+\begin_layout Itemize
+Emergency button press: the system has to receive the signal and simply
+ contact an external operator, redirecting him/her to the user.
+ The complexity is very low.
 \end_layout
 
 \begin_layout Standard
 Considering the car, the system receive the data of the ride and compute
  them, sending back as result the cost of the ride.
- This operaiton is complex.
+ This operation is complex.
+ Moreover, there is the retrieval of the car data using the VehicleInterface
+ component.
+ It is a complex operation because it involves the conversion of data format
+ and small elaboration.
+\begin_inset Newline newline
+\end_inset
+
+Lastly the system includes the action to add, delete or update a safe zone,
+ made by the system itself or an operator with particular privileges.
+ Each of this action has an high complexity, because it involves the use
+ of the database and the update of all the car status (just think about
+ the deletion of a safe area in which some cars are parked...).
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -666,35 +754,42 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="3">
+<lyxtabular version="3" rows="15" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 EI
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Complexity
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Function Points
 \end_layout
 
@@ -702,16 +797,16 @@ Function Points
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-login
+Login
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -720,7 +815,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -731,16 +826,16 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-logout
+Logout
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -749,7 +844,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -760,16 +855,16 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-check cars nearby
+Reservation of a car
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -778,7 +873,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -789,16 +884,16 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-reserve car
+Reservation of a car
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -807,7 +902,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -818,25 +913,54 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-monitor car
+Monitoring of a car
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deletion of a reservation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -847,16 +971,16 @@ Average
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-panick button
+Deletion of a monitoring
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -865,7 +989,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -876,16 +1000,103 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-data from cars
+Request of the access code
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Registration of a new account
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Emergency button press
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data elaboration from the cars
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -894,7 +1105,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -905,65 +1116,65 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Delete a reservation
+Addition, deletion and update of safe zones
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+Medium
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Register a new Account
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Average
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
+4x3
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Car data retrieval
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -974,7 +1185,7 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -983,11 +1194,11 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-39
+66
 \end_layout
 
 \end_inset
@@ -1003,46 +1214,58 @@ TOTAL
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-2.1.2 External Output (EO)
-\series default
+\begin_layout Subsubsection
 
-\begin_inset Newline newline
-\end_inset
+\series bold
+External Outputs (EOs)
+\end_layout
 
+\begin_layout Standard
 Our application must send information to the mobile phone of the user, to
- the car and to the external operator.
+ the car and to the external operator, outside the inquiries world.
  
 \end_layout
 
 \begin_layout Itemize
-Ride information : refers to the constant output signal that the system
- sends to the car using a gateaway.
- It contains the estimation of the cost of the ride and the possible discount
- to achieve.
- Moreover it refers also to the unlock code that the car receive, after
- reservation.
- (HIGH COMPLEX)
+Map construction: it refers to the information that the system sends to
+ the user mobile phone through the connection when the user searches for
+ the available cars within a certain range (including position, real availabilit
+y, battery, and so on).
+ It is a simple transmission of data, hence the complexity is low.
 \end_layout
 
 \begin_layout Itemize
-Request information : refers to the informations that the system sends to
- the clint mobile phone through a gateaway to complete the reservation (cars
- position, cars availability, unlock code, ecc).
- (AVERAGE COMPLEX)
+Notification of successful/unsuccessful reservation.
 \end_layout
 
 \begin_layout Itemize
-External operator request : refers to the connection made possible by the
- system between the user and the operator.
- (LOW COMPLEX)
+Notification of successful/unsuccessful monitoring.
 \end_layout
 
 \begin_layout Itemize
-Monitoring notification : refers to the notification sent when the car monitored
- becomes available again using the gateaway.
+Notification of ended monitoring (car taken)/available monitored car (car
+ reservation taken back or expired): it refers to the notification sent
+ when the car monitored becomes available again, using the push gateway,
+ or when the car has been picked up, and all the users monitoring it are
+ deleted from the list and informed.
+ It has medium complexity, due to the logic involved in the elimination
+ and coherence with the database.
+\end_layout
+
+\begin_layout Itemize
+Notification of the cost of the ride with the applied bonuses/overcharges.
+\end_layout
+
+\begin_layout Itemize
+Car updated when certain event occurs, such as end of the ride, code reset,
+ automatic lock (imposed by the server).
+\end_layout
+
+\begin_layout Itemize
+Notification of the operator: it refers to the connection made possible
+ by the system between the user and the operator, with a low complexity.
 \end_layout
 
 \begin_layout Standard
@@ -1067,35 +1290,42 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="3">
+<lyxtabular version="3" rows="8" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 EO
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Complexity
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Function Points
 \end_layout
 
@@ -1103,54 +1333,112 @@ Function Points
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ride information
+Map construction
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-High
+Low
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-7
+4
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Request Information
+Successful/unsuccessful reservation notification
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+Low
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Successful/unsuccessful monitoring notification
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ended monitoring (car taken)/available monitored car notification
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1161,16 +1449,16 @@ Average
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-External operator request
+Total cost of the ride
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1179,7 +1467,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1190,45 +1478,47 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Monitorig Notification
+Car update
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Low
+Medium
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-4
+5
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 TOTAL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1237,11 +1527,11 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-20
+26
 \end_layout
 
 \end_inset
@@ -1257,27 +1547,45 @@ TOTAL
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-2.1.3 External Inquiry (EQ)
-\series default
+\begin_layout Subsubsection
 
-\begin_inset Newline newline
-\end_inset
-
-The only external inquiry is the displaying on the user screen of the positions
- of the car nearby.
- This is done checking both the car positions and the user positions and
- mixing them to find the cars nearby the user.
- This whole procedure is very complex.
- 
 \series bold
+External Inquiries (EQs)
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
+\begin_layout Standard
+An inquiry is essentially a data retrieval request performed by an actor.
+ The external inquiries includes:
+\end_layout
 
+\begin_layout Itemize
+Request from the user of the positions of the nearby cars, from his/her
+ location or from the specified point.
+ This is done checking every car positions in the user zone and the user
+ positions and considering only the cars included in a certain radius.
+ This procedure is very complex, because the distance cannot easily calculated
+ with an Euclidean method, too simple, but considering the structure of
+ the roads.
 
+\series bold
+ 
+\end_layout
+
+\begin_layout Itemize
+Request from the operator of the ride data.
+ Even though it is not included in the software, the system shall provide,
+ along with the communication interface with the operator, a module that
+ allows the retrieval of specific data, useful to understand better the
+ situation of an accident.
+ It is quite complex because it should provide only little access, for the
+ operator, to the content of the server knowledge.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -1294,57 +1602,64 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 EI
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Complexity
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Funciton Points
+
+\series bold
+Function Points
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-car positions
+Position of the cars
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1353,7 +1668,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1364,7 +1679,36 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Accident data (from operator)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1375,7 +1719,7 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1384,11 +1728,11 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-6
+12
 \end_layout
 
 \end_inset
@@ -1404,56 +1748,57 @@ TOTAL
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-2.1.4 Internal Logic Files (ILF)
-\series default
+\begin_layout Subsubsection
 
-\begin_inset Newline newline
-\end_inset
+\series bold
+Internal Logic Files (ILFs)
+\end_layout
 
+\begin_layout Standard
 The class diagram belonging to the RASD document can be used to display
- the different ILFs that we are going to consider.
+ the different (but not all) the ILFs that we are going to consider.
  After the diagram, there is a table in which every component is associated
  with it's complexity and function points score.
+\end_layout
+
+\begin_layout Standard
+
 \series bold
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+
+\series bold
 \begin_inset Graphics
-	filename Tables/Class/Schermata 2017-01-18 alle 18.25.40.png
+	filename /Users/Matteo/Desktop/Software-Engineering-II-Project/RASD/UML/ClassDiagram.png
+	lyxscale 25
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+class diagram used in the RASD
+\end_layout
 
 \end_inset
 
 
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
+\end_layout
 
-\begin_inset Newline newline
 \end_inset
 
 
@@ -1476,37 +1821,44 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 
 \series bold
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="3">
+<lyxtabular version="3" rows="12" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 ILF
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Complexity
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Function Points
 \end_layout
 
@@ -1514,7 +1866,7 @@ Function Points
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1523,7 +1875,7 @@ System
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1532,7 +1884,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1543,7 +1895,7 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1552,16 +1904,16 @@ Reservation
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+Medium
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1572,7 +1924,7 @@ Average
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1581,16 +1933,16 @@ Monitoring
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+Medium
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1601,7 +1953,7 @@ Average
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1610,16 +1962,161 @@ PickUp
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average
+Low
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ride
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Position
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Accident
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SafeZone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Car
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1630,152 +2127,36 @@ Average
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ride
+User
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-High
+Medium
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-15
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Position
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Low
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7
+10
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Accident
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Low
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Safe Zone
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Low
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Car & User
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-High
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-15
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1786,7 +2167,7 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1795,11 +2176,11 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96
+98
 \end_layout
 
 \end_inset
@@ -1812,33 +2193,55 @@ TOTAL
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
 \end_inset
 
 
-\begin_inset Newline newline
+\end_layout
+
+\begin_layout Plain Layout
+The system class was an extremely simplified representation of all the other
+ components that interacts with the model (that is what is represented in
+ the diagram of figure 1.
+ We have also to include every components and its modules.
+ This, however, is a difficult task, because we don't exactly know the number
+ of modules of each component.
+ For such reason we set the complexity of the system class as maximum, so
+ 15.
+\end_layout
+
 \end_inset
 
-2.1.5 External Interface File (EIF)
-\series default
+ 
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
-The system doesn't rely on any external service.
- In fact, as far as the car nearby check, it is used a specific algorithm
- created by us, already in it.
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Subsubsection
 
 \series bold
-2.1.6 Cumulated Function Points and code size estimation
-\series default
+External Interface Files (EIFs)
+\end_layout
 
+\begin_layout Standard
+The system doesn't rely on any external service.
+ In fact, as far as the car nearby check, it is used a specific algorithm
+ created by us, already comprehended in the software.
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Accumulated Function Points and code size estimatio
+\series default
+n
+\end_layout
+
+\begin_layout Standard
+We can now collect all the data in a single table: 
 \begin_inset Newline newline
 \end_inset
 
-We can now collect all the data in a single table: 
+
 \end_layout
 
 \begin_layout Standard
@@ -1861,25 +2264,30 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Function Type
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Function Points
 \end_layout
 
@@ -1887,7 +2295,7 @@ Function Points
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1896,18 +2304,18 @@ External Input
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-38
+66
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1916,18 +2324,18 @@ External output
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-20
+26
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1936,18 +2344,18 @@ External Inquiry
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-6
+12
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1956,18 +2364,18 @@ Internal Logic File
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-96
+98
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1976,7 +2384,7 @@ External Interface
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1987,7 +2395,7 @@ External Interface
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1998,11 +2406,11 @@ TOTAL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-161
+202
 \end_layout
 
 \end_inset
@@ -2017,33 +2425,39 @@ TOTAL
 
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 From the table we can see a huge gap between internal logic and all the
  other parts.
  An explanation could be the fact that the client app and the cars mainly
  give data to the system, which is the one that computes them and gives
- back new informations about ride, ecc.
- The other important part is the external input, because on that relyies
+ back new information about ride.
+ The other important part is the external input, because on that relies
  all the computation of the system.
- However it seems overestimated the difference beetween them.
+ However it seems overestimated the difference between them.
  To conclude, the aim
 \series bold
  
 \series default
 of the project is concentrated on the client and the reliability of the
- system, so it is coherent considering more importantly theese two parts
- in the function points calculaiton.
-\begin_inset Newline newline
-\end_inset
+ system, so it is coherent considering more importantly these two parts
+ in the function points calculation.
+\end_layout
 
+\begin_layout Subsubsection
 
 \series bold
-2.1.7 Line of Code
-\series default
+Lines of Code
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
-On the base of the Funciton Points result, we can now estimate the number
+\begin_layout Standard
+On the base of the Function Points result, we can now estimate the number
  of lines of code.
  
 \begin_inset Newline newline
@@ -2055,11 +2469,7 @@ In a perfectly symmetrical distribution of gearing factors, the average
  by the number of gearing factors included in that sum.
  Although its purpose is to measure "central tendency", the average can
  be pulled up or down by extreme data values (or outliers).
- 
-\begin_inset Newline newline
-\end_inset
-
-The median, on the other hand, is simply the data point that lies in the
+ The median, on the other hand, is simply the data point that lies in the
  center of an ordered list of gearing factors.
  One half of the data points will lie above (and one half below) the median.
  
@@ -2068,6 +2478,8 @@ The median, on the other hand, is simply the data point that lies in the
 
 To conclude, the median may be a more accurate indicator of the central
  tendency.
+ Using J2EE to develop our software, we refer to particular values of gearing
+ factors.
  
 \series bold
 
@@ -2076,7 +2488,7 @@ To conclude, the median may be a more accurate indicator of the central
 
 
 \series default
-Average Bound 
+ 
 \begin_inset Newline newline
 \end_inset
 
@@ -2100,16 +2512,19 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-SLOC = 161 * 53 = 8533
+\align center
+
+\shape italic
+Average bound: 
+\begin_inset space \qquad{}
+\end_inset
+
+SLOC = 202 * 46 = 9292
 \end_layout
 
 \end_inset
 
 
-\series bold
- 
-\series default
-Medium Bound
 \series bold
 
 \begin_inset Newline newline
@@ -2135,7 +2550,14 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-SLOC = 161 * 49 = 7889
+\align center
+
+\shape italic
+Medium bound: 
+\begin_inset space \qquad{}
+\end_inset
+
+SLOC = 202 * 49 = 9898
 \end_layout
 
 \end_inset
@@ -2145,37 +2567,102 @@ SLOC = 161 * 49 = 7889
 \end_inset
 
 
-\series default
-We found all the informations abount the AVC computation and their range
- on this website : http://www.qsm.com/resources/function-point-languages-table
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Lower bound: 
+\begin_inset space \qquad{}
+\end_inset
+
+SLOC = 202 * 15 = 3030
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Upper bound: 
+\begin_inset space \qquad{}
+\end_inset
+
+SLOC = 202 * 67 = 13534
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
 \series bold
-.
-\begin_inset Newline newline
-\end_inset
+COCOMO
+\end_layout
 
+\begin_layout Subsubsection
 
-\begin_inset Newline newline
-\end_inset
+\series bold
+COCOMO II
+\end_layout
 
-2.2 COCOMO
-\begin_inset Newline newline
-\end_inset
-
-2.2.1 COCOMO II
-\begin_inset Newline newline
-\end_inset
-
-
-\series default
+\begin_layout Standard
 In COCOMO II effort is expressed as Person-Months (PM).
- A person month is the a mount of time one person spends working on the
- software development project for one month.
+ A person month is the amount of time one person spends working on the software
+ development project for one month.
  This number excludes time typically devoted to holidays, vacations, and
  weekend time off.
 \begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -2195,6 +2682,9 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
+
+\shape italic
 EFFORT = 2.94 * EAF * (KSLOC)
 \begin_inset Formula $^{E}$
 \end_inset
@@ -2209,72 +2699,70 @@ EFFORT = 2.94 * EAF * (KSLOC)
 \end_inset
 
 Where : 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-EAF = product of the cost drivers.
-\begin_inset Newline newline
-\end_inset
+\begin_layout Itemize
+EAF = product of the cost drivers
+\end_layout
 
-KSLOC = number of thousands estimated by Function Points.
-\begin_inset Newline newline
-\end_inset
+\begin_layout Itemize
+KSLOC = number of thousands estimated by Function Points
+\end_layout
 
-E = esponent derived from scale drivers.
+\begin_layout Itemize
+E = exponent derived from scale drivers.
  
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
-Now we are going to explain better every component of the expression.
+\begin_layout Standard
+Follows, in detail, the explanation of every component of the expression.
  
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Subsubsection
 
 \series bold
-2.2.2 Scale Factors
-\series default
+Scale Factors
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 To estimate correctly values, we refer to the COCOMO official tables : 
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Scale Drivers/Scale Factors.png
+	lyxscale 50
+	scale 40
 
 \end_inset
 
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+COCOMO scale factors table
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -2284,7 +2772,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Precedentedness (PREC) : it refers to the experience of the team and on
+Precedentedness: (PREC) : it refers to the experience of the team and on
  how much this project is similar the others did before.
  Since this is our second project, this parameter is Low.
  
@@ -2292,16 +2780,17 @@ Precedentedness (PREC) : it refers to the experience of the team and on
 
 \begin_layout Itemize
 Development Flexibility (FLEX) : it refers to the coherence with the feature
- required by assignement.
- Since we have to strictly respect a lot of specific features, also the
- flexibility is Low.
+ required by assignment.
+ Since there are very strict requirements on the functionality but nothing
+ specific is stated as for the technology to be used, the flexibility is
+ Low too.
 \end_layout
 
 \begin_layout Itemize
-Risk Resoluiton (RESL) : it refers to how much the system can be affected
+Risk Resolution (RESL) : it refers to how much the system can be affected
  by risks (es.
- wrong client input, ecc).
- We have considered in the developement a lot of risks.
+ wrong client input and so on).
+ We have considered in the development a lot of risks.
  This value is High.
  
 \end_layout
@@ -2313,12 +2802,8 @@ Team Cohesion (TEAM) : it refers to how well the members of the project
 \end_layout
 
 \begin_layout Itemize
-Process Maturity (PMAT) : all the goals have been succesfully achieved on
- time, so this value is very High.
-\begin_inset Newline newline
-\end_inset
-
-
+Process Maturity (PMAT) : all the goals have been successfully achieved
+ on time, so this value is Very High.
 \end_layout
 
 \begin_layout Standard
@@ -2341,35 +2826,42 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Scale Driver
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Factor
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Value
 \end_layout
 
@@ -2377,7 +2869,7 @@ Value
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2386,7 +2878,7 @@ PREC
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2395,7 +2887,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2406,7 +2898,7 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2415,7 +2907,7 @@ FLEX
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2424,7 +2916,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2435,7 +2927,7 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2444,7 +2936,7 @@ RESL
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2453,7 +2945,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2464,7 +2956,7 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2473,7 +2965,7 @@ TEAM
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2482,7 +2974,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2493,7 +2985,7 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2502,16 +2994,16 @@ PMAT
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+Very High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2522,25 +3014,27 @@ very High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Total
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+TOTAL
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2560,18 +3054,16 @@ Total
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Subsubsection
 
 \series bold
-2.2.3 Cost Drivers
-\series default
+Cost Drivers
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
-There are several cost drivers that characterize teh variation of the effort.
+\begin_layout Standard
+There are several cost drivers that characterize the variation of the effort.
  Now we are going to consider them one by one.
  
 \end_layout
@@ -2580,9 +3072,13 @@ There are several cost drivers that characterize teh variation of the effort.
 Required Software Reliability : it refers to the grade of reliability of
  the System.
  For example, if a bug drives to a human loss, the RELY is very High.
- For or project, this Value is set as Nominal, because in the worse case,
+ For our project, this value is set as Nominal, because in the worst case,
  the service becomes unavailable for some days, after that it should be
  recovered and the money loss regained.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2606,8 +3102,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/RELY.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2622,8 +3121,12 @@ status open
 \begin_layout Itemize
 Database Size : DATA is capturing the effort needed to assemble and maintain
  the data required to complete test of the program.
- In this case we obatained a value more than 1000 that is considered as
- very High because we have a 32 Gb Database.
+ In this case we obtained a value more than 1000 that is considered as very
+ High because we have a 32 Gb Database.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2647,8 +3150,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/DATA.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2661,8 +3167,12 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Product Complexity : it refers to the coplexity of the whole project.
- We set this value as very High.
+Product Complexity : it refers to the complexity of the whole project.
+ We set this value as High.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2686,8 +3196,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/CPLX.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2704,8 +3217,12 @@ Required Reusability : this cost driver accounts for the additional effort
  needed to construct components intended for reuse on current or future
  projects.
  We developed our system to be very reusable.
- So the Value is set as very High.
+ So the Value is set as Very High.
  
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2729,8 +3246,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/RUSE.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2751,42 +3271,6 @@ tion.
 \end_inset
 
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Tables/Cost Drivers/DOCU.png
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Execution Time Constraint : it refers to the amount of CPU usage with respect
- to the computational capabilities of the hardware.
- We set this parameter as High.
 \begin_inset Newline newline
 \end_inset
 
@@ -2810,8 +3294,59 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Tables/Cost Drivers/DOCU.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Execution Time Constraint : it refers to the amount of CPU usage with respect
+ to the computational capabilities of the hardware.
+ We set this parameter as High, because the logic part of the software requires
+ a decent amount of computational resources (like the algorithms).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/TIME.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2832,44 +3367,6 @@ Storage Constraint : it refers to the expected amount of storage usage with
 \end_inset
 
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Tables/Cost Drivers/STOR.png
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Platform Volability : For what concerns the core system, we don’t expect
- our fundamental platforms to change very often (except for suddently bugs).
- Obviously it will be updated to stay on line wih the newest O.S., meaby every
- 6 months.
- We set this value as Nominal.
 \begin_inset Newline newline
 \end_inset
 
@@ -2893,8 +3390,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Tables/Cost Drivers/PVOL.png
+	filename Tables/Cost Drivers/STOR.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2907,13 +3407,66 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Analyst Capability : the analysis has been conducted with a particular atttentio
-n to respect a possible real implementation.
+Platform Volability : for what concerns the core system, we don’t expect
+ our fundamental platforms to change very often (except for sudden bugs).
+ Obviously it will be periodically updated to stay on line with the newest
+ O.S., after a fixed amount of time.
+ We set this value as Low.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Tables/Cost Drivers/PVOL.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Analyst Capability : the analysis has been conducted with a particular attention
+ to respect a possible real implementation.
  We set this value as High.
 \begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -2933,8 +3486,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/ACAP.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2947,9 +3503,13 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Programmer Capability : Since we have already done a Software Engeneering
- project, we set this value as High, evne if we didn't implemented this
- project for real.
+Programmer Capability : since we have already done a Software Engineering
+ project and a Software Project, we set this value as High, even if we didn't
+ implemented this project for real.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -2973,8 +3533,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/PCAP.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2987,8 +3550,13 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Application Experience : We have no experience with java EE, so we set this
- Value as Low.
+Application Experience : we have no experience with Java EE, even though
+ we gained some experience in Java applications during the previous projects,
+ so we set this Value as Low.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -3012,8 +3580,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/APEX.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3026,13 +3597,18 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Platform Experience : Since we have some experience in programming / interaction
-g with database and java in general, we set this parameter as Nominal.
+Platform Experience : since we have some experience in programming, interacting
+ with databases, user interfaces and Java features in general, we set this
+ parameter as Nominal.
  
 \begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -3052,8 +3628,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/PLEX.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3067,8 +3646,12 @@ status open
 
 \begin_layout Itemize
 Language and tool Experience : we have no experience with Java EE, but we
- have some experience with database and interfaces, so we set this value
+ have some experience with databases and interfaces, so we set this value
  as Nominal.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -3092,8 +3675,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/LTEX.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3106,10 +3692,14 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Personnel continuity : the team is composed of only 2 people and it is not
- going to be enlarged.
+Personnel continuity : the team is composed of only two people and it is
+ not going to be enlarged.
  So we set this value as very High.
  
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -3133,8 +3723,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/PCON.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3149,9 +3742,13 @@ status open
 \begin_layout Itemize
 Usage of software tool : it refers to the completeness of the tools we are
  using.
- Since our applicaiton environment (Java EE) is very well integrated with
- all other environments, we set this value as High.
+ Since our application environment (Java EE) is well integrated with all
+ other environments, we set this value as High.
  
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -3175,8 +3772,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/TOOL.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3198,6 +3798,10 @@ Multisite Development : it refers to the way of communication we used.
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -3217,8 +3821,11 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Tables/Cost Drivers/SITE.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -3240,40 +3847,6 @@ Required development schedule : it refers to the schedule constraints imposed
 \end_inset
 
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Tables/Cost Drivers/SCED.png
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Summury Table : 
 \begin_inset Newline newline
 \end_inset
 
@@ -3297,35 +3870,86 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Tables/Cost Drivers/SCED.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Summary Table : 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="19" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Cost Driver
+
+\series bold
+Cost Drivers
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Factor
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Value
 \end_layout
 
@@ -3333,54 +3957,54 @@ Value
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-RELY
+Required Software Reliability (RELY)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+Nominal
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.10
+1.00
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-DATA
+Database Size (DATA)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+Very High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3391,54 +4015,54 @@ very High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-CPLX
+Product Complexity (CPLX)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.34
+1.17
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-RUSE
+Developed for Reusability (RUSE)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+Very High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3449,16 +4073,16 @@ very High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-DOCU
+Documentation Match to Life-Cycle Needs (DOCU)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3467,7 +4091,7 @@ Nominal
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3478,16 +4102,16 @@ Nominal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-TIME
+Execution Time Constraint (TIME)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3496,7 +4120,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3507,16 +4131,16 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-STOR
+Main Storage Constraint (STOR)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3525,7 +4149,7 @@ Nominal
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3536,45 +4160,45 @@ Nominal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-PVOL
+Platform Volatility (PVOL)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Nominal
+Low
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.00
+0.87
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-ACAP
+Analyst Capability (ACAP)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3583,7 +4207,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3594,16 +4218,16 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-PCAP
+Programmer Capability (PCAP)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3612,7 +4236,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3623,16 +4247,16 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-APEX
+Application Experience (APEX)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3641,7 +4265,7 @@ Low
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3652,16 +4276,16 @@ Low
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-PLEX
+Platform Experience (PLEX)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3670,7 +4294,7 @@ Nominal
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3681,16 +4305,16 @@ Nominal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-LTEX
+Language and Tool Experience (LTEX)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3699,7 +4323,7 @@ Nominal
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3710,16 +4334,16 @@ Nominal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-PCON
+Personnel Continuity (PCON)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3728,7 +4352,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3739,16 +4363,16 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-TOOL
+Use of Software Tools (TOOL)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3757,7 +4381,7 @@ High
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3768,25 +4392,25 @@ High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-SITE
+Multisite Development (SITE)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-very High
+Very High
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3797,16 +4421,16 @@ very High
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-SCED
+Required Development Schedule (SCED)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3815,7 +4439,7 @@ Nominal
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3826,16 +4450,20 @@ Nominal
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Total
+
+\series bold
+TOTAL
+\series default
+ (product of all the cost drivers)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3844,11 +4472,11 @@ Total
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.24236
+0.858
 \end_layout
 
 \end_inset
@@ -3864,18 +4492,19 @@ Total
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Subsubsection
 
 \series bold
-2.2.4 Effort Equation
-\series default
+Effort Equation
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
+\begin_layout Standard
+As previously stated, the effort related to the project is calculated with:
+\end_layout
 
-
+\begin_layout Standard
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -3895,7 +4524,14 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-Effort = A ∗ EAF ∗ KSLOC
+\align center
+
+\shape italic
+EFFORT = A * EAF * (KSLOC)
+\begin_inset Formula $^{E}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3904,43 +4540,45 @@ Effort = A ∗ EAF ∗ KSLOC
 \begin_inset Newline newline
 \end_inset
 
+Where:
+\end_layout
+
+\begin_layout Itemize
 A = 2.94 (for COCOMO II)
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-EAF = 1.24236 (product of cost drivers)
-\begin_inset Newline newline
-\end_inset
+\begin_layout Itemize
+EAF = 0.858 (product of cost drivers)
+\end_layout
 
-KSLOC = 8533 lines of code
-\begin_inset Newline newline
-\end_inset
+\begin_layout Itemize
+KSLOC = kilo lines of code
+\end_layout
 
-E = B+ 0.01 ∗ 
+\begin_layout Itemize
+E = B + 0.01 ∗ 
 \begin_inset Formula $\sum_{i}$
 \end_inset
 
 SF[i] = 0.91 + 0.01 * 15.59 = 1.0659
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_deeper
+\begin_layout Itemize
 B = 0.91 for COCOMO II
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
+\begin_layout Itemize
 \begin_inset Formula $\sum_{i}$
 \end_inset
 
 SF[i] = sum of Scale Drivers
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
-\begin_inset Newline newline
-\end_inset
-
-We can finally compute the effort value of out projet : 
+\end_deeper
+\begin_layout Standard
+Having all the values, we can finally compute the effort of our project
+ : 
 \begin_inset Newline newline
 \end_inset
 
@@ -3964,15 +4602,22 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-Effort = A ∗ EAF ∗ KSLOC
+\align center
+
+\shape italic
+Average Effort = A * EAF
+\size tiny
+average
+\size default
+ * KSLOC
 \begin_inset Formula $^{E}$
 \end_inset
 
- = 2.94 * 1.24236 * 8.533
+ = 2.94 * 0.858 * 9.292
 \begin_inset Formula $^{1.0659}$
 \end_inset
 
-= 35,89 = 36 PM
+= 27.15 = 28 PM
 \end_layout
 
 \end_inset
@@ -3982,13 +4627,143 @@ Effort = A ∗ EAF ∗ KSLOC
 \end_inset
 
 
-\series bold
-2.2.4 Schedule Estimation
-\series default
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Medium Effort = A * EAF
+\size tiny
+medium
+\size default
+ * KSLOC
+\begin_inset Formula $^{E}$
+\end_inset
+
+ = 2.94 * 0.858 * 9.898
+\begin_inset Formula $^{1.0659}$
+\end_inset
+
+= 29.03 = 29 PM
+\end_layout
+
+\end_inset
+
 
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Lower Effort = A * EAF
+\size tiny
+lower
+\size default
+ * KSLOC
+\begin_inset Formula $^{E}$
+\end_inset
+
+ = 2.94 * 0.858 * 3.030
+\begin_inset Formula $^{1.0659}$
+\end_inset
+
+= 8.22 = 9 PM
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Upper Effort = A * EAF
+\size tiny
+upper
+\size default
+ * KSLOC
+\begin_inset Formula $^{E}$
+\end_inset
+
+ = 2.94 * 0.858 * 13.534
+\begin_inset Formula $^{1.0659}$
+\end_inset
+
+= 40.53 = 41 PM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Schedule Estimation
+\end_layout
+
+\begin_layout Standard
 As far as the duration of the project is concerned, to estimate it we use
  the following formula : 
 \begin_inset Newline newline
@@ -4014,11 +4789,14 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-Duration = 3.67 ∗ Effort
+\align center
+
+\shape italic
+Duration = 3.67 * Effort
 \begin_inset Formula $^{F}$
 \end_inset
 
-= 3.67 * 3.04 = 11.2 months
+
 \end_layout
 
 \end_inset
@@ -4028,51 +4806,26 @@ Duration = 3.67 ∗ Effort
 \end_inset
 
 Where : 
-\begin_inset Newline newline
-\end_inset
-
-F = 0.28 + 0.2 ∗ (E − B) = 0.28 + 0.2 * (1.0659 - 0.91) = 0.31118
-\begin_inset Newline newline
-\end_inset
-
-E = 1.0659
-\begin_inset Newline newline
-\end_inset
-
-B = 0.91
-\begin_inset Newline newline
-\end_inset
-
-Effort = 36
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-The duration estimation seems fine, due to the complexity of the realization
- of all the part of the project.
 \end_layout
 
-\begin_layout Section
-Schedule
+\begin_layout Itemize
+F = 0.28 + 0.2 ∗ (E − B) = 0.28 + 0.2 * (1.0659 - 0.91) = 0.31118
+\end_layout
+
+\begin_layout Itemize
+E = 1.0659, the same coefficient calculated before
+\end_layout
+
+\begin_layout Itemize
+B = 0.91
+\end_layout
+
+\begin_layout Itemize
+Effort: is the same calculated in the previous sub subsection
 \end_layout
 
 \begin_layout Standard
-In this section we are going to estimate a possible schedule of the whole
- project.
- We used a Gantt graph to display our result.
- 
-\begin_inset Newline newline
-\end_inset
-
-It is important to precise that in the schedule we have posponed all the
- code and testing part at the end, while before we have put the design part
- that we really did during this 6 months.
- As we can see, have been considered all the parts of a full project to
- be developed, from design to implementation.
- 
+The calculus of the duration is then:
 \begin_inset Newline newline
 \end_inset
 
@@ -4096,11 +4849,274 @@ backgroundcolor "none"
 status open
 
 \begin_layout Plain Layout
-\begin_inset Graphics
-	filename Tables/Schedule/Schermata 2017-01-18 alle 17.39.50.png
+\align center
+
+\shape italic
+Average Duration = 3.67 * Average Effort
+\begin_inset Formula $^{F}$
+\end_inset
+
+= 3.67 * 28
+\begin_inset Formula $^{0.31118}$
+\end_inset
+
+ = 10.35 months
+\end_layout
 
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Medium Duration = 3.67 * Medium Effort
+\begin_inset Formula $^{F}$
+\end_inset
+
+= 3.67 * 29
+\begin_inset Formula $^{0.31118}$
+\end_inset
+
+ = 10.46 months
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Lower Duration = 3.67 * Lower Effort
+\begin_inset Formula $^{F}$
+\end_inset
+
+= 3.67 * 9
+\begin_inset Formula $^{0.31118}$
+\end_inset
+
+ = 7.27 months
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\shape italic
+Upper Duration = 3.67 * Upper Effort
+\begin_inset Formula $^{F}$
+\end_inset
+
+= 3.67 * 41
+\begin_inset Formula $^{0.31118}$
+\end_inset
+
+ = 11.66 months
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The duration estimation seems fine, due to the complexity of the realization
+ of all the part of the project.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Schedule
+\end_layout
+
+\begin_layout Standard
+In this section we are going to estimate a possible schedule of the whole
+ project.
+ We used a Gantt graph to display our result.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The sequence of tasks involving this project are:
+\end_layout
+
+\begin_layout Enumerate
+Preparation of the Requirement Analysis and Specification Document, containing
+ the goals, the domain assumptions, and the functional and nonfunctional
+ requirements of the project.
+ There is a fixed deadline for the RASD delivery (blue in the graph).
+\end_layout
+
+\begin_layout Enumerate
+Preparation of the Design Document, containing the architecture and the
+ design of the project.
+ There is a fixed deadline for the DD delivery (blue in the graph).
+\end_layout
+
+\begin_layout Enumerate
+Preparation of the Integration Testing Plan Document, containing the strategy
+ used to perform integration testing on the system.
+ There is a fixed deadline for the ITPD (blue in the graph).
+\end_layout
+
+\begin_layout Enumerate
+Preparation of the Project Plan, which is this document.
+ There is a fixed deadline for the PP (blue in the graph).
+\end_layout
+
+\begin_layout Enumerate
+Presentation of a brief explanation (∼ 30 min) about the delivered documents,
+ with slides, in a fixed day (6 February).
+ 
+\end_layout
+
+\begin_layout Enumerate
+Implementation of the software system (coding) and write unit tests.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Perform integration testing on the software developed.
+ 
+\end_layout
+
+\begin_layout Standard
+All the points are not strictly fixed, but can be iterated multiple times,
+ as new requirements emerge, new choices are made.
+ In particular, unit and integration testing will be continuously performed
+ throughout the development process.
+ Note also that some tasks need to be concluded before some other can begin,
+ as the code implementation cannot happen before the design of the software,
+ or the integration testing cannot happen before the code is implemented
+ and the integration plan is made.
+\begin_inset Newline newline
+\end_inset
+
+The last two parts of the schedule, that are the code implementation and
+ the integration testing have not a real deadline.
+ However, using the previously calculated data about the estimated duration
+ of the project, we can use the average duration, so that the whole project
+ will last for about 10 month, so from October 2016 to August 2017.
+ We also fixed a 
+\begin_inset Quotes eld
+\end_inset
+
+possible
+\begin_inset Quotes erd
+\end_inset
+
+ deadline for the last step of the project, that is the 15th of August 2017.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Tables/Schedule/PEJSchedule.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+schedule of the project
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -4138,36 +5154,63 @@ However, during working process, it happens that the working time will not
 As we said previously, we considered a full project development to represent
  a more realistic estimation, that won't be really done (implementation
  and testing).
- So We have eventully split the Gantt graph in two part, one for each member
- of the team.
+ 
 \begin_inset Newline newline
 \end_inset
 
+Almost every task involves the contribution of each member.
+ This allows a more efficient and secure control over the work of the team
+ members, due to the fact that there is more communication and possible
+ incoherence or misunderstandings are avoided.
+ Obviously each task can be further broken into smaller sub tasks, respectively
+ representing the actual work done on the project.
+ Since until now every deadline has been respected, the division of the
+ work load coincides with what has been done for the delivery of the project
+ documents, including this.
+ For further information related to such division, all the documents can
+ be consulted, checking the changelog and the hours of work section, at
+ their end.
+\begin_inset Newline newline
+\end_inset
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
+Figure 4 represents an high level allocation of the resources, considering
+ small chunk of work, grouped by main task (that are the main documents
+ and the real implementation).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Tables/Resource allocation/Schermata 2017-01-18 alle 17.58.09.png
+	filename Tables/Resource allocation/ResourceAllocation.png
+	lyxscale 50
+	scale 40
 
 \end_inset
 
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+resource allocation of the project
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -4184,88 +5227,884 @@ status open
 \end_layout
 
 \begin_layout Section
-Risk Managment
+Risk Management
 \end_layout
 
 \begin_layout Standard
-In this section we are going to discuss some of the risks that the project
- could face during its development.
- Obviousbly not every single risk will be consiredered because it's impossible
- to predict what will really happen.
- This is only an estimation.
-\begin_inset Newline newline
-\end_inset
+In this section we are going to discuss some of the risks, that can be technical
+ or economical, that the project could face during its development.
+ Obviously not every single risk will be considered because it's impossible
+ to predict what will really happen, hence what follows will represent a
+ simple estimation.
+\end_layout
 
-First of all let's consider the team of the project : a programmer is supposed
- to be skilled and working 8 hours a day.
+\begin_layout Subsection
+Project risks
+\end_layout
+
+\begin_layout Subsubsection
+Delays
+\end_layout
+
+\begin_layout Standard
+Let's consider the team of the project : a programmer is supposed to be
+ skilled and working 8 hours a day.
  This estimation fails when the programmer gets ill or quits.
- A solution to this risk could be splitting the task beetween more programmers,
+ A solution to this risk could be splitting the task between more programmers,
  so that when one of them gets ill, the others are able to work as well.
- Moreover if a person quits, the project doesn't fail and can be finished
+ 
+\begin_inset Newline newline
+\end_inset
+
+This is not the best approach because it can lead to an increase of time
+ of work, due to the preparation of new personnel.
+ However, if a person quits, the project doesn't fail and can be finished
  by someone else.
- Indeed the task doesn't have to belong to a single person.
+ Lastly, even a bad estimation of the required time for each task can lead
+ to a delay in the delivery of such task.
+\end_layout
+
+\begin_layout Subsubsection
+Lack of communication among the team
+\end_layout
+
+\begin_layout Standard
+Those kind of difficulties can be overcome by explicitly defining the responsibi
+lities and tasks to be done by each team member, and by writing clear and
+ complete specification and design documents.
+\end_layout
+
+\begin_layout Subsubsection
+Lack of experience in programming
+\end_layout
+
+\begin_layout Standard
+The team has no concrete experience in programming using Java EE.
+ This will require more time during the coding phase, slowing the development
+ phase.
+\end_layout
+
+\begin_layout Subsubsection
+Requirements change
+\end_layout
+
+\begin_layout Standard
+The requirements may change during the development in unexpected way.
+ This risk can’t be prevented, but can be mitigated by writing reusable
+ and extensible software.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Effect
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Delays
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lack of communication
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lack of experience
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Certain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements change
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Technical risks
+\end_layout
+
+\begin_layout Subsubsection
+Data loss
+\end_layout
+
+\begin_layout Standard
+Data can be lost due to various reasons, such as hardware failures or wrong
+ usage of merging tools.
+ This problem is easily avoided enforcing a periodic backup plan.
+ Backups should be kept into a separate device from the main storage one.
+\end_layout
+
+\begin_layout Subsubsection
+Hardware failure
+\end_layout
+
+\begin_layout Standard
+Cars should have a proper setup in order to work, especially hardware.
+ The most critical factor is given by the VehicleInterface component, that
+ has both software and hardware components.
+ More attention is then required to avoid possible problems related to the
+ car piece of project implementation, thus more work time.
+\end_layout
+
+\begin_layout Subsubsection
+Integration testing failure
+\end_layout
+
+\begin_layout Standard
+Some components and subsystems may not pass the integration testing phase:
+ this can require to rewrite large pieces of software.
+ This risk can be reduced by defining precisely the interfaces between component
+s and subsystems, and by doing integration tests early using stubs and drivers.
  
+\end_layout
+
+\begin_layout Subsubsection
+Downtime / unavailability of service
+\end_layout
+
+\begin_layout Standard
+The system could go down for excessive load, software bugs, power outages
+ or connection services faults.
+ While the first two can be mitigated with a specific test on the hardware
+ and software composing our system, the latter ones are unavoidable.
+\end_layout
+
+\begin_layout Subsubsection
+Incremental code
+\end_layout
+
+\begin_layout Standard
+Being the basic structure monolithic, there is a good chance that the growth
+ of the code may lead to an unreadable and messy agglomerate of modules
+ and, in the worst case, to difficult understanding of the whole code.
+ This can be avoided making the project extremely modularized, improving
+ the quality of the Design Document before the code implementation phase.
+ Moreover, code inspection can be done periodically.
+ The adopted language helps us in giving a defined structure to our system.
 \begin_inset Newline newline
 \end_inset
 
-Connected to this risks there are also the code loss and the wrong UI.
- Code loss is the most common risk of a programmer.
- Fortunately it is easely exceeded by an everyday backup.
- On the other hand, the UI has to be very intuitive and very userfriendly,
- to avoid any possible complaint.
-\begin_inset Newline newline
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Effect
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hardware failure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integration testing failure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Downtime
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Incremental code
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
 \end_inset
 
-In second place we need to take care of the cars : every car has a smartphone
- connected, so data plan has to be arrenged with vendors.
- The arrangement brings a minimum risk because its a formal contract, but
- on the other hand the amount of smartphone vendors and their low cost minimizes
- the risk.
- Moreover there is however a little risk that the car will not work properly.
- A car, infact, has a determined cost and it is supposed to last.
- The solution is simple and consists in buying the cars from a reliable
- vendor.
- 
-\begin_inset Newline newline
+
+\end_layout
+
 \end_inset
 
-A similar risk is caused by the absence of the 3G connection.
- In this case the user is not able to connect to the server and to reserve
- the car.
- 
-\begin_inset Newline newline
-\end_inset
 
-Third, it is important to care about the opinion of the people using the
- system and if it is popular or not.
- Apart from the initial period, gaining popularity is the key to back up
- the project.
- Once the project is presented, it is important to start collecting possible
- future users.
- Otherwise this risk could lead to a bif fail.
- So it is important to properly advertize the app.
- 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-An other risk concerns the business.
- Car sharing is not a new business, so it is important to focus on imporving
- some aspects of the service, to have a competitive advantage compated to
+\begin_layout Subsection
+Economical risks
+\end_layout
+
+\begin_layout Subsubsection
+Bankruptcy
+\end_layout
+
+\begin_layout Standard
+The income from the sales of the software may not be enough to sustain the
+ development, maintenance and deployment of the software system.
+ A good feasibility study helps to avoid this situation.
+\end_layout
+
+\begin_layout Subsubsection
+Competitors
+\end_layout
+
+\begin_layout Standard
+Other companies can build equivalent or better products at a lower price
+ and put PowerEnJoy out of use.
+ This may not be very probable, because important components are self-made
+ and so unique for our system, like the VehicleInterface.
+ Car sharing is not a new business, so it is important to focus on improving
+ some aspects of the service, to have a competitive advantage compared to
  the other sharing services.
 \begin_inset Newline newline
 \end_inset
 
-As far as money is concerned, istead, there could be a risk in a sudden
- increase of the storage cost of the database on the cloud that could lead
- an overprize.
- Fortunately, theese days, there are planty of cloud services and swithing
- to a different one is not a big problem.
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Effect
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bankruptcy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Competitors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Severe
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+User satisfaction risks
+\end_layout
+
+\begin_layout Subsubsection
+Requirements dissatisfaction
+\end_layout
+
+\begin_layout Standard
+Some of the client requests may have not been accomplished or satisfied
+ (like features not included or UIs not very friendly), leading to a loss
+ of time to better improve the software, or even the future loss of the
+ client.
+ A possible way to avoid it is having a continuous dialogue with the client,
+ to improve the quality and level of detail of the Requirement Analysis
+ and Specification document.
+\end_layout
+
+\begin_layout Subsubsection
+Bad public opinion / unknown service
+\end_layout
+
+\begin_layout Standard
+Apart from the initial period, gaining popularity is the key to back up
+ the project.
+ Once the project is presented, it is important to start collecting possible
+ future users.
+ Otherwise the risk of not being supported may lead to a failure.
+ Hence it is important to properly advertize the app.
+ 
 \begin_inset Newline newline
 \end_inset
 
-Last but not least risky is the sheduling : a bad schedule can lead to a
- overestimtion of the cost or the users and to a wrong allocation of all
- the resources that will become a big fail of the whole project.
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Effect
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements dissatisfaction
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bad public opinion / unknown service
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Moderate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Severe
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4284,11 +6123,15 @@ References
 \end_layout
 
 \begin_layout Itemize
-RASD_4.7, before version 4.7
+RASD_4.8, before version 4.8
 \end_layout
 
 \begin_layout Itemize
-DD_3.2, before version 3.2
+DD_3.3, before version 3.3
+\end_layout
+
+\begin_layout Itemize
+ITPD_1.1, before version 1.1
 \end_layout
 
 \begin_layout Itemize
@@ -4296,7 +6139,57 @@ Assignments AA 2016-2017.pdf
 \end_layout
 
 \begin_layout Itemize
-myTaxyService project Plan document version 1.1
+PP1.1.pdf
+\end_layout
+
+\begin_layout Itemize
+ProjectPlan.pdf
+\end_layout
+
+\begin_layout Itemize
+Project planning example document.pdf
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.qsm.com/resources/function-point-languages-table
+\end_layout
+
+\end_inset
+
+, as a reference to select the gearing factors
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://sunset.usc.edu/research/COCOMOII/expert_cocomo/drivers.html
+\end_layout
+
+\end_inset
+
+, as a reference to all the COCOMO II scale and cost drivers standards
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+\end_layout
+
+\end_inset
+
+, the COCOMO II manual
 \end_layout
 
 \begin_layout Subsection
@@ -4324,7 +6217,7 @@ Atom, for the project markdown
 \end_layout
 
 \begin_layout Itemize
-Ganttproject: to draw Gantt diagrams
+GanttProject: to draw Gantt diagrams
 \end_layout
 
 \begin_layout Subsection
@@ -4336,7 +6229,8 @@ ChangeLog
 \series bold
 Version 0.1
 \series default
-] 
+] :: Introduction of the document, with brief explanation of the estimation
+ section.
 \end_layout
 
 \begin_layout Itemize
@@ -4344,7 +6238,7 @@ Version 0.1
 \series bold
 Version 0.2
 \series default
-] 
+] :: Function point part added, section 1.
 \end_layout
 
 \begin_layout Itemize
@@ -4352,7 +6246,7 @@ Version 0.2
 \series bold
 Version 0.3
 \series default
-]
+] :: Estimation part concluded, section 2.
 \end_layout
 
 \begin_layout Itemize
@@ -4360,7 +6254,7 @@ Version 0.3
 \series bold
 Version 0.4
 \series default
-]
+] :: Schedule and Resource allocation parts introduced, section 3 and 4.
 \end_layout
 
 \begin_layout Itemize
@@ -4368,7 +6262,7 @@ Version 0.4
 \series bold
 Version 1.0
 \series default
-]
+] :: Risk management part introduced, section 5.
 \end_layout
 
 \begin_layout Itemize
@@ -4376,18 +6270,49 @@ Version 1.0
 \series bold
 Version 1.1
 \series default
-]
+] :: Added images links.
+\end_layout
+
+\begin_layout Itemize
+[21/01/2017] [
+\series bold
+Version 1.2
+\series default
+] :: Detailed rewriting of section 5, about risk management, section 4,
+ about resource allocation, and section 3, about the project schedule.
+ Revision of the estimation part of the document, including the FP estimation
+ and the calculus of the project duration and effort required.
 \end_layout
 
 \begin_layout Subsection
 Hours of work
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph
 Matteo Frosi
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Standard
+[29/12/2016]: 1.00 hours (introduction of the document and writing of the
+ document structure)
+\begin_inset Newline newline
+\end_inset
+
+[20/01/2017]: 2.00 hours (first revision of the document and changes over
+ the effort, cost and code lines estimation)
+\begin_inset Newline newline
+\end_inset
+
+[21/01/2017]: 5.00 hours (completion and rewriting of some parts of the document,
+ like scheduling, resource allocation.
+ Almost complete rewriting of risk management chapter).
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 8.00 hours
+\end_layout
+
+\begin_layout Paragraph
 
 \series bold
 Luca Cost
@@ -4401,7 +6326,7 @@ a
 \begin_inset Newline newline
 \end_inset
 
-[15 / 01 / 17] : 3 hours (writing and completing the Funciton Points part)
+[15 / 01 / 17] : 3 hours (writing and completing the Function Points part)
 \begin_inset Newline newline
 \end_inset
 
@@ -4415,11 +6340,12 @@ n part with COCOMO)
 \begin_inset Newline newline
 \end_inset
 
-[18 / 01 / 17] : 1.30 hours (Thinking and writing Schedule and Source allocation)
+[18 / 01 / 17] : 1.30 hours (thinking and writing schedule and resource allocatio
+n)
 \begin_inset Newline newline
 \end_inset
 
-[19 / 01 / 17] : 2.15 hours (Thinking and writing the Risk Management part)
+[19 / 01 / 17] : 2.15 hours (thinking and writing the risk management part)
 \begin_inset Newline newline
 \end_inset
 
