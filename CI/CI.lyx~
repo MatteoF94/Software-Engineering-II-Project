@@ -230,6 +230,21 @@ n in HTML format from Java source code.
 \end_layout
 
 \begin_layout Itemize
+Cognitive complexity: is introduced as a fundamental measure of the functional
+ complexity and sizes of software systems.
+ It is empirically observed that the cognitive complexity of a software
+ system is not only determined by its operational complexity, but also determine
+d by its architectural complexity.
+ That is, software cognitive complexity is proportional to both its operational
+ and architectural complexities.
+\end_layout
+
+\begin_layout Itemize
+Cyclomatic complexity: it is a quantitative measure of the number of linearly
+ independent paths through a program's source code.
+\end_layout
+
+\begin_layout Itemize
 Sonar: open-source product used to improve code quality via defined metrics.
 \end_layout
 
@@ -779,7 +794,537 @@ L.92-101, financial account data (account type id and account name)
 \end_layout
 
 \begin_layout Itemize
-L.104-111, 
+L.104-111, financial account type (note that L.111 can be moved further in
+ the code, being used only at L.206; such action should also make the variable
+ declared more meaningful).
+\end_layout
+
+\begin_layout Itemize
+L.114, order read helper declaration and initialization
+\end_layout
+
+\begin_layout Itemize
+L.117 and L.120-122, gather and check the currency of the user (the comment
+ refers to 
+\begin_inset Quotes eld
+\end_inset
+
+we
+\begin_inset Quotes erd
+\end_inset
+
+).
+ These line should be clustered in one block, due to the fact that they
+ deal with the same thing.
+\end_layout
+
+\begin_layout Itemize
+L.125-134, product store
+\end_layout
+
+\begin_layout Itemize
+L.137-141, party ID (owner of the product)
+\end_layout
+
+\begin_layout Itemize
+L.144-154, payment method info
+\end_layout
+
+\begin_layout Itemize
+Missing blank line between L.154 and L.155
+\end_layout
+
+\begin_layout Itemize
+L.156-174, generation of person/people data
+\end_layout
+
+\begin_layout Itemize
+L.176-182, context for the flexible string expander
+\end_layout
+
+\begin_layout Itemize
+L.185-186, expansion of the financial account name field
+\end_layout
+
+\begin_layout Itemize
+L.189-191, values to create the initial deposit amount
+\end_layout
+
+\begin_layout Itemize
+L.194-223, creation of the financial account:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L.195 can be postponed before L.223, when it is effectively used.
+\end_layout
+
+\begin_layout Itemize
+L.206-209, addition of initial deposit and payment method ID
+\end_layout
+
+\begin_layout Itemize
+L.211-221, response to the service 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+L.226-242, owner role creation
+\end_layout
+
+\begin_layout Itemize
+L.245-266, creation of the initial deposit and response to such service
+\end_layout
+
+\begin_layout Standard
+The lines length convention is respected almost everywhere in the class,
+ considering as 
+\begin_inset Quotes eld
+\end_inset
+
+line length
+\begin_inset Quotes erd
+\end_inset
+
+ the number of characters, including the white space, from the first character
+ of the line to the last character:
+\end_layout
+
+\begin_layout Itemize
+L.52 is 83 characters long, and it is not breakable, hence the convention
+ to respect is 120 chars and the line respects it.
+\end_layout
+
+\begin_layout Itemize
+L.56 is exactly 120 chars long, and respects the maximum length convention.
+\end_layout
+
+\begin_layout Itemize
+L.81 is 93 characters long, but could be broken adding a line, respecting
+ the line wrapping convention.
+\end_layout
+
+\begin_layout Itemize
+L.82 is 110 characters long, but could be reduced breaking the line after
+ the comma operator.
+\end_layout
+
+\begin_layout Itemize
+L.106 is 122 characters long, but could be broken adding a new line in correspond
+ence of the 
+\begin_inset Quotes eld
+\end_inset
+
+where
+\begin_inset Quotes erd
+\end_inset
+
+ method invocation, as previously done in L.81-83.
+\end_layout
+
+\begin_layout Itemize
+L.121 is 105 characters long, but could be reduced breaking the line after
+ the comma operator.
+\end_layout
+
+\begin_layout Itemize
+L.130 is 107 characters long, but could be reduced breaking the line after
+ an operator (suggested 
+\begin_inset Quotes eld
+\end_inset
+
++
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+L.191 is 109 characters long, but could be reduced breaking the line after
+ the comma operator.
+\end_layout
+
+\begin_layout Subsection
+Wrapping lines
+\end_layout
+
+\begin_layout Standard
+With the exception of all the lines, described in the previous subsection,
+ that can be broken, all the other code lines correctly break after the
+ comma or an operator.
+ However, the indentation is wrong in every wrapped line:
+\end_layout
+
+\begin_layout Itemize
+L.75, the line should start under the first character of the last round brace
+ of L.74 (under resourceOrderError).
+\end_layout
+
+\begin_layout Itemize
+L.82 and L.83 should have the methods invocation after the chain, so under
+ the .form method invocation of L.81.
+\end_layout
+
+\begin_layout Itemize
+L.132 and L.133 are correctly indented w.r.t.
+ each other, but both should go under the resourceError argument of the
+ getMessage method of L.131.
+\end_layout
+
+\begin_layout Subsection
+Comments
+\end_layout
+
+\begin_layout Standard
+There is no commented out code, but the code in the class is very inadequate,
+ extremely minimal.
+ In fact, to completely understand every section of the class it is necessary
+ to search for the source classes or interfaces where entities or methods
+ are defined.
+ Comments that should contain information that is relevant to reading and
+ understanding the class are almost absent.
+\end_layout
+
+\begin_layout Subsection
+Java source files
+\end_layout
+
+\begin_layout Standard
+The file contains correctly only one class, and its public.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The class contains almost no Javadoc, with the exception of a comment before
+ the class definition, that states:
+\end_layout
+
+\begin_layout Verse
+FinAccountProductService - Financial Accounts created from product purchases
+ (i.e.
+ gift certificates)
+\end_layout
+
+\begin_layout Standard
+That tells the reader very little information about the class.
+ Moreover, there is only one method in the class (and it is a problem, discussed
+ further on in the document) and there is no Javadoc for it.
+ It should, instead, be something like this:
+\end_layout
+
+\begin_layout Verse
+/** 
+\end_layout
+
+\begin_layout Verse
+* "Method information" 
+\end_layout
+
+\begin_layout Verse
+* @param dctx "parameter description" 
+\end_layout
+
+\begin_layout Verse
+* @param context "parameter description" 
+\end_layout
+
+\begin_layout Verse
+* @return "object returned description" 
+\end_layout
+
+\begin_layout Verse
+*/
+\end_layout
+
+\begin_layout Subsection
+Package and Import Statements 
+\end_layout
+
+\begin_layout Standard
+As stated in the File organization section 3, both the package definition
+ and the imports (from java or from the project itself) are correctly included
+ as first statements of the file, before the class definition.
+\end_layout
+
+\begin_layout Subsection
+Class and Interface declarations
+\end_layout
+
+\begin_layout Standard
+The class declarations have the following order:
+\end_layout
+
+\begin_layout Enumerate
+Class documentation comment (L.1-18)
+\end_layout
+
+\begin_layout Enumerate
+Class statement (L.50)
+\end_layout
+
+\begin_layout Enumerate
+Class static variables (L.52-53).
+ However, as SonarQube suggests, resourceOrderError can be declared private,
+ hence it should go after resourceError.
+\end_layout
+
+\begin_layout Enumerate
+No instance variable is defined for the class.
+\end_layout
+
+\begin_layout Enumerate
+No constructor is defined for the class.
+ As SonarQube suggests, it could be good practice to add a private constructor
+ to hide the implicit public one.
+\end_layout
+
+\begin_layout Enumerate
+The only public static method is declared, createPartyFinAccountFromPurchase.
+\end_layout
+
+\begin_layout Standard
+The code is not totally free of duplicates.
+ Some strings, used as arguments for multiple methods can be replaced by
+ a constant.
+ They are:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+userLogin
+\begin_inset Quotes erd
+\end_inset
+
+ (used in L.68, L.209, L.236 and L.260)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+orderId
+\begin_inset Quotes erd
+\end_inset
+
+ (used in L.71, L.81, L.139 and L.256)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+partyId
+\begin_inset Quotes erd
+\end_inset
+
+ (used in L.146, L.233 and L.255)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+finAccountId
+\begin_inset Quotes erd
+\end_inset
+
+ (used in L.229, L.235, L.251 and L.275)
+\end_layout
+
+\begin_layout Standard
+Lastly, but not less important, is the complexity of the class.
+ The majority of the LOCs are part of the only method existent in the class.
+ This increases the complexity of the code (both cognitive and cyclomatic,
+ with a score of 36 and 21, against the respective standards of 15 and 10).
+ Private sub methods can be implemented to make the code more readable,
+ and give a sense to all the cluster of statements that appear, grouping
+ them per functionality (as described in the File organization section).
+\end_layout
+
+\begin_layout Subsection
+Initialization and declarations
+\end_layout
+
+\begin_layout Standard
+All the variables in the class have the correct scope and type, with the
+ exception of the previously said constant resourceOrderError (L.53), that
+ should be declared private.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, all the variables are correctly initialized before the use.
+ However not every of them is initialized when declared:
+\end_layout
+
+\begin_layout Itemize
+orderHeader, of type GenericValue, declared at L.75.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Itemize
+featureAndAppl, of type GenericValue, declared at L.85.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Itemize
+finAccountType, of type GenericValue, declared at L.110.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Itemize
+finAccountId, of type String, decleared at L.201 is not initialized until
+ L.229.
+\end_layout
+
+\begin_layout Itemize
+createResp, of type Map<String, Object>, declared at L.217.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Itemize
+roleResp, of type Map<String, Object>, declared at L.238.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Itemize
+depositResp, of type Map<String, Object>, declared at L.262.
+ However, as the inspector suggests, the variable initialization is covered
+ further on.
+\end_layout
+
+\begin_layout Subsection
+Method calls
+\end_layout
+
+\begin_layout Standard
+All the methods invocation are made in the correct way, using the right
+ parameters.
+ Moreover, the returned value is used properly in every section of the class.
+\end_layout
+
+\begin_layout Subsection
+Arrays
+\end_layout
+
+\begin_layout Standard
+No array has been used in the implementation of the class.
+\end_layout
+
+\begin_layout Subsection
+Object comparison
+\end_layout
+
+\begin_layout Standard
+All the objects are correctly compared with the .equals method.
+ Moreover, the null comparison is used correctly with the 
+\begin_inset Quotes eld
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+!=
+\begin_inset Quotes erd
+\end_inset
+
+ symbols.
+\end_layout
+
+\begin_layout Itemize
+equals at: L.156 (two times, and in the correct form with String type), L.174,
+ L.176 and L.212.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+ at: L.126 and L.135.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+!=
+\begin_inset Quotes erd
+\end_inset
+
+ at: L.100, L.132, L.145, L.152, L.166, L.172 and L.212.
+\end_layout
+
+\begin_layout Subsection
+Output format
+\end_layout
+
+\begin_layout Standard
+The displayed output messages are all related to the possible errors that
+ can happen during the all procedure described by the class/static method.
+ They clearly specify what error occurred, but a grammatical error can be
+ fount at L.136, where the word 
+\begin_inset Quotes eld
+\end_inset
+
+accout
+\begin_inset Quotes erd
+\end_inset
+
+ should instead be 
+\begin_inset Quotes eld
+\end_inset
+
+account
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Computation, Comparisons and Assignments
+\end_layout
+
+\begin_layout Subsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+All the relevant exceptions are caught and the appropriate actions (mostly
+ error handling) are taken for each catch block.
+\end_layout
+
+\begin_layout Subsection
+Flow of Control
+\end_layout
+
+\begin_layout Standard
+There are no control statement with the exception of conditional statement
+ if-else.
+\end_layout
+
+\begin_layout Subsection
+Files
+\end_layout
+
+\begin_layout Standard
+No files are handled by the studied class.
 \end_layout
 
 \begin_layout Standard
