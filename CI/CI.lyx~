@@ -5,18 +5,22 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{changepage}
+\date{}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman "default" "default"
+\font_roman "default" "Cambria"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -27,7 +31,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\spacing single
+\spacing other 1.2
 \use_hyperref false
 \papersize default
 \use_geometry true
@@ -87,7 +91,7 @@ Code Inspection
 
 \series bold
 \size large
-Document Version 0.2
+Document Version 1.0
 \begin_inset Newline newline
 \end_inset
 
@@ -248,6 +252,13 @@ Cyclomatic complexity: it is a quantitative measure of the number of linearly
 Sonar: open-source product used to improve code quality via defined metrics.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Description of the code
 \end_layout
@@ -350,7 +361,7 @@ FinAccountServices.java
 \end_layout
 
 \begin_layout Standard
-According to the javadoc of the package [2], the first class deals with
+According to the Javadoc of the package [3], the first class deals with
  the financial accounts used as a payment method, and the second deals with
  the financial accounts created from product purchases (that are gift certificat
 es).
@@ -383,7 +394,7 @@ refund a financial account
 \begin_layout Standard
 So in general these classes concern the usage of a financial account.
  But what exactly is, w.r.t.
- the Apache OFBiz software, a financial account? The Apache Wiki [3] states
+ the Apache OFBiz software, a financial account? The Apache Wiki [4] states
  as follows.
 \begin_inset Newline newline
 \end_inset
@@ -575,7 +586,7 @@ height "1pt"
 All the operations related to a financial account are described in the code
  of the previously named three classes, considering also the imports in
  each of them.
- Moreover, from the DataMap [4] of the software we can also realize what
+ Moreover, from the DataMap [5] of the software we can also realize what
  entity classes will be involved:
 \end_layout
 
@@ -1301,6 +1312,12 @@ account
 Computation, Comparisons and Assignments
 \end_layout
 
+\begin_layout Standard
+No brute force coding aspects can be identified in the assigned class and
+ no arithmetic expression is used.
+ Moreover there is no implicit type conversion.
+\end_layout
+
 \begin_layout Subsection
 Exceptions
 \end_layout
@@ -1335,7 +1352,15 @@ No files are handled by the studied class.
 \end_layout
 
 \begin_layout Section
-Bibliography and references
+Document further information
+\end_layout
+
+\begin_layout Subsection
+References
+\end_layout
+
+\begin_layout Itemize
+[1] Code Inspection Assignment Task Description.pdf
 \end_layout
 
 \begin_layout Itemize
@@ -1355,10 +1380,205 @@ https://ofbiz.apache.org/apache-ofbiz-project-overview.html
 
 \begin_layout Itemize
 [3]
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://ci.apache.org/projects/ofbiz/site/javadocs/org/apache/ofbiz/accounting/fin
+account/package-summary.html
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-https://cwiki.apache.org/confluence/display/OFBIZ/Data+Model+Diagrams
+[4] 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://cwiki.apache.org/confluence/display/OFBIZ/07+Financial+Accounts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+[5] DataMap.pdf
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://ci.apache.org/projects/ofbiz/site/javadocs/overview-summary.html
+\end_layout
+
+\end_inset
+
+, overview of the Apache OFBiz software Javadoc
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.oracle.com/technetwork/java/codeconventions-150003.pdf
+\end_layout
+
+\end_inset
+
+, contains some Java Code conventions
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://ofbiz.apache.org/documentation.html
+\end_layout
+
+\end_inset
+
+, is the Apache OFBiz documentation
+\end_layout
+
+\begin_layout Itemize
+CI.pdf
+\end_layout
+
+\begin_layout Itemize
+Inspection.pdf
+\end_layout
+
+\begin_layout Subsection
+Used tools
+\end_layout
+
+\begin_layout Standard
+In creating the PP document, the following tools have been used: 
+\end_layout
+
+\begin_layout Itemize
+Github, for version controller
+\end_layout
+
+\begin_layout Itemize
+LyX, to write the document and converting in .pdf format 
+\end_layout
+
+\begin_layout Itemize
+Hunspell, for the spell check of the document 
+\end_layout
+
+\begin_layout Itemize
+Atom, for the project markdown 
+\end_layout
+
+\begin_layout Itemize
+IntelliJ IDEA IDE, to inspect the code under the semantic aspects, including
+ correct imports, usages, invocations and so on.
+\end_layout
+
+\begin_layout Itemize
+SonarQube, used as an IntelliJ IDEA IDE plugin, to check the complexity
+ of the code, possible repetitions, improvable access definition of variables.
+ 
+\end_layout
+
+\begin_layout Subsection
+ChengeLog
+\end_layout
+
+\begin_layout Itemize
+[21/01/2017] [
+\series bold
+Version 0.1
+\series default
+] :: Document introduction and structure definition.
+\end_layout
+
+\begin_layout Itemize
+[21/01/2017] [
+\series bold
+Version 0.2
+\series default
+] :: General description of the code added, section 2, of the document.
+\end_layout
+
+\begin_layout Itemize
+[22/01/2017] [
+\series bold
+Version 0.3
+\series default
+] :: Added first part of the checklist, section 3 of the document.
+\end_layout
+
+\begin_layout Itemize
+[22/01/2017] [
+\series bold
+Version 1.0
+\series default
+] :: Completed section 3 about code conventions and writing of the Document
+ further information part, section 4.
+\end_layout
+
+\begin_layout Itemize
+[22/01/2017] [
+\series bold
+Version 1.2
+\series default
+] ::
+\end_layout
+
+\begin_layout Subsection
+Hours of work
+\end_layout
+
+\begin_layout Paragraph
+Matteo Frosi
+\end_layout
+
+\begin_layout Standard
+[20/01/2017]: 1.00 hours (of discussion about the document and Apache OFBiz
+ software)
+\begin_inset Newline newline
+\end_inset
+
+[21/01/2017]: 5.00 hours (writing the first two versions of the document)
+\begin_inset Newline newline
+\end_inset
+
+[22/01/2017]: 6.30 hours (writing the remaining versions of the document)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 12.30 hours
+\end_layout
+
+\begin_layout Paragraph
+Luca Costa
+\end_layout
+
+\begin_layout Standard
+[20/01/2017]: 1.40 hours (of discussion about the document and Apache OFBiz
+ software and research over it)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 1.40 hours
 \end_layout
 
 \end_body
