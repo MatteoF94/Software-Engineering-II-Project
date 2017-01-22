@@ -27,9 +27,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -53,6 +54,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 25col%
+\topmargin 20col%
+\rightmargin 25col%
+\bottommargin 20col%
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -82,7 +87,7 @@ Code Inspection
 
 \series bold
 \size large
-Document Version 0.1
+Document Version 0.2
 \begin_inset Newline newline
 \end_inset
 
@@ -132,8 +137,500 @@ LatexCommand tableofcontents
 Introduction
 \end_layout
 
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+The purpose of this document is to understand the usage and to find the
+ problems related to a small java class, part of a specific version of Apache
+ OFBiz code.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Code inspection has different goals.
+ First of all, it is needed to improve the quality of the code, finding
+ bugs, missing elements or simply syntactic errors.
+ Moreover, the people that do the inspection improve their skills, augmenting
+ the ability to understand the code.
+ In fact, the inspectors analyze the code made by others, even acquiring
+ new methods in order to accomplish something (maybe in an algorithmic way),
+ while the authors of the code, receiving the report from the inspectors,
+ acknowledge their mistakes, improving their coding skills, too.
+\begin_inset Newline newline
+\end_inset
+
+Aside from the pure syntactic analysis, that must follow the rules specified
+ in the given document [1], we also have to realize what the given class
+ is used for, and in what is the context in which it is located.
+ To accomplish such goal, in section 2, a brief and high view analysis of
+ the software will be made, including the context, package and class analysis.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+Apache OFBiz is an open source product for the automation of enterprise
+ processes that includes framework components and business applications
+ for ERP (Enterprise Resource Planning), CRM (Customer Relationship Management),
+ E-Business / E-Commerce, SCM (Supply Chain Management), MRP (Manufacturing
+ Resource Planning), MMS/EAM (Maintenance Management System/Enterprise Asset
+ Management).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Apache OFBiz provides a foundation and starting point for reliable, secure
+ and scalable enterprise solutions.
+ 
+\end_layout
+
+\begin_layout Subsection
+Definitions and abbreviations
+\end_layout
+
+\begin_layout Itemize
+Apache: open source company, notorious for its web server
+\end_layout
+
+\begin_layout Itemize
+OMG: is an international, open membership, not-for-profit technology standards
+ consortium.
+ OMG modeling standards enable visual design, execution and maintenance
+ of software and other processes.
+\end_layout
+
+\begin_layout Itemize
+OMG GL (General Ledger): group of standards related to the GLs, that are
+ companies' set of numbered accounts, for their accounting records.
+ The ledgers provide a complete record of financial transactions over the
+ life of the companies.
+\end_layout
+
+\begin_layout Itemize
+K&R style: Indentation style named after Kernighan and Ritchie, who used
+ this style in their book “The C Programming Language”.
+ 
+\end_layout
+
+\begin_layout Itemize
+Regexp: regular expression, it is a finite automata used to define a search
+ pattern
+\end_layout
+
+\begin_layout Itemize
+Javadoc: is a documentation generator created by Sun Microsystems for the
+ Java language (now owned by Oracle Corporation) for generating API documentatio
+n in HTML format from Java source code.
+ The HTML format is used to add the convenience of being able to hyperlink
+ related documents together.
+\end_layout
+
+\begin_layout Itemize
+Sonar: open-source product used to improve code quality via defined metrics.
+\end_layout
+
+\begin_layout Section
+Description of the code
+\end_layout
+
+\begin_layout Subsection
+Assigned classes
+\end_layout
+
+\begin_layout Standard
+There is only one class assigned to our group.
+ The class is:
+\end_layout
+
+\begin_layout Itemize
+FinAccountProductServices.java
+\end_layout
+
+\begin_layout Standard
+This class is located in the org.apache.ofbiz.accounting.finaccount package
+ of Apache OFBiz.
+\end_layout
+
+\begin_layout Subsection
+Functional roles
+\end_layout
+
+\begin_layout Subsubsection
+Accounting package
+\end_layout
+
+\begin_layout Standard
+The class to review is part of the Accounting package of OFBiz.
+ The complete specification of the accounting section is available on the
+ Apache OFBiz Project Overview web page [2], where an overall description
+ for each module is provided.
+ As it is stated in the page: 
+\end_layout
+
+\begin_layout Verse
+\begin_inset Quotes eld
+\end_inset
+
+The Accounting entities are organized according to age old and generally
+ accepted principles such as double-entry accounting, a General Ledger with
+ hierarchical accounts, journals and posting of transactions and corresponding
+ entries.
+ The structure is primarily based on the OMG GL standard and the work that
+ was done on an AR/AP extension of the OMG GL standard.
+ This correlates well with other standards such as ebXML and OAGIS.
+ The Accounting entities are structured such that accounts for multiple
+ organizations can be managed.
+ The multiple organizations could be multiple companies, or departments
+ or other organizations within a company.
+ Each Organization can have various GL Accounts associated with it so that
+ it can operate with its own subset of the Master Chart of Accounts.
+ Each Organization can also have its own set of Journals for flexibility,
+ even though the use of Journals should be as minimal as possible in favor
+ of allowing the system to automatically create and post transactions based
+ on business events triggered by standard procedures and documents such
+ as purchase and sales orders, invoices, inventory transfers, payments,
+ receipts, and so forth.
+ There are also entities in place for budgeting and the reconciliation of
+ budgets against actual GL Account balances for a specific fiscal period.
+ Oh yeah, there are also entities used to track custom Fiscal Periods and
+ other entities to keep summary results for accounts in specific periods.
+ Entities to track Fixed Assets are also part of the Accounting entity package.
+ This includes depreciation information in addition to maintenance, scheduling
+ of Fixed Assets (along with the Work Effort entities), and so forth.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basically, the accounting package deals with all the services such as invoices,
+ payments, taxes, orders, financial accounts, and so on.
+ In particular we deal with the financial accounts sub package.
+\end_layout
+
+\begin_layout Subsubsection
+Finaccount subpackage
+\end_layout
+
+\begin_layout Standard
+The finaccount package, contained in the accounting package of OFBiz, contains
+ three classes (that includes the one we have to inspect), that are:
+\end_layout
+
+\begin_layout Itemize
+FinAccountPaymentServices.java 
+\end_layout
+
+\begin_layout Itemize
+FinAccountProductServices.java
+\end_layout
+
+\begin_layout Itemize
+FinAccountServices.java
+\end_layout
+
+\begin_layout Standard
+According to the javadoc of the package [2], the first class deals with
+ the financial accounts used as a payment method, and the second deals with
+ the financial accounts created from product purchases (that are gift certificat
+es).
+ There is no description of the third class (and this is a note of incomplete
+ description), but a quick glance at the code, allows to say that is reserved
+ to furnish utility method to financial accounts.
+ In particular we have all static methods, and they includes:
+\end_layout
+
+\begin_layout Itemize
+creation of a service credit account, that is a type of financial account
+\end_layout
+
+\begin_layout Itemize
+creation of a financial account for a product store
+\end_layout
+
+\begin_layout Itemize
+check the balance of a financial account
+\end_layout
+
+\begin_layout Itemize
+check the status of a financial account
+\end_layout
+
+\begin_layout Itemize
+refund a financial account
+\end_layout
+
+\begin_layout Standard
+So in general these classes concern the usage of a financial account.
+ But what exactly is, w.r.t.
+ the Apache OFBiz software, a financial account? The Apache Wiki [3] states
+ as follows.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "50col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A financial account is a tool (similar to bank account statement) that is
+ used for monitoring monetary transactions.
+ Normally they will be linked to a party and the various transactions details
+ (eg payments or receipts) will be shown as entries.
+ The entries for a financial account can be displayed using the 'Financial
+ Account' tab in Accounting or in Party Manager if you enter a party as
+ the owner of the financial account.
+ Currently in OFBiz financial accounts can have the following types: 
+\end_layout
+
+\begin_layout Itemize
+Bank Account (by default this type will post to 213500 CUSTOMER DEPOSIT
+ ACCOUNTS) 
+\end_layout
+
+\begin_layout Itemize
+Deposit Account (by default this type will post to 213500 CUSTOMER DEPOSIT
+ ACCOUNTS) 
+\end_layout
+
+\begin_layout Itemize
+Gift Certificate (by default this type will post to 213200 GIFT CERTIFICATES
+ UNREDEEMED) 
+\end_layout
+
+\begin_layout Itemize
+Investment Account (by default this type will post to 213500 CUSTOMER DEPOSIT
+ ACCOUNTS) 
+\end_layout
+
+\begin_layout Itemize
+Replenish Account (no default posting account in demo data setup)
+\end_layout
+
+\begin_layout Itemize
+Service Credit Account (no default posting account in demo data setup) 
+\end_layout
+
+\begin_layout Standard
+You can also setup each financial account to post to a specific general
+ ledger account for each party.
+ This is done via a specific field during the creation or update of a financial
+ account.
+ This will override the default setting by type.
+\begin_inset Newline newline
+\end_inset
+
+Financial accounts are used for: 
+\end_layout
+
+\begin_layout Itemize
+Managing and Tracking Customer Prepaid Accounts 
+\end_layout
+
+\begin_layout Itemize
+Managing and Tracking Customer Credit Limit 
+\end_layout
+
+\begin_layout Itemize
+Managing Electronic Gift Certificates / Gift Vouchers/ Gift Card
+\end_layout
+
+\begin_layout Itemize
+Reload of Electronic Gift Card Company
+\end_layout
+
+\begin_layout Standard
+Here follows a screen of the tool that allows the interaction with financial
+ accounts.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FinAccountImages/accounting_findfinacc.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+financial account page sample
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "50col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+All the operations related to a financial account are described in the code
+ of the previously named three classes, considering also the imports in
+ each of them.
+ Moreover, from the DataMap [4] of the software we can also realize what
+ entity classes will be involved:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FinAccountImages/FinAccountClassDiagram.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+financial account detailed data map
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+FinAccountProductServices class
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Inspection checklist
+\end_layout
+
+\begin_layout Standard
+Before proceeding with the inspection of the assigned class, it is good
+ to state the convention used in checking the code.
+\end_layout
+
+\begin_layout Itemize
+L.X indicates the X-th line of code of the class
+\end_layout
+
+\begin_layout Itemize
+L.X-Y indicates the interval of lines of code between X and Y, bounds included
 \end_layout
 
 \begin_layout Subsection
@@ -141,8 +638,207 @@ Naming conventions
 \end_layout
 
 \begin_layout Itemize
-L79, variable featureAndAppl of type GenericValue doesn't suggest it's meaning,
- only understandable from the next line of code, L81-L83, where it is assigned.
+L.81, variable featureAndAppls, of type List<GenericValue>, doesn't suggest
+ its meaning.
+ Moreover the way it is assigned in the next lines, L.81-83, it's even more
+ confusing.
+ The only thing understandable is that it's the result of a query.
+\end_layout
+
+\begin_layout Itemize
+L.79, variable featureAndAppls, of type GenericValue, doesn't suggest its
+ meaning.
+ The only thing that is known is that it is the first element of the featureAndA
+ppls list, filtered by date, L.84 and L.85.
+\end_layout
+
+\begin_layout Itemize
+L.111, variable replenishEnumId, of type String, has an incomplete meaning.
+ Further information can be gathered only at lines L.205 and L.206, that suggests
+ the variable involves the method of replenishing the financial account
+ created.
+\end_layout
+
+\begin_layout Itemize
+L.114, variable orh, of type OrderReadHelper, is understandable only if the
+ type is known and remembered.
+ However it is not used very further in the code (L.117, L.127, L.134, L.137),
+ so that the reader may be aware of the variable meaning.
+\end_layout
+
+\begin_layout Itemize
+L.137, variable billToParty, of type GenericValue, may be misleading.
+ Reading it, it may ring a bell that such variable is the bill that someone,
+ maybe the store who sells the products, has to pay.
+ Looking into further detail in the OrderReadHelper class (org.apache.ofbiz.order/o
+rder package), we see that the invoked method getBillToParty invokes the
+ other method getPartyFromRole(
+\begin_inset Quotes eld
+\end_inset
+
+BILL_TO_CUSTOMER
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+L.52, static and final variable (constant) module, of type String, is not
+ uppercase, it should be MODULE.
+\end_layout
+
+\begin_layout Itemize
+L.53, static and final variable (constant) resourceOrderError, of type String,
+ is not uppercase and the multiple words forming the name are not separated
+ by an underscore.
+ It should be RESOURCE_ORDER_ERROR.
+\end_layout
+
+\begin_layout Itemize
+L.54, static and final variable (constant) resourceError, of type String,
+ is not uppercase and the multiple words forming the name are not separated
+ by an underscore.
+ It should be RESOURCE_ERROR.
+\end_layout
+
+\begin_layout Subsection
+Indention
+\end_layout
+
+\begin_layout Standard
+The indentation is correct, and always four spaces are used.
+\end_layout
+
+\begin_layout Subsection
+Braces
+\end_layout
+
+\begin_layout Standard
+The K&R (Kernighan and Ritchie) style is adopted, having the first curly
+ brace on the same line as the instruction that opens a new block.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, every control instruction (if, while, do-while, try-chatch, for)
+ with only one instruction, mostly try-catch, are surrounded by curly braces
+ and not left without them.
+\end_layout
+
+\begin_layout Subsection
+File organization
+\end_layout
+
+\begin_layout Standard
+Blank lines correctly separate the sections of the class, sometimes along
+ with brief comments to describe, sometimes not clearly, the introducing
+ section.
+ From top to bottom we can identify the following sections:
+\end_layout
+
+\begin_layout Itemize
+L.20, package definition
+\end_layout
+
+\begin_layout Itemize
+L.22-26, java imports
+\end_layout
+
+\begin_layout Itemize
+L.28-45, local imports (Apache OFBiz modules)
+\end_layout
+
+\begin_layout Itemize
+L.52-54, constant declaration
+\end_layout
+
+\begin_layout Itemize
+Missing blank line between L.56 and L.57, to separate the name of the method
+ from the comment introducing the firs section of it.
+\end_layout
+
+\begin_layout Itemize
+L.58-62, initialization of the context (utility variables, order item, user
+ login)
+\end_layout
+
+\begin_layout Itemize
+L.65-66, order ID
+\end_layout
+
+\begin_layout Itemize
+L.69-76, order header for store info
+\end_layout
+
+\begin_layout Itemize
+L.78-89, feature of the first product of the order
+\end_layout
+
+\begin_layout Itemize
+L.92-101, financial account data (account type id and account name)
+\end_layout
+
+\begin_layout Itemize
+L.104-111, financial account type (note that L.111 can be moved further in
+ the code, being used only at L.206; such action should also make the variable
+ declared more meaningful).
+\end_layout
+
+\begin_layout Itemize
+L.114, order read helper declaration and initialization
+\end_layout
+
+\begin_layout Itemize
+L.117 and L.120-122, gather and check the currency of the user (the comment
+ refers to 
+\begin_inset Quotes eld
+\end_inset
+
+we
+\begin_inset Quotes erd
+\end_inset
+
+).
+ These line should be clustered in one block, due to the fact that they
+ deal with the same thing.
+\end_layout
+
+\begin_layout Itemize
+L.125-134, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Bibliography and references
+\end_layout
+
+\begin_layout Itemize
+[2] 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://ofbiz.apache.org/apache-ofbiz-project-overview.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+[3]
+\end_layout
+
+\begin_layout Itemize
+https://cwiki.apache.org/confluence/display/OFBIZ/Data+Model+Diagrams
 \end_layout
 
 \end_body
