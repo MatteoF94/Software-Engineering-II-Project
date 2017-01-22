@@ -4992,6 +4992,18 @@ Upper Duration = 3.67 * Upper Effort
 The duration estimation seems fine, due to the complexity of the realization
  of all the part of the project.
  
+\begin_inset Newline newline
+\end_inset
+
+Lastly, let's consider the real duration, using the number of people in
+ the group.
+ Just thinking about the average duration calculated, the needed number
+ of team people is 28pm/10.35 months = 2.7 people, that is, rounded, 3 people.
+ Considering only the two people of our group, the real duration will be
+ extended by 5 months, leading to about 15 months needed for the project.
+ However, we can think to an additional worker, maybe a lazy one, that will
+ help us in the realization of the project.
+ For this reason, the previously calculated durations are maintained.
 \end_layout
 
 \begin_layout Standard
@@ -6229,7 +6241,8 @@ ChangeLog
 \series bold
 Version 0.1
 \series default
-] ::
+] :: Introduction of the document, with brief explanation of the estimation
+ section.
 \end_layout
 
 \begin_layout Itemize
@@ -6237,7 +6250,7 @@ Version 0.1
 \series bold
 Version 0.2
 \series default
-] ::
+] :: Function point part added, section 1.
 \end_layout
 
 \begin_layout Itemize
@@ -6245,7 +6258,7 @@ Version 0.2
 \series bold
 Version 0.3
 \series default
-] ::
+] :: Estimation part concluded, section 2.
 \end_layout
 
 \begin_layout Itemize
@@ -6253,7 +6266,7 @@ Version 0.3
 \series bold
 Version 0.4
 \series default
-] :: Sche
+] :: Schedule and Resource allocation parts introduced, section 3 and 4.
 \end_layout
 
 \begin_layout Itemize
@@ -6283,6 +6296,15 @@ Version 1.2
  and the calculus of the project duration and effort required.
 \end_layout
 
+\begin_layout Itemize
+[22/01/2017] [
+\series bold
+Version 1.3
+\series default
+] :: Added consideration about the number of working people during the developme
+nt of the project.
+\end_layout
+
 \begin_layout Subsection
 Hours of work
 \end_layout
@@ -6308,7 +6330,12 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 8.00 hours
+[22/01/2017]: 0.30 hours (consideration of number of people in the group
+ in the duration calculus)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 8.30 hours
 \end_layout
 
 \begin_layout Paragraph

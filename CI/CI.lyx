@@ -91,7 +91,7 @@ Code Inspection
 
 \series bold
 \size large
-Document Version 1.0
+Document Version 1.1
 \begin_inset Newline newline
 \end_inset
 
@@ -633,6 +633,115 @@ financial account detailed data map
 
 \begin_layout Subsubsection
 FinAccountProductServices class
+\end_layout
+
+\begin_layout Standard
+The purpose of the class is the creation of a financial account in order
+ to support the purchase of a product, probably, as stated in the Apache
+ Wiki [4], with an established provider, usually in a business-to-business
+ (B2B) relationship.
+ Multiple factors have to be taken in consideration, such as the product
+ purchased, the general information, the store where to order the product
+ (with quantity, price and amount).
+ In particular the financial account created is of type Deposit, because
+ the Owner of the transaction (the one who makes the purchase) exchanges
+ money in order to purchase a product.
+ A clear example of what is expected to appear, in the context of such transacti
+on is available, once again, in the Apache Wiki [4].
+ The figure below shows the form to fill in order to make a purchase (or
+ even a simple deposit...).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FinAccountImages/accounting_finacctrans.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+financial accounting transaction sample
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Class usage
+\end_layout
+
+\begin_layout Standard
+The class is used multiple times in the xml file associated to the financial
+ accounts services, that is services_finaccount.xml, located in the accounting/se
+rvicedef folder.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FinAccountImages/ClassUsage.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+usages of the FinAccounProductServices.java class
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1344,6 +1453,82 @@ Files
 No files are handled by the studied class.
 \end_layout
 
+\begin_layout Section
+Other notes
+\end_layout
+
+\begin_layout Subsection
+Further problems
+\end_layout
+
+\begin_layout Standard
+No further problem is detected, but something more should be said about
+ the structure of the class.
+ One big method is certainly a mess, and looking at other classes (even
+ in the same package), it seems that this is a recurrent problem.
+ 
+\begin_inset Newline newline
+\end_inset
+
+However, the chunk of code is clearly decomposable in smaller sections,
+ each related to a specific set of action or purpose.
+ This can be exploited in order to make the code more readable and use smaller
+ private methods (they are used only by the class itself, so there's no
+ need to make them accessible from outer classes), that accomplish a simple
+ task.
+ 
+\begin_inset Newline newline
+\end_inset
+
+As example, let's take the lines L.84-107.
+ They can be included in a method with very few parameter (hence leading
+ to a small interaction between methods) that deals with the product elaboration
+ and extraction.
+\begin_inset Newline newline
+\end_inset
+
+Instead of a sequential structure, the class will assume a hierarchical
+ tree structure, where the main method invokes bigger sub tasks, which in
+ turn invokes even smaller sub sub tasks, reaching the leaves of the invocation
+ (and computation) tree.
+\end_layout
+
+\begin_layout Subsection
+File statistics
+\end_layout
+
+\begin_layout Standard
+Here follows some statistics about the class considered w.r.t.
+ the whole project.
+\end_layout
+
+\begin_layout Itemize
+TOTAL LOCs: 278 (349594, the whole software).
+\end_layout
+
+\begin_layout Itemize
+Source Code Lines: 201 (256383, the whole software), respectively 72% and
+ 73% of the total.
+\end_layout
+
+\begin_layout Itemize
+Comment Code Lines: 45 (55574, the whole software), both 16% of the total.
+\end_layout
+
+\begin_layout Itemize
+Blank Lines: 32 (37637, the whole software), respectively 12% and 11% of
+ the total.
+\end_layout
+
+\begin_layout Standard
+As it can be seen from the above data, the whole software follows quite
+ well the same behavior, from class to package and so on.
+ However, adopting a strict division of code may lead to problems of non
+ readability of the code, as in our case.
+ More comment should be adopted when making an intense usage of external
+ modules, especially utility ones.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -1498,6 +1683,11 @@ SonarQube, used as an IntelliJ IDEA IDE plugin, to check the complexity
  
 \end_layout
 
+\begin_layout Itemize
+Statistic, an IntelliJ IDEA IDE plugin, to calculate the quantity and kind
+ of code inside a project
+\end_layout
+
 \begin_layout Subsection
 ChengeLog
 \end_layout
@@ -1540,7 +1730,7 @@ Version 1.0
 \series bold
 Version 1.1
 \series default
-] ::
+] :: Added purpose of the class and usages, subsections 2.2.3 and 2.2.4.
 \end_layout
 
 \begin_layout Subsection
@@ -1561,11 +1751,11 @@ Matteo Frosi
 \begin_inset Newline newline
 \end_inset
 
-[22/01/2017]: 6.30 hours (writing the remaining versions of the document)
+[22/01/2017]: 7.30 hours (writing the remaining versions of the document)
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 12.30 hours
+TOTAL: 13.30 hours
 \end_layout
 
 \begin_layout Paragraph
@@ -1578,7 +1768,11 @@ Luca Costa
 \begin_inset Newline newline
 \end_inset
 
-TOTAL: 1.40 hours
+[22/01/2017]: 1.20 hours (of understanding the class purpose)
+\begin_inset Newline newline
+\end_inset
+
+TOTAL: 3.00 hours
 \end_layout
 
 \end_body
