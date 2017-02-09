@@ -876,9 +876,7 @@ Proposed system
 We will implement a client-server architecture, based on the common REST
  APIs, to manage the web application.
  A MySQL based database is needed to store the data of users and cars.
- A possible framework for the server is Mono, derived on the .NET Framework
- offered by Microsoft, but working on a large number of OS, such as iOS,
- Android, OSX and Microsoft.
+ A possible framework for the server is Spring, a java based framework.
  Lastly, the car interfaces with the user using some of its artifacts, such
  as the emergency button (User -> Car System -> System -> Operators), the
  car screen or the numeric keypad to access the car or to end the service.

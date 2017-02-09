@@ -736,8 +736,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ArchitecturePNGs/CarSystemDetailed.png
-	lyxscale 50
+	filename ArchitecturePNGs/carHighLevel.png
+	lyxscale 30
 	scale 60
 
 \end_inset
